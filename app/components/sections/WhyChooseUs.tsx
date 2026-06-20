@@ -127,11 +127,11 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="pt-[60px] pb-[100px] px-[24px] md:px-[48px] bg-[#F7F2E8]">
+    <section className="pt-[60px] pb-[100px] px-[24px] md:px-[48px] bg-[var(--ground)]">
       <div className="max-w-[1300px] mx-auto">
         {/* Header */}
         <div className="text-center mb-[60px]">
-          <p className="text-[13px] font-bold tracking-[0.15em] text-[#A68A56] uppercase mb-[24px]">
+          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[24px]">
             WHY CHOOSE CLEAN7
           </p>
           <h2
@@ -156,9 +156,9 @@ export default function WhyChooseUs() {
           {features.map((feat, idx) => (
             <div
               key={idx}
-              className="bg-[#F7F2E8] rounded-[24px] p-[32px] md:p-[28px] flex flex-col items-center text-center shadow-[0_20px_40px_rgba(33,28,19,0.06)]"
+              className="bg-[var(--ground-soft)] rounded-[24px] p-[32px] md:p-[28px] flex flex-col items-center text-center shadow-sm border border-[var(--line)]"
             >
-              <div className="w-[70px] h-[70px] rounded-full bg-[#F3EAD5] text-[#9D7941] flex items-center justify-center mb-[24px]">
+              <div className="w-[70px] h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[24px]">
                 {feat.icon}
               </div>
               <h3
@@ -167,8 +167,8 @@ export default function WhyChooseUs() {
               >
                 {feat.title}
               </h3>
-              <div className="w-[30px] h-[1px] bg-[#D1BC91] mb-[16px]"></div>
-              <p className="text-[14px] text-[#736A5B] leading-[1.6]">
+              <div className="w-[30px] h-[1px] bg-[var(--gold)]/40 mb-[16px]"></div>
+              <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6]">
                 {feat.desc}
               </p>
             </div>
@@ -176,7 +176,7 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Satisfaction Bar */}
-        <div className="w-full bg-[#EFE9DB] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
+        <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
           <div className="flex flex-col md:flex-row items-center md:items-center gap-[24px] w-full md:w-auto text-center md:text-left">
             <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] max-w-[340px]">
               If something's not right, we'll make it right —{" "}

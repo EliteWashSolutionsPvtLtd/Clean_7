@@ -68,7 +68,6 @@ export default function Hero() {
 
       <div className={styles.visual}>
         <div className={styles.foldStack}>
-          <div className={styles.careTag}>Hand-finished</div>
           <div className={`${styles.foldCard} ${styles.card1}`}>
             <div className={styles.stitch}></div>
           </div>

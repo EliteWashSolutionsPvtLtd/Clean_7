@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className={`overflow-x-hidden`}>
+    <div className={`overflow-clip`}>
       <OrganizationJsonLd />
       <Navbar />
       <HomeHashScroll />

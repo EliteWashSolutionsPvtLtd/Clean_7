@@ -1,333 +1,342 @@
-import { WixMadeForDisplayFont } from "@/app/fonts";
-import { APP_STORE_URL, GOOGLE_PLAY_URL } from "@/app/lib/store-links";
-import { Mail, MapPin, Phone } from "lucide-react";
-import Image from "next/image";
-import AppleIcon from "../icons/AppleIcon";
-import GooglePlayIcon from "../icons/GooglePlayIcon";
+"use client";
+
 import Link from "next/link";
+import AppStoreButton from "../ui/buttons/AppStoreButton";
+import GooglePlayButton from "../ui/buttons/GooglePlayButton";
+import { Instagram, Facebook, MessageCircle, Mail } from "lucide-react";
 import { FooterAnimation } from "../animations/PageAnimations";
-import { FooterParticles } from "./FooterParticles";
 
-const FOOTER_PHONE_DISPLAY = "7078497263";
-const FOOTER_PHONE_TEL = "tel:+7078497263";
-const FOOTER_EMAIL = "support@clean7.in";
-const FOOTER_EMAIL_MAILTO = `mailto:${FOOTER_EMAIL}`;
-const FOOTER_ADDRESS =
-  "123, Mullapur Road, Thana Bhawan, Shamli, Uttar Pradesh, 247777";
-const FOOTER_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(FOOTER_ADDRESS)}`;
+// --- Icons ---
+const IconBriefcase = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+  </svg>
+);
 
-function ContactItem({
-  icon,
-  text,
-  href,
-}: {
-  icon: React.ReactNode;
-  text: string;
-  href: string;
-}) {
-  const external = href.startsWith("http");
-  return (
-    <a
-      href={href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group flex items-start gap-[10px] text-brown-footer-contact-icon transition-colors duration-300 hover:text-orange"
-    >
-      <span className="transition-transform duration-300 group-hover:scale-110">
-        {icon}
-      </span>
-      <span className="text-[16px] text-brown-footer-contact-text transition-colors duration-300 group-hover:text-[#584E46]">
-        {text}
-      </span>
-    </a>
-  );
-}
+const IconShield = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" />
+  </svg>
+);
 
-function AppleDownloadButton() {
-  return (
-    <a
-      href={APP_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex w-fit items-center justify-center gap-[10px] rounded-[10px] bg-brown-footer-download-apple-bg px-[15px] py-[8px] text-white shadow-lg transition-all duration-300 hover:scale-[1.05] hover:shadow-xl active:scale-[0.98]"
-    >
-      <AppleIcon className="w-[40px] transition-transform duration-300 group-hover:scale-110" />
+const IconLeaf = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+  </svg>
+);
 
-      <div className="whitespace-nowrap">
-        <p className="text-xs">Download on the</p>
-        <p className="font-bold">App Store</p>
-      </div>
-    </a>
-  );
-}
+const IconArrowRight = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14" />
+    <path d="m12 5 7 7-7 7" />
+  </svg>
+);
 
-function GoogleDownloadButton() {
-  return (
-    <a
-      href={GOOGLE_PLAY_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex w-fit items-center justify-center gap-[10px] rounded-[10px] bg-brown-footer-download-google-bg px-[15px] py-[8px] text-white shadow-lg transition-all duration-300 hover:scale-[1.05] hover:shadow-xl active:scale-[0.98]"
-    >
-      <GooglePlayIcon className="w-[40px] transition-transform duration-300 group-hover:scale-110" />
+const IconShieldTiny = () => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" />
+  </svg>
+);
 
-      <div className="whitespace-nowrap">
-        <p className="text-[#746159] text-xs">Get it on</p>
-        <p className="font-bold text-[#91776C]">Google Play</p>
-      </div>
-    </a>
-  );
-}
+const IconHeart = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+  </svg>
+);
 
-const footerLinkClass =
-  "text-brown-footer-contact-text text-[16px] cursor-pointer hover:text-orange hover:translate-x-1 transition-all duration-300";
-
-const footerMutedLineClass =
-  "text-brown-footer-contact-text text-[16px] transition-colors duration-300";
-
-function CompanyColumn() {
-  return (
-    <div>
-      <h2 className="text-[#91776C] font-bold text-[18px]">Company</h2>
-      <div className="mt-[10px] flex flex-col gap-[5px]">
-        <Link href="/about" className={footerLinkClass}>
-          About Us
-        </Link>
-        <p className={footerMutedLineClass}>Our Team</p>
-      </div>
-    </div>
-  );
-}
-
-function LegalColumn() {
-  return (
-    <div>
-      <h2 className="text-[#91776C] font-bold text-[18px]">Legal</h2>
-      <div className="mt-[10px] flex flex-col gap-[5px]">
-        <Link href="/privacy-policy" className={footerLinkClass}>
-          Privacy Policy
-        </Link>
-        <Link href="/terms-and-conditions" className={footerLinkClass}>
-          Terms and Conditions
-        </Link>
-        <Link href="/terms-of-use" className={footerLinkClass}>
-          Terms of Use
-        </Link>
-        <Link href="/delete-account" className={footerLinkClass}>
-          Delete account
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function ServicesColumn() {
-  return (
-    <div>
-      <h2 className="text-[#91776C] font-bold text-[18px]">Services</h2>
-      <div className="mt-[10px] flex flex-col gap-[5px]">
-        <Link href="/pricing" className={footerLinkClass}>
-          Pricing
-        </Link>
-        <p className={footerMutedLineClass}>Laundry</p>
-        <p className={footerMutedLineClass}>Dry Cleaning</p>
-        <p className={footerMutedLineClass}>Subscriptions</p>
-      </div>
-    </div>
-  );
-}
-
-function HelpColumn() {
-  return (
-    <div>
-      <h2 className="text-[#91776C] font-bold text-[18px]">Help</h2>
-      <div className="mt-[10px] flex flex-col gap-[5px]">
-        <Link href="/faq" className={footerLinkClass}>
-          FAQs
-        </Link>
-        <Link href="/contact" className={footerLinkClass}>
-          Contact
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function FooterBrandIntro() {
-  return (
-    <div>
-      <Image
-        src="/logo.png"
-        alt=""
-        width={112}
-        height={112}
-        className="mb-3 h-24 w-24 object-contain sm:h-28 sm:w-28"
-      />
-      <h1
-        className={`text-xl font-bold cursor-pointer hover:scale-[1.05] transition-transform duration-300`}
-        style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-      >
-        <span className="text-brown hover:text-dark-brown transition-colors duration-300">
-          Wash
-        </span>
-        <span className="text-brown hover:text-dark-brown transition-colors duration-300">
-          {" "}
-          &
-        </span>{" "}
-        <span className="text-orange hover:text-[#FF7700] transition-colors duration-300">
-          Wow
-        </span>
-      </h1>
-      <p className="text-[#5E5450] text-[16px]">
-        Wash, dry, fold - freshness delivered
-      </p>
-    </div>
-  );
-}
+const IconSparkle = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+  </svg>
+);
 
 export default function Footer() {
+  const linkClass =
+    "block text-[var(--ink-soft)] text-[15px] hover:text-[var(--gold)] hover:translate-x-1 transition-all duration-300";
+  const headingClass =
+    "text-[var(--gold)] font-bold text-[12px] tracking-[0.1em] uppercase mb-[24px]";
+
   return (
     <FooterAnimation>
-      {/* Background Div */}
-      <div className="footer-main gsap-animate relative overflow-hidden bg-[#FBF6F2] py-[80px] mt-[80px] sm:py-[60px] md:py-[80px] px-[20px] opacity-0 border-t border-[#DDD2C8]">
-        <FooterParticles variant="main" />
-        <div className="relative z-1">
-          {/* Container Div - Desktop Layout (900px+) */}
-          <div className="hidden min-[900px]:flex w-full max-w-[1200px] mx-auto items-start justify-between gap-[20px]">
-            {/* Left Content */}
-            <div className="text-left max-w-[300px]">
-              <FooterBrandIntro />
-
-              {/* Contact Items */}
-              <div className="mt-[30px] flex flex-col gap-[10px] items-start">
-                <ContactItem
-                  icon={<Phone />}
-                  text={FOOTER_PHONE_DISPLAY}
-                  href={FOOTER_PHONE_TEL}
-                />
-                <ContactItem
-                  icon={<Mail />}
-                  text={FOOTER_EMAIL}
-                  href={FOOTER_EMAIL_MAILTO}
-                />
-                <ContactItem
-                  icon={<MapPin />}
-                  text={FOOTER_ADDRESS}
-                  href={FOOTER_MAPS_URL}
-                />
+      <footer className="footer-main gsap-animate w-full bg-[var(--ground)] pt-[80px] md:pt-[100px] pb-[30px] px-[24px] md:px-[48px] opacity-0">
+        <div className="max-w-[1200px] mx-auto">
+          {/* Top Section - Grid */}
+          <div className="flex flex-col lg:flex-row justify-between gap-[60px] lg:gap-[40px] mb-[80px]">
+            {/* Col 1: Brand */}
+            <div className="max-w-[300px]">
+              <h2
+                className="text-[42px] text-[var(--ink)] mb-[16px] leading-none"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+              >
+                Clean7
+              </h2>
+              <p className="text-[16px] text-[var(--ink)] mb-[4px]">
+                Premium laundry care,
+              </p>
+              <p
+                className="text-[18px] text-[var(--gold)] italic mb-[24px]"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+              >
+                delivered with elegance.
+              </p>
+              <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
+                We're here to make your everyday simpler, fresher, and
+                beautifully taken care of.
+              </p>
+              <div className="flex items-center gap-[20px] text-[var(--ink-soft)]">
+                <a
+                  href="#"
+                  className="hover:text-[var(--gold)] transition-colors"
+                >
+                  <Instagram strokeWidth={1.5} size={20} />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-[var(--gold)] transition-colors"
+                >
+                  <Facebook strokeWidth={1.5} size={20} />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-[var(--gold)] transition-colors"
+                >
+                  <MessageCircle strokeWidth={1.5} size={20} />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-[var(--gold)] transition-colors"
+                >
+                  <Mail strokeWidth={1.5} size={20} />
+                </a>
               </div>
             </div>
 
-            {/* Right Content */}
-            <div className="flex flex-wrap gap-[40px] lg:gap-[60px] text-left">
-              <CompanyColumn />
-
-              <ServicesColumn />
-
-              <HelpColumn />
-
-              <LegalColumn />
+            {/* Middle Cols: Links */}
+            <div className="grid grid-cols-2 gap-[40px] lg:gap-[60px]">
+              <div>
+                <h3 className={headingClass}>Company</h3>
+                <div className="flex flex-col gap-[16px]">
+                  <Link href="/about" className={linkClass}>
+                    About Us
+                  </Link>
+                  <Link href="/pricing" className={linkClass}>
+                    Pricing
+                  </Link>
+                  <Link href="#" className={linkClass}>
+                    Careers
+                  </Link>
+                  <Link href="#" className={linkClass}>
+                    Blog
+                  </Link>
+                  <Link href="/contact" className={linkClass}>
+                    Contact Us
+                  </Link>
+                </div>
+              </div>
 
               <div>
-                <h2 className="text-[#91776C] font-bold text-[18px]">
-                  Get Our App
-                </h2>
-
-                <div className="flex flex-col gap-[10px] mt-[10px] items-start">
-                  <GoogleDownloadButton />
-                  <AppleDownloadButton />
+                <h3 className={headingClass}>Help</h3>
+                <div className="flex flex-col gap-[16px]">
+                  <Link href="/faq" className={linkClass}>
+                    FAQs
+                  </Link>
+                  <Link href="#" className={linkClass}>
+                    Pickup & Delivery
+                  </Link>
+                  <Link href="#" className={linkClass}>
+                    Order Tracking
+                  </Link>
+                  <Link href="#" className={linkClass}>
+                    Returns & Refunds
+                  </Link>
+                  <Link href="/terms-and-conditions" className={linkClass}>
+                    Terms & Conditions
+                  </Link>
+                  <Link href="/privacy-policy" className={linkClass}>
+                    Privacy Policy
+                  </Link>
                 </div>
               </div>
             </div>
+
+            {/* Col 5: Newsletter */}
+            <div className="max-w-[300px]">
+              <h3 className={headingClass}>Stay in the loop</h3>
+              <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] mb-[24px]">
+                Be the first to know about offers, new services, and laundry
+                tips.
+              </p>
+              <div className="flex items-center h-[46px] mb-[12px]">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="h-full flex-1 bg-[var(--card)] border border-[var(--line)] border-r-0 rounded-l-[8px] px-[16px] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-soft)] outline-none focus:border-[var(--gold)] transition-colors"
+                />
+                <button className="h-full px-[20px] bg-[var(--gold)] text-white rounded-r-[8px] hover:brightness-90 transition-all flex items-center justify-center">
+                  <IconArrowRight />
+                </button>
+              </div>
+              <div className="flex items-center gap-[8px] text-[var(--ink-soft)] text-[12px]">
+                <span className="text-[var(--gold)]">
+                  <IconShieldTiny />
+                </span>
+                No spam. Just the good stuff.
+              </div>
+            </div>
           </div>
 
-          {/* Container Div - Mobile/Tablet Layout (below 900px) */}
-          <div className="min-[900px]:hidden w-full max-w-[1200px] mx-auto flex flex-col gap-[56px] sm:gap-[48px]">
-            {/* Row 1: Branding + Contact + Links */}
-            <div className="flex flex-col sm:flex-row items-start justify-between gap-[28px] sm:gap-[20px]">
-              {/* Logo and Description */}
-              <div className="text-left">
-                <FooterBrandIntro />
+          {/* Middle Section - Features & App */}
+          <div className="border-t border-b border-[var(--line)] py-[40px] flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-[40px] lg:gap-0">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-[40px] lg:w-3/4">
+              {/* Feature 1 */}
+              <div className="flex items-start gap-[16px] flex-1 lg:border-r border-[var(--line)] lg:pr-[40px]">
+                <div className="text-[var(--gold)] shrink-0">
+                  <IconBriefcase />
+                </div>
+                <div>
+                  <h4
+                    className="text-[15px] text-[var(--ink)] font-semibold mb-[4px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Easy Scheduling
+                  </h4>
+                  <p className="text-[13px] text-[var(--ink-soft)] leading-[1.5]">
+                    Book a pickup in just a few taps.
+                  </p>
+                </div>
               </div>
 
-              {/* Contact Items */}
-              <div className="flex flex-col gap-[8px] items-start sm:items-end">
-                <ContactItem
-                  icon={<Phone />}
-                  text={FOOTER_PHONE_DISPLAY}
-                  href={FOOTER_PHONE_TEL}
-                />
-                <ContactItem
-                  icon={<Mail />}
-                  text={FOOTER_EMAIL}
-                  href={FOOTER_EMAIL_MAILTO}
-                />
-                <ContactItem
-                  icon={<MapPin />}
-                  text={FOOTER_ADDRESS}
-                  href={FOOTER_MAPS_URL}
-                />
+              {/* Feature 2 */}
+              <div className="flex items-start gap-[16px] flex-1 lg:border-r border-[var(--line)] lg:pr-[40px]">
+                <div className="text-[var(--gold)] shrink-0">
+                  <IconShield />
+                </div>
+                <div>
+                  <h4
+                    className="text-[15px] text-[var(--ink)] font-semibold mb-[4px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Trusted Care
+                  </h4>
+                  <p className="text-[13px] text-[var(--ink-soft)] leading-[1.5]">
+                    Handled with care, every single time.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="flex items-start gap-[16px] flex-1 lg:pr-[40px]">
+                <div className="text-[var(--gold)] shrink-0">
+                  <IconLeaf />
+                </div>
+                <div>
+                  <h4
+                    className="text-[15px] text-[var(--ink)] font-semibold mb-[4px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Sustainable Choices
+                  </h4>
+                  <p className="text-[13px] text-[var(--ink-soft)] leading-[1.5]">
+                    Better for your clothes, better for the planet.
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Row 2: Company, Services, Help, Legal */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-[12px] gap-y-[28px] sm:gap-[20px] text-left">
-              <CompanyColumn />
-
-              <ServicesColumn />
-
-              <HelpColumn />
-
-              <LegalColumn />
-            </div>
-
-            {/* Row 3: Download Buttons */}
-            <div className="flex flex-col items-start gap-4 sm:gap-[10px]">
-              <h2 className="text-[#91776C] font-bold text-[18px]">
-                Get Our App
-              </h2>
-              <div className="flex flex-row gap-3 sm:gap-[10px]">
-                <GoogleDownloadButton />
-                <AppleDownloadButton />
+            {/* App Buttons */}
+            <div className="lg:w-1/4 flex flex-col items-center lg:items-start lg:pl-[40px] lg:border-l border-[var(--line)]">
+              <h3 className="text-[var(--gold)] font-bold text-[12px] tracking-[0.1em] uppercase mb-[16px]">
+                Download our app
+              </h3>
+              <div className="flex items-center gap-[12px]">
+                <AppStoreButton className="scale-[0.8] origin-left" />
+                <GooglePlayButton className="scale-[0.8] origin-left" />
               </div>
+            </div>
+          </div>
+
+          {/* Bottom Section - Copyright */}
+          <div className="pt-[30px] flex flex-col sm:flex-row items-center justify-between gap-[20px] text-[13px] text-[var(--ink-soft)]">
+            <p>© 2024 Clean7. All rights reserved.</p>
+            <div className="text-[var(--gold)]">
+              <IconHeart />
+            </div>
+            <div className="flex items-center gap-[6px]">
+              Made with care in India{" "}
+              <span className="text-[var(--gold)]">
+                <IconSparkle />
+              </span>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Copyright  */}
-      <div className="footer-copyright gsap-animate relative overflow-hidden bg-[#F3EDE8] border-t border-[#DDD2C8] text-[#5E5450] px-[20px] opacity-0">
-        <FooterParticles variant="copyright" />
-        <div className="relative z-1 w-full max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 sm:gap-[10px] py-[20px] sm:py-[30px] text-center sm:text-left text-[16px]">
-          <div className="flex flex-col gap-1 items-center sm:items-start">
-            <p>© 2026 Clean7. All Rights Reserved</p>
-            <p className="text-[14px] opacity-80">
-              CIN: U96010UW2026PTC252117 | GST No: 09AAECW4521F1ZE
-            </p>
-          </div>
-          <p>
-            <Link
-              href="/privacy-policy"
-              className="hover:text-orange hover:underline transition-all duration-300"
-            >
-              Privacy Policy
-            </Link>{" "}
-            |{" "}
-            <Link
-              href="/terms-and-conditions"
-              className="hover:text-orange hover:underline transition-all duration-300"
-            >
-              Terms and Conditions
-            </Link>{" "}
-            |{" "}
-            <Link
-              href="/terms-of-use"
-              className="hover:text-orange hover:underline transition-all duration-300"
-            >
-              Terms of Use
-            </Link>
-          </p>
-        </div>
-      </div>
+      </footer>
     </FooterAnimation>
   );
 }

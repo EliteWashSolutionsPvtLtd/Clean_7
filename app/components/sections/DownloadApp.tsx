@@ -5,7 +5,6 @@ import Image from "next/image";
 import { WixMadeForDisplayFont } from "@/app/fonts";
 import AppStoreButton from "../ui/buttons/AppStoreButton";
 import GooglePlayButton from "../ui/buttons/GooglePlayButton";
-import DownloadAppSvg from "../svg/DownloadAppSvg";
 import {
   gsap,
   prefersReducedMotion,
@@ -13,42 +12,78 @@ import {
   ANIMATION_CONFIG,
 } from "@/app/lib/animations";
 
+// ---- Icons ----
+const IconCalendar = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+    <line x1="16" y1="2" x2="16" y2="6" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="3" y1="10" x2="21" y2="10" />
+  </svg>
+);
 
+const IconBox = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+    <line x1="12" y1="22.08" x2="12" y2="12" />
+  </svg>
+);
 
-function LeftContent() {
-  return (
-    <div className="max-w-[420px] flex flex-col gap-[10px] text-center min-[900px]:text-left relative z-10">
-      <h2
-        className={`text-2xl sm:text-3xl font-bold tracking-wide`}
-        style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-      >
-        Get the app for a{" "}
-        <span className="text-[#D4AF37]">seamless experience</span>
-      </h2>
-      <p className="text-[16px] sm:text-md">
-        Schedule picks, track orders, and manage your laundry - all from your
-        phone. Available on iOS and Android.
-      </p>
+const IconShirt = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 8L4 12v2h3v7h10v-7h3v-2L12 8z" />
+    <path d="M12 8c0-2-1-2.5-1-3.5 0-1 1-1.5 1-1.5s1 .5 1 1.5c0 1-1 1.5-1 3.5" />
+  </svg>
+);
 
-      <div className="flex flex-col min-[440px]:flex-row items-center justify-center min-[900px]:justify-start gap-[10px] sm:gap-[20px] mt-[20px] mb-[50px] min-[900px]:mb-0">
-        <AppStoreButton className="w-full min-[440px]:w-auto" />
-        <GooglePlayButton className="w-full min-[440px]:w-auto" />
-      </div>
-    </div>
-  );
-}
+const IconBell = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+  </svg>
+);
 
-function Phone({
-  rotation,
-}: {
-  rotation: { x: number; y: number };
-}) {
-
-  const [permissionGranted, setPermissionGranted] = useState(false);
-  const [showHint, setShowHint] = useState(false);
-  const [hasShownHint, setHasShownHint] = useState(false);
-  const [gyroRotation, setGyroRotation] = useState({ x: 0, y: 0 });
+// ---- Phone Component ----
+function Phone({ rotation }: { rotation: { x: number; y: number } }) {
   const phoneRef = useRef<HTMLDivElement>(null);
+  const [gyroRotation, setGyroRotation] = useState({ x: 0, y: 0 });
 
   const finalRotation = {
     x: rotation.x || gyroRotation.x,
@@ -56,83 +91,20 @@ function Phone({
   };
 
   useEffect(() => {
-    if (!phoneRef.current || hasShownHint) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting && !hasShownHint) {
-          setShowHint(true);
-          setHasShownHint(true);
-
-          setTimeout(() => {
-            setShowHint(false);
-          }, 3000);
-        }
-      },
-      { threshold: 0.5 },
-    );
-
-    observer.observe(phoneRef.current);
-
-    return () => observer.disconnect();
-  }, [hasShownHint]);
-
-  useEffect(() => {
     const handleOrientation = (event: DeviceOrientationEvent) => {
       if (event.beta !== null && event.gamma !== null) {
-        const x = Math.max(-25, Math.min(25, -(event.beta - 45) * 0.5));
-        const y = Math.max(-25, Math.min(25, -event.gamma * 0.6));
+        const x = Math.max(-15, Math.min(15, -(event.beta - 45) * 0.3));
+        const y = Math.max(-15, Math.min(15, -event.gamma * 0.4));
         setGyroRotation({ x, y });
       }
     };
-
-    const requestPermission = async () => {
-      if (typeof window === "undefined") return;
-
-      // Check if DeviceOrientationEvent exists and has requestPermission (iOS 13+)
-      const DeviceOrientationEventTyped = DeviceOrientationEvent as unknown as {
-        requestPermission?: () => Promise<"granted" | "denied">;
-      };
-
-      if (typeof DeviceOrientationEventTyped.requestPermission === "function") {
-        try {
-          const permission =
-            await DeviceOrientationEventTyped.requestPermission();
-          if (permission === "granted") {
-            setPermissionGranted(true);
-            window.addEventListener("deviceorientation", handleOrientation);
-          }
-        } catch (error) {
-          console.log("Gyroscope permission denied");
-        }
-      } else {
-        // Non-iOS devices or older iOS - just add listener
-        setPermissionGranted(true);
-        window.addEventListener("deviceorientation", handleOrientation);
-      }
-    };
-
-    // Auto-request on component mount for non-iOS
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     if (!isIOS) {
-      requestPermission();
+      window.addEventListener("deviceorientation", handleOrientation);
     }
-
-    // For iOS, we'll add a click handler to request permission
-    const handleClick = () => {
-      if (!permissionGranted) {
-        requestPermission();
-      }
-    };
-
-    document.addEventListener("click", handleClick, { once: true });
-
-    return () => {
+    return () =>
       window.removeEventListener("deviceorientation", handleOrientation);
-      document.removeEventListener("click", handleClick);
-    };
-  }, [permissionGranted]);
+  }, []);
 
   return (
     <div
@@ -140,7 +112,6 @@ function Phone({
       className="group relative select-none"
       style={{ perspective: "1000px" }}
     >
-      {/* Outer div - handles tilt rotation */}
       <div
         className="transition-transform duration-150 ease-out"
         style={{
@@ -148,26 +119,26 @@ function Phone({
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Inner div - handles floating animation */}
         <div className="animate-[float_6s_ease-in-out_infinite]">
           {/* Glow effect behind phone */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/20 to-transparent blur-3xl scale-150 opacity-0 md:group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#CBAA6A]/20 to-transparent blur-3xl scale-150 opacity-100 transition-opacity duration-700"></div>
 
-          {/* Phone frame */}
-          <div className="relative bg-gradient-to-b from-[#222] via-[#111] to-[#0a0a0a] w-[310px] h-[620px] rounded-[24px] p-[4px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),0_0_40px_rgba(0,0,0,0.3)] md:group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.6),0_0_60px_rgba(212,175,55,0.2)] transition-all duration-500 md:group-hover:scale-[1.03]">
+          {/* Phone frame (Gold/Cream) */}
+          <div className="relative bg-gradient-to-b from-[#EADBB4] via-[#CFB579] to-[#997732] w-[280px] h-[580px] sm:w-[310px] sm:h-[620px] rounded-[44px] p-[6px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15),0_0_40px_rgba(0,0,0,0.05)] md:group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.2),0_0_60px_rgba(203,170,106,0.2)] transition-all duration-500 md:group-hover:scale-[1.02]">
             {/* Side buttons */}
-            <div className="absolute -left-[3px] top-[100px] w-[3px] h-[30px] bg-gradient-to-b from-[#b5ada6] to-[#9a918a] rounded-l-sm"></div>
-            <div className="absolute -left-[3px] top-[150px] w-[3px] h-[60px] bg-gradient-to-b from-[#b5ada6] to-[#9a918a] rounded-l-sm"></div>
-            <div className="absolute -right-[3px] top-[130px] w-[3px] h-[50px] bg-gradient-to-b from-[#b5ada6] to-[#9a918a] rounded-r-sm"></div>
+            <div className="absolute -left-[3px] top-[100px] w-[3px] h-[30px] bg-gradient-to-b from-[#C4A86A] to-[#A38545] rounded-l-sm"></div>
+            <div className="absolute -left-[3px] top-[150px] w-[3px] h-[60px] bg-gradient-to-b from-[#C4A86A] to-[#A38545] rounded-l-sm"></div>
+            <div className="absolute -right-[3px] top-[130px] w-[3px] h-[50px] bg-gradient-to-b from-[#C4A86A] to-[#A38545] rounded-r-sm"></div>
 
             {/* Screen */}
-            <div className="relative bg-[#0a0a0a] overflow-hidden w-full h-full rounded-[20px]">
+            <div className="relative bg-[#FBF9F4] overflow-hidden w-full h-full rounded-[38px] border-[4px] border-black/90">
+              {/* Dynamic Island */}
+              {/* <div className="absolute top-[8px] left-1/2 -translate-x-1/2 w-[100px] h-[28px] bg-black rounded-[20px] z-20 shadow-sm"></div> */}
 
-
-              {/* Generated App Mockup */}
-              <div className="absolute inset-0">
+              {/* App Screenshot */}
+              <div className="absolute inset-0 top-0">
                 <Image
-                  src="/images/app-screenshot.png"
+                  src="/images/download-app/download.png"
                   alt="Clean7 App Screenshot"
                   fill
                   className="object-cover"
@@ -176,50 +147,17 @@ function Phone({
               </div>
 
               {/* Screen shine */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/30 pointer-events-none"></div>
 
               {/* Animated shine sweep */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-[2000ms] pointer-events-none"></div>
-
-              {/* Rotate Phone Hint Overlay - mobile only */}
-              <div
-                className={`absolute inset-0 bg-black/70 backdrop-blur-sm rounded-[20px] flex flex-col items-center justify-center z-30 pointer-events-none transition-opacity duration-700 md:hidden ${
-                  showHint ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <div className="animate-[tilt_1.5s_ease-in-out_infinite]">
-                  <svg
-                    width="60"
-                    height="60"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="opacity-90"
-                  >
-                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                    <line x1="12" y1="18" x2="12" y2="18" />
-                  </svg>
-                </div>
-                <p className="text-white/90 text-[15px] font-medium mt-[12px] text-center px-[20px]">
-                  Tilt your phone
-                </p>
-                <p className="text-white/60 text-[12px] mt-[4px]">
-                  to see the magic
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-[2000ms] pointer-events-none"></div>
             </div>
-
-            {/* Frame shine */}
-            <div className="absolute top-0 left-[20%] right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
           </div>
         </div>
       </div>
 
-      {/* Reflection */}
-      <div className="absolute -bottom-[80px] left-1/2 -translate-x-1/2 w-[200px] h-[80px] bg-gradient-to-b from-white/10 to-transparent blur-xl rounded-full"></div>
+      {/* Floor Shadow */}
+      <div className="absolute -bottom-[60px] left-1/2 -translate-x-1/2 w-[220px] h-[60px] bg-black/10 blur-[20px] rounded-[100%] pointer-events-none"></div>
     </div>
   );
 }
@@ -239,11 +177,11 @@ export default function DownloadApp() {
       const rect = sectionElement.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      const x = ((e.clientY - centerY) / (rect.height / 2)) * 15;
-      const y = ((e.clientX - centerX) / (rect.width / 2)) * 15;
+      const x = ((e.clientY - centerY) / (rect.height / 2)) * 10;
+      const y = ((e.clientX - centerX) / (rect.width / 2)) * 10;
       setRotation({
-        x: Math.max(-20, Math.min(20, x)),
-        y: Math.max(-20, Math.min(20, y)),
+        x: Math.max(-15, Math.min(15, x)),
+        y: Math.max(-15, Math.min(15, y)),
       });
     };
 
@@ -262,12 +200,11 @@ export default function DownloadApp() {
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
-
     const ctx = gsap.context(() => {
       const config = getResponsiveConfig();
 
       gsap.fromTo(
-        ".download-header",
+        ".download-left-col",
         { opacity: 0, y: config.distance.medium },
         {
           opacity: 1,
@@ -275,7 +212,7 @@ export default function DownloadApp() {
           duration: config.duration.normal * 1.3,
           ease: ANIMATION_CONFIG.ease.default,
           scrollTrigger: {
-            trigger: ".download-header",
+            trigger: ".download-left-col",
             start: "top 75%",
             once: true,
           },
@@ -283,31 +220,17 @@ export default function DownloadApp() {
       );
 
       gsap.fromTo(
-        ".download-content",
-        { opacity: 0, y: config.distance.medium },
-        {
-          opacity: 1,
-          y: 0,
-          duration: config.duration.normal * 1.3,
-          ease: ANIMATION_CONFIG.ease.default,
-          scrollTrigger: {
-            trigger: ".download-content",
-            start: "top 75%",
-            once: true,
-          },
-        },
-      );
-
-      gsap.fromTo(
-        ".download-phone",
-        { opacity: 0, scale: 1.05 },
+        ".download-phone-col",
+        { opacity: 0, scale: 0.95, y: config.distance.small },
         {
           opacity: 1,
           scale: 1,
-          duration: config.duration.slow * 1.3,
+          y: 0,
+          duration: config.duration.slow * 1.1,
+          delay: 0.2,
           ease: ANIMATION_CONFIG.ease.smooth,
           scrollTrigger: {
-            trigger: ".download-phone",
+            trigger: ".download-phone-col",
             start: "top 75%",
             once: true,
           },
@@ -318,36 +241,106 @@ export default function DownloadApp() {
     return () => ctx.revert();
   }, []);
 
+  const featureItems = [
+    {
+      title: "Schedule with ease",
+      desc: "Book pickups and deliveries in seconds.",
+      icon: <IconCalendar />,
+    },
+    {
+      title: "Track in real time",
+      desc: "Stay updated at every step of your order.",
+      icon: <IconBox />,
+    },
+    {
+      title: "Service made simple",
+      desc: "Explore services and choose what you need.",
+      icon: <IconShirt />,
+    },
+    {
+      title: "Stay in the loop",
+      desc: "Get notifications and reminders effortlessly.",
+      icon: <IconBell />,
+    },
+  ];
+
   return (
     <section
       id="download-app"
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-[#111] to-[#050505] py-[50px]"
+      className="relative bg-[var(--ground)] py-[80px] md:py-[120px] overflow-hidden"
     >
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <DownloadAppSvg />
-      </div>
-
-      <div className="max-w-[1200px] mx-auto text-white py-[50px] sm:py-[70px] min-[900px]:py-[100px] px-[20px] min-[900px]:px-[40px]">
-        <div className="download-header gsap-animate text-center relative z-10 opacity-0">
-          <h1
-            className="text-2xl sm:text-3xl font-semibold"
-            style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-          >
-            Download Our App
-          </h1>
-          <p className="text-[16px] sm:text-md font-light">
-            Manage your laundry on the go
+      <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] flex flex-col min-[900px]:flex-row items-center justify-between gap-[60px] lg:gap-[100px]">
+        {/* Left Content */}
+        <div className="download-left-col gsap-animate opacity-0 flex-1 w-full max-w-[540px]">
+          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[20px]">
+            DOWNLOAD OUR APP
           </p>
+          <h2
+            className="text-[48px] md:text-[60px] text-[var(--ink)] leading-[1.05] mb-[8px]"
+            style={{ fontFamily: "var(--font-fraunces)" }}
+          >
+            Care at your
+            <br />
+            fingertips.
+          </h2>
+          <h2
+            className="text-[48px] md:text-[60px] text-[var(--gold)] italic font-light leading-[1.05] mb-[24px]"
+            style={{ fontFamily: "var(--font-fraunces)" }}
+          >
+            Anytime, anywhere.
+          </h2>
+          <p className="text-[var(--ink-soft)] text-[16px] md:text-[17px] leading-[1.6] mb-[40px] max-w-[400px]">
+            Book a pickup, track your order, and manage everything with just a
+            few taps.
+          </p>
+
+          {/* Features List */}
+          <div className="flex flex-col gap-[28px] mb-[50px]">
+            {featureItems.map((item, i) => (
+              <div key={i} className="flex items-start gap-[20px]">
+                <div className="w-[48px] h-[48px] rounded-full bg-[var(--ground-soft)] flex items-center justify-center text-[var(--gold)] shrink-0 border border-[var(--line)]">
+                  {item.icon}
+                </div>
+                <div className="pt-[2px]">
+                  <h4
+                    className="text-[17px] text-[var(--ink)] font-medium mb-[4px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    {item.title}
+                  </h4>
+                  <p className="text-[14px] text-[var(--ink-soft)] leading-[1.5]">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="w-full h-[1px] bg-[var(--line)] mb-[40px]"></div>
+
+          {/* Download Box */}
+          <div className="flex items-center gap-[30px]">
+            <div className="flex flex-col gap-[12px]">
+              <div>
+                <p className="text-[12px] font-bold tracking-[0.1em] text-[var(--gold)] uppercase mb-[4px]">
+                  DOWNLOAD THE APP
+                </p>
+                <p className="text-[13px] text-[var(--ink-soft)] max-w-[200px] leading-[1.4]">
+                  Available directly from the App Store or Google Play.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px]">
+                <AppStoreButton className="scale-[0.85] origin-left sm:origin-center" />
+                <GooglePlayButton className="scale-[0.85] origin-left sm:origin-center" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col min-[900px]:flex-row items-center justify-center mt-[40px] sm:mt-[60px] min-[900px]:mt-[80px] gap-[40px] min-[900px]:gap-[100px]">
-          <div className="download-content gsap-animate opacity-0">
-            <LeftContent />
-          </div>
-          <div className="download-phone gsap-animate min-[900px]:block opacity-0">
-            <Phone rotation={rotation} />
-          </div>
+        {/* Right Content (Phone) */}
+        <div className="download-phone-col gsap-animate opacity-0 relative w-full md:w-[400px] flex justify-center perspective-[1000px] shrink-0">
+          <Phone rotation={rotation} />
         </div>
       </div>
     </section>
