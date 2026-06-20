@@ -8,8 +8,7 @@ import Hero from "./components/sections/Hero";
 import HowItWorks from "./components/sections/HowItWorks";
 import Reviews from "./components/sections/Reviews";
 import WhyChooseUs from "./components/sections/WhyChooseUs";
-import CleanIndiaSection from "./components/sections/CleanIndiaSection";
-import { SatoshiFont } from "./fonts";
+
 import { canonicalPath } from "./lib/site-config";
 
 export const metadata: Metadata = {
@@ -34,7 +33,7 @@ export default function Home() {
         <Hero />
         <HowItWorks />
         <WhyChooseUs />
-        <CleanIndiaSection />
+
         <Reviews />
         <DownloadApp />
         <Footer />

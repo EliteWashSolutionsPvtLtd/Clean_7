@@ -1,152 +1,207 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { WixMadeForDisplayFont } from "@/app/fonts";
-import Container from "../layout/Container";
-import { Truck, BadgeCheck, Shield, Clock } from "lucide-react";
-import {
-  gsap,
-  prefersReducedMotion,
-  getResponsiveConfig,
-  ANIMATION_CONFIG,
-} from "@/app/lib/animations";
+import React from "react";
 
-const trustFeatures = [
+const IconShirt = () => (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 8L4 12v2h3v7h10v-7h3v-2L12 8z" />
+    <path d="M12 8c0-2-1-2.5-1-3.5 0-1 1-1.5 1-1.5s1 .5 1 1.5c0 1-1 1.5-1 3.5" />
+  </svg>
+);
+
+const IconHeartHands = () => (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 14c-2.5-2.5-4-4.5-4-6.5a3.5 3.5 0 0 1 7-2 3.5 3.5 0 0 1 7 2c0 2-1.5 4-4 6.5L12 18z" />
+    <path d="M6 16.5c-1.5.5-3 1-3 2.5 0 1.5 2 2 6 2s6-.5 6-2c0-1.5-1.5-2-3-2.5" />
+  </svg>
+);
+
+const IconLeaf = () => (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+    <path d="M2 22l10-10" />
+  </svg>
+);
+
+const IconClock = () => (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
+  </svg>
+);
+
+const IconShield = () => (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" />
+  </svg>
+);
+
+const StarSparkle = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="var(--gold-bright)"
+    strokeWidth="1"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 3C12 12 3 12 3 12C12 12 12 21 12 21C12 12 21 12 21 12C12 12 12 3 12 3Z" />
+  </svg>
+);
+
+const features = [
   {
-    title: "Free Pickup & Delivery",
-    description: "Doorstep convenience.",
-    icon: <Truck className="h-8 w-8 sm:h-10 sm:w-10" />,
-    gradient: { from: "#FFAB5C", to: "#FF7700" },
+    title: "Expert care",
+    desc: "Trained professionals who treat every garment like it's their own.",
+    icon: <IconShirt />,
   },
   {
-    title: "No Hidden Charges",
-    description: "Transparent pricing, always",
-    icon: <BadgeCheck className="h-8 w-8 sm:h-10 sm:w-10" />,
-    gradient: { from: "#98BCD6", to: "#6A9BC3" },
+    title: "Hand-finished",
+    desc: "Every piece is hand-finished for a crisp, polished result.",
+    icon: <IconHeartHands />,
   },
   {
-    title: "Hygienic Cleaning",
-    description: "Fabric-safe and sanitized",
-    icon: <Shield className="h-8 w-8 sm:h-10 sm:w-10" />,
-    gradient: { from: "#D4B8AD", to: "#A68B7B" },
+    title: "Better for fabrics",
+    desc: "Gentle, premium products that protect fabric and extend life.",
+    icon: <IconLeaf />,
   },
   {
-    title: "On-Time Delivery",
-    description: "Reliable and punctual service",
-    icon: <Clock className="h-8 w-8 sm:h-10 sm:w-10" />,
-    gradient: { from: "#E6C29E", to: "#D4A574" },
+    title: "Save time",
+    desc: "We handle the details so you can focus on what matters.",
+    icon: <IconClock />,
+  },
+  {
+    title: "No guesswork",
+    desc: "Simple pricing, clear process, and updates you can count on.",
+    icon: <IconShield />,
   },
 ];
 
-function TrustCard({ feature }: { feature: (typeof trustFeatures)[0] }) {
-  return (
-    <div className="group flex h-full flex-col items-center justify-between gap-3 min-[520px]:gap-4 sm:gap-5 rounded-[20px] min-[520px]:rounded-[24px] sm:rounded-[28px] border border-[#E8DFD6]/50 bg-gradient-to-br from-[#FEFEFE] to-[#F8F5F2] p-4 min-[520px]:p-5 sm:p-8 text-center shadow-[6px_6px_16px_rgba(209,199,189,0.45),-6px_-6px_16px_rgba(255,255,255,0.9),inset_1px_1px_2px_rgba(255,255,255,0.8),inset_-1px_-1px_2px_rgba(209,199,189,0.15)] transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 hover:shadow-[8px_8px_20px_rgba(209,199,189,0.5),-8px_-8px_20px_rgba(255,255,255,0.95),inset_1px_1px_3px_rgba(255,255,255,0.9),inset_-1px_-1px_3px_rgba(209,199,189,0.2)]">
-      <span
-        className="flex h-14 w-14 min-[520px]:h-16 min-[520px]:w-16 sm:h-20 sm:w-20 md:h-22 md:w-22 shrink-0 items-center justify-center rounded-xl min-[520px]:rounded-2xl sm:rounded-3xl text-white shadow-lg transition-transform duration-300 group-hover:scale-110"
-        style={{
-          background: `linear-gradient(135deg, ${feature.gradient.from} 0%, ${feature.gradient.to} 100%)`,
-          boxShadow: `0 6px 20px rgba(0,0,0,0.18), inset 0 1px 2px rgba(255,255,255,0.3)`,
-        }}
-      >
-        {feature.icon}
-      </span>
-      <h3
-        className="text-[15px] min-[520px]:text-base sm:text-lg md:text-xl font-semibold text-[#33302E]"
-        style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-      >
-        {feature.title}
-      </h3>
-      <p className="text-[13px] min-[520px]:text-[14px] sm:text-[15px] md:text-base text-[#5E5450] leading-relaxed">
-        {feature.description}
-      </p>
-    </div>
-  );
-}
-
 export default function WhyChooseUs() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-
-    const ctx = gsap.context(() => {
-      const config = getResponsiveConfig();
-
-      gsap.fromTo(
-        ".why-choose-header",
-        { opacity: 0, y: config.distance.medium },
-        {
-          opacity: 1,
-          y: 0,
-          duration: config.duration.normal * 1.3,
-          ease: ANIMATION_CONFIG.ease.default,
-          scrollTrigger: {
-            trigger: ".why-choose-header",
-            start: "top 75%",
-            once: true,
-          },
-        },
-      );
-
-      const cards = gsap.utils.toArray(".why-choose-card") as Element[];
-      cards.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: config.distance.large, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: config.duration.normal * 1.2,
-            delay: index * 0.1,
-            ease: ANIMATION_CONFIG.ease.smooth,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              once: true,
-            },
-          },
-        );
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      id="why-choose-us"
-      ref={sectionRef}
-      className="py-[60px] sm:py-[80px] md:py-[100px] px-[20px] bg-gradient-to-b from-white to-[#FFFBF6]"
-    >
-      <Container isMaxWidth={true} className="max-w-[1200px]">
-        <div className="why-choose-header gsap-animate text-center mb-10 sm:mb-14 opacity-0">
+    <section className="pt-[60px] pb-[100px] px-[24px] md:px-[48px] bg-[#F7F2E8]">
+      <div className="max-w-[1300px] mx-auto">
+        {/* Header */}
+        <div className="text-center mb-[60px]">
+          <p className="text-[13px] font-bold tracking-[0.15em] text-[#A68A56] uppercase mb-[24px]">
+            WHY CHOOSE CLEAN7
+          </p>
           <h2
-            className="font-semibold text-[#33302E] -mt-4"
-            style={{
-              fontFamily: WixMadeForDisplayFont.style.fontFamily,
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-            }}
+            className="text-[48px] md:text-[60px] text-[var(--ink)] mb-[24px] leading-[1.05]"
+            style={{ fontFamily: "var(--font-fraunces)" }}
           >
-            Why Choose <span className="text-orange-services">Clean7</span>?
+            Care in every fold.
+            <br />
+            <span className="italic text-[var(--gold)] font-light">
+              Clean in every detail.
+            </span>
           </h2>
-          <p className="text-[#5E5450] mt-3 max-w-xl mx-auto text-[16px] sm:text-[17px]">
-            Convenience, transparent pricing, and dependable quality across
-            every service we offer.
+          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.6] max-w-[500px] mx-auto">
+            We combine expert care with thoughtful service
+            <br className="hidden md:block" />
+            to deliver an experience that feels refreshingly simple.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-4 auto-rows-fr">
-          {trustFeatures.map((feature) => (
+        {/* 5-Column Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-[20px] mb-[40px]">
+          {features.map((feat, idx) => (
             <div
-              key={feature.title}
-              className="why-choose-card gsap-animate opacity-0 h-full"
+              key={idx}
+              className="bg-[#F7F2E8] rounded-[24px] p-[32px] md:p-[28px] flex flex-col items-center text-center shadow-[0_20px_40px_rgba(33,28,19,0.06)]"
             >
-              <TrustCard feature={feature} />
+              <div className="w-[70px] h-[70px] rounded-full bg-[#F3EAD5] text-[#9D7941] flex items-center justify-center mb-[24px]">
+                {feat.icon}
+              </div>
+              <h3
+                className="text-[19px] text-[var(--ink)] font-medium mb-[12px]"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+              >
+                {feat.title}
+              </h3>
+              <div className="w-[30px] h-[1px] bg-[#D1BC91] mb-[16px]"></div>
+              <p className="text-[14px] text-[#736A5B] leading-[1.6]">
+                {feat.desc}
+              </p>
             </div>
           ))}
         </div>
-      </Container>
+
+        {/* Satisfaction Bar */}
+        <div className="w-full bg-[#EFE9DB] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
+          <div className="flex flex-col md:flex-row items-center md:items-center gap-[24px] w-full md:w-auto text-center md:text-left">
+            <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] max-w-[340px]">
+              If something's not right, we'll make it right —{" "}
+              <br className="hidden md:block" />
+              because your trust is earned with every order.
+            </p>
+          </div>
+
+          <button className="flex items-center gap-[8px] px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:text-white transition-colors">
+            Learn more about us
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </section>
   );
 }

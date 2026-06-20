@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 
 const steps = [
@@ -30,88 +29,11 @@ const steps = [
   },
 ];
 
-const features = [
-  {
-    title: "Quality guaranteed",
-    desc: "If you're not satisfied, we'll make it right.",
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--gold-bright)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Sustainable care",
-    desc: "Eco-friendly products and responsible processes.",
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--gold-bright)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-        <path d="M2 22l10-10" />
-      </svg>
-    ),
-  },
-  {
-    title: "Always on time",
-    desc: "Reliable pickups and on-time delivery.",
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--gold-bright)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-  },
-  {
-    title: "We treat it like our own",
-    desc: "Because your clothes deserve the best care.",
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--gold-bright)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-      </svg>
-    ),
-  },
-];
-
 export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-[120px] px-[24px] md:px-[48px] bg-[var(--ground)] text-[var(--ink)]"
+      className="pt-[120px] pb-[60px] px-[24px] md:px-[48px] bg-[var(--ground)] text-[var(--ink)]"
     >
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
         {/* Header */}
@@ -137,7 +59,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-start justify-between w-full relative mb-[100px] gap-[48px] md:gap-[24px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-start justify-between w-full relative mb-0 gap-[48px] md:gap-[24px]">
           {/* Dashed arrows (desktop only) */}
           <div className="hidden md:flex absolute top-[16px] left-0 w-full z-0 pointer-events-none justify-evenly -translate-y-1/2">
             <div className="flex items-center justify-center w-[60px] lg:w-[80px]">
@@ -230,27 +152,6 @@ export default function HowItWorks() {
               </h3>
               <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] max-w-[240px]">
                 {step.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Features Bottom Bar */}
-        <div className="w-full bg-[#F5F0E6] border border-[#EBE4D5] rounded-[24px] px-[24px] py-[40px] md:py-[48px] md:px-[48px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-[40px] md:gap-[24px]">
-          {features.map((feat, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center text-center flex-1 relative"
-            >
-              <div className="mb-[20px] opacity-80">{feat.icon}</div>
-              <h4
-                className="text-[17px] text-[var(--ink)] font-medium mb-[12px]"
-                style={{ fontFamily: "var(--font-fraunces)" }}
-              >
-                {feat.title}
-              </h4>
-              <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] max-w-[220px]">
-                {feat.desc}
               </p>
             </div>
           ))}
