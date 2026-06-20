@@ -331,8 +331,8 @@ export default function DownloadApp() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px]">
-                <AppStoreButton className="scale-[0.85] origin-left sm:origin-center" />
-                <GooglePlayButton className="scale-[0.85] origin-left sm:origin-center" />
+                <AppStoreButton />
+                <GooglePlayButton />
               </div>
             </div>
           </div>

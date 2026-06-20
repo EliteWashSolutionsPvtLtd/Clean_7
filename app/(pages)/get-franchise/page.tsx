@@ -23,7 +23,7 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
   );
 }
 
-function BenefitCard({ icon: Icon, title, description }: { icon: any, title: string, description: string }) {
+function BenefitCard({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) {
   return (
     <div className="bg-white p-8 rounded-3xl border border-[#E8DFD6] hover:shadow-xl transition-all duration-300 group">
       <div className="w-14 h-14 rounded-2xl bg-[#FBF6F2] flex items-center justify-center text-orange mb-6 group-hover:scale-110 transition-transform">

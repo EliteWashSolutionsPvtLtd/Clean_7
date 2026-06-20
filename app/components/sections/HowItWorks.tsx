@@ -45,14 +45,14 @@ export default function HowItWorks() {
             className="text-[48px] md:text-[64px] text-[var(--ink)] mb-[24px] leading-[1.05]"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
-            Care that's simple.
+            Care that&apos;s simple.
             <br />
             <span className="italic text-[var(--gold)] font-light">
               Results that last.
             </span>
           </h2>
           <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mx-auto">
-            We handle the hard work so you don't have to.
+            We handle the hard work so you don&apos;t have to.
             <br />
             Clean, refreshed clothes in four easy steps.
           </p>

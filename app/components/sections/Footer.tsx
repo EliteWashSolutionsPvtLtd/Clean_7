@@ -147,7 +147,7 @@ export default function Footer() {
                 delivered with elegance.
               </p>
               <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
-                We're here to make your everyday simpler, fresher, and
+                We&apos;re here to make your everyday simpler, fresher, and
                 beautifully taken care of.
               </p>
               <div className="flex items-center gap-[20px] text-[var(--ink-soft)]">
@@ -207,15 +207,7 @@ export default function Footer() {
                   <Link href="/faq" className={linkClass}>
                     FAQs
                   </Link>
-                  <Link href="#" className={linkClass}>
-                    Pickup & Delivery
-                  </Link>
-                  <Link href="#" className={linkClass}>
-                    Order Tracking
-                  </Link>
-                  <Link href="#" className={linkClass}>
-                    Returns & Refunds
-                  </Link>
+
                   <Link href="/terms-and-conditions" className={linkClass}>
                     Terms & Conditions
                   </Link>
@@ -252,72 +244,16 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Middle Section - Features & App */}
-          <div className="border-t border-b border-[var(--line)] py-[40px] flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-[40px] lg:gap-0">
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-[40px] lg:w-3/4">
-              {/* Feature 1 */}
-              <div className="flex items-start gap-[16px] flex-1 lg:border-r border-[var(--line)] lg:pr-[40px]">
-                <div className="text-[var(--gold)] shrink-0">
-                  <IconBriefcase />
-                </div>
-                <div>
-                  <h4
-                    className="text-[15px] text-[var(--ink)] font-semibold mb-[4px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    Easy Scheduling
-                  </h4>
-                  <p className="text-[13px] text-[var(--ink-soft)] leading-[1.5]">
-                    Book a pickup in just a few taps.
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="flex items-start gap-[16px] flex-1 lg:border-r border-[var(--line)] lg:pr-[40px]">
-                <div className="text-[var(--gold)] shrink-0">
-                  <IconShield />
-                </div>
-                <div>
-                  <h4
-                    className="text-[15px] text-[var(--ink)] font-semibold mb-[4px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    Trusted Care
-                  </h4>
-                  <p className="text-[13px] text-[var(--ink-soft)] leading-[1.5]">
-                    Handled with care, every single time.
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="flex items-start gap-[16px] flex-1 lg:pr-[40px]">
-                <div className="text-[var(--gold)] shrink-0">
-                  <IconLeaf />
-                </div>
-                <div>
-                  <h4
-                    className="text-[15px] text-[var(--ink)] font-semibold mb-[4px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    Sustainable Choices
-                  </h4>
-                  <p className="text-[13px] text-[var(--ink-soft)] leading-[1.5]">
-                    Better for your clothes, better for the planet.
-                  </p>
-                </div>
-              </div>
-            </div>
-
+          {/* Middle Section - App */}
+          <div className="border-t border-b border-[var(--line)] py-[40px] flex justify-center">
             {/* App Buttons */}
-            <div className="lg:w-1/4 flex flex-col items-center lg:items-start lg:pl-[40px] lg:border-l border-[var(--line)]">
+            <div className="flex flex-col items-center">
               <h3 className="text-[var(--gold)] font-bold text-[12px] tracking-[0.1em] uppercase mb-[16px]">
                 Download our app
               </h3>
-              <div className="flex items-center gap-[12px]">
-                <AppStoreButton className="scale-[0.8] origin-left" />
-                <GooglePlayButton className="scale-[0.8] origin-left" />
+              <div className="flex flex-col sm:flex-row gap-[12px]">
+                <AppStoreButton />
+                <GooglePlayButton />
               </div>
             </div>
           </div>
@@ -325,15 +261,6 @@ export default function Footer() {
           {/* Bottom Section - Copyright */}
           <div className="pt-[30px] flex flex-col sm:flex-row items-center justify-between gap-[20px] text-[13px] text-[var(--ink-soft)]">
             <p>© 2024 Clean7. All rights reserved.</p>
-            <div className="text-[var(--gold)]">
-              <IconHeart />
-            </div>
-            <div className="flex items-center gap-[6px]">
-              Made with care in India{" "}
-              <span className="text-[var(--gold)]">
-                <IconSparkle />
-              </span>
-            </div>
           </div>
         </div>
       </footer>

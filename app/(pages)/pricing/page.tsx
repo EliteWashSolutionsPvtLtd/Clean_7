@@ -1,312 +1,648 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+
+import React, { useState } from "react";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import Container from "@/app/components/layout/Container";
-import { WixMadeForDisplayFont, SatoshiFont } from "@/app/fonts";
-import type { Metadata } from "next";
-import { canonicalPath } from "@/app/lib/site-config";
-import {
-  ClipboardList,
-  UserCheck,
-  Clock,
-  ShieldCheck,
-  Wallet,
-  Check,
-  ArrowRight,
-  Percent,
-  Download,
-  Shield,
-  Calendar
-} from "lucide-react";
+import { PageHeroAnimation } from "@/app/components/animations/PageAnimations";
+import { Check, ChevronDown, Truck, Clock } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Pricing",
-  description: "Transparent pricing for laundry, car wash, pest control, and home cleaning services.",
-  alternates: { canonical: canonicalPath("/pricing") },
-};
+type Tab = "laundry" | "carwash";
 
-const servicesData = [
+const laundryCards = [
   {
-    title: "Laundry Service",
-    imgSrc: "/images/services/laundry_service_img.png",
-    price: "149",
-    unit: "/load",
-    features: ["Wash & Fold", "Steam Ironing", "Stain Treatment", "Premium Detergents"],
-    btnText: "Book Laundry",
-    href: "/services/laundry",
+    title: "Wash & Fold",
+    price: "₹99",
+    unit: "Per Kg",
+    popular: false,
+    features: [
+      "Wash & Dry",
+      "Folded & Packed",
+      "Quality Detergents",
+      "Quick Turnaround",
+    ],
   },
   {
-    title: "Door to Door Car Wash",
-    imgSrc: "/images/services/car_wash_img.png",
-    price: "249",
-    unit: "/wash",
-    features: ["Exterior Wash", "Interior Cleaning", "Deep Cleaning", "Premium Products"],
-    btnText: "Book Car Wash",
-    href: "/services/car-wash",
+    title: "Wash & Iron",
+    price: "₹49",
+    unit: "Per Pc",
+    popular: false,
+    features: ["Wash & Iron", "Hang or Fold", "Steam Finish", "Quality Care"],
   },
-  // {
-  //   title: "Pest Control",
-  //   imgSrc: "/images/pricing/pest_control.png",
-  //   price: "299",
-  //   unit: "/service",
-  //   features: ["General Pest Control", "Cockroach Control", "Termite Control", "Mosquito Control"],
-  //   btnText: "Book Pest Control",
-  //   href: "/services/pest-control",
-  // },
-  // {
-  //   title: "Home Cleaning",
-  //   imgSrc: "/images/pricing/home_cleaning.png",
-  //   price: "399",
-  //   unit: "/visit",
-  //   features: ["Deep Cleaning", "Kitchen Cleaning", "Bathroom Cleaning", "Sofa & Carpet Cleaning"],
-  //   btnText: "Book Home Cleaning",
-  //   href: "/services/home-cleaning",
-  // }
+  {
+    title: "Premium Care",
+    price: "₹149",
+    unit: "Per Kg",
+    popular: true,
+    features: [
+      "Wash, Dry & Iron",
+      "Steam Finish",
+      "Fabric Protection",
+      "Premium Detergents",
+      "Priority Processing",
+    ],
+  },
+  {
+    title: "Dry Cleaning",
+    price: "₹199",
+    unit: "Per Pc",
+    popular: false,
+    features: [
+      "Professional Dry Clean",
+      "Stain Removal",
+      "Fabric Protection",
+      "Hanger Packing",
+      "Premium Care",
+    ],
+  },
+  {
+    title: "Bedding & Linen",
+    price: "₹119",
+    unit: "Per Kg",
+    popular: false,
+    features: [
+      "Deep Cleaning",
+      "Anti-Bacterial Wash",
+      "Soft & Fresh Finish",
+      "Perfectly Folded",
+    ],
+  },
 ];
 
-export default function PricingPage() {
+const carWashCards = [
+  {
+    title: "Basic Wash",
+    price: "₹299",
+    unit: "Exterior Only",
+    popular: false,
+    features: [
+      "Exterior Wash",
+      "Shampoo Wash",
+      "Tyre & Rim Cleaning",
+      "Air Blower Dry",
+    ],
+  },
+  {
+    title: "Standard Wash",
+    price: "₹599",
+    unit: "Exterior + Interior",
+    popular: false,
+    features: [
+      "Exterior Wash",
+      "Interior Vacuuming",
+      "Dashboard Cleaning",
+      "Tyre Shine",
+      "Glass Cleaning",
+    ],
+  },
+  {
+    title: "Premium Wash",
+    price: "₹999",
+    unit: "Complete Care",
+    popular: true,
+    features: [
+      "Exterior Wash",
+      "Interior Vacuuming",
+      "Deep Cleaning",
+      "Wax Polish",
+      "Tyre Shine",
+      "Glass & Dashboard Cleaning",
+    ],
+  },
+  {
+    title: "Ultimate Detailing",
+    price: "₹1,499",
+    unit: "Inside Out Perfection",
+    popular: false,
+    features: [
+      "Exterior Foam Wash",
+      "Interior Deep Cleaning",
+      "Steam Cleaning",
+      "Wax Polish",
+      "Tyre & Rim Detailing",
+      "Premium Finish",
+    ],
+  },
+];
+
+const laundryItemized = [
+  {
+    category: "1) Wash and Fold",
+    desc: "Everyday laundry items washed, dried, and neatly folded.",
+    items: [
+      { name: "Shirt", price: "₹15" },
+      { name: "T-Shirt", price: "₹15" },
+      { name: "Jeans", price: "₹20" },
+      { name: "Trouser", price: "₹20" },
+      { name: "Chinos", price: "₹20" },
+      { name: "Shorts", price: "₹15" },
+      { name: "Trackpants", price: "₹20" },
+      { name: "Kurta", price: "₹20" },
+      { name: "Kurti", price: "₹20" },
+      { name: "Leggings", price: "₹15" },
+      { name: "Night Suit", price: "₹30" },
+      { name: "Hoodie", price: "₹30" },
+      { name: "Sweatshirt", price: "₹30" },
+      { name: "School Uniform", price: "₹30" },
+      { name: "Dupatta", price: "₹10" },
+      { name: "Bedsheet", price: "₹40" },
+      { name: "Pillow Cover", price: "₹10" },
+      { name: "Hand Towel", price: "₹10" },
+      { name: "Bath Towel", price: "₹20" },
+      { name: "Napkin Cloth", price: "₹5" },
+      { name: "Apron", price: "₹15" },
+    ],
+  },
+  {
+    category: "2) Wash and Iron",
+    desc: "Clothes professionally washed and ironed for ready-to-wear finish.",
+    items: [
+      { name: "Shirt", price: "₹30" },
+      { name: "T-Shirt", price: "₹30" },
+      { name: "Jeans", price: "₹40" },
+      { name: "Trouser", price: "₹40" },
+      { name: "Formal Pant", price: "₹40" },
+      { name: "Chinos", price: "₹40" },
+      { name: "Kurta", price: "₹40" },
+      { name: "Kurti", price: "₹40" },
+      { name: "Saree", price: "₹100" },
+      { name: "Dupatta", price: "₹20" },
+      { name: "School Uniform", price: "₹50" },
+      { name: "Blouse", price: "₹30" },
+      { name: "Hoodie", price: "₹50" },
+      { name: "Sweatshirt", price: "₹50" },
+      { name: "Coat Pant", price: "₹150" },
+      { name: "Bedsheet", price: "₹80" },
+      { name: "Table Cloth", price: "₹40" },
+    ],
+  },
+  {
+    category: "3) Dry Cleaning",
+    desc: "Premium cleaning for delicate, expensive, or occasion wear garments.",
+    items: [
+      { name: "Blazer", price: "₹250" },
+      { name: "Suit (2 Piece)", price: "₹350" },
+      { name: "Suit (3 Piece)", price: "₹450" },
+      { name: "Sherwani", price: "₹800" },
+      { name: "Lehenga", price: "₹800" },
+      { name: "Saree", price: "₹250" },
+      { name: "Silk Saree", price: "₹350" },
+      { name: "Designer Saree", price: "₹450" },
+      { name: "Wedding Dress", price: "₹1,200" },
+      { name: "Party Gown", price: "₹600" },
+      { name: "Evening Gown", price: "₹500" },
+      { name: "Jacket", price: "₹300" },
+      { name: "Coat", price: "₹350" },
+      { name: "Woolen Coat", price: "₹400" },
+      { name: "Sweater", price: "₹200" },
+      { name: "Silk Dress", price: "₹300" },
+      { name: "Velvet Dress", price: "₹350" },
+      { name: "Tie", price: "₹50" },
+      { name: "Scarf", price: "₹100" },
+      { name: "Shawl", price: "₹150" },
+      { name: "Wool Blanket", price: "₹350" },
+      { name: "Heavy Curtain", price: "₹250" },
+      { name: "Carpet", price: "₹400" },
+      { name: "Rug", price: "₹300" },
+    ],
+  },
+  {
+    category: "4) Blanket Cleaning",
+    desc: "Deep cleaning for heavy bedding and winter wear items.",
+    items: [
+      { name: "Single Blanket", price: "₹250" },
+      { name: "Double Blanket", price: "₹350" },
+      { name: "Comforter", price: "₹350" },
+      { name: "Quilt", price: "₹350" },
+      { name: "Rajai", price: "₹400" },
+      { name: "Dohar", price: "₹200" },
+      { name: "AC Blanket", price: "₹200" },
+      { name: "Heavy Winter Blanket", price: "₹450" },
+      { name: "Wool Blanket", price: "₹350" },
+      { name: "Mattress Protector", price: "₹250" },
+      { name: "Sleeping Bag", price: "₹300" },
+    ],
+  },
+  {
+    category: "5) Shoe Cleaning",
+    desc: "Deep cleaning and care for all types of footwear.",
+    items: [
+      { name: "Sneakers", price: "₹250" },
+      { name: "Sports Shoes", price: "₹250" },
+      { name: "Running Shoes", price: "₹250" },
+      { name: "Football Shoes", price: "₹300" },
+      { name: "Formal Shoes", price: "₹350" },
+      { name: "Leather Shoes", price: "₹400" },
+      { name: "Boots", price: "₹450" },
+      { name: "High Ankle Boots", price: "₹500" },
+      { name: "Heels", price: "₹250" },
+      { name: "Sandals", price: "₹200" },
+      { name: "Slippers", price: "₹150" },
+      { name: "Canvas Shoes", price: "₹250" },
+      { name: "Loafers", price: "₹300" },
+      { name: "Suede Shoes", price: "₹450" },
+    ],
+  },
+  {
+    category: "6) Curtain Cleaning",
+    desc: "Professional curtain cleaning for home and office spaces.",
+    items: [
+      { name: "Window Curtain", price: "₹150" },
+      { name: "Door Curtain", price: "₹200" },
+      { name: "Heavy Curtain", price: "₹250" },
+    ],
+  },
+];
+
+const carWashItemized = [
+  {
+    category: "1) Exterior Wash",
+    desc: "Exterior body cleaning and washing for your vehicle.",
+    items: [
+      { name: "Hatchback", price: "₹299" },
+      { name: "Sedan", price: "₹399" },
+      { name: "SUV", price: "₹499" },
+    ],
+    addons: [
+      { name: "Tire Polish", price: "₹50" },
+      { name: "Wax Coating", price: "₹200" },
+      { name: "Glass Cleaning", price: "₹100" },
+    ],
+  },
+  {
+    category: "2) Interior Cleaning",
+    desc: "Interior vacuuming and dashboard cleaning for your vehicle.",
+    items: [
+      { name: "Hatchback", price: "₹599" },
+      { name: "Sedan", price: "₹699" },
+      { name: "SUV", price: "₹899" },
+    ],
+    addons: [
+      { name: "Dashboard Polish", price: "₹100" },
+      { name: "Seat Shampooing", price: "₹400" },
+      { name: "Odor Removal", price: "₹200" },
+    ],
+  },
+];
+
+interface PricingItem {
+  name: string;
+  price: string;
+}
+
+interface PricingAccordionProps {
+  category: string;
+  desc?: string;
+  items?: PricingItem[];
+  addons?: PricingItem[];
+}
+
+const PricingAccordion = ({
+  category,
+  desc,
+  items,
+  addons,
+}: PricingAccordionProps) => {
+  const [isOpen, setIsOpen] = useState(true);
   return (
-    <div className="overflow-x-hidden antialiased bg-[#FAFAFA]" style={{ fontFamily: SatoshiFont.style.fontFamily }}>
+    <div className="border border-[var(--line)] bg-[var(--card)] rounded-xl overflow-hidden mb-4 transition-all duration-300">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-5 text-left bg-transparent transition-colors hover:bg-[var(--gold)]/5"
+      >
+        <div>
+          <h3
+            className="text-[18px] md:text-[20px] font-medium text-[var(--ink)]"
+            style={{ fontFamily: "var(--font-fraunces)" }}
+          >
+            {category}
+          </h3>
+          {desc && (
+            <p className="text-[14px] text-[var(--ink-soft)] mt-1">{desc}</p>
+          )}
+        </div>
+        <div
+          className="text-[var(--gold)] ml-4 shrink-0 transition-transform duration-300"
+          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+        >
+          <ChevronDown size={20} />
+        </div>
+      </button>
+
+      <div
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <div className="p-5 pt-0 border-t border-[var(--line)]">
+          {items && items.length > 0 && (
+            <div className="mt-4">
+              <h4 className="text-[12px] font-bold tracking-[0.1em] text-[var(--gold)] uppercase mb-3">
+                Items
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+                {items.map((item: PricingItem, idx: number) => (
+                  <div
+                    key={idx}
+                    className="flex justify-between items-center py-2 border-b border-[var(--line)] border-dashed last:border-0"
+                  >
+                    <span className="text-[15px] text-[var(--ink)]">
+                      {item.name}
+                    </span>
+                    <span className="text-[15px] font-semibold text-[var(--ink)]">
+                      {item.price}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {addons && addons.length > 0 && (
+            <div className="mt-6">
+              <h4 className="text-[12px] font-bold tracking-[0.1em] text-[var(--gold)] uppercase mb-3">
+                Add-Ons
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+                {addons.map((addon: PricingItem, idx: number) => (
+                  <div
+                    key={idx}
+                    className="flex justify-between items-center py-2 border-b border-[var(--line)] border-dashed last:border-0"
+                  >
+                    <span className="text-[15px] text-[var(--ink)]">
+                      {addon.name}
+                    </span>
+                    <span className="text-[15px] font-semibold text-[var(--ink)]">
+                      {addon.price}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function PricingPage() {
+  const [activeTab, setActiveTab] = useState<Tab>("laundry");
+
+  return (
+    <div className="bg-[var(--ground)] min-h-screen">
       <Navbar />
 
-      <main className="pt-[60px] lg:pt-[80px]">
-        {/* ─── HERO SECTION ──────────────────────────────────────────────────────── */}
-        <section className="relative w-full pt-16 pb-16 lg:pb-20 bg-gradient-to-b from-[#FDFBF9] to-[#F5F0EA] overflow-hidden px-5">
-          {/* Left Decorative Image */}
-          <div className="absolute left-[-5%] bottom-0 w-[400px] h-[300px] hidden lg:block opacity-90 z-0">
-            <Image src="/images/pricing/hero_left.png" alt="Towels in basket" fill className="object-contain object-bottom" priority />
-          </div>
-          {/* Right Decorative Image */}
-          <div className="absolute right-[-2%] bottom-0 w-[400px] h-[300px] hidden lg:block opacity-90 z-0">
-            <Image src="/images/pricing/hero_right.png" alt="Folded towels and vase" fill className="object-contain object-bottom" priority />
-          </div>
-
-          <Container isMaxWidth className="relative z-10 text-center">
-            <div className="text-[16px] font-bold uppercase tracking-[0.2em] text-[#F26B21] mb-5">
-              PRICING
-            </div>
-            <h1
-              className="text-[clamp(46px,5vw,59px)] leading-[1.05] font-extrabold text-[#1A1A1A] tracking-tight mb-5"
-              style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-            >
-              Simple pricing.<br />
-              <span className="text-[#F26B21]">Exceptional</span> care.
-            </h1>
-            <p className="text-[21px] leading-relaxed text-[#5B5B5B] max-w-sm mx-auto">
-              Choose what you need. Pay transparently.
-              <br />No hidden charges, ever.
-            </p>
-          </Container>
-        </section>
-
-
-        {/* ─── PRICING CARDS ─────────────────────────────────────────────────────── */}
-        <section className="pt-20 pb-16 px-5">
-          <Container isMaxWidth>
-            <div className="text-center mb-16">
-              <div className="text-[16px] font-bold uppercase tracking-[0.2em] text-[#F26B21] mb-3">
-                OUR SERVICES &amp; PRICING
-              </div>
-              <h2
-                className="text-[clamp(35px,4vw,46px)] font-bold text-[#1A1A1A] mb-3"
-                style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
+      <main className="pt-[140px] pb-[100px]">
+        <PageHeroAnimation variant="centered">
+          <Container isMaxWidth className="px-[24px]">
+            {/* Header */}
+            <div className="text-center max-w-[700px] mx-auto mb-[60px]">
+              <h1
+                className="text-[48px] md:text-[64px] text-[var(--ink)] leading-none mb-[20px]"
+                style={{ fontFamily: "var(--font-fraunces)" }}
               >
-                Choose your service
-              </h2>
-              <p className="text-[#5B5B5B] text-[21px]">Professional care for every need.</p>
+                Pricing
+              </h1>
+              <p className="text-[16px] md:text-[18px] text-[var(--ink-soft)]">
+                Premium care. Transparent pricing.{" "}
+                <br className="hidden md:block" />
+                Choose what suits you best.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-              {servicesData.map((service, idx) => (
-                <div key={idx} className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-gray-100/60 flex flex-col transition-transform hover:-translate-y-1 hover:shadow-lg">
-                  <div className="relative h-[220px] w-full bg-gray-50">
-                    <Image src={service.imgSrc} alt={service.title} fill className="object-cover" />
-                  </div>
-                  <div className="p-7 flex-1 flex flex-col">
-                    <h3 className="text-[21px] font-bold text-[#1A1A1A] leading-snug mb-5" style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}>
-                      {service.title}
-                    </h3>
-
-                    <div className="mb-6">
-                      <p className="text-[16px] text-[#7A7A7A] mb-1">Starting from</p>
-                      <div className="flex items-baseline gap-1 text-[#1A1A1A]">
-                        <span className="text-[35px] font-extrabold leading-none">₹{service.price}</span>
-                        <span className="text-[16px] font-medium text-[#7A7A7A]">{service.unit}</span>
-                      </div>
-                    </div>
-
-                    <ul className="space-y-3.5 mb-8 flex-1">
-                      {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-[16px] text-[#5B5B5B]">
-                          <Check className="w-[18px] h-[18px] text-[#F26B21] shrink-0" strokeWidth={2.5} /> {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {service.href ? (
-                      <Link href={service.href} className="w-full py-3 rounded-full border-2 border-[#FCECE4] text-[#F26B21] font-bold text-[16px] flex items-center justify-center gap-2 hover:border-[#F26B21] hover:bg-[#F26B21] hover:text-white transition-all">
-                        {service.btnText} <ArrowRight size={16} />
-                      </Link>
-                    ) : (
-                      <button className="w-full py-3 rounded-full border-2 border-[#FCECE4] text-[#F26B21] font-bold text-[16px] flex items-center justify-center gap-2 hover:border-[#F26B21] hover:bg-[#F26B21] hover:text-white transition-all">
-                        {service.btnText} <ArrowRight size={16} />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        {/* ─── WHY CHOOSE US / FEATURES (iOS STYLE) ───────────────────────────── */}
-        <section className="pb-24 px-5">
-          <Container isMaxWidth>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-              {/* Feature 1 */}
-              <div className="bg-white rounded-[2.5rem] p-9 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-50 flex flex-col items-center text-center group transition-all duration-500 hover:shadow-[0_15px_45px_rgba(0,0,0,0.06)] hover:-translate-y-1.5">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-[#F2F2F7] flex items-center justify-center text-[#F26B21] mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <ClipboardList strokeWidth={1.5} size={30} />
-                </div>
-                <h4 className="font-bold text-[#1D1D1F] text-[19px] mb-2 leading-tight tracking-tight">No Hidden Charges</h4>
-                <p className="text-[15px] text-[#86868B] leading-relaxed">What you see is what you pay</p>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="bg-white rounded-[2.5rem] p-9 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-50 flex flex-col items-center text-center group transition-all duration-500 hover:shadow-[0_15px_45px_rgba(0,0,0,0.06)] hover:-translate-y-1.5">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-[#F2F2F7] flex items-center justify-center text-[#F26B21] mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <UserCheck strokeWidth={1.5} size={30} />
-                </div>
-                <h4 className="font-bold text-[#1D1D1F] text-[19px] mb-2 leading-tight tracking-tight">Trained Professionals</h4>
-                <p className="text-[15px] text-[#86868B] leading-relaxed">Verified and fully trained</p>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="bg-white rounded-[2.5rem] p-9 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-50 flex flex-col items-center text-center group transition-all duration-500 hover:shadow-[0_15px_45px_rgba(0,0,0,0.06)] hover:-translate-y-1.5">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-[#F2F2F7] flex items-center justify-center text-[#F26B21] mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <Clock strokeWidth={1.5} size={30} />
-                </div>
-                <h4 className="font-bold text-[#1D1D1F] text-[19px] mb-2 leading-tight tracking-tight">On-Time Service</h4>
-                <p className="text-[15px] text-[#86868B] leading-relaxed">We value your time</p>
-              </div>
-
-              {/* Feature 4 */}
-              <div className="bg-white rounded-[2.5rem] p-9 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-50 flex flex-col items-center text-center group transition-all duration-500 hover:shadow-[0_15px_45px_rgba(0,0,0,0.06)] hover:-translate-y-1.5">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-[#F2F2F7] flex items-center justify-center text-[#F26B21] mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <ShieldCheck strokeWidth={1.5} size={30} />
-                </div>
-                <h4 className="font-bold text-[#1D1D1F] text-[19px] mb-2 leading-tight tracking-tight">Satisfaction Guaranteed</h4>
-                <p className="text-[15px] text-[#86868B] leading-relaxed">We&apos;ll make it right</p>
-              </div>
-
-              {/* Feature 5 */}
-              <div className="bg-white rounded-[2.5rem] p-9 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-50 flex flex-col items-center text-center group transition-all duration-500 hover:shadow-[0_15px_45px_rgba(0,0,0,0.06)] hover:-translate-y-1.5">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-[#F2F2F7] flex items-center justify-center text-[#F26B21] mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <Wallet strokeWidth={1.5} size={30} />
-                </div>
-                <h4 className="font-bold text-[#1D1D1F] text-[19px] mb-2 leading-tight tracking-tight">Secure Payments</h4>
-                <p className="text-[15px] text-[#86868B] leading-relaxed">Safe and easy booking</p>
-              </div>
-            </div>
-          </Container>
-        </section>
-
-
-
-        {/* ─── MEMBERSHIP BOX ────────────────────────────────────────────────────── */}
-        <section className="pb-16 px-5">
-          <Container isMaxWidth>
-            <div className="bg-[#FCF9F6] rounded-3xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-10 shadow-sm border border-[#F5EFEA]">
-              {/* Left Side */}
-              <div className="lg:w-[45%] text-center lg:text-left">
-                <h3 className="text-[35px] font-bold text-[#1A1A1A] mb-3 leading-tight" style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}>
-                  Save more with<br />Wash &amp; Wow Membership
-                </h3>
-                <p className="text-[#5B5B5B] text-[21px] mb-8">Enjoy exclusive benefits and priority service.</p>
-                <button className="bg-[#F26B21] text-white px-7 py-3.5 rounded-full text-[16px] font-bold flex items-center justify-center gap-2 hover:bg-[#D95D1A] shadow-md transition-colors mx-auto lg:mx-0">
-                  View Membership Plans <ArrowRight size={16} />
+            {/* Tab Switcher */}
+            <div className="flex justify-center mb-[80px]">
+              <div className="bg-[var(--card)] border border-[var(--line)] rounded-full p-[6px] flex shadow-sm">
+                <button
+                  onClick={() => setActiveTab("laundry")}
+                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium transition-all duration-300 ${
+                    activeTab === "laundry"
+                      ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
+                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                  }`}
+                >
+                  Laundry Pricing
+                </button>
+                <button
+                  onClick={() => setActiveTab("carwash")}
+                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium transition-all duration-300 ${
+                    activeTab === "carwash"
+                      ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
+                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                  }`}
+                >
+                  Car Wash Pricing
                 </button>
               </div>
-
-              {/* Right Side Grid */}
-              <div className="lg:w-[55%] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-[52px] h-[52px] rounded-full bg-[#EAF5EE] flex items-center justify-center">
-                    <Percent className="w-6 h-6 text-[#4CAF50]" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-[21px] font-bold text-[#1A1A1A] leading-tight">Up to 20% Off<br /><span className="text-[16px] font-normal text-[#7A7A7A] mt-1 block">on all services</span></p>
-                </div>
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-[52px] h-[52px] rounded-full bg-[#EEF2FC] flex items-center justify-center">
-                    <Download className="w-6 h-6 text-[#3F51B5]" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-[21px] font-bold text-[#1A1A1A] leading-tight">Priority<br /><span className="text-[16px] font-normal text-[#7A7A7A] mt-1 block">Booking</span></p>
-                </div>
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-[52px] h-[52px] rounded-full bg-[#FDF2E9] flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-[#F26B21]" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-[21px] font-bold text-[#1A1A1A] leading-tight">Exclusive<br /><span className="text-[16px] font-normal text-[#7A7A7A] mt-1 block">Offers</span></p>
-                </div>
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-[52px] h-[52px] rounded-full bg-[#FCEEEA] flex items-center justify-center">
-                    <Calendar className="w-6 h-6 text-[#E53935]" strokeWidth={1.5} />
-                  </div>
-                  <p className="text-[21px] font-bold text-[#1A1A1A] leading-tight">Free<br /><span className="text-[16px] font-normal text-[#7A7A7A] mt-1 block">Rescheduling</span></p>
-                </div>
-              </div>
             </div>
-          </Container>
-        </section>
 
-        {/* ─── APP BANNER ────────────────────────────────────────────────────────── */}
-        <section className="pb-24 px-5">
-          <Container isMaxWidth>
-            <div className="bg-[#FFF6F0] rounded-[2.5rem] p-0 flex flex-col md:flex-row items-center overflow-hidden relative min-h-[350px] shadow-[0_8px_30px_rgba(0,0,0,0.09)] border border-[#f0e2db]">
-
-              {/* Left Side Image (App Mockup) */}
-              <div className="w-full md:w-5/12 relative h-[300px] md:h-auto self-stretch overflow-hidden">
-                <Image src="/images/pricing/app_mockup.png" alt="Clean7 App Mockup" fill className="object-cover object-left" />
-              </div>
-
-              {/* Right Side Content */}
-              <div className="w-full md:w-7/12 p-10 lg:p-16 relative z-10 flex flex-col justify-center">
-                <div className="text-[16px] font-bold uppercase tracking-[0.2em] text-[#F26B21] mb-4">
-                  GET STARTED TODAY
+            {/* LAUNDRY PRICING SECTION */}
+            {activeTab === "laundry" && (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="mb-[60px]">
+                  <h2
+                    className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Laundry Pricing
+                  </h2>
+                  <p className="text-[15px] text-[var(--ink-soft)]">
+                    Professional care for your clothes and fabrics. <br />
+                    Clean, fresh, and perfectly folded.
+                  </p>
                 </div>
-                <h2
-                  className="text-[clamp(35px,4vw,46px)] font-bold text-[#1A1A1A] leading-[1.15] mb-8"
-                  style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-                >
-                  Book in seconds.<br />Relax while we care for the rest.
-                </h2>
 
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                  <button className="bg-[#F26B21] text-white px-7 py-3.5 rounded-full text-[16px] font-bold flex items-center gap-2 hover:bg-[#D95D1A] transition-colors shadow-md">
-                    Book a Service Now <ArrowRight size={16} />
-                  </button>
-                  <span className="text-[#5B5B5B] text-[16px]">or download the app</span>
-                  <div className="flex items-center gap-2">
-                    {/* App store buttons have been removed as requested */}
+                {/* Laundry Cards Grid */}
+                <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-3 lg:grid-cols-5 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
+                  {laundryCards.map((card, idx) => (
+                    <div
+                      key={idx}
+                      className={`min-w-[280px] md:min-w-0 snap-center rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
+                        card.popular
+                          ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
+                          : "border-[var(--line)]"
+                      }`}
+                    >
+                      {card.popular && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                          Most Popular
+                        </div>
+                      )}
+                      <div className="p-[32px] text-center flex-1 flex flex-col">
+                        <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
+                          {card.title}
+                        </h3>
+                        <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
+                          {card.unit}
+                        </p>
+                        <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
+                          {card.price}
+                        </div>
+
+                        <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
+                          {card.features.map((feature, fIdx) => (
+                            <li
+                              key={fIdx}
+                              className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                            >
+                              <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <button
+                          className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
+                            card.popular
+                              ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
+                              : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
+                          }`}
+                        >
+                          Book Now
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Detailed Itemized Prices */}
+                <div className="max-w-[900px] mx-auto">
+                  <h3
+                    className="text-[22px] font-medium text-[var(--ink)] mb-[24px] text-center"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Itemized Pricing
+                  </h3>
+                  {laundryItemized.map((section, idx) => (
+                    <PricingAccordion key={idx} {...section} />
+                  ))}
+                </div>
+
+                {/* Delivery Note */}
+                <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
+                  <div className="flex items-center gap-3">
+                    <Truck className="w-5 h-5 text-[var(--gold)]" />
+                    <span>Free pickup & delivery on all orders above ₹299</span>
+                  </div>
+                  <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-[var(--gold)]" />
+                    <span>Express delivery available</span>
                   </div>
                 </div>
+              </div>
+            )}
 
-                {/* Decorative plane/arrow in background */}
-                <div className="absolute right-10 bottom-10 opacity-20 pointer-events-none hidden lg:block">
-                  <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 90 Q 50 100 90 20 L 70 20 M 90 20 L 80 40" stroke="#F26B21" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-                  </svg>
+            {/* CAR WASH PRICING SECTION */}
+            {activeTab === "carwash" && (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="mb-[60px]">
+                  <h2
+                    className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Car Wash Pricing
+                  </h2>
+                  <p className="text-[15px] text-[var(--ink-soft)]">
+                    Expert care for your car, inside out. <br />
+                    Choose the perfect wash for your ride.
+                  </p>
+                </div>
+
+                {/* Car Wash Cards Grid */}
+                <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
+                  {carWashCards.map((card, idx) => (
+                    <div
+                      key={idx}
+                      className={`min-w-[280px] md:min-w-0 snap-center rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
+                        card.popular
+                          ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
+                          : "border-[var(--line)]"
+                      }`}
+                    >
+                      {card.popular && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                          Most Popular
+                        </div>
+                      )}
+                      <div className="p-[32px] text-center flex-1 flex flex-col">
+                        <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
+                          {card.title}
+                        </h3>
+                        <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
+                          {card.unit}
+                        </p>
+                        <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
+                          {card.price}
+                        </div>
+
+                        <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
+                          {card.features.map((feature, fIdx) => (
+                            <li
+                              key={fIdx}
+                              className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                            >
+                              <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <button
+                          className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
+                            card.popular
+                              ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
+                              : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
+                          }`}
+                        >
+                          Book Now
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Detailed Itemized Prices */}
+                <div className="max-w-[900px] mx-auto">
+                  <h3
+                    className="text-[22px] font-medium text-[var(--ink)] mb-[24px] text-center"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Detailed Packages
+                  </h3>
+                  {carWashItemized.map((section, idx) => (
+                    <PricingAccordion key={idx} {...section} />
+                  ))}
+                </div>
+
+                {/* Delivery Note */}
+                <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
+                  <div className="flex items-center gap-3">
+                    <Truck className="w-5 h-5 text-[var(--gold)]" />
+                    <span>Doorstep service available</span>
+                  </div>
+                  <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-[var(--gold)]" />
+                    <span>Safe products. Scratch-free care.</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </Container>
-        </section>
-
+        </PageHeroAnimation>
       </main>
 
       <Footer />
+
+      <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }

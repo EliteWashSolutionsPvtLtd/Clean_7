@@ -42,7 +42,7 @@ export default function LaundryServicePage() {
               <polyline points="12 5 19 12 12 19"/>
             </svg>
           </Link>
-          <Link href="#" className={styles.btnGhost}>See how it works</Link>
+          <Link href="/#how-it-works" className={styles.btnGhost}>See how it works</Link>
         </div>
 
         <div className={styles.trustRow}>

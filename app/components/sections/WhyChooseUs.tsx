@@ -179,7 +179,7 @@ export default function WhyChooseUs() {
         <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
           <div className="flex flex-col md:flex-row items-center md:items-center gap-[24px] w-full md:w-auto text-center md:text-left">
             <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] max-w-[340px]">
-              If something's not right, we'll make it right —{" "}
+              If something&apos;s not right, we&apos;ll make it right —{" "}
               <br className="hidden md:block" />
               because your trust is earned with every order.
             </p>

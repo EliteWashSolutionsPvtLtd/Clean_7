@@ -2,29 +2,44 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 import ThemeToggle from "../ui/ThemeToggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Helper to check if a link is active
+  const isActive = (path: string) => pathname?.startsWith(path);
 
   return (
     <nav className={styles.nav}>
       <div className={styles.navLeft}>
-        <div className={styles.wordmark}>
+        <Link href="/" className={styles.wordmark}>
           Clean<span style={{ color: "var(--gold-bright)" }}>7</span>
-        </div>
+        </Link>
       </div>
 
       <ul className={styles.navLinks}>
         <li>
-          <Link href="#">Services</Link>
+          <Link
+            href="/services"
+            className={isActive("/services") ? styles.active : ""}
+          >
+            Services
+          </Link>
         </li>
         <li>
           <Link href="#">How it works</Link>
         </li>
         <li>
-          <Link href="#">Pricing</Link>
+          <Link
+            href="/pricing"
+            className={isActive("/pricing") ? styles.active : ""}
+          >
+            Pricing
+          </Link>
         </li>
       </ul>
 
@@ -40,9 +55,8 @@ export default function Navbar() {
 
       <button
         className={styles.navToggle}
-        aria-label="Open menu"
-        aria-expanded={isOpen}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle menu"
       >
         <svg
           viewBox="0 0 24 24"
@@ -58,9 +72,19 @@ export default function Navbar() {
       </button>
 
       <div className={`${styles.navMobilePanel} ${isOpen ? styles.open : ""}`}>
-        <Link href="#">Services</Link>
+        <Link
+          href="/services"
+          className={isActive("/services") ? styles.active : ""}
+        >
+          Services
+        </Link>
         <Link href="#">How it works</Link>
-        <Link href="#">Pricing</Link>
+        <Link
+          href="/pricing"
+          className={isActive("/pricing") ? styles.active : ""}
+        >
+          Pricing
+        </Link>
         <Link href="#" className={styles.navCta}>
           Book a pickup
         </Link>

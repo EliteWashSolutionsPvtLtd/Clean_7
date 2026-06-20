@@ -70,7 +70,7 @@ export default function Reviews() {
             </span>
           </h2>
           <p className="text-[var(--ink-soft)] text-[17px] leading-[1.6] max-w-[500px] mx-auto">
-            We're just getting started, and every piece of feedback
+            We&apos;re just getting started, and every piece of feedback
             <br className="hidden md:block" />
             helps us keep raising the bar.
           </p>
@@ -133,7 +133,7 @@ export default function Reviews() {
               className="italic text-[var(--gold)]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             >
-              We're grateful to be part of your routine.
+              We&apos;re grateful to be part of your routine.
             </span>
           </p>
         </div>
