@@ -88,7 +88,7 @@ export default function ServicesPage() {
                 <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-[40px] lg:rounded-[60px] overflow-hidden shadow-[0_40px_80px_rgba(45,36,34,0.15)] bg-[#F5F2EF]">
                   <Image 
                     src="/images/services/services_hero_worker.png" 
-                    alt="Wash and Wow Professional Care" 
+                    alt="Clean7 Professional Care" 
                     fill 
                     className="object-cover object-center"
                     priority
@@ -276,7 +276,7 @@ export default function ServicesPage() {
               <div className="relative z-10 max-w-3xl mx-auto">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-[11px] font-black uppercase tracking-widest mb-10 border border-white/10">
                   <Smartphone size={14} className="text-[#FF7700]" />
-                  Experience Wash & Wow
+                  Experience Clean7
                 </div>
                 
                 <h2
@@ -287,7 +287,7 @@ export default function ServicesPage() {
                 </h2>
                 
                 <p className="text-white/70 text-[1.2rem] mb-12 leading-relaxed">
-                  Join 10,000+ happy customers who trust Wash & Wow for their daily home needs. Get the app today and unlock premium living.
+                  Join 10,000+ happy customers who trust Clean7 for their daily home needs. Get the app today and unlock premium living.
                 </p>
  
                 <div className="flex flex-wrap items-center justify-center gap-6">

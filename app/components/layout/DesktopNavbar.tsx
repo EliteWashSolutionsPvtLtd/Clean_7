@@ -48,7 +48,7 @@ export default function DesktopNavbar() {
         >
           <Image
             src="/logo.png"
-            alt="Wash & Wow"
+            alt="Clean7"
             height={68}
             width={68}
             className="h-[68px] w-[68px] shrink-0 object-contain drop-shadow-sm"

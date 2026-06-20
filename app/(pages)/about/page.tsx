@@ -26,7 +26,7 @@ export default function AboutPage() {
         <Container isMaxWidth>
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-[45%]">
-              <p className="text-[12px] font-bold text-[#FF7700] tracking-wider uppercase mb-4">About Wash & Wow</p>
+              <p className="text-[12px] font-bold text-[#FF7700] tracking-wider uppercase mb-4">About Clean7</p>
               <h1 className="text-[3.2rem] lg:text-[4rem] font-extrabold leading-[1.1] text-[#2D2422] mb-6" style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}>
                 We bring ease<br />to your everyday<br />
                 <span className="text-[#FF7700]">in just a few clicks.</span>

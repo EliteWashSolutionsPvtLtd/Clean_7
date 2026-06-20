@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "./components/LenisProvider";
 import RoutePrefetch from "./components/RoutePrefetch";
@@ -10,14 +10,17 @@ import {
   SITE_NAME,
 } from "./lib/site-config";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
 const siteUrl = getSiteUrl();
@@ -25,8 +28,8 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${SITE_NAME} | Laundry, cleaning, car care & pest control`,
-    template: `%s | ${SITE_NAME}`,
+    default: `Clean7`,
+    template: `%s | Clean7`,
   },
   description: SITE_DESCRIPTION,
   keywords: SITE_KEYWORDS,
@@ -74,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${fraunces.variable} font-sans antialiased`}
       >
         <LenisProvider>
           <RoutePrefetch />

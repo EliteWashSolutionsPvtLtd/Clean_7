@@ -13,8 +13,8 @@ import {
 // Custom SVG Icons based on the image
 const HandIcon = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 11V6C12 4.34315 10.6569 3 9 3C7.34315 3 6 4.34315 6 6V13" stroke="#E48737" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M11 14L8 11M8 11H5.5C4.11929 11 3 12.1193 3 13.5C3 14.8807 4.11929 16 5.5 16H8M8 11V18" stroke="#E48737" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-0"/>
+    <path d="M12 11V6C12 4.34315 10.6569 3 9 3C7.34315 3 6 4.34315 6 6V13" stroke="#D4AF37" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M11 14L8 11M8 11H5.5C4.11929 11 3 12.1193 3 13.5C3 14.8807 4.11929 16 5.5 16H8M8 11V18" stroke="#D4AF37" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-0"/>
     <path d="M12 11L14.5 11C15.8807 11 17 12.1193 17 13.5C17 14.8807 15.8807 16 14.5 16H12" stroke="#E48737" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-0"/>
     <path d="M10 20C10 21.1046 10.8954 22 12 22C14.7614 22 17 19.7614 17 17V12.5C17 11.6716 16.3284 11 15.5 11C14.6716 11 14 11.6716 14 12.5M14 12.5V11.5C14 10.6716 13.3284 10 12.5 10C11.6716 10 11 10.6716 11 11.5V14" stroke="#E48737" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M12 7V5M12 5C12 3.89543 11.1046 3 10 3C8.89543 3 8 3.89543 8 5V14M12 5C12 3.89543 12.8954 3 14 3C15.1046 3 16 3.89543 16 5V13" stroke="#E48737" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-0"/>
@@ -230,27 +230,27 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="bg-[#FCFAF7] overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="bg-[#0a0a0a] overflow-hidden">
       <Container
         className="py-[90px] sm:py-[70px] md:py-[120px] px-[20px]"
         isMaxWidth={false}
       >
         {/* Header Section */}
         <div className="hiw-header gsap-animate text-center flex flex-col items-center gap-[12px] opacity-0 mb-[60px] md:mb-[80px]">
-          <p className="text-[14px] font-bold tracking-[0.2em] text-[#E48737] uppercase">
+          <p className="text-[14px] font-bold tracking-[0.2em] text-[#D4AF37] uppercase">
             HOW IT WORKS
           </p>
           <h2
-            className="text-[36px] sm:text-[42px] md:text-[48px] font-bold text-[#2A231F] leading-tight"
+            className="text-[36px] sm:text-[42px] md:text-[48px] font-bold text-[#fafafa] leading-tight"
             style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
           >
             Simple steps. Smart service.
           </h2>
-          <p className="text-[#77706B] mx-auto max-w-[600px] text-[17px] sm:text-[18px] leading-relaxed">
+          <p className="text-[#a0a0a0] mx-auto max-w-[600px] text-[17px] sm:text-[18px] leading-relaxed">
             From booking to doorstep, we make the entire <br className="hidden md:block" />
             process smooth and worry-free.
           </p>
-          <div className="w-[40px] h-[4px] bg-[#E48737] rounded-full mt-[8px]"></div>
+          <div className="w-[40px] h-[4px] bg-[#D4AF37] rounded-full mt-[8px]"></div>
         </div>
 
         {/* Content Section - Steps */}
@@ -259,16 +259,16 @@ export default function HowItWorks() {
           {/* Dashed curved lines linking the steps (desktop only) */}
           <div className="hidden md:block absolute left-0 right-0 top-[110px] w-full h-[150px] z-0 pointer-events-none">
             <svg width="100%" height="100%" viewBox="0 0 1000 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-              <path d="M 125 50 C 180 30, 220 80, 250 80 C 280 80, 320 30, 375 50" stroke="#E48737" strokeWidth="1.5" strokeDasharray="6 6" />
-              <path d="M 375 50 C 430 30, 470 80, 500 80 C 530 80, 570 30, 625 50" stroke="#E48737" strokeWidth="1.5" strokeDasharray="6 6" />
-              <path d="M 625 50 C 680 30, 720 80, 750 80 C 780 80, 820 30, 875 50" stroke="#E48737" strokeWidth="1.5" strokeDasharray="6 6" />
+              <path d="M 125 50 C 180 30, 220 80, 250 80 C 280 80, 320 30, 375 50" stroke="#D4AF37" strokeWidth="1.5" strokeDasharray="6 6" />
+              <path d="M 375 50 C 430 30, 470 80, 500 80 C 530 80, 570 30, 625 50" stroke="#D4AF37" strokeWidth="1.5" strokeDasharray="6 6" />
+              <path d="M 625 50 C 680 30, 720 80, 750 80 C 780 80, 820 30, 875 50" stroke="#D4AF37" strokeWidth="1.5" strokeDasharray="6 6" />
             </svg>
           </div>
 
           {steps.map((step, index) => (
             <div key={index} className="hiw-step gsap-animate opacity-0 flex flex-col items-center flex-1 z-10">
               <div 
-                className="w-[200px] h-[220px] md:w-[220px] md:h-[240px] overflow-hidden mb-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] bg-gray-100"
+                className="w-[200px] h-[220px] md:w-[220px] md:h-[240px] overflow-hidden mb-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.3)] bg-[#1a1a1a]"
                 style={{ borderRadius: step.borderRadius }}
               >
                 <img 
@@ -278,13 +278,13 @@ export default function HowItWorks() {
                 />
               </div>
               <div className="flex flex-col items-center text-center px-[10px]">
-                <div className="mb-[12px] text-[#E48737]">
+                <div className="mb-[12px] text-[#D4AF37]">
                   <step.Icon />
                 </div>
-                <h3 className="text-[20px] font-bold text-[#2A231F] mb-[8px]" style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}>
+                <h3 className="text-[20px] font-bold text-[#fafafa] mb-[8px]" style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}>
                   {step.title}
                 </h3>
-                <p className="text-[15px] text-[#77706B] leading-snug max-w-[240px]">
+                <p className="text-[15px] text-[#a0a0a0] leading-snug max-w-[240px]">
                   {step.desc}
                 </p>
               </div>
@@ -294,17 +294,17 @@ export default function HowItWorks() {
 
         {/* Features Bottom Bar */}
         <div className="hiw-features-container max-w-[1100px] mx-auto w-full">
-            <div className="bg-white rounded-[24px] md:rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.04)] px-[20px] py-[30px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[30px] md:gap-[20px] divide-y md:divide-y-0 md:divide-x divide-gray-100">
+            <div className="bg-[#111] border border-[#222] rounded-[24px] md:rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.3)] px-[20px] py-[30px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[30px] md:gap-[20px] divide-y md:divide-y-0 md:divide-x divide-[#222]">
                 {features.map((feature, index) => (
                     <div key={index} className="hiw-feature gsap-animate opacity-0 flex items-start gap-[16px] w-full pt-[20px] md:pt-0 md:px-[20px] first:pt-0 first:pl-0 last:pr-0">
-                        <div className="mt-[2px] shrink-0 text-[#4A4A4A]">
+                        <div className="mt-[2px] shrink-0 text-[#D4AF37]">
                             <feature.Icon />
                         </div>
                         <div className="flex flex-col">
-                            <h4 className="text-[15px] font-bold text-[#2A231F] mb-[4px]" style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}>
+                            <h4 className="text-[15px] font-bold text-[#fafafa] mb-[4px]" style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}>
                                 {feature.title}
                             </h4>
-                            <p className="text-[13px] text-[#77706B] leading-snug">
+                            <p className="text-[13px] text-[#a0a0a0] leading-snug">
                                 {feature.desc}
                             </p>
                         </div>

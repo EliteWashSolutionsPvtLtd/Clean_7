@@ -45,7 +45,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "Fabric care, pickup & delivery — wash, dry clean, press, and more.",
     heading: "Professional Laundry & Dry Cleaning at Your Doorstep",
     description:
-      "At Wash & Wow, we make laundry effortless. From daily wear to premium garments, our expert cleaning process ensures deep cleaning, fabric safety, and long-lasting freshness.",
+      "At Clean7, we make laundry effortless. From daily wear to premium garments, our expert cleaning process ensures deep cleaning, fabric safety, and long-lasting freshness.",
     descriptionSecondary:
       "We combine modern machines, eco-friendly detergents, and expert fabric care to deliver spotless results — every time.",
     servicesSectionTitle: "Our Laundry Services",
@@ -163,7 +163,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "Professional car cleaning at your home — no queues, spotless results.",
     heading: "Professional Car Cleaning at Your Doorstep",
     description:
-      "No more waiting in long queues. Wash & Wow brings professional car wash services to your home, saving your time while keeping your vehicle spotless.",
+      "No more waiting in long queues. Clean7 brings professional car wash services to your home, saving your time while keeping your vehicle spotless.",
     servicesSectionTitle: "Our Car Wash Services",
     servicesSectionEmoji: "\u{1F698}",
     subServices: [
@@ -225,7 +225,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "Government-approved, safe chemicals — ants, cockroaches, mosquitoes, rodents, termites, and more.",
     heading: "Safe & Effective Pest Control Services",
     description:
-      "Protect your home and family from harmful pests with Wash & Wow’s professional pest control solutions. We use government-approved, safe chemicals to eliminate pests while keeping your home secure.",
+      "Protect your home and family from harmful pests with Clean7’s professional pest control solutions. We use government-approved, safe chemicals to eliminate pests while keeping your home secure.",
     servicesSectionTitle: "Our Pest Control Services",
     servicesSectionEmoji: "\u{1F41E}",
     subServices: [

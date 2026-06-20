@@ -10,7 +10,7 @@ import {
 } from "@/app/components/animations/PageAnimations";
 import { canonicalPath } from "@/app/lib/site-config";
 
-const CONTACT_EMAIL = "support@washandwow.in";
+const CONTACT_EMAIL = "support@clean7.in";
 const CONTACT_PHONE = "7078497263";
 const LAUNDRY_DELIVERY = "24–48 hours";
 const DRY_CLEANING_DELIVERY = "2–3 days";
@@ -18,12 +18,12 @@ const DRY_CLEANING_DELIVERY = "2–3 days";
 export const metadata: Metadata = {
   title: "FAQs",
   description:
-    "Wash and Wow FAQs: laundry and dry cleaning, pickup and delivery, pricing, subscriptions, and the washandwow app.",
+    "Clean7 FAQs: laundry and dry cleaning, pickup and delivery, pricing, subscriptions, and the clean7 app.",
   alternates: { canonical: canonicalPath("/faq") },
   openGraph: {
     url: canonicalPath("/faq"),
     description:
-      "Answers about Wash and Wow laundry, dry cleaning, pickup & delivery, pricing, and the app.",
+      "Answers about Clean7 laundry, dry cleaning, pickup & delivery, pricing, and the app.",
   },
 };
 
@@ -129,14 +129,14 @@ export default function page() {
           <div className="mx-auto max-w-7xl space-y-10">
             <div className="page-section gsap-animate opacity-0">
               <FaqCategory emoji="🧺" title="General Questions">
-                <FaqItem n={1} question="What is Wash & Wow?">
+                <FaqItem n={1} question="What is Clean7?">
                   <p>
                     Wash &amp; Wow is a doorstep laundry and dry-cleaning
                     service that allows you to schedule pickup and delivery
                     through our mobile application.
                   </p>
                 </FaqItem>
-                <FaqItem n={2} question="How does Wash & Wow work?">
+                <FaqItem n={2} question="How does Clean7 work?">
                   <p>Using our app, you can:</p>
                   <StepList
                     items={[

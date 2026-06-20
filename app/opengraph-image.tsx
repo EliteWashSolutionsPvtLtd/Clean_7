@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 export const alt =
-  "Wash and Wow — laundry, dry cleaning, pickup and delivery in India";
+  "Clean7 — laundry, dry cleaning, pickup and delivery in India";
 
 export const size = { width: 1200, height: 630 };
 
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
               lineHeight: 1.05,
             }}
           >
-            Wash and Wow
+            Clean7
           </span>
           <span
             style={{
@@ -54,7 +54,7 @@ export default function OpenGraphImage() {
             Laundry · Dry cleaning · Pickup & delivery
           </span>
           <span style={{ fontSize: 26, color: "rgba(255,255,255,0.78)" }}>
-            washandwow.in
+            clean7.in
           </span>
         </div>
       </div>

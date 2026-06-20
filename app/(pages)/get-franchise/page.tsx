@@ -98,7 +98,7 @@ export default function FranchisePage() {
       title: "Starter Model", 
       tag: "Ideal for small cities",
       features: ["Low Investment", "Single Service Focus", "High ROI Potential"],
-      message: `Hi Wash & Wow 👋 
+      message: `Hi Clean7 👋 
 
 I’m interested in the Starter Franchise Model.
 
@@ -116,7 +116,7 @@ Here are my details:
 I would like to know more about:
 - Initial setup process
 - Expected operations
-- Support provided by Wash & Wow
+- Support provided by Clean7
 - Service coverage in my city
 
 Looking forward to hearing from your team. 🚀 `
@@ -126,7 +126,7 @@ Looking forward to hearing from your team. 🚀 `
       tag: "Most Popular",
       features: ["Perfect for multi-service", "Multiple Services", "Higher Revenue Potential", "Scalable Operations"],
       popular: true,
-      message: `Hi Wash & Wow 👋 
+      message: `Hi Clean7 👋 
 
 I’m interested in the Growth Franchise Model.
 
@@ -155,7 +155,7 @@ Please share the next steps for partnership. 🚀 `
       title: "Premium Expansion", 
       tag: "For larger territory",
       features: ["Wide Area Coverage", "Strong Brand Presence", "Maximum Growth"],
-      message: `Hi Wash & Wow 👋 
+      message: `Hi Clean7 👋 
 
 I’m interested in the Premium Expansion Franchise Opportunity.
 
@@ -183,9 +183,9 @@ Looking forward to connecting with your franchise team. 🚀 `
     }
   ];
 
-  const GENERAL_ENQUIRY_MESSAGE = `Hi Wash & Wow 👋 
+  const GENERAL_ENQUIRY_MESSAGE = `Hi Clean7 👋 
 
-I’m interested in becoming a franchise partner with Wash & Wow.
+I’m interested in becoming a franchise partner with Clean7.
 
 Here are my details:
 
@@ -226,7 +226,7 @@ Looking forward to connecting with your team. 🚀 `;
                 style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
               >
                 Build the Future of Home Services <br />
-                <span className="text-orange">With Wash & Wow.</span>
+                <span className="text-orange">With Clean7.</span>
               </h1>
               <p className="text-lg text-[#5E5450] leading-[1.6] mb-10 max-w-xl">
                 Partner with India&apos;s trusted cleaning brand and grow a future-ready business with multiple services and recurring customers.
@@ -316,7 +316,7 @@ Looking forward to connecting with your team. 🚀 `;
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#33302E]"
               style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
             >
-              Why Entrepreneurs Choose <span className="text-orange">Wash & Wow</span>
+              Why Entrepreneurs Choose <span className="text-orange">Clean7</span>
             </h2>
           </div>
 
@@ -569,7 +569,7 @@ Looking forward to connecting with your team. 🚀 `;
                 Something Big?
               </h2>
               <p className="text-lg text-[#5E5450] leading-relaxed mb-10">
-                Join Wash & Wow and become part of India&apos;s next-generation home services ecosystem.
+                Join Clean7 and become part of India&apos;s next-generation home services ecosystem.
               </p>
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl mb-10">
                 <Image src="/images/franchise-ready.png" alt="Ready to build something big" fill className="object-cover" />

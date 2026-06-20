@@ -268,7 +268,7 @@ export default function PricingPage() {
 
               {/* Left Side Image (App Mockup) */}
               <div className="w-full md:w-5/12 relative h-[300px] md:h-auto self-stretch overflow-hidden">
-                <Image src="/images/pricing/app_mockup.png" alt="Wash and Wow App Mockup" fill className="object-cover object-left" />
+                <Image src="/images/pricing/app_mockup.png" alt="Clean7 App Mockup" fill className="object-cover object-left" />
               </div>
 
               {/* Right Side Content */}

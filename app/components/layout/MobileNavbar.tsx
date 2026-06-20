@@ -67,7 +67,7 @@ export default function MobileNavbar() {
           >
             <Image
               src="/logo.png"
-              alt="Wash & Wow"
+              alt="Clean7"
               width={52}
               height={52}
               className="h-[52px] w-[52px] shrink-0 object-contain drop-shadow-sm"
@@ -123,7 +123,7 @@ export default function MobileNavbar() {
           >
             <Image
               src="/logo.png"
-              alt="Wash & Wow"
+              alt="Clean7"
               width={52}
               height={52}
               className="h-[52px] w-[52px] shrink-0 object-contain drop-shadow-sm"

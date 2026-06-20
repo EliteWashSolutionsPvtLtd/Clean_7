@@ -14,7 +14,7 @@ import { canonicalPath } from "./lib/site-config";
 
 export const metadata: Metadata = {
   description:
-    "One stop for clean living — laundry, home cleaning, doorstep car wash, and pest control with Wash & Wow. Book pickup, care, and delivery from one app.",
+    "One stop for clean living — laundry, home cleaning, doorstep car wash, and pest control with Clean7. Book pickup, care, and delivery from one app.",
   alternates: { canonical: canonicalPath("/") },
   openGraph: {
     url: canonicalPath("/"),
@@ -25,15 +25,12 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div
-      className={`overflow-x-hidden`}
-      style={{ fontFamily: SatoshiFont.style.fontFamily }}
-    >
+    <div className={`overflow-x-hidden`}>
       <OrganizationJsonLd />
       <Navbar />
       <HomeHashScroll />
 
-      <div className="pt-[60px]">
+      <div>
         <Hero />
         <HowItWorks />
         <WhyChooseUs />

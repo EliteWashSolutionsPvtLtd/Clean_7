@@ -8,7 +8,7 @@ import Link from "next/link";
 import { canonicalPath } from "@/app/lib/site-config";
 
 const LAST_UPDATED = "March 22, 2026";
-const CONTACT_EMAIL = "support@washandwow.in";
+const CONTACT_EMAIL = "support@clean7.in";
 const CONTACT_PHONE = "7078497263";
 const CONTACT_ADDRESS = "123, Mullapur Road, Thana Bhawan, Shamli, Uttar Pradesh, 247777";
 const JURISDICTION_CITY = "New Delhi";
@@ -16,20 +16,20 @@ const JURISDICTION_CITY = "New Delhi";
 export const metadata: Metadata = {
   title: "Terms of Use",
   description:
-    "Terms governing access to Wash and Wow website and mobile app in India.",
+    "Terms governing access to Clean7 website and mobile app in India.",
   keywords: [
     "Laundry app terms of use India",
     "website usage policy laundry service",
     "mobile app usage terms India",
     "laundry platform legal terms",
-    "Wash and Wow terms of use",
-    "washandwow app terms",
+    "Clean7 terms of use",
+    "clean7 app terms",
   ],
   alternates: { canonical: canonicalPath("/terms-of-use") },
   openGraph: {
     url: canonicalPath("/terms-of-use"),
     description:
-      "Terms governing access to Wash and Wow website and mobile app in India.",
+      "Terms governing access to Clean7 website and mobile app in India.",
   },
 };
 
@@ -161,12 +161,12 @@ export default function page() {
                   <span>
                     Our website:{" "}
                     <a
-                      href="https://washandwow.in"
+                      href="https://clean7.in"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="font-medium text-[#33302E] underline decoration-[#DDD2C8] underline-offset-2 transition-colors hover:text-orange hover:decoration-orange"
                     >
-                      washandwow.in
+                      clean7.in
                     </a>
                   </span>
                 </li>

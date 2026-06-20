@@ -23,7 +23,7 @@ function LeftContent() {
         style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
       >
         Get the app for a{" "}
-        <span className="text-[#FFDAB6]">seamless experience</span>
+        <span className="text-[#D4AF37]">seamless experience</span>
       </h2>
       <p className="text-[16px] sm:text-md">
         Schedule picks, track orders, and manage your laundry - all from your
@@ -151,24 +151,24 @@ function Phone({
         {/* Inner div - handles floating animation */}
         <div className="animate-[float_6s_ease-in-out_infinite]">
           {/* Glow effect behind phone */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FF9431]/20 to-transparent blur-3xl scale-150 opacity-0 md:group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/20 to-transparent blur-3xl scale-150 opacity-0 md:group-hover:opacity-100 transition-opacity duration-700"></div>
 
           {/* Phone frame */}
-          <div className="relative bg-gradient-to-b from-[#d4ccc5] via-[#c5bdb6] to-[#a1978d] w-[310px] h-[620px] rounded-[24px] p-[4px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),0_0_40px_rgba(0,0,0,0.3)] md:group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.6),0_0_60px_rgba(255,148,49,0.2)] transition-all duration-500 md:group-hover:scale-[1.03]">
+          <div className="relative bg-gradient-to-b from-[#222] via-[#111] to-[#0a0a0a] w-[310px] h-[620px] rounded-[24px] p-[4px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),0_0_40px_rgba(0,0,0,0.3)] md:group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.6),0_0_60px_rgba(212,175,55,0.2)] transition-all duration-500 md:group-hover:scale-[1.03]">
             {/* Side buttons */}
             <div className="absolute -left-[3px] top-[100px] w-[3px] h-[30px] bg-gradient-to-b from-[#b5ada6] to-[#9a918a] rounded-l-sm"></div>
             <div className="absolute -left-[3px] top-[150px] w-[3px] h-[60px] bg-gradient-to-b from-[#b5ada6] to-[#9a918a] rounded-l-sm"></div>
             <div className="absolute -right-[3px] top-[130px] w-[3px] h-[50px] bg-gradient-to-b from-[#b5ada6] to-[#9a918a] rounded-r-sm"></div>
 
             {/* Screen */}
-            <div className="relative bg-[#F5F2EE] overflow-hidden w-full h-full rounded-[20px]">
+            <div className="relative bg-[#0a0a0a] overflow-hidden w-full h-full rounded-[20px]">
 
 
               {/* Generated App Mockup */}
               <div className="absolute inset-0">
                 <Image
                   src="/images/app-screenshot.png"
-                  alt="Wash & Wow App Screenshot"
+                  alt="Clean7 App Screenshot"
                   fill
                   className="object-cover"
                   priority
@@ -322,7 +322,7 @@ export default function DownloadApp() {
     <section
       id="download-app"
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-[#897B6E] to-[#4A4139] py-[50px]"
+      className="relative bg-gradient-to-b from-[#111] to-[#050505] py-[50px]"
     >
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <DownloadAppSvg />

@@ -128,7 +128,7 @@ export default function WhyChooseUs() {
               fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
             }}
           >
-            Why Choose <span className="text-orange-services">Wash & Wow</span>?
+            Why Choose <span className="text-orange-services">Clean7</span>?
           </h2>
           <p className="text-[#5E5450] mt-3 max-w-xl mx-auto text-[16px] sm:text-[17px]">
             Convenience, transparent pricing, and dependable quality across

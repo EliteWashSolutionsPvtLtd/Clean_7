@@ -1,33 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-
-  /* Colors */
-  --brown: #91786c;
-  --dark-brown: #645853;
-  --brown-services: #796a64;
-  --brown-footer-contact-text: #5e5450;
-  --brown-footer-contact-icon: #998a85;
-  --brown-footer-download-apple-bg: #7e7166;
-  --brown-footer-download-google-bg: #fffdfc;
-  --step-heading: #6b605e;
-  --step-text: #857670;
-
-  --orange: #f1a486;
-  --orange-services: #ff9431;
-
+  --background: #15130F;
+  --foreground: #F3EDE0;
+  
+  --ground: #15130F;
+  --ground-soft: #1C1914;
+  --ink: #F3EDE0;
+  --ink-soft: #C9C2B2;
+  --gold: #C9A24B;
+  --gold-bright: #E2BD6C;
+  --brass: #8C6D3F;
+  --card: #FAF8F3;
+  --line: rgba(243,237,224,0.14);
   --yellow-seamless: #ffdab6;
-
   --dark-blue: #1a314b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-fraunces), serif;
 
   /* Typography scale – Major Third (1.25), base 16px */
   --text-xs: 0.8rem;
@@ -40,24 +34,30 @@
   --text-3xl: 2.441rem;
   --text-4xl: 3.052rem;
 
-  /* Colors */
+  /* New Colors */
+  --color-linen: var(--linen);
+  --color-linen-soft: var(--linen-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-clay: var(--clay);
+  --color-white: var(--white);
+  --color-line: var(--line);
+
+  /* Legacy Colors */
   --color-brown: var(--brown);
   --color-brown-services: var(--brown-services);
   --color-dark-brown: var(--dark-brown);
   --color-brown-footer-contact-text: var(--brown-footer-contact-text);
   --color-brown-footer-contact-icon: var(--brown-footer-contact-icon);
   --color-brown-footer-download-apple-bg: var(--brown-footer-download-apple-bg);
-  --color-brown-footer-download-google-bg: var(
-    --brown-footer-download-google-bg
-  );
+  --color-brown-footer-download-google-bg: var(--brown-footer-download-google-bg);
   --color-step-heading: var(--step-heading);
   --color-step-text: var(--step-text);
-
   --color-orange: var(--orange);
   --color-orange-services: var(--orange-services);
-
   --color-yellow-seamless: var(--yellow-seamless);
-
   --color-dark-blue: var(--dark-blue);
 
   --breakpoint-xs: 400px;
@@ -65,8 +65,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #15130F;
+    --foreground: #F3EDE0;
   }
 }
 
@@ -79,10 +79,12 @@ html.smooth-scroll {
 }
 
 body {
-  /* background: var(--background); */
-  /* color: var(--foreground); */
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  background: var(--ground);
+  color: var(--ink);
 }
+
+
 
 img {
   user-select: none;

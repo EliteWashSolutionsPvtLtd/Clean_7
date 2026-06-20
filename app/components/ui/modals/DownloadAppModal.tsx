@@ -152,7 +152,7 @@ export default function DownloadAppModal({
                   onClick={toggleQrExpand}
                 >
                   <QRCodeSVG
-                    value="https://washandwow.in"
+                    value="https://clean7.in"
                     size={384}
                     level="M"
                     bgColor="#ffffff"

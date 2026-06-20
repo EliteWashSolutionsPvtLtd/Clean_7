@@ -86,40 +86,40 @@ function ReviewCard({ review }: { review: Review }) {
       : review.review;
 
   return (
-    <article className="group relative flex h-full min-h-[360px] w-full flex-col overflow-hidden rounded-[28px] border border-[#E8DFD6]/55 bg-gradient-to-br from-white via-[#FFFCFA] to-[#F5F0EB] text-center shadow-[6px_8px_24px_rgba(209,199,189,0.28),-4px_-4px_16px_rgba(255,255,255,0.95),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-300 ease-out motion-reduce:transition-none hover:-translate-y-1 hover:border-[#FF9431]/28 hover:shadow-[10px_16px_36px_rgba(255,148,49,0.12),8px_10px_28px_rgba(209,199,189,0.32),-6px_-6px_20px_rgba(255,255,255,1)] motion-reduce:hover:translate-y-0 sm:min-h-[380px]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#FF9431]/85 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full bg-gradient-to-br from-[#FF9431]/12 to-transparent blur-2xl transition-opacity duration-500 group-hover:from-[#FF9431]/18" />
+    <article className="group relative flex h-full min-h-[360px] w-full flex-col overflow-hidden rounded-[28px] border border-[#333] bg-[#111] text-center shadow-[6px_8px_24px_rgba(0,0,0,0.5),-4px_-4px_16px_rgba(255,255,255,0.05),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300 ease-out motion-reduce:transition-none hover:-translate-y-1 hover:border-[#D4AF37]/50 hover:shadow-[10px_16px_36px_rgba(212,175,55,0.15),8px_10px_28px_rgba(0,0,0,0.6),-6px_-6px_20px_rgba(255,255,255,0.05)] motion-reduce:hover:translate-y-0 sm:min-h-[380px]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D4AF37]/85 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full bg-gradient-to-br from-[#D4AF37]/12 to-transparent blur-2xl transition-opacity duration-500 group-hover:from-[#D4AF37]/18" />
       <Quote
-        className="pointer-events-none absolute right-5 top-16 size-14 text-[#FF9431]/[0.09] transition-colors duration-300 group-hover:text-[#FF9431]/[0.14] sm:right-6 sm:top-[4.5rem] sm:size-16"
+        className="pointer-events-none absolute right-5 top-16 size-14 text-[#D4AF37]/[0.15] transition-colors duration-300 group-hover:text-[#D4AF37]/[0.2] sm:right-6 sm:top-[4.5rem] sm:size-16"
         strokeWidth={1}
         aria-hidden
       />
 
       <div className="relative flex flex-1 flex-col items-center px-6 pb-8 pt-7 sm:px-8 sm:pb-9 sm:pt-8">
         <div className="relative mb-5 shrink-0">
-          <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[#FF9431]/50 via-[#FFB86C]/30 to-[#98BCD6]/25 opacity-70 blur-md transition duration-300 group-hover:opacity-100" />
-          <div className="relative rounded-full bg-white p-[3px] shadow-[0_4px_14px_rgba(209,199,189,0.45)] ring-2 ring-white/90">
-            <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#F5F0EB] sm:h-[76px] sm:w-[76px]">
-              <User className="size-8 text-[#B5A49A] sm:size-10" strokeWidth={1.5} />
+          <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[#D4AF37]/50 via-[#C9A227]/30 to-[#D4AF37]/25 opacity-70 blur-md transition duration-300 group-hover:opacity-100" />
+          <div className="relative rounded-full bg-[#1a1a1a] p-[3px] shadow-[0_4px_14px_rgba(0,0,0,0.5)] ring-2 ring-[#333]">
+            <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#222] sm:h-[76px] sm:w-[76px]">
+              <User className="size-8 text-[#a0a0a0] sm:size-10" strokeWidth={1.5} />
             </div>
           </div>
         </div>
 
-        <p className="relative z-[1] line-clamp-5 min-h-0 flex-1 text-[15px] leading-[1.65] text-[#5E5450] sm:text-[16px] md:text-[17px]">
-          <span className="font-serif text-[#FF9431]/90" aria-hidden>
+        <p className="relative z-[1] line-clamp-5 min-h-0 flex-1 text-[15px] leading-[1.65] text-[#a0a0a0] sm:text-[16px] md:text-[17px]">
+          <span className="font-serif text-[#D4AF37]/90" aria-hidden>
             &ldquo;
           </span>
           {excerpt}
-          <span className="font-serif text-[#FF9431]/90" aria-hidden>
+          <span className="font-serif text-[#D4AF37]/90" aria-hidden>
             &rdquo;
           </span>
         </p>
 
-        <div className="mt-6 w-full shrink-0 border-t border-[#E8DFD6]/60 pt-5">
-          <p className="font-semibold tracking-tight text-[#33302E] sm:text-[17px]">
+        <div className="mt-6 w-full shrink-0 border-t border-[#333] pt-5">
+          <p className="font-semibold tracking-tight text-[#fafafa] sm:text-[17px]">
             {review.name}
           </p>
-          <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.14em] text-[#B5A49A]">
+          <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.14em] text-[#888]">
             Verified customer
           </p>
           <div className="mt-3 flex justify-center">
@@ -246,16 +246,16 @@ export default function Reviews() {
   };
 
   return (
-    <section id="reviews" ref={sectionRef} className="py-[60px] bg-[#FDFBF9]">
+    <section id="reviews" ref={sectionRef} className="py-[60px] bg-[#0a0a0a]">
       <div className="reviews-header gsap-animate text-center max-w-[700px] mx-auto mb-[40px] sm:mb-[50px] px-[20px] opacity-0">
-        <span className="text-[#FF9431] text-lg sm:text-xl">Testimonials</span>
+        <span className="text-[#D4AF37] text-lg sm:text-xl font-bold uppercase tracking-widest text-[12px]">Testimonials</span>
         <h2
-          className="text-[#2D2D2D] text-2xl sm:text-3xl font-semibold mt-[8px]"
+          className="text-[#fafafa] text-2xl sm:text-3xl font-semibold mt-[8px]"
           style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
         >
           What our customers are saying
         </h2>
-        <p className="text-[#6B635C] text-[16px] sm:text-md mt-[12px]">
+        <p className="text-[#a0a0a0] text-[16px] sm:text-md mt-[12px]">
           Real stories from customers who rely on us for laundry, home care, and
           more.
         </p>
@@ -264,16 +264,16 @@ export default function Reviews() {
       <div className="reviews-carousel gsap-animate relative mx-auto max-w-[1200px] px-[20px] opacity-0">
         <div className="relative">
           {/* Left fade */}
-          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-[5] w-12 bg-gradient-to-r from-[#FDFBF9] to-transparent sm:w-16" />
+          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-[5] w-12 bg-gradient-to-r from-[#0a0a0a] to-transparent sm:w-16" />
           {/* Right fade */}
-          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-[5] w-12 bg-gradient-to-l from-[#FDFBF9] to-transparent sm:w-16" />
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-[5] w-12 bg-gradient-to-l from-[#0a0a0a] to-transparent sm:w-16" />
 
           <button
             type="button"
             aria-label="Previous testimonials"
             disabled={!canScrollPrev}
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#E8DFD6]/80 bg-white/95 text-[#33302E] shadow-[4px_6px_16px_rgba(209,199,189,0.35)] backdrop-blur-sm transition-all duration-200 hover:border-[#FF9431]/35 hover:text-[#FF7700] hover:shadow-[6px_10px_22px_rgba(255,148,49,0.2)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-35 sm:left-1 sm:h-12 sm:w-12"
+            className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#333] bg-[#1a1a1a] text-[#fafafa] shadow-[4px_6px_16px_rgba(0,0,0,0.5)] backdrop-blur-sm transition-all duration-200 hover:border-[#D4AF37]/50 hover:text-[#D4AF37] hover:shadow-[6px_10px_22px_rgba(212,175,55,0.2)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-35 sm:left-1 sm:h-12 sm:w-12"
           >
             <ChevronLeft className="size-6" strokeWidth={2} aria-hidden />
           </button>
@@ -282,7 +282,7 @@ export default function Reviews() {
             aria-label="Next testimonials"
             disabled={!canScrollNext}
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#E8DFD6]/80 bg-white/95 text-[#33302E] shadow-[4px_6px_16px_rgba(209,199,189,0.35)] backdrop-blur-sm transition-all duration-200 hover:border-[#FF9431]/35 hover:text-[#FF7700] hover:shadow-[6px_10px_22px_rgba(255,148,49,0.2)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-35 sm:right-1 sm:h-12 sm:w-12"
+            className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#333] bg-[#1a1a1a] text-[#fafafa] shadow-[4px_6px_16px_rgba(0,0,0,0.5)] backdrop-blur-sm transition-all duration-200 hover:border-[#D4AF37]/50 hover:text-[#D4AF37] hover:shadow-[6px_10px_22px_rgba(212,175,55,0.2)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-35 sm:right-1 sm:h-12 sm:w-12"
           >
             <ChevronRight className="size-6" strokeWidth={2} aria-hidden />
           </button>

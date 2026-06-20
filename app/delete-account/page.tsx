@@ -18,12 +18,12 @@ import {
   HelpCircle
 } from "lucide-react";
 
-const SUPPORT_EMAIL = "support@washandwow.in";
+const SUPPORT_EMAIL = "support@clean7.in";
 const SUPPORT_MAILTO = `mailto:${SUPPORT_EMAIL}`;
 
 export const metadata: Metadata = {
   title: "Delete Your Account",
-  description: "How to delete your Wash & Wow account and personal data from the mobile app.",
+  description: "How to delete your Clean7 account and personal data from the mobile app.",
   alternates: { canonical: canonicalPath("/delete-account") },
 };
 
@@ -48,10 +48,10 @@ export default function DeleteAccountPage() {
                 className="page-hero-title gsap-animate text-3xl font-bold tracking-tight text-[#33302E] opacity-0 sm:text-4xl md:text-[2.75rem] md:leading-tight"
                 style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
               >
-                Delete Your Wash & Wow Account
+                Delete Your Clean7 Account
               </h1>
               <p className="page-hero-meta gsap-animate mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-[#5E5450] opacity-0 sm:text-[17px]">
-                At Wash & Wow, we value your privacy and give users full control over their personal data.
+                At Clean7, we value your privacy and give users full control over their personal data.
               </p>
             </div>
           </Container>
@@ -84,7 +84,7 @@ export default function DeleteAccountPage() {
               <ol className="grid gap-3 mb-6">
                 <li className="flex gap-3 rounded-xl border border-[#E8DFD6]/60 bg-white/90 px-4 py-3.5 text-[15px] leading-relaxed text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.22)]">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">1</span>
-                  <span className="pt-0.5">Open the Wash & Wow app</span>
+                  <span className="pt-0.5">Open the Clean7 app</span>
                 </li>
                 <li className="flex gap-3 rounded-xl border border-[#E8DFD6]/60 bg-white/90 px-4 py-3.5 text-[15px] leading-relaxed text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.22)]">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">2</span>

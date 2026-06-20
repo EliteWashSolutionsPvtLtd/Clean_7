@@ -11,9 +11,9 @@ import {
   PageSectionsAnimation,
 } from "@/app/components/animations/PageAnimations";
 
-const SUPPORT_EMAIL = "support@washandwow.in";
+const SUPPORT_EMAIL = "support@clean7.in";
 const SUPPORT_PHONE = "7078497263";
-const BUSINESS_EMAIL = "support@washandwow.in";
+const BUSINESS_EMAIL = "support@clean7.in";
 const BUSINESS_ADDRESS = "123, Mullapur Road, Thana Bhawan, Shamli, Uttar Pradesh, 247777";
 const SUPPORT_HOURS = "9:00 AM – 8:00 PM, All Days";
 
@@ -23,12 +23,12 @@ const GOOGLE_MAPS_EMBED_URL =
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact Wash and Wow (washandwow) for customer support, order help, partnerships, and general questions. Phone, email, and visit options.",
+    "Contact Clean7 (clean7) for customer support, order help, partnerships, and general questions. Phone, email, and visit options.",
   alternates: { canonical: canonicalPath("/contact") },
   openGraph: {
     url: canonicalPath("/contact"),
     description:
-      "Reach Wash and Wow for customer support, order help, partnerships, and general questions.",
+      "Reach Clean7 for customer support, order help, partnerships, and general questions.",
   },
 };
 
@@ -200,7 +200,7 @@ export default function page() {
               >
                 <div className="overflow-hidden rounded-2xl border border-[#E8DFD6] bg-[#F7F4F1] shadow-sm">
                   <iframe
-                    title="Wash & Wow location on Google Maps"
+                    title="Clean7 location on Google Maps"
                     src={GOOGLE_MAPS_EMBED_URL}
                     className="aspect-[16/10] min-h-[260px] w-full border-0 sm:min-h-[340px] md:min-h-[400px]"
                     loading="lazy"

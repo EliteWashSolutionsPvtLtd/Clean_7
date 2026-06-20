@@ -19,7 +19,7 @@ export default function FranchiseForm() {
           <CheckCircle2 size={40} />
         </div>
         <h3 className="text-2xl font-bold text-[#33302E] mb-4">Inquiry Received!</h3>
-        <p className="text-[#5E5450]">Thank you for your interest in Wash & Wow. Our franchise team will contact you shortly.</p>
+        <p className="text-[#5E5450]">Thank you for your interest in Clean7. Our franchise team will contact you shortly.</p>
       </div>
     );
   }
