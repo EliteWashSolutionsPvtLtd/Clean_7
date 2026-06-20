@@ -18,10 +18,15 @@ const heroSlides = [
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      setIsShuffling(true);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        setIsShuffling(false);
+      }, 500);
     }, 3000);
     return () => clearInterval(timer);
   }, []);
@@ -89,22 +94,40 @@ export default function Hero() {
 
       <div className={styles.visual}>
         <div className="flex flex-col items-center max-w-[400px] w-full px-6 md:px-0 pt-32 md:pt-40 pb-12">
-          <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 ease-in-out border-2 border-[var(--line)] mb-6 z-10">
-            {heroSlides.map((slide, idx) => (
-              <div
-                key={idx}
-                className="absolute inset-0 transition-opacity duration-700 ease-in-out"
-                style={{ opacity: idx === currentSlide ? 1 : 0 }}
-              >
-                <Image
-                  src={slide.image}
-                  alt={slide.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 400px"
-                />
-              </div>
-            ))}
+          <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] mb-6 z-10">
+            {heroSlides.map((slide, idx) => {
+              const isActive = idx === currentSlide;
+              const isShufflingOut = isShuffling && isActive;
+
+              let cardClass = "";
+              if (isShufflingOut) {
+                cardClass =
+                  "z-30 translate-x-[110%] scale-[0.9] rotate-[12deg] opacity-100";
+              } else if (isActive) {
+                cardClass = "z-20 translate-x-0 scale-100 rotate-0 opacity-100";
+              } else {
+                cardClass =
+                  "z-10 translate-x-[24px] -translate-y-[16px] scale-[0.9] rotate-[6deg] opacity-90 shadow-none";
+              }
+
+              return (
+                <div
+                  key={idx}
+                  className={`absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border-2 border-[var(--line)] transition-all duration-500 ease-in-out origin-bottom-right ${cardClass}`}
+                >
+                  <Image
+                    src={slide.image}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-black transition-opacity duration-500 pointer-events-none ${isActive && !isShufflingOut ? "opacity-0" : "opacity-30"}`}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

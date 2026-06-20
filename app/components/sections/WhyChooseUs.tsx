@@ -185,7 +185,7 @@ export default function WhyChooseUs() {
             </p>
           </div>
 
-          <button className="flex items-center gap-[8px] px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:text-white transition-colors">
+          <button className="flex items-center gap-[8px] px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors">
             Learn more about us
             <svg
               width="16"

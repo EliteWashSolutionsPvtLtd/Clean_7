@@ -48,8 +48,8 @@ export default function Navbar() {
         style={{ display: "flex", alignItems: "center" }}
       >
         <ThemeToggle />
-        <Link href="#" className={styles.navCta}>
-          Book a pickup
+        <Link href="#download-app" className={styles.navCta}>
+          Download App
         </Link>
       </div>
 
@@ -85,8 +85,8 @@ export default function Navbar() {
         >
           Pricing
         </Link>
-        <Link href="#" className={styles.navCta}>
-          Book a pickup
+        <Link href="#download-app" className={styles.navCta}>
+          Download App
         </Link>
       </div>
     </nav>
