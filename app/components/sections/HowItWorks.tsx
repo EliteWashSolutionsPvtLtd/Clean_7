@@ -33,16 +33,16 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="pt-[120px] pb-[60px] px-[24px] md:px-[48px] bg-[var(--ground)] text-[var(--ink)]"
+      className="pt-[80px] md:pt-[120px] pb-[60px] px-[24px] md:px-[48px] bg-[var(--ground)] text-[var(--ink)]"
     >
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
         {/* Header */}
-        <div className="text-center mb-[80px]">
-          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[24px]">
+        <div className="text-center mb-[48px] md:mb-[80px]">
+          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
             HOW IT WORKS
           </p>
           <h2
-            className="text-[48px] md:text-[64px] text-[var(--ink)] mb-[24px] leading-[1.05]"
+            className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Care that&apos;s simple.
@@ -129,11 +129,11 @@ export default function HowItWorks() {
               </div>
 
               {/* Image with glow behind it */}
-              <div className="relative flex items-center justify-center mb-[40px] w-full h-[260px]">
+              <div className="relative flex items-center justify-center mb-[32px] md:mb-[40px] w-full h-[200px] md:h-[260px]">
                 {/* Background circle */}
-                <div className="absolute w-[200px] h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
+                <div className="absolute w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
                 {/* Image container */}
-                <div className="relative w-[240px] h-[240px] lg:w-[300px] lg:h-[300px]">
+                <div className="relative w-[220px] h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]">
                   <Image
                     src={step.img}
                     alt={step.title}
