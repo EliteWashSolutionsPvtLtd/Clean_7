@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
+import ThemeToggle from "../ui/ThemeToggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Navbar() {
     <nav className={styles.nav}>
       <div className={styles.navLeft}>
         <div className={styles.wordmark}>
-          Clean<span style={{ color: "#FFD700" }}>7</span>
+          Clean<span style={{ color: "var(--gold-bright)" }}>7</span>
         </div>
       </div>
 
@@ -27,7 +28,11 @@ export default function Navbar() {
         </li>
       </ul>
 
-      <div className={styles.navRight}>
+      <div
+        className={styles.navRight}
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <ThemeToggle />
         <Link href="#" className={styles.navCta}>
           Book a pickup
         </Link>

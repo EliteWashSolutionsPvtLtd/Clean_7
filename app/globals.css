@@ -1,6 +1,24 @@
 @import "tailwindcss";
 
 :root {
+  --background: #F7F1E4;
+  --foreground: #211C13;
+  
+  --ground: #F7F1E4;
+  --ground-soft: #FBF7EE;
+  --ink: #211C13;
+  --ink-soft: #6B6253;
+  --gold: #B8893E;
+  --gold-bright: #8F6526;
+  --gold-light: #E8C77E;
+  --brass: #8C6D3F;
+  --card: #FFFFFF;
+  --line: rgba(33,28,19,0.12);
+  --yellow-seamless: #ffdab6;
+  --dark-blue: #1a314b;
+}
+
+.dark {
   --background: #15130F;
   --foreground: #F3EDE0;
   
@@ -13,8 +31,6 @@
   --brass: #8C6D3F;
   --card: #FAF8F3;
   --line: rgba(243,237,224,0.14);
-  --yellow-seamless: #ffdab6;
-  --dark-blue: #1a314b;
 }
 
 @theme inline {
@@ -63,12 +79,7 @@
   --breakpoint-xs: 400px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #15130F;
-    --foreground: #F3EDE0;
-  }
-}
+/* Removed media query preferring dark mode since next-themes controls it via .dark class */
 
 html {
   scroll-behavior: auto;

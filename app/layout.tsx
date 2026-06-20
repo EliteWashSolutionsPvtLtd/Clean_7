@@ -3,6 +3,7 @@ import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "./components/LenisProvider";
 import RoutePrefetch from "./components/RoutePrefetch";
+import { ThemeProvider } from "./components/ThemeProvider";
 import {
   getSiteUrl,
   SITE_DESCRIPTION,
@@ -75,14 +76,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${fraunces.variable} font-sans antialiased`}
       >
-        <LenisProvider>
-          <RoutePrefetch />
-          {children}
-        </LenisProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <LenisProvider>
+            <RoutePrefetch />
+            {children}
+          </LenisProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
