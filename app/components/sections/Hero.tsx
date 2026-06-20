@@ -1,10 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "@/app/(pages)/services/laundry/Laundry.module.css";
 
+const heroSlides = [
+  {
+    image: "/images/services/laundry.png",
+    alt: "Laundry Service",
+  },
+  {
+    image: "/images/services/car-wash.png",
+    alt: "Car Wash",
+  },
+];
+
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className={styles.hero}>
       <div className={styles.copy}>
@@ -67,23 +88,24 @@ export default function Hero() {
       </div>
 
       <div className={styles.visual}>
-        <div className={styles.foldStack}>
-          <div className={`${styles.foldCard} ${styles.card1}`}>
-            <div className={styles.stitch}></div>
+        <div className="flex flex-col items-center max-w-[400px] w-full px-6 md:px-0 pt-32 md:pt-40 pb-12">
+          <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 ease-in-out border-2 border-[var(--line)] mb-6 z-10">
+            {heroSlides.map((slide, idx) => (
+              <div
+                key={idx}
+                className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+                style={{ opacity: idx === currentSlide ? 1 : 0 }}
+              >
+                <Image
+                  src={slide.image}
+                  alt={slide.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                />
+              </div>
+            ))}
           </div>
-          <div className={`${styles.foldCard} ${styles.card2}`}>
-            <div className={styles.stitch}></div>
-          </div>
-          <div className={`${styles.foldCard} ${styles.card3}`}>
-            <div className={styles.stitch}></div>
-          </div>
-        </div>
-        <div className={styles.visualCaption}>
-          <p className={styles.vcText}>
-            Every order folded by hand to a five-point standard before it leaves
-            our care.
-          </p>
-          <span className={styles.vcMark}>No. 01 — Press &amp; fold</span>
         </div>
       </div>
     </section>
