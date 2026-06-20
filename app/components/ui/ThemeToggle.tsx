@@ -13,7 +13,7 @@ export default function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div style={{ width: "36px", height: "36px", marginRight: "16px" }} />;
+    return <div style={{ width: "36px", height: "36px" }} />;
   }
 
   return (
@@ -30,8 +30,7 @@ export default function ThemeToggle() {
         color: "var(--gold-bright)",
         background: "transparent",
         cursor: "pointer",
-        marginRight: "16px",
-        transition: "background 0.25s ease, color 0.25s ease"
+        transition: "background 0.25s ease, color 0.25s ease",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = "var(--gold)";

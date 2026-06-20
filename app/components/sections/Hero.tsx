@@ -93,7 +93,7 @@ export default function Hero() {
       </div>
 
       <div className={styles.visual}>
-        <div className="flex flex-col items-center max-w-[400px] w-full px-6 md:px-0 pt-32 md:pt-40 pb-12">
+        <div className="flex flex-col items-center max-w-[300px] md:max-w-[400px] w-full px-4 md:px-0 pt-0 md:pt-40 pb-12 mx-auto">
           <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] mb-6 z-10">
             {heroSlides.map((slide, idx) => {
               const isActive = idx === currentSlide;
