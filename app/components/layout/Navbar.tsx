@@ -51,14 +51,19 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link href="#">How it works</Link>
-        </li>
-        <li>
           <Link
             href="/pricing"
             className={isActive("/pricing") ? styles.active : ""}
           >
             Pricing
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/about"
+            className={isActive("/about") ? styles.active : ""}
+          >
+            About
           </Link>
         </li>
       </ul>
@@ -124,15 +129,19 @@ export default function Navbar() {
           >
             Services
           </Link>
-          <Link href="#" onClick={() => setIsOpen(false)}>
-            How it works
-          </Link>
           <Link
             href="/pricing"
             className={isActive("/pricing") ? styles.active : ""}
             onClick={() => setIsOpen(false)}
           >
             Pricing
+          </Link>
+          <Link
+            href="/about"
+            className={isActive("/about") ? styles.active : ""}
+            onClick={() => setIsOpen(false)}
+          >
+            About
           </Link>
         </div>
         <div className={styles.mobileFooter}>
