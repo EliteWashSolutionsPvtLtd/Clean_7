@@ -10,17 +10,14 @@ import {
   ArrowRight,
   Clock,
   Star,
-  ShieldCheck,
   Heart,
   Smartphone,
   Sparkles,
-  Package,
   Car,
   Box,
   BadgeCheck,
-  MapPin,
-  Search,
   ChevronRight,
+  ShieldCheck,
 } from "lucide-react";
 import Container from "@/app/components/layout/Container";
 import { Fraunces } from "next/font/google";
@@ -525,8 +522,8 @@ export default function AboutPage() {
         <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Focus Card */}
-            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[460px] md:h-[650px] overflow-hidden relative">
-              <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
+            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-full relative">
+              <p className="text-[var(--gold)] uppercase text-[15px] font-bold tracking-[0.05em] mb-4">
                 Our Focus
               </p>
               <h3
@@ -538,87 +535,95 @@ export default function AboutPage() {
               </h3>
 
               <div className="flex gap-4 mb-6 relative z-10">
-                <div className="w-10 h-10 rounded-xl bg-[var(--line)] text-[var(--gold)] flex items-center justify-center shrink-0">
-                  <Smartphone size={18} />
-                </div>
                 <div>
-                  <p className="text-[var(--ink)] text-[13px] font-bold mb-1">
+                  <p className="text-[var(--ink)] text-[15px] font-bold mb-1">
                     Convenience First
                   </p>
-                  <p className="text-[var(--ink-soft)] text-[11px] leading-relaxed">
+                  <p className="text-[var(--ink-soft)] text-[15px] leading-relaxed">
                     Pickup, tracking, and delivery designed to fit seamlessly
                     into your routine.
                   </p>
                 </div>
               </div>
               <div className="flex gap-4 relative z-10">
-                <div className="w-10 h-10 rounded-xl bg-[var(--line)] text-[var(--gold)] flex items-center justify-center shrink-0">
-                  <Sparkles size={18} />
-                </div>
                 <div>
-                  <p className="text-[var(--ink)] text-[13px] font-bold mb-1">
+                  <p className="text-[var(--ink)] text-[15px] font-bold mb-1">
                     Premium Experience
                   </p>
-                  <p className="text-[var(--ink-soft)] text-[11px] leading-relaxed">
+                  <p className="text-[var(--ink-soft)] text-[15px] leading-relaxed">
                     From cleaning quality to packaging, every detail is crafted
                     to feel premium.
                   </p>
                 </div>
               </div>
-
-              <div className="absolute bottom-0 left-0 right-0 h-64 md:h-80">
-                <Image
-                  src="/images/about/about_focus_1782044614704.png"
-                  fill
-                  className="object-cover object-bottom"
-                  alt="Focus"
-                />
+              <div className="flex gap-4 relative z-10 mt-6">
+                <div>
+                  <p className="text-[var(--ink)] text-[15px] font-bold mb-1">
+                    Trusted Care
+                  </p>
+                  <p className="text-[var(--ink-soft)] text-[15px] leading-relaxed">
+                    Your garments and home are handled with utmost respect by
+                    our trained professionals.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Mission Card */}
-            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[460px] md:h-[650px] overflow-hidden relative">
-              <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
+            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-full relative">
+              <p className="text-[var(--gold)] uppercase text-[15px] font-bold tracking-[0.05em] mb-4">
                 Our Mission
               </p>
-              <p className="text-[var(--ink-soft)] text-[13px] leading-[1.8] relative z-10 md:w-[90%]">
-                To simplify everyday care services through reliable, premium
-                experiences that save people time and deliver consistent
-                quality.
-              </p>
-              <div className="absolute bottom-0 left-0 right-0 h-[300px] md:h-[450px]">
-                <Image
-                  src="/images/about/about_mission_1782044627703.png"
-                  fill
-                  className="object-cover object-bottom"
-                  alt="Mission"
-                />
+
+              <div className="text-[var(--ink-soft)] text-[15px] leading-[1.8] relative z-10 space-y-6">
+                <p
+                  className={`text-xl md:text-2xl text-[var(--ink)] leading-snug ${fraunces.className}`}
+                >
+                  To simplify everyday care services through reliable, premium
+                  experiences that give you back your time.
+                </p>
+                <p>
+                  We believe that managing your laundry, home, or vehicle
+                  shouldn&apos;t feel like a second job. Our mission is to
+                  seamlessly integrate into your busy lifestyle, providing a
+                  frictionless service you can confidently rely on week after
+                  week.
+                </p>
+                <p>
+                  Every garment we clean and every vehicle we detail is a
+                  promise kept. We are committed to maintaining the highest
+                  standards of care, ensuring you always step out looking and
+                  feeling your best.
+                </p>
               </div>
             </div>
 
             {/* Vision Card */}
-            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[460px] md:h-[650px] overflow-hidden relative">
-              <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
+            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-full relative">
+              <p className="text-[var(--gold)] uppercase text-[15px] font-bold tracking-[0.05em] mb-4">
                 Our Vision Ahead
               </p>
-              <div className="text-[var(--ink-soft)] text-[13px] leading-[1.8] relative z-10 md:w-[95%] space-y-4">
-                <p>
-                  We envision Clean7 becoming the most trusted premium care
-                  platform for modern households — combining thoughtful service,
-                  technology, and convenience into one seamless experience.
+
+              <div className="text-[var(--ink-soft)] text-[15px] leading-[1.8] relative z-10 space-y-6">
+                <p
+                  className={`text-xl md:text-2xl text-[var(--ink)] leading-snug ${fraunces.className}`}
+                >
+                  Setting the new standard for premium household care across the
+                  nation.
                 </p>
                 <p>
-                  As we grow, our focus remains the same: exceptional care,
-                  consistent quality, and experiences customers genuinely love.
+                  We envision Clean7 as the go-to partner for modern living —
+                  where thoughtful service meets cutting-edge convenience. Our
+                  goal is to expand our reach while maintaining the meticulous
+                  attention to detail that our foundational clients have come to
+                  expect.
                 </p>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-[250px] md:h-[350px]">
-                <Image
-                  src="/images/about/about_vision_1782044639738.png"
-                  fill
-                  className="object-cover object-bottom"
-                  alt="Vision"
-                />
+                <p>
+                  We are constantly innovating our processes and training to
+                  ensure every interaction leaves you delighted. Join us on this
+                  journey to elevate everyday chores into a premium, worry-free
+                  experience.
+                </p>
               </div>
             </div>
           </div>
