@@ -1,4 +1,6 @@
-import AccordionPageLayout, { AccordionItem } from "@/app/components/layout/AccordionPageLayout";
+import AccordionPageLayout, {
+  AccordionItem,
+} from "@/app/components/layout/AccordionPageLayout";
 import { Metadata } from "next";
 import { canonicalPath } from "@/app/lib/site-config";
 import ContactForm from "./ContactForm";
@@ -6,7 +8,8 @@ import ContactForm from "./ContactForm";
 const SUPPORT_EMAIL = "support@clean7.in";
 const SUPPORT_PHONE = "7078497263";
 const BUSINESS_EMAIL = "support@clean7.in";
-const BUSINESS_ADDRESS = "123, Mullapur Road, Thana Bhawan, Shamli, Uttar Pradesh, 247777";
+const BUSINESS_ADDRESS =
+  "123, Mullapur Road, Thana Bhawan, Shamli, Uttar Pradesh, 247777";
 const SUPPORT_HOURS = "9:00 AM – 8:00 PM, All Days";
 
 const GOOGLE_MAPS_EMBED_URL =
@@ -14,11 +17,13 @@ const GOOGLE_MAPS_EMBED_URL =
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Contact Clean7 for customer support, order help, partnerships, and general questions.",
+  description:
+    "Contact Clean7 for customer support, order help, partnerships, and general questions.",
   alternates: { canonical: canonicalPath("/contact") },
   openGraph: {
     url: canonicalPath("/contact"),
-    description: "Reach Clean7 for customer support, order help, partnerships, and general questions.",
+    description:
+      "Reach Clean7 for customer support, order help, partnerships, and general questions.",
   },
 };
 
@@ -29,9 +34,27 @@ const contactItems: AccordionItem[] = [
       <>
         <p>Have questions about your order, pickup, or delivery?</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Email:</strong> <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[var(--gold)] hover:underline">{SUPPORT_EMAIL}</a></li>
-          <li><strong>Phone:</strong> <a href={`tel:${SUPPORT_PHONE}`} className="text-[var(--gold)] hover:underline">{SUPPORT_PHONE}</a></li>
-          <li><strong>Support hours:</strong> {SUPPORT_HOURS}</li>
+          <li>
+            <strong>Email:</strong>{" "}
+            <a
+              href={`mailto:${SUPPORT_EMAIL}`}
+              className="text-[var(--gold)] hover:underline"
+            >
+              {SUPPORT_EMAIL}
+            </a>
+          </li>
+          <li>
+            <strong>Phone:</strong>{" "}
+            <a
+              href={`tel:${SUPPORT_PHONE}`}
+              className="text-[var(--gold)] hover:underline"
+            >
+              {SUPPORT_PHONE}
+            </a>
+          </li>
+          <li>
+            <strong>Support hours:</strong> {SUPPORT_HOURS}
+          </li>
         </ul>
       </>
     ),
@@ -40,7 +63,9 @@ const contactItems: AccordionItem[] = [
     title: "Our Location & Map",
     content: (
       <>
-        <p><strong>Clean7</strong></p>
+        <p>
+          <strong>Clean7</strong>
+        </p>
         <p className="mt-1">{BUSINESS_ADDRESS}</p>
         <div className="mt-4 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--card)] shadow-sm">
           <iframe
@@ -59,7 +84,10 @@ const contactItems: AccordionItem[] = [
     title: "Send us a Message",
     content: (
       <>
-        <p className="mb-4">You can also reach out to us by filling out the form below. We usually respond within 24 hours.</p>
+        <p className="mb-4">
+          You can also reach out to us by filling out the form below. We usually
+          respond within 24 hours.
+        </p>
         <ContactForm />
       </>
     ),
@@ -68,8 +96,14 @@ const contactItems: AccordionItem[] = [
     title: "Order & App Support",
     content: (
       <>
-        <p>For faster assistance with your order, please include your registered phone number and Order ID (if applicable).</p>
-        <p className="mt-2">Since all services are managed through our mobile application, we recommend:</p>
+        <p>
+          For faster assistance with your order, please include your registered
+          phone number and Order ID (if applicable).
+        </p>
+        <p className="mt-2">
+          Since all services are managed through our mobile application, we
+          recommend:
+        </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li>Checking order status directly in the app</li>
           <li>Using in-app support (if available)</li>
@@ -83,7 +117,14 @@ const contactItems: AccordionItem[] = [
       <>
         <p>Interested in partnering with Clean7?</p>
         <p className="mt-2">
-          <strong>Email:</strong> <a href={`mailto:${BUSINESS_EMAIL}?subject=Partnership Inquiry`} className="text-[var(--gold)] hover:underline">{BUSINESS_EMAIL}</a><br />
+          <strong>Email:</strong>{" "}
+          <a
+            href={`mailto:${BUSINESS_EMAIL}?subject=Partnership Inquiry`}
+            className="text-[var(--gold)] hover:underline"
+          >
+            {BUSINESS_EMAIL}
+          </a>
+          <br />
           <strong>Subject:</strong> Partnership Inquiry
         </p>
       </>
@@ -97,8 +138,10 @@ export default function ContactPage() {
       title="Contact Us"
       intro={
         <>
-          We&apos;re here to help! Whether you have a question, need support,<br />
-          or just want to say hello — the Clean7 team is always ready to assist you.
+          We&apos;re here to help! Whether you have a question, need support,
+          <br />
+          or just want to say hello — the Clean7 team is always ready to assist
+          you.
         </>
       }
       items={contactItems}
@@ -106,8 +149,10 @@ export default function ContactPage() {
         title: "We're Here For You",
         text: (
           <>
-            At Clean7, we believe in making laundry effortless and stress-free.<br />
-            If something isn&apos;t right, we&apos;ll do our best to fix it — quickly and fairly.
+            At Clean7, we believe in making laundry effortless and stress-free.
+            <br />
+            If something isn&apos;t right, we&apos;ll do our best to fix it —
+            quickly and fairly.
           </>
         ),
       }}

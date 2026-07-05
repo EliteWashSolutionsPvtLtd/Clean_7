@@ -176,12 +176,11 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Satisfaction Bar */}
-        <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
+        <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex items-center justify-between">
           <div className="flex flex-col md:flex-row items-center md:items-center gap-[24px] w-full md:w-auto text-center md:text-left">
-            <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] max-w-[340px]">
-              If something&apos;s not right, we&apos;ll make it right —{" "}
-              <br className="hidden md:block" />
-              because your trust is earned with every order.
+            <p className="text-[var(--ink-soft)] leading-[1.6]">
+              If something&apos;s not right, we&apos;ll make it right - because
+              your trust is earned with every order.
             </p>
           </div>
 

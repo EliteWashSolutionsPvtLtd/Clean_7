@@ -44,7 +44,7 @@ export default function AboutPage() {
         <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="flex flex-col lg:flex-row gap-16 justify-between items-center">
             <div className="lg:w-[50%]">
-              <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-6">
+              <p className="text-[var(--gold)] uppercase text-[22px] font-bold tracking-[0.2em] mb-6">
                 About Clean7
               </p>
               <h1
@@ -64,21 +64,6 @@ export default function AboutPage() {
                 every detail is designed to save time while delivering premium
                 results.
               </p>
-              <div className="flex flex-wrap items-center gap-6">
-                <Link
-                  href="/services"
-                  className="bg-[var(--gold)] text-[var(--ground)] px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-[var(--gold-bright)] transition-colors"
-                >
-                  Schedule your first pickup{" "}
-                  <ArrowRight size={16} strokeWidth={2.5} />
-                </Link>
-                <Link
-                  href="#how-it-works"
-                  className="text-[var(--ink)] text-sm font-medium border-b border-[var(--line)] pb-0.5 hover:text-[var(--gold)] hover:border-[var(--gold)] transition-colors"
-                >
-                  See how it works
-                </Link>
-              </div>
             </div>
 
             <div className="lg:w-[40%] relative h-[500px] lg:mt-0 w-full overflow-hidden rounded-2xl md:rounded-3xl group">
@@ -622,30 +607,17 @@ export default function AboutPage() {
       <section className="py-20 mb-10">
         <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="bg-gradient-to-r from-[var(--ground-soft)] to-[var(--ground)] rounded-[40px] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between relative overflow-hidden min-h-[300px] md:min-h-[250px]">
-            {/* Background Image */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[200px] md:h-[280px] w-full md:w-[700px] opacity-80 mix-blend-screen pointer-events-none">
-              <Image
-                src="/images/about/about_cta_towels_1782044661279.png"
-                fill
-                className="object-contain object-bottom"
-                alt="Premium Towels"
-              />
-            </div>
-
             <div className="relative z-10 mb-10 md:mb-0 text-center md:text-left">
               <h2
                 className={`text-4xl md:text-5xl text-[var(--ink)] mb-4 leading-tight ${fraunces.className}`}
               >
-                Laundry that
-                <br />
+                Laundry that{" "}
                 <span className="text-[var(--gold)] italic">
                   fits your life.
                 </span>
               </h2>
-              <p className="text-[var(--ink-soft)] text-sm">
-                Less time on chores. More time for
-                <br className="hidden md:block" />
-                what matters.
+              <p className="text-[var(--ink-soft)] text-[14px]">
+                Less time on chores. More time for what matters.
               </p>
             </div>
 
@@ -657,7 +629,7 @@ export default function AboutPage() {
                 Schedule your first pickup{" "}
                 <ArrowRight size={16} strokeWidth={2.5} />
               </Link>
-              <p className="text-[var(--ink-soft)] text-[11px]">
+              <p className="text-[var(--ink-soft)] text-[14px]">
                 Quick. Easy. Reliable.
               </p>
             </div>
