@@ -60,7 +60,7 @@ export default function MobileNavbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] h-[80px] min-[1000px]:hidden">
+      <nav className="fixed top-0 left-0 z-[100] w-full h-[80px] min-[1000px]:hidden">
         {/* Top Bar */}
         <div className="bg-[#FDFCF9] shadow-sm h-[80px]">
           <div className="flex items-center justify-between px-[20px] h-[80px]">
@@ -123,7 +123,7 @@ export default function MobileNavbar() {
 
         {/* Full-Screen Menu Overlay */}
         <div
-          className={`fixed top-0 left-0 right-0 h-[100dvh] bg-[#FDFCF9] z-[101] flex flex-col transition-transform duration-300 ease-out ${
+          className={`fixed top-0 left-0 w-full h-[100svh] bg-[#FDFCF9] z-[101] flex flex-col transition-transform duration-300 ease-out ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
