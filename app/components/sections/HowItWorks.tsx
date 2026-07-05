@@ -162,17 +162,18 @@ function StepGrid({
           </div>
 
           {/* Image with glow behind it */}
-          <div className="relative flex items-center justify-center mb-[16px] sm:mb-[32px] md:mb-[40px] w-full h-[120px] sm:h-[200px] md:h-[260px]">
+          <div className="relative flex items-center justify-center mb-[16px] sm:mb-[32px] md:mb-[40px] w-full h-[140px] sm:h-[200px] md:h-[260px]">
             {/* Background circle (only for non-circular images) */}
             {!isCircularImage && (
-              <div className="absolute w-[90px] h-[90px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
+              <div className="absolute w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
             )}
+
             {/* Image container */}
             <div
               className={`relative ${
                 isCircularImage
-                  ? "w-[90px] h-[90px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
-                  : "w-[120px] h-[120px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
+                  ? "w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
+                  : "w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
               }`}
             >
               <Image
