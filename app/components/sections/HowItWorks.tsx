@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ShieldCheck, Clock, Lock, ThumbsUp } from "lucide-react";
 
 const laundrySteps = [
   {
@@ -56,7 +57,40 @@ const carWashSteps = [
   },
 ];
 
-function StepGrid({ steps }: { steps: typeof laundrySteps }) {
+const houseHelpSteps = [
+  {
+    num: 1,
+    title: "Book a help",
+    desc: "Choose the type of help you need, select a convenient time and location. We'll take care of the rest.",
+    img: "/images/how-it-works/house-help/step-1.png",
+  },
+  {
+    num: 2,
+    title: "We assign the right help",
+    desc: "We carefully verify and assign a trained and experienced house help based on your requirements.",
+    img: "/images/how-it-works/house-help/step-2.png",
+  },
+  {
+    num: 3,
+    title: "Help you can trust",
+    desc: "They arrive on time and get the job done with care, respect and professionalism.",
+    img: "/images/how-it-works/house-help/step-3.png",
+  },
+  {
+    num: 4,
+    title: "Come home to comfort",
+    desc: "Relax in a clean, organized home while we take care of what matters.",
+    img: "/images/how-it-works/house-help/step-4.png",
+  },
+];
+
+function StepGrid({
+  steps,
+  isCircularImage = false,
+}: {
+  steps: typeof laundrySteps;
+  isCircularImage?: boolean;
+}) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-start justify-between w-full relative gap-[48px] md:gap-[24px]">
       {/* Dashed arrows (desktop only) */}
@@ -129,15 +163,27 @@ function StepGrid({ steps }: { steps: typeof laundrySteps }) {
 
           {/* Image with glow behind it */}
           <div className="relative flex items-center justify-center mb-[32px] md:mb-[40px] w-full h-[200px] md:h-[260px]">
-            {/* Background circle */}
-            <div className="absolute w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
+            {/* Background circle (only for non-circular images) */}
+            {!isCircularImage && (
+              <div className="absolute w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
+            )}
             {/* Image container */}
-            <div className="relative w-[220px] h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]">
+            <div
+              className={`relative ${
+                isCircularImage
+                  ? "w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
+                  : "w-[220px] h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
+              }`}
+            >
               <Image
                 src={step.img}
                 alt={step.title}
                 fill
-                className="object-contain drop-shadow-[0_20px_30px_rgba(33,28,19,0.1)] scale-110"
+                className={
+                  isCircularImage
+                    ? "object-cover"
+                    : "object-contain drop-shadow-[0_20px_30px_rgba(33,28,19,0.1)] scale-110"
+                }
               />
             </div>
           </div>
@@ -199,7 +245,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Car Wash Section */}
-        <div className="w-full">
+        <div className="w-full mb-[60px] md:mb-[80px]">
           <h3
             className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
             style={{ fontFamily: "var(--font-fraunces)" }}
@@ -207,6 +253,54 @@ export default function HowItWorks() {
             Doorstep Car Wash
           </h3>
           <StepGrid steps={carWashSteps} />
+        </div>
+
+        {/* House Help Section */}
+        <div className="w-full">
+          <h3
+            className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
+            style={{ fontFamily: "var(--font-fraunces)" }}
+          >
+            House Help
+          </h3>
+          <StepGrid steps={houseHelpSteps} isCircularImage={true} />
+
+          {/* Trust Indicators Footer */}
+          <div className="mt-[48px] md:mt-[64px] max-w-[1000px] w-full mx-auto border border-white/10 rounded-full py-[16px] md:py-[24px] px-[24px] md:px-[40px] flex flex-col md:flex-row items-center justify-between gap-[24px] md:gap-0 bg-transparent text-[var(--gold)]">
+            <div className="flex items-center gap-[12px]">
+              <ShieldCheck className="w-[24px] h-[24px]" strokeWidth={1.5} />
+              <span className="text-[14px] md:text-[15px] font-medium">
+                Verified & Trained Staff
+              </span>
+            </div>
+
+            <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
+
+            <div className="flex items-center gap-[12px]">
+              <Clock className="w-[24px] h-[24px]" strokeWidth={1.5} />
+              <span className="text-[14px] md:text-[15px] font-medium">
+                On-Time Service
+              </span>
+            </div>
+
+            <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
+
+            <div className="flex items-center gap-[12px]">
+              <Lock className="w-[24px] h-[24px]" strokeWidth={1.5} />
+              <span className="text-[14px] md:text-[15px] font-medium">
+                Safe & Secure
+              </span>
+            </div>
+
+            <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
+
+            <div className="flex items-center gap-[12px]">
+              <ThumbsUp className="w-[24px] h-[24px]" strokeWidth={1.5} />
+              <span className="text-[14px] md:text-[15px] font-medium">
+                Satisfaction Guaranteed
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
