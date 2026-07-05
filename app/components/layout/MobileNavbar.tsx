@@ -60,7 +60,7 @@ export default function MobileNavbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] h-[100svh] w-full">
+      <nav className="fixed top-0 left-0 right-0 z-[100] h-[80px] min-[1000px]:hidden">
         {/* Top Bar */}
         <div className="bg-[#FDFCF9] shadow-sm h-[80px]">
           <div className="flex items-center justify-between px-[20px] h-[80px]">
@@ -180,7 +180,7 @@ export default function MobileNavbar() {
             data-lenis-prevent
           >
             {/* Navigation Links */}
-            <div className="px-[20px] py-[16px] shrink-0">
+            <div className="px-[20px] pt-[16px] pb-[calc(40px+env(safe-area-inset-bottom,0px))] shrink-0">
               <ul className="flex flex-col">
                 {navItems.map((item) => {
                   const rowClass =
