@@ -92,7 +92,7 @@ function StepGrid({
   isCircularImage?: boolean;
 }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-start justify-between w-full relative gap-[48px] md:gap-[24px]">
+    <div className="grid grid-cols-2 md:grid-cols-4 items-start justify-between w-full relative gap-x-[12px] gap-y-[32px] sm:gap-[48px] md:gap-[24px]">
       {/* Dashed arrows (desktop only) */}
       <div className="hidden md:flex absolute top-[16px] left-0 w-full z-0 pointer-events-none justify-evenly -translate-y-1/2">
         <div className="flex items-center justify-center w-[60px] lg:w-[80px]">
@@ -157,22 +157,22 @@ function StepGrid({
           className="flex flex-col items-center text-center flex-1 z-10 w-full"
         >
           {/* Badge */}
-          <div className="w-[32px] h-[32px] rounded-full bg-[var(--gold)] text-[#FFFFFF] flex items-center justify-center text-[15px] font-medium mb-[32px]">
+          <div className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] rounded-full bg-[var(--gold)] text-[#FFFFFF] flex items-center justify-center text-[13px] sm:text-[15px] font-medium mb-[16px] sm:mb-[32px]">
             {step.num}
           </div>
 
           {/* Image with glow behind it */}
-          <div className="relative flex items-center justify-center mb-[32px] md:mb-[40px] w-full h-[200px] md:h-[260px]">
+          <div className="relative flex items-center justify-center mb-[16px] sm:mb-[32px] md:mb-[40px] w-full h-[120px] sm:h-[200px] md:h-[260px]">
             {/* Background circle (only for non-circular images) */}
             {!isCircularImage && (
-              <div className="absolute w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
+              <div className="absolute w-[90px] h-[90px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
             )}
             {/* Image container */}
             <div
               className={`relative ${
                 isCircularImage
-                  ? "w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
-                  : "w-[220px] h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
+                  ? "w-[90px] h-[90px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
+                  : "w-[120px] h-[120px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
               }`}
             >
               <Image
@@ -190,12 +190,12 @@ function StepGrid({
 
           {/* Text */}
           <h3
-            className="text-[22px] text-[var(--ink)] mb-[16px] font-medium"
+            className="text-[15px] sm:text-[22px] text-[var(--ink)] mb-[8px] sm:mb-[16px] font-medium"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             {step.title}
           </h3>
-          <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] max-w-[240px]">
+          <p className="text-[13px] sm:text-[15px] text-[var(--ink-soft)] leading-[1.4] sm:leading-[1.6] max-w-[240px]">
             {step.desc}
           </p>
         </div>
