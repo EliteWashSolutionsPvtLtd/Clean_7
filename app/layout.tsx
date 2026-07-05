@@ -4,6 +4,7 @@ import "./globals.css";
 import LenisProvider from "./components/LenisProvider";
 import RoutePrefetch from "./components/RoutePrefetch";
 import { ThemeProvider } from "./components/ThemeProvider";
+import WhatsAppButton from "./components/WhatsAppButton";
 import {
   getSiteUrl,
   SITE_DESCRIPTION,
@@ -80,10 +81,15 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${fraunces.variable} font-sans antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+        >
           <LenisProvider>
             <RoutePrefetch />
             {children}
+            <WhatsAppButton />
           </LenisProvider>
         </ThemeProvider>
       </body>
