@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
-import { SatoshiFont } from "@/app/fonts";
+import { SatoshiFont, WixMadeForDisplayFont } from "@/app/fonts";
 import {
   ArrowRight,
   Clock,
@@ -20,6 +20,7 @@ import {
   BadgeCheck,
   MapPin,
   Search,
+  ChevronRight,
 } from "lucide-react";
 import Container from "@/app/components/layout/Container";
 import { Fraunces } from "next/font/google";
@@ -330,119 +331,181 @@ export default function AboutPage() {
       </section>
 
       {/* Our Process */}
-      <section className="py-24">
-        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
-          <div className="text-center mb-16">
-            <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
-              Our Process
-            </p>
+      {/* Our Process - Premium Dark Theme */}
+      <section className="py-32 bg-[#0B0B0C] relative overflow-hidden">
+        {/* Ambient Top Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[var(--gold)]/10 blur-[120px] pointer-events-none rounded-full"></div>
+
+        <Container
+          isMaxWidth
+          className="px-[clamp(20px,5vw,56px)] relative z-10"
+        >
+          <div className="text-center mb-24 flex flex-col items-center">
+            {/* Glowing Pill Badge */}
+            <div className="flex items-center gap-4 mb-8">
+              <div className="border border-[var(--gold)]/30 rounded-full px-6 py-1.5 bg-[var(--gold)]/5 relative overflow-hidden">
+                <p className="text-[var(--gold)] uppercase text-[11px] font-bold tracking-[0.2em] relative z-10 mt-0.5">
+                  Our Process
+                </p>
+              </div>
+            </div>
+
             <h2
-              className={`text-3xl md:text-4xl text-[var(--ink)] max-w-2xl mx-auto leading-tight ${fraunces.className}`}
+              className="text-[40px] md:text-[56px] text-white max-w-4xl mx-auto leading-[1.1] mb-6 font-semibold"
+              style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
             >
-              How Clean7 delivers premium laundry & car wash services.
+              How Clean7 Delivers <br className="hidden md:block" />
+              <span className="text-[var(--gold)]">Premium</span> Laundry & Car
+              Wash <br className="hidden md:block" />
+              <span className="text-[var(--gold)]">Services.</span>
             </h2>
+
+            <p className="text-[#A3A3A3] text-lg md:text-xl tracking-wide mb-12">
+              Thoughtful. Reliable. Consistent. Every time.
+            </p>
+
+            {/* Glowing divider line */}
+            <div className="w-[300px] md:w-[700px] h-[1px] bg-gradient-to-r from-transparent via-[var(--gold)]/30 to-transparent relative">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-[var(--gold)] shadow-[0_0_15px_var(--gold)]"></div>
+            </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-4 items-stretch justify-between relative">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-3 xl:gap-6 items-stretch justify-between relative">
             {/* Step 1 */}
-            <div className="bg-[var(--ground-soft)] rounded-3xl p-8 flex-1 flex flex-col items-center text-center relative z-10">
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="w-8 h-8 rounded-full border border-[var(--gold)] text-[var(--gold)] text-xs font-bold flex items-center justify-center">
-                  01
-                </div>
-                <div className="text-[var(--ink)]">
-                  <Smartphone size={24} strokeWidth={1.5} />
-                </div>
+            <div className="bg-[#141415] border border-white/5 rounded-3xl p-6 xl:p-8 flex-1 flex flex-col items-center text-center shadow-2xl relative overflow-hidden w-full lg:w-auto min-h-[340px] group transition-all hover:bg-[#1A1A1B]">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[3px] bg-[var(--gold)]/80 shadow-[0_0_20px_var(--gold)] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute top-6 left-6 w-9 h-9 rounded-full bg-[var(--gold)] text-[#111] text-[13px] font-extrabold flex items-center justify-center shadow-[0_0_15px_var(--gold)]">
+                01
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[14px] mb-2">
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative mt-4 mb-8">
+                <Image
+                  src="/images/about/process1.png"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  alt="Schedule Pickup"
+                />
+              </div>
+              <h3 className="text-white font-bold text-[17px] mb-3 mt-auto">
                 Schedule Pickup
               </h3>
-              <p className="text-[var(--ink-soft)] text-[11px] leading-relaxed">
-                Choose a pickup time that works for you.
+              <p className="text-[#858585] text-[13px] leading-relaxed">
+                Choose a pickup time that works best for you.
               </p>
             </div>
-            <div className="hidden lg:flex items-center justify-center text-[var(--ink)]/20">
-              <ArrowRight size={20} />
+
+            {/* Arrow 1 */}
+            <div className="hidden lg:flex items-center justify-center -mx-2 xl:-mx-4 z-20">
+              <div className="w-8 h-8 rounded-full bg-[var(--gold)] flex items-center justify-center text-[#111] shadow-[0_0_15px_var(--gold)]">
+                <ChevronRight size={20} strokeWidth={3.5} className="ml-0.5" />
+              </div>
             </div>
 
             {/* Step 2 */}
-            <div className="bg-[var(--ground-soft)] rounded-3xl p-8 flex-1 flex flex-col items-center text-center relative z-10">
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="w-8 h-8 rounded-full border border-[var(--gold)] text-[var(--gold)] text-xs font-bold flex items-center justify-center">
-                  02
-                </div>
-                <div className="text-[var(--ink)]">
-                  <Package size={24} strokeWidth={1.5} />
-                </div>
+            <div className="bg-[#141415] border border-white/5 rounded-3xl p-6 xl:p-8 flex-1 flex flex-col items-center text-center shadow-2xl relative overflow-hidden w-full lg:w-auto min-h-[340px] group transition-all hover:bg-[#1A1A1B]">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[3px] bg-[var(--gold)]/80 shadow-[0_0_20px_var(--gold)] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute top-6 left-6 w-9 h-9 rounded-full bg-[var(--gold)] text-[#111] text-[13px] font-extrabold flex items-center justify-center shadow-[0_0_15px_var(--gold)]">
+                02
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[14px] mb-2">
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative mt-4 mb-8">
+                <Image
+                  src="/images/about/process2.png"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  alt="We Collect"
+                />
+              </div>
+              <h3 className="text-white font-bold text-[17px] mb-3 mt-auto">
                 We Collect
               </h3>
-              <p className="text-[var(--ink-soft)] text-[11px] leading-relaxed">
+              <p className="text-[#858585] text-[13px] leading-relaxed">
                 Our team arrives at your doorstep for pickup.
               </p>
             </div>
-            <div className="hidden lg:flex items-center justify-center text-[var(--ink)]/20">
-              <ArrowRight size={20} />
+
+            {/* Arrow 2 */}
+            <div className="hidden lg:flex items-center justify-center -mx-2 xl:-mx-4 z-20">
+              <div className="w-8 h-8 rounded-full bg-[var(--gold)] flex items-center justify-center text-[#111] shadow-[0_0_15px_var(--gold)]">
+                <ChevronRight size={20} strokeWidth={3.5} className="ml-0.5" />
+              </div>
             </div>
 
             {/* Step 3 */}
-            <div className="bg-[var(--ground-soft)] rounded-3xl p-8 flex-1 flex flex-col items-center text-center relative z-10">
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="w-8 h-8 rounded-full border border-[var(--gold)] text-[var(--gold)] text-xs font-bold flex items-center justify-center">
-                  03
-                </div>
-                <div className="text-[var(--ink)]">
-                  <Sparkles size={24} strokeWidth={1.5} />
-                </div>
+            <div className="bg-[#141415] border border-white/5 rounded-3xl p-6 xl:p-8 flex-1 flex flex-col items-center text-center shadow-2xl relative overflow-hidden w-full lg:w-auto min-h-[340px] group transition-all hover:bg-[#1A1A1B]">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[3px] bg-[var(--gold)]/80 shadow-[0_0_20px_var(--gold)] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute top-6 left-6 w-9 h-9 rounded-full bg-[var(--gold)] text-[#111] text-[13px] font-extrabold flex items-center justify-center shadow-[0_0_15px_var(--gold)]">
+                03
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[14px] mb-2">
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative mt-4 mb-8">
+                <Image
+                  src="/images/about/process3.png"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  alt="Professional Care"
+                />
+              </div>
+              <h3 className="text-white font-bold text-[17px] mb-3 mt-auto">
                 Professional Care
               </h3>
-              <p className="text-[var(--ink-soft)] text-[11px] leading-relaxed">
+              <p className="text-[#858585] text-[13px] leading-relaxed">
                 Items are cleaned using premium products and careful techniques.
               </p>
             </div>
-            <div className="hidden lg:flex items-center justify-center text-[var(--ink)]/20">
-              <ArrowRight size={20} />
+
+            {/* Arrow 3 */}
+            <div className="hidden lg:flex items-center justify-center -mx-2 xl:-mx-4 z-20">
+              <div className="w-8 h-8 rounded-full bg-[var(--gold)] flex items-center justify-center text-[#111] shadow-[0_0_15px_var(--gold)]">
+                <ChevronRight size={20} strokeWidth={3.5} className="ml-0.5" />
+              </div>
             </div>
 
             {/* Step 4 */}
-            <div className="bg-[var(--ground-soft)] rounded-3xl p-8 flex-1 flex flex-col items-center text-center relative z-10">
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="w-8 h-8 rounded-full border border-[var(--gold)] text-[var(--gold)] text-xs font-bold flex items-center justify-center">
-                  04
-                </div>
-                <div className="text-[var(--ink)]">
-                  <Search size={24} strokeWidth={1.5} />
-                </div>
+            <div className="bg-[#141415] border border-white/5 rounded-3xl p-6 xl:p-8 flex-1 flex flex-col items-center text-center shadow-2xl relative overflow-hidden w-full lg:w-auto min-h-[340px] group transition-all hover:bg-[#1A1A1B]">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[3px] bg-[var(--gold)]/80 shadow-[0_0_20px_var(--gold)] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute top-6 left-6 w-9 h-9 rounded-full bg-[var(--gold)] text-[#111] text-[13px] font-extrabold flex items-center justify-center shadow-[0_0_15px_var(--gold)]">
+                04
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[14px] mb-2">
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative mt-4 mb-8">
+                <Image
+                  src="/images/about/process4.png"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  alt="Quality Check"
+                />
+              </div>
+              <h3 className="text-white font-bold text-[17px] mb-3 mt-auto">
                 Quality Check
               </h3>
-              <p className="text-[var(--ink-soft)] text-[11px] leading-relaxed">
+              <p className="text-[#858585] text-[13px] leading-relaxed">
                 Every order is inspected, folded, packed, and prepared
                 carefully.
               </p>
             </div>
-            <div className="hidden lg:flex items-center justify-center text-[var(--ink)]/20">
-              <ArrowRight size={20} />
+
+            {/* Arrow 4 */}
+            <div className="hidden lg:flex items-center justify-center -mx-2 xl:-mx-4 z-20">
+              <div className="w-8 h-8 rounded-full bg-[var(--gold)] flex items-center justify-center text-[#111] shadow-[0_0_15px_var(--gold)]">
+                <ChevronRight size={20} strokeWidth={3.5} className="ml-0.5" />
+              </div>
             </div>
 
             {/* Step 5 */}
-            <div className="bg-[var(--ground-soft)] rounded-3xl p-8 flex-1 flex flex-col items-center text-center relative z-10">
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="w-8 h-8 rounded-full border border-[var(--gold)] text-[var(--gold)] text-xs font-bold flex items-center justify-center">
-                  05
-                </div>
-                <div className="text-[var(--ink)]">
-                  <Box size={24} strokeWidth={1.5} />
-                </div>
+            <div className="bg-[#141415] border border-white/5 rounded-3xl p-6 xl:p-8 flex-1 flex flex-col items-center text-center shadow-2xl relative overflow-hidden w-full lg:w-auto min-h-[340px] group transition-all hover:bg-[#1A1A1B]">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[3px] bg-[var(--gold)]/80 shadow-[0_0_20px_var(--gold)] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute top-6 left-6 w-9 h-9 rounded-full bg-[var(--gold)] text-[#111] text-[13px] font-extrabold flex items-center justify-center shadow-[0_0_15px_var(--gold)]">
+                05
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[14px] mb-2">
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative mt-4 mb-8">
+                <Image
+                  src="/images/about/process5.png"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  alt="Delivered Back"
+                />
+              </div>
+              <h3 className="text-white font-bold text-[17px] mb-3 mt-auto">
                 Delivered Back
               </h3>
-              <p className="text-[var(--ink-soft)] text-[11px] leading-relaxed">
+              <p className="text-[#858585] text-[13px] leading-relaxed">
                 Fresh, clean, and delivered right on time.
               </p>
             </div>
