@@ -324,11 +324,11 @@
 
 @media (max-width: 480px){
   .h1 { font-size: clamp(30px, 8vw, 46px); }
-  .trustRow { gap: 12px; }
+  .trustRow { width: 100%; justify-content: space-between; gap: 0; padding: 0; }
   .trustStat .num { font-size: 20px; }
-  .trustStat .label { font-size: 10px; max-width: 85px; line-height: 1.2; text-align: center; }
+  .trustStat .label { font-size: 10px; max-width: none; line-height: 1.2; text-align: center; }
   .trustStat { align-items: center; }
-  .trustDivider { height: 28px; }
+  .trustDivider { height: 28px; flex-shrink: 0; }
 }
 
 /* ---------- KEYFRAMES ---------- */

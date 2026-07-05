@@ -144,7 +144,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="min-[981px]:hidden flex w-full pb-16 justify-center">
+      <div className="min-[981px]:hidden flex w-full px-4 pb-16 justify-center">
         <TrustStats />
       </div>
     </section>
