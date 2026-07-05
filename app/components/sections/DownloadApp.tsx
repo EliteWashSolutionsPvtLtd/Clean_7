@@ -270,22 +270,20 @@ export default function DownloadApp() {
       ref={sectionRef}
       className="relative bg-[var(--ground)] py-[80px] md:py-[120px] overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] flex flex-col min-[900px]:flex-row items-center justify-between gap-[60px] lg:gap-[100px]">
+      <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] flex flex-col min-[900px]:flex-row items-center justify-between gap-[20px] lg:gap-[100px]">
         {/* Left Content */}
-        <div className="download-left-col gsap-animate opacity-0 flex-1 w-full max-w-[540px]">
+        <div className="download-left-col gsap-animate opacity-0 flex-1 w-full">
           <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[20px]">
             DOWNLOAD OUR APP
           </p>
           <h2
-            className="text-[48px] md:text-[60px] text-[var(--ink)] leading-[1.05] mb-[8px]"
+            className="text-[48px] md:text-[50px] text-[var(--ink)] leading-[1.05] mb-[8px]"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
-            Care at your
-            <br />
-            fingertips.
+            Care at your fingertips.
           </h2>
           <h2
-            className="text-[48px] md:text-[60px] text-[var(--gold)] italic font-light leading-[1.05] mb-[24px]"
+            className="text-[48px] md:text-[50px] text-[var(--gold)] italic font-light leading-[1.05] mb-[24px]"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Anytime, anywhere.

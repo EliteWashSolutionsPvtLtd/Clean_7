@@ -176,15 +176,15 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Satisfaction Bar */}
-        <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex items-center justify-between">
-          <div className="flex flex-col md:flex-row items-center md:items-center gap-[24px] w-full md:w-auto text-center md:text-left">
+        <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
+          <div className="w-full md:w-auto text-center md:text-left">
             <p className="text-[var(--ink-soft)] leading-[1.6]">
               If something&apos;s not right, we&apos;ll make it right - because
               your trust is earned with every order.
             </p>
           </div>
 
-          <button className="flex items-center gap-[8px] px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors">
+          <button className="flex items-center justify-center gap-[8px] w-full md:w-auto px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors whitespace-nowrap">
             Learn more about us
             <svg
               width="16"
