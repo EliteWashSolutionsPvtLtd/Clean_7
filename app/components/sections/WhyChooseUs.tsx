@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-
+import Link from "next/link";
 const IconShirt = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
@@ -189,7 +189,10 @@ export default function WhyChooseUs() {
             </p>
           </div>
 
-          <button className="flex items-center justify-center gap-[8px] w-full md:w-auto px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors whitespace-nowrap">
+          <Link
+            href="/about"
+            className="flex items-center justify-center gap-[8px] w-full md:w-auto px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors whitespace-nowrap"
+          >
             Learn more about us
             <svg
               width="16"
@@ -203,7 +206,7 @@ export default function WhyChooseUs() {
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>
