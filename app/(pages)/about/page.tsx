@@ -246,7 +246,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <div className="bg-[var(--ground-soft)] border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 hover:border-[var(--gold)]/20">
+            <div className="bg-[var(--ground-soft)] shadow-md hover:shadow-lg border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-1 hover:border-[var(--gold)]/20">
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <BadgeCheck size={36} strokeWidth={1.5} />
               </div>
@@ -257,7 +257,7 @@ export default function AboutPage() {
                 Fabric-safe cleaning and careful handling for every order.
               </p>
             </div>
-            <div className="bg-[var(--ground-soft)] border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 hover:border-[var(--gold)]/20">
+            <div className="bg-[var(--ground-soft)] shadow-md hover:shadow-lg border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-1 hover:border-[var(--gold)]/20">
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <Car size={36} strokeWidth={1.5} />
               </div>
@@ -268,7 +268,7 @@ export default function AboutPage() {
                 Doorstep convenience designed around your schedule.
               </p>
             </div>
-            <div className="bg-[var(--ground-soft)] border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 hover:border-[var(--gold)]/20">
+            <div className="bg-[var(--ground-soft)] shadow-md hover:shadow-lg border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-1 hover:border-[var(--gold)]/20">
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <Clock size={36} strokeWidth={1.5} />
               </div>
@@ -279,7 +279,7 @@ export default function AboutPage() {
                 Freshly cleaned and delivered back within 24 hours.
               </p>
             </div>
-            <div className="bg-[var(--ground-soft)] border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 hover:border-[var(--gold)]/20">
+            <div className="bg-[var(--ground-soft)] shadow-md hover:shadow-lg border border-transparent rounded-[20px] md:rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-1 hover:border-[var(--gold)]/20">
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <Heart size={36} strokeWidth={1.5} />
               </div>

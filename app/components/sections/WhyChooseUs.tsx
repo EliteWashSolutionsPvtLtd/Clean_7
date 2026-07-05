@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const IconShirt = () => (
+const IconShirt = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
     height="28"
@@ -12,13 +12,14 @@ const IconShirt = () => (
     strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
+    {...props}
   >
     <path d="M12 8L4 12v2h3v7h10v-7h3v-2L12 8z" />
     <path d="M12 8c0-2-1-2.5-1-3.5 0-1 1-1.5 1-1.5s1 .5 1 1.5c0 1-1 1.5-1 3.5" />
   </svg>
 );
 
-const IconHeartHands = () => (
+const IconHeartHands = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
     height="28"
@@ -28,13 +29,14 @@ const IconHeartHands = () => (
     strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
+    {...props}
   >
     <path d="M12 14c-2.5-2.5-4-4.5-4-6.5a3.5 3.5 0 0 1 7-2 3.5 3.5 0 0 1 7 2c0 2-1.5 4-4 6.5L12 18z" />
     <path d="M6 16.5c-1.5.5-3 1-3 2.5 0 1.5 2 2 6 2s6-.5 6-2c0-1.5-1.5-2-3-2.5" />
   </svg>
 );
 
-const IconLeaf = () => (
+const IconLeaf = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
     height="28"
@@ -44,13 +46,14 @@ const IconLeaf = () => (
     strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
+    {...props}
   >
     <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
     <path d="M2 22l10-10" />
   </svg>
 );
 
-const IconClock = () => (
+const IconClock = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
     height="28"
@@ -60,13 +63,14 @@ const IconClock = () => (
     strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
+    {...props}
   >
     <circle cx="12" cy="12" r="10" />
     <polyline points="12 6 12 12 16 14" />
   </svg>
 );
 
-const IconShield = () => (
+const IconShield = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
     height="28"
@@ -76,6 +80,7 @@ const IconShield = () => (
     strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
+    {...props}
   >
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     <path d="M9 12l2 2 4-4" />
@@ -101,27 +106,27 @@ const features = [
   {
     title: "Expert care",
     desc: "Trained professionals who treat every garment like it's their own.",
-    icon: <IconShirt />,
+    Icon: IconShirt,
   },
   {
     title: "Hand-finished",
     desc: "Every piece is hand-finished for a crisp, polished result.",
-    icon: <IconHeartHands />,
+    Icon: IconHeartHands,
   },
   {
     title: "Better for fabrics",
     desc: "Gentle, premium products that protect fabric and extend life.",
-    icon: <IconLeaf />,
+    Icon: IconLeaf,
   },
   {
     title: "Save time",
     desc: "We handle the details so you can focus on what matters.",
-    icon: <IconClock />,
+    Icon: IconClock,
   },
   {
     title: "No guesswork",
     desc: "Simple pricing, clear process, and updates you can count on.",
-    icon: <IconShield />,
+    Icon: IconShield,
   },
 ];
 
@@ -131,7 +136,7 @@ export default function WhyChooseUs() {
       <div className="max-w-[1300px] mx-auto">
         {/* Header */}
         <div className="text-center mb-[60px]">
-          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[24px]">
+          <p className="text-[20px] font-bold tracking-[0.07em] text-[var(--gold)] uppercase mb-[24px]">
             WHY CHOOSE CLEAN7
           </p>
           <h2
@@ -152,23 +157,23 @@ export default function WhyChooseUs() {
         </div>
 
         {/* 5-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-[20px] mb-[40px]">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-[12px] md:gap-[20px] mb-[40px]">
           {features.map((feat, idx) => (
             <div
               key={idx}
-              className="bg-[var(--ground-soft)] rounded-[24px] p-[32px] md:p-[28px] flex flex-col items-center text-center shadow-sm border border-[var(--line)]"
+              className="bg-[var(--ground-soft)] rounded-[20px] md:rounded-[24px] p-[16px] md:p-[28px] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all hover:-translate-y-1 border border-transparent hover:border-[var(--gold)]/20"
             >
-              <div className="w-[70px] h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[24px]">
-                {feat.icon}
+              <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[16px] md:mb-[24px]">
+                <feat.Icon className="w-5 h-5 md:w-7 md:h-7" />
               </div>
               <h3
-                className="text-[19px] text-[var(--ink)] font-medium mb-[12px]"
+                className="text-[16px] md:text-[15px] text-[var(--ink)] font-medium mb-[8px] md:mb-[12px]"
                 style={{ fontFamily: "var(--font-fraunces)" }}
               >
                 {feat.title}
               </h3>
-              <div className="w-[30px] h-[1px] bg-[var(--gold)]/40 mb-[16px]"></div>
-              <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6]">
+              <div className="w-[20px] md:w-[30px] h-[1px] bg-[var(--gold)]/40 mb-[10px] md:mb-[16px]"></div>
+              <p className="text-[15px] md:text-xs text-[var(--ink-soft)] leading-[1.5] md:leading-[1.6]">
                 {feat.desc}
               </p>
             </div>

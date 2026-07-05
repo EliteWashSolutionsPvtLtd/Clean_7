@@ -3,9 +3,10 @@
 import { useState } from "react";
 
 const inputClass =
-  "w-full rounded-xl border border-[#E8DFD6] bg-white px-4 py-3 text-[18px] text-[#33302E] placeholder:text-[#91776C]/70 transition-colors focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20";
+  "w-full rounded-xl bg-[var(--ink)]/5 px-4 py-4 text-[16px] text-[var(--ink)] placeholder:text-[var(--ink)]/40 transition-colors focus:bg-[var(--ink)]/10 focus:outline-none border-none";
 
-const labelClass = "mb-1.5 block text-sm font-medium text-[#584E46]";
+const labelClass =
+  "mb-2 block text-[14px] md:text-[15px] font-medium text-[var(--gold)]";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,19 +20,19 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div
-        className="rounded-2xl border border-[#E8DFD6] bg-[#FBF6F2] px-6 py-10 text-center"
+        className="rounded-2xl bg-[var(--ink)]/5 px-6 py-10 text-center"
         role="status"
       >
-        <p className="text-[18px] font-semibold text-[#33302E]">
+        <p className="text-[18px] font-semibold text-[var(--gold)]">
           Thank you for reaching out.
         </p>
-        <p className="mt-2 text-[18px] leading-relaxed text-[#5E5450]">
+        <p className="mt-2 text-[16px] leading-relaxed text-[var(--ink-soft)]">
           We usually respond within 24 hours.
         </p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-6 text-[16px] font-semibold text-orange underline decoration-orange/40 underline-offset-4 transition-colors hover:decoration-orange"
+          className="mt-6 text-[16px] font-semibold text-[var(--ink)] underline decoration-[var(--ink)]/40 underline-offset-4 transition-colors hover:decoration-[var(--ink)]"
         >
           Send another message
         </button>
@@ -40,10 +41,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-5 rounded-2xl border border-[#E8DFD6] bg-white p-6 sm:p-8"
-    >
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label htmlFor="contact-name" className={labelClass}>
           Full Name
@@ -111,12 +109,14 @@ export default function ContactForm() {
           placeholder="Tell us how we can help"
         />
       </div>
-      <button
-        type="submit"
-        className="w-full rounded-full bg-orange px-8 py-3.5 text-[18px] font-semibold text-white shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99] sm:w-auto"
-      >
-        Send message
-      </button>
+      <div className="pt-2">
+        <button
+          type="submit"
+          className="w-full rounded-full bg-[var(--gold)] px-8 py-3.5 text-[16px] font-semibold text-white shadow-lg shadow-[var(--gold)]/30 hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-[0.99] sm:w-auto"
+        >
+          Send message
+        </button>
+      </div>
     </form>
   );
 }
