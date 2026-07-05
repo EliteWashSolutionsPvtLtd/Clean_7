@@ -56,12 +56,12 @@ export default function Hero() {
           <div className={styles.trustDivider}></div>
           <div className={styles.trustStat}>
             <div className={styles.num}>40k+</div>
-            <div className={styles.label}>Garments handled monthly</div>
+            <div className={styles.label}>Expected Garments monthly</div>
           </div>
           <div className={styles.trustDivider}></div>
           <div className={styles.trustStat}>
             <div className={styles.num}>4.9</div>
-            <div className={styles.label}>Average rating</div>
+            <div className={styles.label}>Expected Rating</div>
           </div>
         </div>
       </div>
