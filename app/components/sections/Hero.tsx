@@ -5,6 +5,25 @@ import Image from "next/image";
 import styles from "@/app/(pages)/services/laundry/Laundry.module.css";
 
 export default function Hero() {
+  const TrustStats = () => (
+    <div className={styles.trustRow}>
+      <div className={styles.trustStat}>
+        <div className={styles.num}>24 hr</div>
+        <div className={styles.label}>Turnaround</div>
+      </div>
+      <div className={styles.trustDivider}></div>
+      <div className={styles.trustStat}>
+        <div className={styles.num}>40k+</div>
+        <div className={styles.label}>Expected Garments monthly</div>
+      </div>
+      <div className={styles.trustDivider}></div>
+      <div className={styles.trustStat}>
+        <div className={styles.num}>4.9</div>
+        <div className={styles.label}>Expected Rating</div>
+      </div>
+    </div>
+  );
+
   return (
     <section className={styles.hero}>
       <div className={styles.copy}>
@@ -43,31 +62,15 @@ export default function Hero() {
               <polyline points="12 5 19 12 12 19" />
             </svg>
           </Link>
-          <Link href="#how-it-works" className={styles.btnGhost}>
-            See how it works
-          </Link>
         </div>
 
-        <div className={styles.trustRow}>
-          <div className={styles.trustStat}>
-            <div className={styles.num}>24 hr</div>
-            <div className={styles.label}>Turnaround</div>
-          </div>
-          <div className={styles.trustDivider}></div>
-          <div className={styles.trustStat}>
-            <div className={styles.num}>40k+</div>
-            <div className={styles.label}>Expected Garments monthly</div>
-          </div>
-          <div className={styles.trustDivider}></div>
-          <div className={styles.trustStat}>
-            <div className={styles.num}>4.9</div>
-            <div className={styles.label}>Expected Rating</div>
-          </div>
+        <div className="max-[980px]:hidden">
+          <TrustStats />
         </div>
       </div>
 
       <div className={styles.visual}>
-        <div className="flex flex-col w-full max-w-[340px] md:max-w-[560px] px-4 md:px-0 pt-0 md:pt-20 pb-12 mt-12">
+        <div className="flex flex-col w-full md:max-w-[560px] px-4 md:px-0 pt-0 md:pt-20 pb-6 md:pb-12 mt-[30px] md:mt-12">
           <div className="relative w-full aspect-[4/5] md:w-[560px] md:h-[600px] overflow-hidden rounded-2xl md:rounded-3xl group">
             {/* Fade Overlays */}
             <div className="absolute top-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-b from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
@@ -136,6 +139,10 @@ export default function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="min-[981px]:hidden flex w-full pb-16 justify-center">
+        <TrustStats />
       </div>
     </section>
   );
