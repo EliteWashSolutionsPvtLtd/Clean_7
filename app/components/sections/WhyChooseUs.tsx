@@ -135,12 +135,12 @@ export default function WhyChooseUs() {
     <section className="pt-[60px] pb-[100px] px-[24px] md:px-[48px] bg-[var(--ground)]">
       <div className="max-w-[1300px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-[60px]">
-          <p className="text-[20px] font-bold tracking-[0.07em] text-[var(--gold)] uppercase mb-[24px]">
+        <div className="text-center mb-[48px] md:mb-[80px]">
+          <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
             WHY CHOOSE CLEAN7
           </p>
           <h2
-            className="text-[48px] md:text-[60px] text-[var(--ink)] mb-[24px] leading-[1.05]"
+            className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Care in every fold.
@@ -149,7 +149,7 @@ export default function WhyChooseUs() {
               Clean in every detail.
             </span>
           </h2>
-          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.6] max-w-[500px] mx-auto">
+          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mx-auto">
             We combine expert care with thoughtful service
             <br className="hidden md:block" />
             to deliver an experience that feels refreshingly simple.
@@ -161,7 +161,7 @@ export default function WhyChooseUs() {
           {features.map((feat, idx) => (
             <div
               key={idx}
-              className="bg-[var(--ground-soft)] rounded-[20px] md:rounded-[24px] p-[16px] md:p-[28px] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all hover:-translate-y-1 border border-transparent hover:border-[var(--gold)]/20"
+              className="bg-[var(--ground-soft)] rounded-[20px] md:rounded-[24px] p-[24px] md:p-[36px] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all hover:-translate-y-1 border border-transparent hover:border-[var(--gold)]/20"
             >
               <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[16px] md:mb-[24px]">
                 <feat.Icon className="w-5 h-5 md:w-7 md:h-7" />
