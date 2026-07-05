@@ -167,7 +167,7 @@ export default function HowItWorks() {
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
         {/* Header */}
         <div className="text-center mb-[48px] md:mb-[80px]">
-          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
+          <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
             HOW IT WORKS
           </p>
           <h2
