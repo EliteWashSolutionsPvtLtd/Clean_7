@@ -71,7 +71,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-10">
         <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
-          <div className="flex flex-col lg:flex-row gap-16 justify-between items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-between mr-[90px]">
             <div className="lg:w-[50%]">
               <p className="text-[var(--gold)] uppercase text-[22px] font-bold tracking-[0.2em] mb-6">
                 About Clean7
@@ -95,7 +95,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="lg:w-[40%] relative h-[500px] lg:mt-0 w-full rounded-2xl md:rounded-3xl group flex items-center justify-center">
+            <div className="lg:w-[40%] relative h-[400px] lg:h-[500px] lg:mt-0 w-full rounded-2xl md:rounded-3xl group flex items-center justify-center">
               <div className="relative w-[280px] h-[350px] md:w-[300px] md:h-[380px] lg:w-[320px] lg:h-[420px]">
                 {heroSlides.map((slide, idx) => {
                   const stackIndex =
@@ -525,7 +525,7 @@ export default function AboutPage() {
         <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Focus Card */}
-            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[550px] md:h-[650px] overflow-hidden relative">
+            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[460px] md:h-[650px] overflow-hidden relative">
               <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
                 Our Focus
               </p>
@@ -577,7 +577,7 @@ export default function AboutPage() {
             </div>
 
             {/* Mission Card */}
-            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[550px] md:h-[650px] overflow-hidden relative">
+            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[460px] md:h-[650px] overflow-hidden relative">
               <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
                 Our Mission
               </p>
@@ -597,7 +597,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vision Card */}
-            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[550px] md:h-[650px] overflow-hidden relative">
+            <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[460px] md:h-[650px] overflow-hidden relative">
               <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
                 Our Vision Ahead
               </p>
