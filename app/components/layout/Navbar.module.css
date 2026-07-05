@@ -135,23 +135,55 @@
 .mobileLinks {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  margin-top: 40px;
+  gap: 20px;
+  margin-top: 0;
 }
-.mobileLinks a {
+.mobileLinks > a {
   font-family: var(--font-fraunces), serif;
-  font-size: clamp(32px, 8vw, 40px);
+  font-size: clamp(24px, 6vw, 32px);
   font-weight: 300;
   color: var(--ink);
   text-decoration: none;
   transition: color 0.3s ease;
   line-height: 1.1;
 }
-.mobileLinks a.active {
+.mobileLinks > a.active {
   color: var(--gold-bright);
   font-style: italic;
   text-decoration: underline;
   text-underline-offset: 8px;
+}
+
+.legalSection {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legalTitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.legalSection a {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.legalSection a:hover,
+.legalSection a.active {
+  color: var(--gold-bright);
 }
 
 .mobileFooter {

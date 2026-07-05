@@ -155,6 +155,32 @@ export default function Navbar() {
           >
             About
           </Link>
+
+          {/* Legal Links Section */}
+          <div className={styles.legalSection}>
+            <span className={styles.legalTitle}>Legal</span>
+            <Link
+              href="/privacy-policy"
+              className={isActive("/privacy-policy") ? styles.active : ""}
+              onClick={() => setIsOpen(false)}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms-and-conditions"
+              className={isActive("/terms-and-conditions") ? styles.active : ""}
+              onClick={() => setIsOpen(false)}
+            >
+              Terms of Services
+            </Link>
+            <Link
+              href="/terms-of-use"
+              className={isActive("/terms-of-use") ? styles.active : ""}
+              onClick={() => setIsOpen(false)}
+            >
+              Terms of Use
+            </Link>
+          </div>
         </div>
         <div className={styles.mobileFooter}>
           <Link
