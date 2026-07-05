@@ -273,22 +273,20 @@ export default function DownloadApp() {
       <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] flex flex-col min-[900px]:flex-row items-center justify-between gap-[20px] lg:gap-[100px]">
         {/* Left Content */}
         <div className="download-left-col gsap-animate opacity-0 flex-1 w-full">
-          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[20px]">
+          <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
             DOWNLOAD OUR APP
           </p>
           <h2
-            className="text-[48px] md:text-[50px] text-[var(--ink)] leading-[1.05] mb-[8px]"
+            className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Care at your fingertips.
+            <br />
+            <span className="italic text-[var(--gold)] font-light">
+              Anytime, anywhere.
+            </span>
           </h2>
-          <h2
-            className="text-[48px] md:text-[50px] text-[var(--gold)] italic font-light leading-[1.05] mb-[24px]"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            Anytime, anywhere.
-          </h2>
-          <p className="text-[var(--ink-soft)] text-[16px] md:text-[17px] leading-[1.6] mb-[40px] max-w-[400px]">
+          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mb-[40px]">
             Book a pickup, track your order, and manage everything with just a
             few taps.
           </p>
