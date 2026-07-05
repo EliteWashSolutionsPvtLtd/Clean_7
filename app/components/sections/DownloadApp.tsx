@@ -316,13 +316,13 @@ export default function DownloadApp() {
           <div className="w-full h-[1px] bg-[var(--line)] mb-[40px]"></div>
 
           {/* Download Box */}
-          <div className="flex items-center gap-[30px]">
-            <div className="flex flex-col gap-[12px]">
+          <div className="flex items-center justify-between gap-[10px]">
+            <div className="flex flex-col gap-[12px] z-10">
               <div>
-                <p className="text-[12px] font-bold tracking-[0.1em] text-[var(--gold)] uppercase mb-[4px]">
+                <p className="text-[16px] font-bold tracking-[0.1em] text-[var(--gold)] uppercase mb-[4px]">
                   DOWNLOAD THE APP
                 </p>
-                <p className="text-[13px] text-[var(--ink-soft)] max-w-[200px] leading-[1.4]">
+                <p className="text-[15px] text-[var(--ink-soft)] max-w-[200px] leading-[1.4] mb-4">
                   Available directly from the App Store or Google Play.
                 </p>
               </div>
@@ -331,11 +331,18 @@ export default function DownloadApp() {
                 <GooglePlayButton />
               </div>
             </div>
+
+            {/* Mobile Phone */}
+            <div className="block min-[900px]:hidden relative w-[168px] h-[348px] shrink-0 pointer-events-none">
+              <div className="absolute top-1/2 right-0 -translate-y-1/2 origin-right scale-[0.6]">
+                <Phone rotation={rotation} />
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right Content (Phone) */}
-        <div className="download-phone-col gsap-animate opacity-0 relative w-full md:w-[400px] flex justify-center perspective-[1000px] shrink-0">
+        {/* Right Content (Phone) for Desktop */}
+        <div className="hidden min-[900px]:flex download-phone-col gsap-animate opacity-0 relative w-full md:w-[400px] justify-center perspective-[1000px] shrink-0">
           <Phone rotation={rotation} />
         </div>
       </div>
