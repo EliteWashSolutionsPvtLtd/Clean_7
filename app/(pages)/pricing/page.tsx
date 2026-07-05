@@ -538,37 +538,40 @@ export default function PricingPage() {
             </div>
 
             {/* Tab Switcher */}
-            <div className="flex justify-center mb-[80px]">
-              <div className="bg-[var(--card)] border border-[var(--line)] rounded-full p-[6px] flex shadow-sm">
+            <div className="flex justify-center mb-[60px] md:mb-[80px] w-full">
+              <div className="bg-[var(--card)] border border-[var(--line)] rounded-full p-[4px] md:p-[6px] flex shadow-sm w-full sm:w-auto justify-between sm:justify-start">
                 <button
                   onClick={() => setActiveTab("laundry")}
-                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium cursor-pointer transition-all duration-300 ${
+                  className={`flex-1 sm:flex-none px-[12px] sm:px-[24px] md:px-[32px] py-[10px] md:py-[12px] rounded-full text-[13px] md:text-[15px] font-medium cursor-pointer transition-all duration-300 whitespace-nowrap text-center ${
                     activeTab === "laundry"
                       ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
                       : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
                   }`}
                 >
-                  Laundry Pricing
+                  <span className="sm:hidden">Laundry</span>
+                  <span className="hidden sm:inline">Laundry Pricing</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("carwash")}
-                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium cursor-pointer transition-all duration-300 ${
+                  className={`flex-1 sm:flex-none px-[12px] sm:px-[24px] md:px-[32px] py-[10px] md:py-[12px] rounded-full text-[13px] md:text-[15px] font-medium cursor-pointer transition-all duration-300 whitespace-nowrap text-center ${
                     activeTab === "carwash"
                       ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
                       : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
                   }`}
                 >
-                  Car Wash Pricing
+                  <span className="sm:hidden">Car Wash</span>
+                  <span className="hidden sm:inline">Car Wash Pricing</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("househelp")}
-                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium cursor-pointer transition-all duration-300 ${
+                  className={`flex-1 sm:flex-none px-[12px] sm:px-[24px] md:px-[32px] py-[10px] md:py-[12px] rounded-full text-[13px] md:text-[15px] font-medium cursor-pointer transition-all duration-300 whitespace-nowrap text-center ${
                     activeTab === "househelp"
                       ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
                       : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
                   }`}
                 >
-                  House Help Pricing
+                  <span className="sm:hidden">House Help</span>
+                  <span className="hidden sm:inline">House Help Pricing</span>
                 </button>
               </div>
             </div>

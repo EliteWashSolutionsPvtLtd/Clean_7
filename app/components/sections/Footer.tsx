@@ -253,7 +253,7 @@ export default function Footer() {
               <h3 className="text-[var(--gold)] font-bold text-[12px] tracking-[0.1em] uppercase mb-[16px]">
                 Download our app
               </h3>
-              <div className="flex flex-col sm:flex-row gap-[12px]">
+              <div className="flex flex-row gap-[12px]">
                 <AppStoreButton />
                 <GooglePlayButton />
               </div>
