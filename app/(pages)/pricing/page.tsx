@@ -581,7 +581,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Laundry Cards Grid */}
-                <div className="flex overflow-x-auto pt-4 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-3 lg:grid-cols-5 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
+                <div className="flex overflow-x-auto pt-8 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-3 lg:grid-cols-5 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
                   {laundryCards.map((card, idx) => (
                     <div
                       key={idx}
@@ -678,7 +678,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Car Wash Cards Grid */}
-                <div className="flex overflow-x-auto pt-4 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
+                <div className="flex overflow-x-auto pt-8 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
                   {carWashCards.map((card, idx) => (
                     <div
                       key={idx}
@@ -775,7 +775,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* House Help Cards Grid */}
-                <div className="flex overflow-x-auto pt-4 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
+                <div className="flex overflow-x-auto pt-8 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
                   {houseHelpCards.map((card, idx) => (
                     <div
                       key={idx}

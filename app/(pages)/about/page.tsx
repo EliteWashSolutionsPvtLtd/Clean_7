@@ -41,20 +41,21 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-10">
         <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <div className="lg:w-[45%]">
+          <div className="flex flex-col lg:flex-row gap-16 justify-between">
+            <div className="lg:w-[50%]">
               <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-6">
                 About Clean7
               </p>
               <h1
-                className={`text-5xl md:text-7xl text-[var(--ink)] mb-6 leading-[1.1] ${fraunces.className}`}
+                className={`text-[clamp(32px,8vw,72px)] text-[var(--ink)] mb-6 leading-[1.1] flex flex-col ${fraunces.className}`}
               >
-                More than clean.
-                <br />
-                It&apos;s{" "}
-                <span className="text-[var(--gold)] italic">care</span> you can
-                <br />
-                count on.
+                <span className="whitespace-nowrap">More than clean.</span>
+                <span className="whitespace-nowrap">
+                  It&apos;s{" "}
+                  <span className="text-[var(--gold)] italic">care</span> you
+                  can
+                </span>
+                <span className="whitespace-nowrap">count on.</span>
               </h1>
               <p className="text-[var(--ink-soft)] text-sm md:text-base mb-10 max-w-md leading-relaxed">
                 Clean7 was built to make laundry and car care feel effortless,
@@ -79,7 +80,7 @@ export default function AboutPage() {
               </div>
 
               {/* Avatars */}
-              <div className="flex items-center gap-4 mt-14">
+              <div className="flex items-center gap-4 mt-10">
                 <div className="flex -space-x-3">
                   {/* Avatar placeholders using standard UI faces or colored circles */}
                   <div className="w-10 h-10 rounded-full bg-[var(--ground-soft)] border-2 border-[var(--ground)] overflow-hidden relative">
@@ -126,24 +127,71 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="lg:w-[55%] flex flex-col gap-6 mt-10 lg:mt-0 w-full">
-              <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden">
-                <Image
-                  src="/images/about/about_premium_laundry_1782044569187.png"
-                  fill
-                  className="object-cover"
-                  alt="Premium Laundry"
-                  priority
-                />
-              </div>
-              <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden">
-                <Image
-                  src="/images/about/about_professional_car_wash_1782044582076.png"
-                  fill
-                  className="object-cover"
-                  alt="Professional Car Wash"
-                  priority
-                />
+            <div className="lg:w-[40%] relative h-[500px] lg:mt-0 w-full overflow-hidden rounded-2xl md:rounded-3xl group">
+              {/* Fade Overlays */}
+              <div className="absolute top-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-b from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-t from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+
+              {/* Scrolling Container */}
+              <div className="flex flex-col gap-6 animate-vertical-marquee group-hover:[animation-play-state:paused] will-change-transform">
+                {/* First Set */}
+                <div className="flex flex-col gap-6">
+                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/services/laundry.png"
+                      fill
+                      className="object-cover"
+                      alt="Premium Laundry"
+                      priority
+                    />
+                  </div>
+                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/services/car-wash.png"
+                      fill
+                      className="object-cover"
+                      alt="Professional Car Wash"
+                      priority
+                    />
+                  </div>
+                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/services/house-help.png"
+                      fill
+                      className="object-cover"
+                      alt="House Help Services"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                {/* Duplicated Second Set */}
+                <div className="flex flex-col gap-6">
+                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/services/laundry.png"
+                      fill
+                      className="object-cover"
+                      alt="Premium Laundry"
+                    />
+                  </div>
+                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/services/car-wash.png"
+                      fill
+                      className="object-cover"
+                      alt="Professional Car Wash"
+                    />
+                  </div>
+                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/services/house-help.png"
+                      fill
+                      className="object-cover"
+                      alt="House Help Services"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

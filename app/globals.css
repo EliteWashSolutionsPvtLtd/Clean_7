@@ -748,3 +748,25 @@ img {
     will-change: auto;
   }
 }
+
+/* Global Container Padding to align perfectly with Navbar */
+.container-px {
+  padding-left: clamp(20px, 5vw, 56px) !important;
+  padding-right: clamp(20px, 5vw, 56px) !important;
+}
+@media (max-width: 980px) {
+  .container-px {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+
+@keyframes vertical-marquee {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(-50% - 12px)); }
+}
+.animate-vertical-marquee {
+  animation: vertical-marquee 20s linear infinite;
+}
+
