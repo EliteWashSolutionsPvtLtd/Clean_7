@@ -75,7 +75,7 @@ export default function WhatsAppButton() {
             onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 p-3 rounded-xl border border-line hover:border-gold hover:bg-black/5 dark:hover:bg-white/5 transition-all group"
           >
-            <div className="bg-[#25D366]/10 p-2.5 rounded-full text-[#25D366] group-hover:scale-110 transition-transform">
+            <div className="bg-[var(--gold)]/10 p-2.5 rounded-full text-[var(--gold)] group-hover:scale-110 transition-transform">
               <Briefcase size={20} />
             </div>
             <div>
@@ -93,7 +93,7 @@ export default function WhatsAppButton() {
             onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 p-3 rounded-xl border border-line hover:border-gold hover:bg-black/5 dark:hover:bg-white/5 transition-all group"
           >
-            <div className="bg-[#25D366]/10 p-2.5 rounded-full text-[#25D366] group-hover:scale-110 transition-transform">
+            <div className="bg-[var(--gold)]/10 p-2.5 rounded-full text-[var(--gold)] group-hover:scale-110 transition-transform">
               <Store size={20} />
             </div>
             <div>
@@ -106,11 +106,10 @@ export default function WhatsAppButton() {
         </div>
       </div>
 
-      {/* Button */}
       <button
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30 hover:scale-105 hover:shadow-xl transition-all duration-300 relative group"
+        className="cursor-pointer flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-[var(--ground)] shadow-lg shadow-[var(--gold)]/30 hover:scale-105 hover:shadow-xl transition-all duration-300 relative group"
         aria-label="Open WhatsApp Chat"
       >
         <X
