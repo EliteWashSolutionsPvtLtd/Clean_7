@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { ScrollTrigger } from "@/app/lib/animations";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import Container from "@/app/components/layout/Container";
@@ -505,6 +506,14 @@ const PricingAccordion = ({
 
 export default function PricingPage() {
   const [activeTab, setActiveTab] = useState<Tab>("laundry");
+
+  useEffect(() => {
+    // Notify ScrollTrigger and smooth scroll of dynamic layout height change
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [activeTab]);
 
   return (
     <div className="bg-[var(--ground)] min-h-screen">

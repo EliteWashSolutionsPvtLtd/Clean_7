@@ -207,7 +207,9 @@ export default function Footer() {
                   <Link href="/faq" className={linkClass}>
                     FAQs
                   </Link>
-
+                  <Link href="/terms-of-use" className={linkClass}>
+                    Terms of Use
+                  </Link>
                   <Link href="/terms-and-conditions" className={linkClass}>
                     Terms & Conditions
                   </Link>

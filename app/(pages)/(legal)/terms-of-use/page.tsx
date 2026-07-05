@@ -1,38 +1,31 @@
+import React from "react";
 import Container from "@/app/components/layout/Container";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import { SatoshiFont, WixMadeForDisplayFont } from "@/app/fonts";
-import { Mail, MapPin, Phone } from "lucide-react";
-import type { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from "next";
 import { canonicalPath } from "@/app/lib/site-config";
 
-const LAST_UPDATED = "March 22, 2026";
-const CONTACT_EMAIL = "support@clean7.in";
-const CONTACT_PHONE = "7078497263";
-const CONTACT_ADDRESS =
-  "123, Mullapur Road, Thana Bhawan, Shamli, Uttar Pradesh, 247777";
-const JURISDICTION_CITY = "New Delhi";
-
 export const metadata: Metadata = {
-  title: "Terms of Use",
+  title: "Terms of Use | Laundry, Car Wash & House Help",
   description:
-    "Terms governing access to Clean7 website and mobile app in India.",
+    "Terms governing access to Clean7 website and mobile app. Legal terms for our laundry, car wash, and house help services in India.",
   keywords: [
-    "Laundry app terms of use India",
-    "website usage policy laundry service",
-    "mobile app usage terms India",
-    "laundry platform legal terms",
     "Clean7 terms of use",
-    "clean7 app terms",
+    "Laundry service terms and conditions",
+    "Car wash legal terms India",
+    "House help platform terms",
+    "cleaning services terms of service",
   ],
   alternates: { canonical: canonicalPath("/terms-of-use") },
   openGraph: {
     url: canonicalPath("/terms-of-use"),
-    description:
-      "Terms governing access to Clean7 website and mobile app in India.",
+    description: "Terms governing access to Clean7 services in India.",
   },
 };
+
+const LAST_UPDATED = "March 22, 2026";
+const JURISDICTION_CITY = "New Delhi";
 
 function PolicySection({
   id,
@@ -46,30 +39,28 @@ function PolicySection({
   children: React.ReactNode;
 }) {
   return (
-    <section
-      id={id}
-      className="scroll-mt-28 border-t border-[#E8DFD6] pt-8 first:border-0 first:pt-0"
-    >
+    <section id={id} className="scroll-mt-28 pt-8 first:pt-0">
       <h2
-        className="mb-4 text-xl font-semibold text-[#33302E] sm:text-2xl"
+        className="mb-4 text-[20px] font-semibold text-[var(--ink)] sm:text-[24px] flex items-baseline"
         style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
       >
-        <span className="font-bold tabular-nums text-orange">{number}</span>
+        <span className="font-bold tabular-nums text-[var(--ink)]">
+          {number}
+        </span>
         <span className="ml-2">{title}</span>
       </h2>
-      <div className="space-y-4 text-[18px] leading-relaxed text-[#5E5450]">
+      <div className="space-y-4 text-[16px] md:text-[17px] leading-relaxed text-[var(--ink-soft)]">
         {children}
       </div>
     </section>
   );
 }
 
-function BulletList({ items }: { items: string[] }) {
+function BulletList({ items }: { items: (string | React.ReactNode)[] }) {
   return (
-    <ul className="ml-1 space-y-2 border-l-2 border-[#E8DFD6] pl-4">
-      {items.map((item) => (
-        <li key={item} className="relative">
-          <span className="absolute -left-[21px] top-2 h-1.5 w-1.5 rounded-full bg-orange" />
+    <ul className="ml-2 space-y-2 pl-4 list-disc marker:text-[var(--ink-soft)]">
+      {items.map((item, i) => (
+        <li key={i} className="pl-1">
           {item}
         </li>
       ))}
@@ -77,323 +68,265 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-function ContactRow({
-  icon,
-  label,
-  value,
-  href,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  href?: string;
-}) {
-  const content = href ? (
-    <a
-      href={href}
-      className="text-[#33302E] underline decoration-[#DDD2C8] underline-offset-2 transition-colors hover:text-orange hover:decoration-orange"
+export default function TermsOfUsePage() {
+  return (
+    <div
+      className="bg-[var(--ground)] min-h-screen text-[var(--ink)]"
+      style={{ fontFamily: SatoshiFont.style.fontFamily }}
     >
-      {value}
-    </a>
-  ) : (
-    <span className="text-[#33302E]">{value}</span>
-  );
-  return (
-    <div className="flex items-center gap-3 rounded-xl border border-[#E8DFD6] bg-white p-4">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FBF6F2] text-orange">
-        {icon}
-      </span>
-      <div className="flex min-w-0 flex-1 flex-col">
-        <p className="my-2 text-xs font-medium uppercase leading-normal tracking-wide text-[#91776C]">
-          {label}
-        </p>
-        <p className="text-[18px] leading-snug">{content}</p>
-      </div>
-    </div>
-  );
-}
-
-export default function page() {
-  return (
-    <div style={{ fontFamily: SatoshiFont.style.fontFamily }}>
       <Navbar />
 
       <Container
         isMaxWidth={true}
-        className="mt-[70px] flex min-h-[calc(70svh-70px)] items-center justify-center px-[20px] pb-6 pt-10 md:pb-8 md:pt-14"
+        className="mt-[70px] flex min-h-[30svh] items-center justify-start px-[clamp(20px,5vw,56px)] pb-6 pt-10 md:pb-8 md:pt-14"
       >
-        <div className="max-w-[1300px] text-center">
+        <div className="w-full text-left max-w-4xl mx-auto">
           <h1
-            className="text-3xl font-semibold text-[#33302E] sm:text-4xl"
+            className="text-[36px] font-semibold text-[var(--ink)] sm:text-[48px] md:text-[56px] tracking-tight"
             style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
           >
             Terms of Use
           </h1>
 
-          <p className="mt-2 text-[18px] font-medium text-[#91776C]">
-            Last updated: {LAST_UPDATED}
-          </p>
-
-          <p className="mt-4 text-[18px] leading-relaxed text-dark-blue">
-            Use our services with confidence — built on fairness, clarity, and
-            mutual respect.
+          <p className="mt-6 text-[16px] md:text-[17px] font-medium text-[var(--ink-soft)]">
+            Effective Date: {LAST_UPDATED}
           </p>
         </div>
       </Container>
 
-      <Container isMaxWidth={true} className="px-[20px] pb-16 md:pb-24">
-        <div className="mx-auto max-w-5xl">
-          <div className="">
-            <p className="text-[18px] leading-relaxed text-[#5E5450]">
-              Welcome to{" "}
-              <strong className="font-semibold text-[#33302E]">
-                Wash &amp; Wow
-              </strong>{" "}
-              (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). These Terms
-              of Use (&quot;Terms&quot;) govern your access to and use of:
-            </p>
-            <ul className="mt-4 space-y-2 text-[18px] text-[#5E5450]">
-              <li className="flex gap-2">
-                <span className="font-semibold text-orange">•</span>
-                <span>
-                  Our website:{" "}
-                  <a
-                    href="https://clean7.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-[#33302E] underline decoration-[#DDD2C8] underline-offset-2 transition-colors hover:text-orange hover:decoration-orange"
-                  >
-                    clean7.in
-                  </a>
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-semibold text-orange">•</span>
-                <span>Our mobile application (&quot;App&quot;)</span>
-              </li>
-            </ul>
-            <p className="mt-4 text-[18px] leading-relaxed text-[#5E5450]">
-              By accessing or using our platform, you agree to comply with these
-              Terms.
-            </p>
-          </div>
-
-          <div className="mt-10 space-y-10">
-            <PolicySection
-              id="acceptance"
-              number="1."
-              title="Acceptance of Terms"
-            >
-              <p>By using our website or App, you confirm that you:</p>
-              <BulletList
-                items={[
-                  "Have read and understood these Terms",
-                  "Agree to be legally bound by them",
-                ]}
-              />
-              <p>If you do not agree, please do not use our platform.</p>
-            </PolicySection>
-
-            <PolicySection id="use" number="2." title="Use of Platform">
+      <Container
+        isMaxWidth={true}
+        className="px-[clamp(20px,5vw,56px)] pb-16 md:pb-24"
+      >
+        <div className="mx-auto max-w-4xl">
+          <div className="space-y-12">
+            <PolicySection id="intro" number="1." title="Introduction">
               <p>
-                You agree to use the platform only for lawful purposes and in
-                accordance with these Terms.
+                Welcome to Clean7 (&quot;we&quot;, &quot;our&quot;, or
+                &quot;us&quot;). These Terms of Use (&quot;Terms&quot;) govern
+                your access to and use of our platform, encompassing our
+                website, mobile application, and the laundry, car wash, and
+                house help services provided through them.
               </p>
-              <p>You may:</p>
-              <BulletList
-                items={[
-                  "Browse the website",
-                  "Create an account",
-                  "Book services through the App",
-                ]}
-              />
+              <p>
+                By booking a service or using our platform, you agree to comply
+                with and be bound by these Terms. If you do not agree with these
+                Terms, please refrain from using our services.
+              </p>
             </PolicySection>
 
             <PolicySection
               id="account"
+              number="2."
+              title="Account Registration and User Conduct"
+            >
+              <p>
+                To access certain features of the platform, you must register
+                for an account. You agree to provide accurate, current, and
+                complete information during registration and to update such
+                information to keep it accurate.
+              </p>
+              <BulletList
+                items={[
+                  "You are entirely responsible for maintaining the confidentiality of your account credentials.",
+                  "You agree to notify us immediately of any unauthorized use of your account.",
+                  "You must provide a safe, respectful, and hazard-free environment for our service professionals when they visit your premises.",
+                ]}
+              />
+            </PolicySection>
+
+            <PolicySection
+              id="laundry"
               number="3."
-              title="Account Responsibility"
+              title="Service-Specific Terms: Laundry & Dry Cleaning"
             >
-              <p>If you create an account:</p>
+              <p>
+                While we exercise the utmost care in cleaning your garments, we
+                cannot assume responsibility for inherent weaknesses or defects
+                in materials that may result in tears or the development of
+                small holes during the cleaning process.
+              </p>
               <BulletList
                 items={[
-                  "You are responsible for maintaining its confidentiality",
-                  "You must ensure all information is accurate",
-                  "You are responsible for all activities under your account",
+                  <span key="1">
+                    <strong>Valuables:</strong> Please check all garments for
+                    money, jewelry, or other valuables prior to hand-off. We are
+                    not responsible for any lost items left in pockets or
+                    bundles.
+                  </span>,
+                  <span key="2">
+                    <strong>Damage & Shrinkage:</strong> We are not liable for
+                    color bleeding, shrinkage, or damage to garments that do not
+                    possess proper care instructions, or for normal wear and
+                    tear.
+                  </span>,
+                  <span key="3">
+                    <strong>Lost Items:</strong> Any missing items must be
+                    reported within 24 hours of delivery. Our maximum liability
+                    for any lost or damaged item is limited to 5 times the cost
+                    of cleaning that specific item, irrespective of its original
+                    brand or value.
+                  </span>,
+                  <span key="4">
+                    <strong>Unclaimed Items:</strong> Garments not claimed
+                    within 30 days of the scheduled delivery date may be donated
+                    to charity.
+                  </span>,
                 ]}
               />
-              <p>
-                We are not liable for unauthorized access caused by your
-                negligence.
-              </p>
             </PolicySection>
 
             <PolicySection
-              id="acceptable-use"
+              id="car-wash"
               number="4."
-              title="Acceptable Use"
+              title="Service-Specific Terms: Car Wash"
             >
               <p>
-                You agree{" "}
-                <strong className="font-semibold text-[#33302E]">not</strong>{" "}
-                to:
+                Our car wash professionals are trained to provide premium
+                exterior and interior cleaning. However, the condition of a
+                vehicle prior to our service significantly impacts the outcome.
               </p>
               <BulletList
                 items={[
-                  "Use the platform for illegal or fraudulent activities",
-                  "Attempt to gain unauthorized access to systems",
-                  "Interfere with platform performance or security",
-                  "Upload or transmit harmful code (viruses, malware, etc.)",
+                  <span key="1">
+                    <strong>Pre-existing Damage:</strong> We are not responsible
+                    for pre-existing damage, loose parts, heavily oxidized
+                    paint, or peeling clear coats that may become more visible
+                    after washing.
+                  </span>,
+                  <span key="2">
+                    <strong>Valuables:</strong> Customers must remove all
+                    personal belongings, cash, and valuables from the vehicle
+                    prior to the service. We are not liable for any lost or
+                    missing items inside the vehicle.
+                  </span>,
+                  <span key="3">
+                    <strong>Access:</strong> You must ensure our professionals
+                    have adequate space, legal parking access, and a safe
+                    environment to perform the car wash.
+                  </span>,
                 ]}
               />
             </PolicySection>
 
             <PolicySection
-              id="availability"
+              id="house-help"
               number="5."
-              title="Platform Availability"
+              title="Service-Specific Terms: House Help"
             >
               <p>
-                We aim to keep our platform available at all times. However, we
-                do not guarantee uninterrupted access.
+                We connect you with verified, background-checked professionals
+                for house help and deep cleaning services.
               </p>
-              <p>We may:</p>
               <BulletList
                 items={[
-                  "Suspend or restrict access for maintenance",
-                  "Update or modify features without notice",
+                  <span key="1">
+                    <strong>Presence:</strong> An adult representative of the
+                    household must be present to grant access, guide the
+                    professionals, and secure the premises upon completion.
+                  </span>,
+                  <span key="2">
+                    <strong>Liability for Breakage:</strong> While our
+                    professionals take extreme care, accidents can happen. We
+                    are not liable for the breakage of highly fragile items,
+                    antiques, or electronics not securely mounted. Please secure
+                    these items before the cleaning begins.
+                  </span>,
+                  <span key="3">
+                    <strong>Scope of Work:</strong> Professionals will only
+                    perform tasks strictly within the booked package. Handling
+                    hazardous materials, human/animal waste, or heavy lifting
+                    (over 15kg) is strictly prohibited.
+                  </span>,
+                  <span key="4">
+                    <strong>Non-Solicitation:</strong> You agree not to directly
+                    solicit or hire our service professionals outside of the
+                    Clean7 platform. Doing so will result in an immediate ban
+                    from the platform.
+                  </span>,
                 ]}
               />
             </PolicySection>
 
             <PolicySection
-              id="ip"
+              id="pricing"
               number="6."
-              title="Intellectual Property Rights"
+              title="Pricing, Payments, and Cancellations"
             >
-              <p>All content on the platform, including:</p>
-              <BulletList items={["Logos", "Designs", "Text and graphics"]} />
-              <p>
-                are owned by Wash &amp; Wow and protected by applicable laws.
-              </p>
-              <p>You may not:</p>
-              <BulletList items={["Copy", "Modify", "Distribute", "Reuse"]} />
-              <p>any content without prior written permission.</p>
-            </PolicySection>
-
-            <PolicySection
-              id="third-party"
-              number="7."
-              title="Third-Party Links"
-            >
-              <p>
-                Our platform may contain links to third-party websites or
-                services.
-              </p>
-              <p>We are not responsible for:</p>
               <BulletList
                 items={[
-                  "Their content",
-                  "Their privacy practices",
-                  "Their terms",
+                  <span key="1">
+                    <strong>Pricing:</strong> All prices displayed on the
+                    platform are subject to change without prior notice. The
+                    final price is confirmed at checkout.
+                  </span>,
+                  <span key="2">
+                    <strong>Payments:</strong> Payments must be made via our
+                    secure payment gateways. For cash-on-delivery options, exact
+                    change is appreciated.
+                  </span>,
+                  <span key="3">
+                    <strong>Cancellations:</strong> You may cancel or reschedule
+                    a booking free of charge up to 4 hours before the scheduled
+                    slot. Cancellations made within 4 hours may incur a
+                    cancellation fee.
+                  </span>,
                 ]}
               />
-              <p>Use them at your own risk.</p>
             </PolicySection>
 
             <PolicySection
               id="liability"
-              number="8."
+              number="7."
               title="Limitation of Liability"
             >
               <p>
-                To the maximum extent permitted by law, Wash &amp; Wow shall not
-                be liable for:
+                To the maximum extent permitted by applicable law, Clean7, its
+                affiliates, and its partners shall not be liable for any
+                indirect, incidental, special, consequential, or punitive
+                damages, or any loss of profits or revenues, whether incurred
+                directly or indirectly, or any loss of data, use, goodwill, or
+                other intangible losses, resulting from your access to or use of
+                our platform or services.
               </p>
-              <BulletList
-                items={[
-                  "Any indirect or consequential damages",
-                  "Loss of data or business interruption",
-                  "Issues arising from platform unavailability",
-                ]}
-              />
             </PolicySection>
 
             <PolicySection
-              id="termination"
-              number="9."
-              title="Suspension or Termination"
+              id="modifications"
+              number="8."
+              title="Modifications to Terms"
             >
-              <p>We reserve the right to:</p>
-              <BulletList
-                items={["Suspend or terminate access", "Restrict usage"]}
-              />
-              <p>if you violate these Terms.</p>
-            </PolicySection>
-
-            <PolicySection id="privacy" number="10." title="Privacy">
               <p>
-                Your use of the platform is also governed by our{" "}
-                <Link
-                  href="/privacy-policy"
-                  className="font-semibold text-[#33302E] underline decoration-[#DDD2C8] underline-offset-2 transition-colors hover:text-orange hover:decoration-orange"
-                >
-                  Privacy Policy
-                </Link>
-                .
+                We reserve the right to modify these Terms at any time. We will
+                provide notice of these changes by updating the &quot;Effective
+                Date&quot; at the top of this page. Your continued use of the
+                platform after any such changes constitutes your acceptance of
+                the new Terms of Use.
               </p>
             </PolicySection>
 
-            <PolicySection id="changes" number="11." title="Changes to Terms">
-              <p>We may update these Terms at any time.</p>
+            <PolicySection
+              id="law"
+              number="9."
+              title="Governing Law and Dispute Resolution"
+            >
               <p>
-                Continued use of the platform means you accept the updated
-                Terms.
-              </p>
-            </PolicySection>
-
-            <PolicySection id="law" number="12." title="Governing Law">
-              <p>
-                These Terms shall be governed by the laws of{" "}
-                <strong className="font-semibold text-[#33302E]">India</strong>.
-                Any disputes shall fall under the jurisdiction of the courts at{" "}
-                <strong className="font-semibold text-[#33302E]">
+                These Terms shall be governed by and construed in accordance
+                with the laws of India. Any disputes arising out of or in
+                connection with these Terms shall be subject to the exclusive
+                jurisdiction of the courts located in{" "}
+                <strong className="font-semibold text-[var(--ink)]">
                   {JURISDICTION_CITY}
                 </strong>
                 .
               </p>
             </PolicySection>
 
-            <PolicySection id="contact" number="13." title="Contact Us">
-              <div className="grid gap-3 sm:grid-cols-1">
-                <ContactRow
-                  icon={<Mail className="h-5 w-5" aria-hidden />}
-                  label="Email"
-                  value={CONTACT_EMAIL}
-                  href={`mailto:${CONTACT_EMAIL}`}
-                />
-                <ContactRow
-                  icon={<Phone className="h-5 w-5" aria-hidden />}
-                  label="Phone"
-                  value={CONTACT_PHONE}
-                  href={`tel:${CONTACT_PHONE}`}
-                />
-                <ContactRow
-                  icon={<MapPin className="h-5 w-5" aria-hidden />}
-                  label="Address"
-                  value={CONTACT_ADDRESS}
-                />
-              </div>
-            </PolicySection>
-
-            <PolicySection
-              id="acknowledgement"
-              number="14."
-              title="Acknowledgement"
-            >
+            <PolicySection id="contact" number="10." title="Contact Us">
               <p>
-                By continuing to use our platform, you acknowledge that you have
-                read and agreed to these Terms of Use.
+                If you have any questions or concerns regarding these Terms of
+                Use, please reach out to our legal and support team at:{" "}
+                <strong>support@clean7.in</strong>.
               </p>
             </PolicySection>
           </div>

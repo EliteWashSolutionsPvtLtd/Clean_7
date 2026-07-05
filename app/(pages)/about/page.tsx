@@ -41,7 +41,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-10">
         <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
-          <div className="flex flex-col lg:flex-row gap-16 justify-between">
+          <div className="flex flex-col lg:flex-row gap-16 justify-between items-center">
             <div className="lg:w-[50%]">
               <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-6">
                 About Clean7
@@ -77,53 +77,6 @@ export default function AboutPage() {
                 >
                   See how it works
                 </Link>
-              </div>
-
-              {/* Avatars */}
-              <div className="flex items-center gap-4 mt-10">
-                <div className="flex -space-x-3">
-                  {/* Avatar placeholders using standard UI faces or colored circles */}
-                  <div className="w-10 h-10 rounded-full bg-[var(--ground-soft)] border-2 border-[var(--ground)] overflow-hidden relative">
-                    <Image
-                      src="https://i.pravatar.cc/100?img=1"
-                      fill
-                      alt="Customer"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-[var(--ground-soft)] border-2 border-[var(--ground)] overflow-hidden relative">
-                    <Image
-                      src="https://i.pravatar.cc/100?img=2"
-                      fill
-                      alt="Customer"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-[var(--ground-soft)] border-2 border-[var(--ground)] overflow-hidden relative">
-                    <Image
-                      src="https://i.pravatar.cc/100?img=3"
-                      fill
-                      alt="Customer"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-[var(--ground-soft)] border-2 border-[var(--ground)] overflow-hidden relative">
-                    <Image
-                      src="https://i.pravatar.cc/100?img=4"
-                      fill
-                      alt="Customer"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[var(--ink)] text-[13px] font-bold leading-tight">
-                    Trusted by 40,000+
-                  </p>
-                  <p className="text-[var(--ink-soft)] text-[11px] leading-tight mt-0.5">
-                    happy customers
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -275,10 +228,10 @@ export default function AboutPage() {
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-1/2 relative h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden">
               <Image
-                src="/images/about/about_delivery_van_1782044596394.png"
+                src="/images/about/delivery-bike.png"
                 fill
                 className="object-cover"
-                alt="Clean7 Delivery Van"
+                alt="Clean7 Delivery Bike"
               />
             </div>
             <div className="lg:w-1/2 lg:pl-10">
