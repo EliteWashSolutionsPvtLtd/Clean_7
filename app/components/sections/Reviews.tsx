@@ -55,12 +55,12 @@ export default function Reviews() {
     >
       <div className="max-w-[1300px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-[60px]">
-          <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[24px]">
+        <div className="text-center mb-[48px] md:mb-[80px]">
+          <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
             WHAT OUR CUSTOMERS SAY
           </p>
           <h2
-            className="text-[48px] md:text-[60px] text-[var(--ink)] mb-[24px] leading-[1.05]"
+            className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Real experiences.
@@ -69,7 +69,7 @@ export default function Reviews() {
               Real care.
             </span>
           </h2>
-          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.6] max-w-[500px] mx-auto">
+          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mx-auto">
             We&apos;re just getting started, and every piece of feedback
             <br className="hidden md:block" />
             helps us keep raising the bar.
@@ -106,7 +106,9 @@ export default function Reviews() {
                   >
                     {rev.name}
                   </h4>
-                  <p className="text-[13px] text-[var(--ink-soft)]">{rev.location}</p>
+                  <p className="text-[13px] text-[var(--ink-soft)]">
+                    {rev.location}
+                  </p>
                 </div>
               </div>
             </div>
