@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import { SatoshiFont, WixMadeForDisplayFont } from "@/app/fonts";
@@ -27,14 +27,43 @@ import { Fraunces } from "next/font/google";
 
 const fraunces = Fraunces({ subsets: ["latin"], style: ["normal", "italic"] });
 
+const heroSlides = [
+  {
+    image: "/images/services/laundry.png",
+    alt: "Laundry Service",
+  },
+  {
+    image: "/images/services/car-wash.png",
+    alt: "Car Wash",
+  },
+  {
+    image: "/images/services/house-help.png",
+    alt: "House Help",
+  },
+];
+
 export default function AboutPage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isShuffling, setIsShuffling] = useState(false);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsShuffling(true);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        setIsShuffling(false);
+      }, 500);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div
-      className="bg-[var(--ground)] text-[var(--ink)]"
+      className="bg-[var(--ground)] text-[var(--ink)] overflow-clip"
       style={{ fontFamily: SatoshiFont.style.fontFamily }}
     >
       <Navbar />
@@ -66,71 +95,64 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="lg:w-[40%] relative h-[500px] lg:mt-0 w-full overflow-hidden rounded-2xl md:rounded-3xl group">
-              {/* Fade Overlays */}
-              <div className="absolute top-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-b from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-t from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+            <div className="lg:w-[40%] relative h-[500px] lg:mt-0 w-full rounded-2xl md:rounded-3xl group flex items-center justify-center">
+              <div className="relative w-[280px] h-[350px] md:w-[300px] md:h-[380px] lg:w-[320px] lg:h-[420px]">
+                {heroSlides.map((slide, idx) => {
+                  const stackIndex =
+                    (idx - currentSlide + heroSlides.length) %
+                    heroSlides.length;
 
-              {/* Scrolling Container */}
-              <div className="flex flex-col gap-6 animate-vertical-marquee group-hover:[animation-play-state:paused] will-change-transform">
-                {/* First Set */}
-                <div className="flex flex-col gap-6">
-                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-                    <Image
-                      src="/images/services/laundry.png"
-                      fill
-                      className="object-cover"
-                      alt="Premium Laundry"
-                      priority
-                    />
-                  </div>
-                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-                    <Image
-                      src="/images/services/car-wash.png"
-                      fill
-                      className="object-cover"
-                      alt="Professional Car Wash"
-                      priority
-                    />
-                  </div>
-                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-                    <Image
-                      src="/images/services/house-help.png"
-                      fill
-                      className="object-cover"
-                      alt="House Help Services"
-                      priority
-                    />
-                  </div>
-                </div>
+                  let cardClass = "";
+                  let overlayOpacity = "opacity-30";
 
-                {/* Duplicated Second Set */}
-                <div className="flex flex-col gap-6">
-                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-                    <Image
-                      src="/images/services/laundry.png"
-                      fill
-                      className="object-cover"
-                      alt="Premium Laundry"
-                    />
-                  </div>
-                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-                    <Image
-                      src="/images/services/car-wash.png"
-                      fill
-                      className="object-cover"
-                      alt="Professional Car Wash"
-                    />
-                  </div>
-                  <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-                    <Image
-                      src="/images/services/house-help.png"
-                      fill
-                      className="object-cover"
-                      alt="House Help Services"
-                    />
-                  </div>
-                </div>
+                  if (isShuffling) {
+                    if (stackIndex === 0) {
+                      cardClass =
+                        "z-40 translate-x-[110%] scale-[0.9] rotate-[12deg] opacity-100";
+                      overlayOpacity = "opacity-30";
+                    } else if (stackIndex === 1) {
+                      cardClass =
+                        "z-30 translate-x-0 scale-100 rotate-0 opacity-100";
+                      overlayOpacity = "opacity-0";
+                    } else {
+                      cardClass =
+                        "z-20 translate-x-[24px] -translate-y-[16px] scale-[0.95] rotate-[6deg] opacity-90";
+                      overlayOpacity = "opacity-30";
+                    }
+                  } else {
+                    if (stackIndex === 0) {
+                      cardClass =
+                        "z-30 translate-x-0 scale-100 rotate-0 opacity-100";
+                      overlayOpacity = "opacity-0";
+                    } else if (stackIndex === 1) {
+                      cardClass =
+                        "z-20 translate-x-[24px] -translate-y-[16px] scale-[0.95] rotate-[6deg] opacity-90";
+                      overlayOpacity = "opacity-30";
+                    } else {
+                      cardClass =
+                        "z-10 translate-x-[48px] -translate-y-[32px] scale-[0.9] rotate-[12deg] opacity-80";
+                      overlayOpacity = "opacity-50";
+                    }
+                  }
+
+                  return (
+                    <div
+                      key={idx}
+                      className={`absolute inset-0 rounded-2xl overflow-hidden transition-all duration-500 ease-in-out origin-bottom-right ${cardClass}`}
+                    >
+                      <Image
+                        src={slide.image}
+                        alt={slide.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 400px"
+                      />
+                      <div
+                        className={`absolute inset-0 bg-black transition-opacity duration-500 pointer-events-none ${overlayOpacity}`}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -1,39 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/app/(pages)/services/laundry/Laundry.module.css";
 
-const heroSlides = [
-  {
-    image: "/images/services/laundry.png",
-    alt: "Laundry Service",
-  },
-  {
-    image: "/images/services/car-wash.png",
-    alt: "Car Wash",
-  },
-  {
-    image: "/images/services/house-help.png",
-    alt: "House Help",
-  },
-];
-
 export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isShuffling, setIsShuffling] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIsShuffling(true);
-      setTimeout(() => {
-        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-        setIsShuffling(false);
-      }, 500);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <section className={styles.hero}>
@@ -97,69 +69,73 @@ export default function Hero() {
       </div>
 
       <div className={styles.visual}>
-        <div className="flex flex-col items-center max-w-[300px] md:max-w-[400px] w-full px-4 md:px-0 pt-0 md:pt-40 pb-12 mx-auto">
-          <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] mb-6 z-10">
-            {heroSlides.map((slide, idx) => {
-              const stackIndex =
-                (idx - currentSlide + heroSlides.length) % heroSlides.length;
+        <div className="flex flex-col items-center max-w-[300px] md:max-w-[400px] w-full px-4 md:px-0 pt-0 md:pt-20 pb-12 mx-auto">
+          <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] overflow-hidden rounded-2xl md:rounded-3xl group">
+            {/* Fade Overlays */}
+            <div className="absolute top-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-b from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-t from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
 
-              let cardClass = "";
-              let overlayOpacity = "opacity-30";
-
-              if (isShuffling) {
-                if (stackIndex === 0) {
-                  // Shuffling out
-                  cardClass =
-                    "z-40 translate-x-[110%] scale-[0.9] rotate-[12deg] opacity-100";
-                  overlayOpacity = "opacity-30";
-                } else if (stackIndex === 1) {
-                  // Moving to active
-                  cardClass =
-                    "z-30 translate-x-0 scale-100 rotate-0 opacity-100";
-                  overlayOpacity = "opacity-0";
-                } else {
-                  // Moving to middle
-                  cardClass =
-                    "z-20 translate-x-[24px] -translate-y-[16px] scale-[0.95] rotate-[6deg] opacity-90";
-                  overlayOpacity = "opacity-30";
-                }
-              } else {
-                if (stackIndex === 0) {
-                  // Active
-                  cardClass =
-                    "z-30 translate-x-0 scale-100 rotate-0 opacity-100";
-                  overlayOpacity = "opacity-0";
-                } else if (stackIndex === 1) {
-                  // Middle
-                  cardClass =
-                    "z-20 translate-x-[24px] -translate-y-[16px] scale-[0.95] rotate-[6deg] opacity-90";
-                  overlayOpacity = "opacity-30";
-                } else {
-                  // Back
-                  cardClass =
-                    "z-10 translate-x-[48px] -translate-y-[32px] scale-[0.9] rotate-[12deg] opacity-80";
-                  overlayOpacity = "opacity-50";
-                }
-              }
-
-              return (
-                <div
-                  key={idx}
-                  className={`absolute inset-0 rounded-2xl overflow-hidden transition-all duration-500 ease-in-out origin-bottom-right ${cardClass}`}
-                >
+            {/* Scrolling Container */}
+            <div className="flex flex-col gap-6 animate-vertical-marquee group-hover:[animation-play-state:paused] will-change-transform">
+              {/* First Set */}
+              <div className="flex flex-col gap-6">
+                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
                   <Image
-                    src={slide.image}
-                    alt={slide.alt}
+                    src="/images/services/laundry.png"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                  <div
-                    className={`absolute inset-0 bg-black transition-opacity duration-500 pointer-events-none ${overlayOpacity}`}
+                    alt="Premium Laundry"
+                    priority
                   />
                 </div>
-              );
-            })}
+                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/car-wash.png"
+                    fill
+                    className="object-cover"
+                    alt="Professional Car Wash"
+                    priority
+                  />
+                </div>
+                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/house-help.png"
+                    fill
+                    className="object-cover"
+                    alt="House Help Services"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Duplicated Second Set */}
+              <div className="flex flex-col gap-6">
+                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/laundry.png"
+                    fill
+                    className="object-cover"
+                    alt="Premium Laundry"
+                  />
+                </div>
+                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/car-wash.png"
+                    fill
+                    className="object-cover"
+                    alt="Professional Car Wash"
+                  />
+                </div>
+                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/house-help.png"
+                    fill
+                    className="object-cover"
+                    alt="House Help Services"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
