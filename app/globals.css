@@ -770,3 +770,10 @@ img {
   animation: vertical-marquee 20s linear infinite;
 }
 
+@keyframes horizontal-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 12px)); }
+}
+.animate-horizontal-marquee {
+  animation: horizontal-marquee 20s linear infinite;
+}
