@@ -266,38 +266,52 @@ export default function HowItWorks() {
           <StepGrid steps={houseHelpSteps} isCircularImage={true} />
 
           {/* Trust Indicators Footer */}
-          <div className="mt-[48px] md:mt-[64px] max-w-[1000px] w-full mx-auto border border-white/10 rounded-full py-[16px] md:py-[24px] px-[24px] md:px-[40px] flex flex-col md:flex-row items-center justify-between gap-[24px] md:gap-0 bg-transparent text-[var(--gold)]">
-            <div className="flex items-center gap-[12px]">
-              <ShieldCheck className="w-[24px] h-[24px]" strokeWidth={1.5} />
-              <span className="text-[14px] md:text-[15px] font-medium">
-                Verified & Trained Staff
+          <div className="mt-[48px] md:mt-[64px] max-w-[1000px] w-full mx-auto border border-white/10 rounded-[20px] md:rounded-full py-[24px] px-[16px] md:py-[24px] md:px-[40px] grid grid-cols-2 md:flex md:flex-row items-center justify-between gap-y-[32px] gap-x-[16px] md:gap-0 bg-transparent text-[var(--gold)]">
+            <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
+              <ShieldCheck
+                className="w-[28px] h-[28px] md:w-[24px] md:h-[24px] shrink-0"
+                strokeWidth={1.5}
+              />
+              <span className="text-[13px] md:text-[15px] font-medium leading-[1.3] md:leading-normal">
+                Verified &<br className="md:hidden" /> Trained Staff
               </span>
             </div>
 
             <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
 
-            <div className="flex items-center gap-[12px]">
-              <Clock className="w-[24px] h-[24px]" strokeWidth={1.5} />
-              <span className="text-[14px] md:text-[15px] font-medium">
-                On-Time Service
+            <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
+              <Clock
+                className="w-[28px] h-[28px] md:w-[24px] md:h-[24px] shrink-0"
+                strokeWidth={1.5}
+              />
+              <span className="text-[13px] md:text-[15px] font-medium leading-[1.3] md:leading-normal">
+                On-Time
+                <br className="md:hidden" /> Service
               </span>
             </div>
 
             <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
 
-            <div className="flex items-center gap-[12px]">
-              <Lock className="w-[24px] h-[24px]" strokeWidth={1.5} />
-              <span className="text-[14px] md:text-[15px] font-medium">
-                Safe & Secure
+            <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
+              <Lock
+                className="w-[28px] h-[28px] md:w-[24px] md:h-[24px] shrink-0"
+                strokeWidth={1.5}
+              />
+              <span className="text-[13px] md:text-[15px] font-medium leading-[1.3] md:leading-normal">
+                Safe &<br className="md:hidden" /> Secure
               </span>
             </div>
 
             <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
 
-            <div className="flex items-center gap-[12px]">
-              <ThumbsUp className="w-[24px] h-[24px]" strokeWidth={1.5} />
-              <span className="text-[14px] md:text-[15px] font-medium">
-                Satisfaction Guaranteed
+            <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
+              <ThumbsUp
+                className="w-[28px] h-[28px] md:w-[24px] md:h-[24px] shrink-0"
+                strokeWidth={1.5}
+              />
+              <span className="text-[13px] md:text-[15px] font-medium leading-[1.3] md:leading-normal">
+                Satisfaction
+                <br className="md:hidden" /> Guaranteed
               </span>
             </div>
           </div>
