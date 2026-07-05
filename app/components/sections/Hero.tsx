@@ -1,12 +1,10 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/app/(pages)/services/laundry/Laundry.module.css";
 
 export default function Hero() {
-
   return (
     <section className={styles.hero}>
       <div className={styles.copy}>
@@ -69,8 +67,8 @@ export default function Hero() {
       </div>
 
       <div className={styles.visual}>
-        <div className="flex flex-col items-center max-w-[300px] md:max-w-[400px] w-full px-4 md:px-0 pt-0 md:pt-20 pb-12 mx-auto">
-          <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] overflow-hidden rounded-2xl md:rounded-3xl group">
+        <div className="flex flex-col w-full max-w-[340px] md:max-w-[560px] px-4 md:px-0 pt-0 md:pt-20 pb-12 mt-12">
+          <div className="relative w-full aspect-[4/5] md:w-[560px] md:h-[600px] overflow-hidden rounded-2xl md:rounded-3xl group">
             {/* Fade Overlays */}
             <div className="absolute top-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-b from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-full h-[60px] md:h-[100px] bg-gradient-to-t from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
@@ -79,7 +77,7 @@ export default function Hero() {
             <div className="flex flex-col gap-6 animate-vertical-marquee group-hover:[animation-play-state:paused] will-change-transform">
               {/* First Set */}
               <div className="flex flex-col gap-6">
-                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-full h-[280px] md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/laundry.png"
                     fill
@@ -88,7 +86,7 @@ export default function Hero() {
                     priority
                   />
                 </div>
-                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-full h-[280px] md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/car-wash.png"
                     fill
@@ -97,7 +95,7 @@ export default function Hero() {
                     priority
                   />
                 </div>
-                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-full h-[280px] md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/house-help.png"
                     fill
@@ -110,7 +108,7 @@ export default function Hero() {
 
               {/* Duplicated Second Set */}
               <div className="flex flex-col gap-6">
-                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-full h-[280px] md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/laundry.png"
                     fill
@@ -118,7 +116,7 @@ export default function Hero() {
                     alt="Premium Laundry"
                   />
                 </div>
-                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-full h-[280px] md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/car-wash.png"
                     fill
@@ -126,7 +124,7 @@ export default function Hero() {
                     alt="Professional Car Wash"
                   />
                 </div>
-                <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-full h-[280px] md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/house-help.png"
                     fill
