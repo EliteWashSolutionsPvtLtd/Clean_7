@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import Container from "@/app/components/layout/Container";
 import { Fraunces } from "next/font/google";
+import styles from "@/app/(pages)/services/laundry/Laundry.module.css";
 
 const fraunces = Fraunces({ subsets: ["latin"], style: ["normal", "italic"] });
 
@@ -158,69 +159,28 @@ export default function AboutPage() {
 
       {/* Stats Bar */}
       <section className="my-10">
-        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
-          <div className="bg-[var(--ground-soft)] rounded-3xl p-8 md:p-10 flex flex-wrap lg:flex-nowrap justify-between gap-8 md:gap-10">
-            <div className="flex items-center gap-5 w-full md:w-[45%] lg:w-auto">
-              <div className="w-12 h-12 rounded-full border border-[var(--gold)] text-[var(--gold)] flex items-center justify-center shrink-0">
-                <Clock size={20} strokeWidth={1.5} />
+        <Container
+          isMaxWidth
+          className="px-[clamp(20px,5vw,56px)] flex justify-center"
+        >
+          <div className="bg-[var(--ground-soft)] rounded-[20px] md:rounded-3xl py-8 px-2 w-full max-w-[600px] md:px-12 md:py-10">
+            <div
+              className={styles.trustRow}
+              style={{ marginTop: 0, opacity: 1, animation: "none" }}
+            >
+              <div className={styles.trustStat}>
+                <div className={styles.num}>24 hr</div>
+                <div className={styles.label}>Turnaround</div>
               </div>
-              <div>
-                <p
-                  className={`text-[var(--ink)] font-bold text-2xl ${fraunces.className}`}
-                >
-                  24 hr
-                </p>
-                <p className="text-[var(--ink-soft)] text-[11px] uppercase tracking-wider mt-1">
-                  Turnaround
-                </p>
+              <div className={styles.trustDivider}></div>
+              <div className={styles.trustStat}>
+                <div className={styles.num}>40k+</div>
+                <div className={styles.label}>Expected Garments monthly</div>
               </div>
-            </div>
-            <div className="hidden lg:block w-px bg-[var(--line)] h-12 self-center"></div>
-            <div className="flex items-center gap-5 w-full md:w-[45%] lg:w-auto">
-              <div className="w-12 h-12 rounded-full border border-[var(--gold)] text-[var(--gold)] flex items-center justify-center shrink-0">
-                <Box size={20} strokeWidth={1.5} />
-              </div>
-              <div>
-                <p
-                  className={`text-[var(--ink)] font-bold text-2xl ${fraunces.className}`}
-                >
-                  40k+
-                </p>
-                <p className="text-[var(--ink-soft)] text-[11px] uppercase tracking-wider mt-1">
-                  Garments handled monthly
-                </p>
-              </div>
-            </div>
-            <div className="hidden lg:block w-px bg-[var(--line)] h-12 self-center"></div>
-            <div className="flex items-center gap-5 w-full md:w-[45%] lg:w-auto">
-              <div className="w-12 h-12 rounded-full border border-[var(--gold)] text-[var(--gold)] flex items-center justify-center shrink-0">
-                <Star size={20} strokeWidth={1.5} />
-              </div>
-              <div>
-                <p
-                  className={`text-[var(--ink)] font-bold text-2xl ${fraunces.className}`}
-                >
-                  4.9
-                </p>
-                <p className="text-[var(--ink-soft)] text-[11px] uppercase tracking-wider mt-1">
-                  Average rating
-                </p>
-              </div>
-            </div>
-            <div className="hidden lg:block w-px bg-[var(--line)] h-12 self-center"></div>
-            <div className="flex items-center gap-5 w-full md:w-[45%] lg:w-auto">
-              <div className="w-12 h-12 rounded-full border border-[var(--gold)] text-[var(--gold)] flex items-center justify-center shrink-0">
-                <Heart size={20} strokeWidth={1.5} />
-              </div>
-              <div>
-                <p
-                  className={`text-[var(--ink)] font-bold text-2xl ${fraunces.className}`}
-                >
-                  Premium
-                </p>
-                <p className="text-[var(--ink-soft)] text-[11px] uppercase tracking-wider mt-1">
-                  Care experience
-                </p>
+              <div className={styles.trustDivider}></div>
+              <div className={styles.trustStat}>
+                <div className={styles.num}>4.9</div>
+                <div className={styles.label}>Expected Rating</div>
               </div>
             </div>
           </div>
@@ -290,10 +250,10 @@ export default function AboutPage() {
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <BadgeCheck size={36} strokeWidth={1.5} />
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[13px] md:text-[15px] mb-2 md:mb-3">
+              <h3 className="text-[var(--ink)] font-bold text-[16px] md:text-[15px] mb-2 md:mb-3">
                 Premium Quality
               </h3>
-              <p className="text-[var(--ink-soft)] text-[10px] md:text-xs leading-relaxed">
+              <p className="text-[var(--ink-soft)] text-[15px] md:text-xs leading-relaxed">
                 Fabric-safe cleaning and careful handling for every order.
               </p>
             </div>
@@ -301,10 +261,10 @@ export default function AboutPage() {
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <Car size={36} strokeWidth={1.5} />
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[13px] md:text-[15px] mb-2 md:mb-3">
+              <h3 className="text-[var(--ink)] font-bold text-[16px] md:text-[15px] mb-2 md:mb-3">
                 Pickup & Delivery
               </h3>
-              <p className="text-[var(--ink-soft)] text-[10px] md:text-xs leading-relaxed">
+              <p className="text-[var(--ink-soft)] text-[15px] md:text-xs leading-relaxed">
                 Doorstep convenience designed around your schedule.
               </p>
             </div>
@@ -312,10 +272,10 @@ export default function AboutPage() {
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <Clock size={36} strokeWidth={1.5} />
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[13px] md:text-[15px] mb-2 md:mb-3">
+              <h3 className="text-[var(--ink)] font-bold text-[16px] md:text-[15px] mb-2 md:mb-3">
                 Fast Turnaround
               </h3>
-              <p className="text-[var(--ink-soft)] text-[10px] md:text-xs leading-relaxed">
+              <p className="text-[var(--ink-soft)] text-[15px] md:text-xs leading-relaxed">
                 Freshly cleaned and delivered back within 24 hours.
               </p>
             </div>
@@ -323,10 +283,10 @@ export default function AboutPage() {
               <div className="text-[var(--gold)] mb-4 md:mb-6 scale-75 md:scale-100">
                 <Heart size={36} strokeWidth={1.5} />
               </div>
-              <h3 className="text-[var(--ink)] font-bold text-[13px] md:text-[15px] mb-2 md:mb-3">
+              <h3 className="text-[var(--ink)] font-bold text-[16px] md:text-[15px] mb-2 md:mb-3">
                 Thoughtful Service
               </h3>
-              <p className="text-[var(--ink-soft)] text-[10px] md:text-xs leading-relaxed">
+              <p className="text-[var(--ink-soft)] text-[15px] md:text-xs leading-relaxed">
                 Attention to detail in every fold, finish, and delivery.
               </p>
             </div>
