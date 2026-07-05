@@ -11,7 +11,7 @@ const SUPPORT_EMAIL = "support@clean7.in";
 const SUPPORT_PHONE = "7078497263";
 const BUSINESS_EMAIL = "support@clean7.in";
 const BUSINESS_ADDRESS =
-  "123, Mullapur Road, Thana Bhawan, Shamli, Uttar Pradesh, 247777";
+  "NH 58 Rohta Bypass Flyover Service Road Khadoli, Meerut";
 const SUPPORT_HOURS = "9:00 AM – 8:00 PM, All Days";
 
 const GOOGLE_MAPS_EMBED_URL =
@@ -91,7 +91,9 @@ export default function ContactPage() {
           </h1>
 
           <p className="mt-6 text-[16px] md:text-[17px] font-medium text-[var(--ink-soft)] max-w-2xl">
-            We&apos;re here to help! Whether you have a question, need support, or just want to say hello — the Clean7 team is always ready to assist you.
+            We&apos;re here to help! Whether you have a question, need support,
+            or just want to say hello — the Clean7 team is always ready to
+            assist you.
           </p>
         </div>
       </Container>
@@ -102,7 +104,11 @@ export default function ContactPage() {
       >
         <div className="mx-auto max-w-4xl">
           <div className="space-y-12">
-            <PolicySection id="customer-support" number="1." title="Customer Support">
+            <PolicySection
+              id="customer-support"
+              number="1."
+              title="Customer Support"
+            >
               <p>Have questions about your order, pickup, or delivery?</p>
               <BulletList
                 items={[
@@ -126,29 +132,33 @@ export default function ContactPage() {
                   </React.Fragment>,
                   <React.Fragment key="hours">
                     <strong>Support hours:</strong> {SUPPORT_HOURS}
-                  </React.Fragment>
+                  </React.Fragment>,
                 ]}
               />
             </PolicySection>
 
             <PolicySection id="message" number="2." title="Send us a Message">
               <p className="mb-4">
-                You can also reach out to us by filling out the form below. We usually
-                respond within 24 hours.
+                You can also reach out to us by filling out the form below. We
+                usually respond within 24 hours.
               </p>
               <div className="mt-6 max-w-xl">
                 <ContactForm />
               </div>
             </PolicySection>
 
-            <PolicySection id="order-support" number="3." title="Order & App Support">
+            <PolicySection
+              id="order-support"
+              number="3."
+              title="Order & App Support"
+            >
               <p>
-                For faster assistance with your order, please include your registered
-                phone number and Order ID (if applicable).
+                For faster assistance with your order, please include your
+                registered phone number and Order ID (if applicable).
               </p>
               <p>
-                Since all services are managed through our mobile application, we
-                recommend:
+                Since all services are managed through our mobile application,
+                we recommend:
               </p>
               <BulletList
                 items={[
@@ -158,7 +168,11 @@ export default function ContactPage() {
               />
             </PolicySection>
 
-            <PolicySection id="business" number="4." title="Business & Partnerships">
+            <PolicySection
+              id="business"
+              number="4."
+              title="Business & Partnerships"
+            >
               <p>Interested in partnering with Clean7?</p>
               <p>
                 <strong>Email:</strong>{" "}
