@@ -102,12 +102,9 @@ export default function ServicesPage() {
                     ))}
                   </ul>
 
-                  <Link
-                    href="/services/laundry"
-                    className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors"
-                  >
+                  <div className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors">
                     Learn More
-                  </Link>
+                  </div>
                 </div>
               </div>
 
@@ -154,12 +151,58 @@ export default function ServicesPage() {
                     ))}
                   </ul>
 
-                  <Link
-                    href="/services/car-wash"
-                    className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors"
-                  >
+                  <div className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors">
                     Learn More
-                  </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* House Help Card */}
+              <div
+                className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden flex flex-col hover:border-[var(--gold)]/30 transition-colors duration-500 gsap-animate opacity-0 page-hero-left"
+                style={{ animationDelay: "0.3s" }}
+              >
+                <div className="relative w-full aspect-[16/9]">
+                  <Image
+                    src="/images/services/house-help.png"
+                    alt="House Help Service"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-[32px] md:p-[48px] flex-1 flex flex-col">
+                  <h2
+                    className="text-[32px] md:text-[38px] text-[var(--ink)] mb-[24px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    House Help
+                  </h2>
+                  <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
+                    Reliable and professional house help services for your daily
+                    chores and deep cleaning needs, ensuring a spotless home.
+                  </p>
+
+                  <ul className="flex flex-col gap-[16px] mb-[48px] flex-1">
+                    {[
+                      "Deep Cleaning",
+                      "Daily Chores",
+                      "Trusted Professionals",
+                      "Flexible Scheduling",
+                      "Sanitized Equipment",
+                    ].map((feature, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-center gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                      >
+                        <CheckCircleIcon />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors">
+                    Learn More
+                  </div>
                 </div>
               </div>
             </div>

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { X, Smartphone, Maximize2, Minimize2 } from "lucide-react";
-import { WixMadeForDisplayFont } from "@/app/fonts";
 import AppStoreButton from "../buttons/AppStoreButton";
 import GooglePlayButton from "../buttons/GooglePlayButton";
 import gsap from "gsap";
@@ -95,12 +94,12 @@ export default function DownloadAppModal({
       {/* Modal */}
       <div
         ref={modalRef}
-        className="relative bg-gradient-to-b from-[#FFFCFA] to-[#FFF8F3] rounded-[32px] w-full max-w-[600px] max-h-[90vh] overflow-hidden shadow-[0_25px_80px_-12px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,148,49,0.1)] animate-[modalSlideUp_0.4s_ease-out]"
+        className="relative bg-[var(--ground)] border border-[var(--line)] rounded-[32px] w-full max-w-[600px] max-h-[90vh] overflow-hidden shadow-[0_25px_80px_-12px_rgba(0,0,0,0.5)] animate-[modalSlideUp_0.4s_ease-out]"
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-[16px] right-[16px] z-10 w-[36px] h-[36px] rounded-full bg-[#F5F0EB] flex items-center justify-center text-[#91776C] hover:bg-[#EDE5DE] hover:text-[#6B5D54] active:scale-95 transition-all duration-200 cursor-pointer select-none"
+          className="absolute top-[16px] right-[16px] z-10 w-[36px] h-[36px] rounded-full bg-[var(--ground-soft)] border border-[var(--line)] flex items-center justify-center text-[var(--ink-soft)] hover:bg-[var(--line)] hover:text-[var(--ink)] active:scale-95 transition-all duration-200 cursor-pointer select-none"
           aria-label="Close modal"
         >
           <X size={18} />
@@ -113,24 +112,31 @@ export default function DownloadAppModal({
         >
           {/* Header */}
           <div className="text-center mb-[28px]">
-            <div className="inline-flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gradient-to-br from-[#FF9431] to-[#FF7700] shadow-[0_8px_24px_rgba(255,148,49,0.35)] mb-[20px]">
-              <Smartphone className="w-[28px] h-[28px] text-white" />
+            <div className="inline-flex items-center justify-center w-[64px] h-[64px] rounded-full bg-[var(--ground-soft)] border border-[var(--line)] shadow-sm mb-[20px]">
+              <Smartphone className="w-[28px] h-[28px] text-[var(--gold)]" />
             </div>
 
+            <p className="text-[13px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[8px]">
+              DOWNLOAD OUR APP
+            </p>
+
             <h2
-              className={`text-[#2D2D2D] text-[22px] sm:text-[26px] font-semibold ${WixMadeForDisplayFont.className}`}
-              style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
+              className="text-[var(--ink)] text-[28px] sm:text-[34px] font-medium leading-[1.1]"
+              style={{ fontFamily: "var(--font-fraunces)" }}
             >
-              Get Started in <span className="text-[#FF9431]">30 seconds</span>
+              Get Started in <br className="sm:hidden" />
+              <span className="text-[var(--gold)] italic font-light">
+                30 seconds.
+              </span>
             </h2>
 
-            <p className="text-[#6B635C] text-[16px] md:text-[18px] mt-[8px]">
-              Download our app and schedule your first pickup today
+            <p className="text-[var(--ink-soft)] text-[16px] md:text-[17px] mt-[12px] max-w-[400px] mx-auto leading-[1.6]">
+              Download our app and schedule your first pickup today.
             </p>
           </div>
 
           {/* QR Code Section */}
-          <div className="bg-white rounded-[20px] p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.04),inset_0_0_0_1px_rgba(0,0,0,0.04)] mb-[24px] overflow-hidden">
+          <div className="bg-[var(--card)] rounded-[20px] p-[24px] border border-[var(--line)] shadow-sm mb-[24px] overflow-hidden">
             <div
               ref={qrContainerRef}
               className="flex flex-col min-[470px]:flex-row items-center gap-[20px] min-w-0"
@@ -144,7 +150,7 @@ export default function DownloadAppModal({
                 }`}
               >
                 <div
-                  className={`bg-white rounded-[12px] p-[12px] shadow-[0_2px_12px_rgba(0,0,0,0.08)] flex items-center justify-center transition-all duration-500 ease-out max-[469px]:w-full max-[469px]:aspect-square max-[469px]:max-w-full max-[469px]:cursor-default min-[470px]:cursor-pointer ${
+                  className={`bg-white rounded-[12px] p-[12px] border border-black/5 flex items-center justify-center transition-all duration-500 ease-out max-[469px]:w-full max-[469px]:aspect-square max-[469px]:max-w-full max-[469px]:cursor-default min-[470px]:cursor-pointer ${
                     isQrExpanded
                       ? "min-[470px]:w-[280px] min-[470px]:h-[280px] min-[470px]:max-w-[280px]"
                       : "min-[470px]:w-[140px] min-[470px]:h-[140px] min-[470px]:sm:w-[160px] min-[470px]:sm:h-[160px]"
@@ -160,7 +166,7 @@ export default function DownloadAppModal({
                     className="max-h-full max-w-full h-full w-full object-contain"
                   />
                   {/* Expand/Collapse — desktop (≥470px) only */}
-                  <div className="absolute bottom-[12px] right-[12px] hidden min-[470px]:flex w-[28px] h-[28px] rounded-full bg-[#FF9431] items-center justify-center shadow-md pointer-events-none">
+                  <div className="absolute bottom-[12px] right-[12px] hidden min-[470px]:flex w-[28px] h-[28px] rounded-full bg-[var(--gold)] items-center justify-center shadow-md pointer-events-none">
                     {isQrExpanded ? (
                       <Minimize2 className="w-[14px] h-[14px] text-white" />
                     ) : (
@@ -169,17 +175,17 @@ export default function DownloadAppModal({
                   </div>
                 </div>
                 {/* Decorative ring */}
-                <div className="absolute -inset-[3px] rounded-[15px] border-2 border-dashed border-[#FF9431]/20 pointer-events-none" />
+                <div className="absolute -inset-[3px] rounded-[15px] border-2 border-dashed border-[var(--gold)]/30 pointer-events-none" />
               </div>
 
               {/* Scan text */}
               <div
                 className={`flex-1 text-center min-[470px]:text-left ${isQrExpanded ? "min-[470px]:text-center" : ""}`}
               >
-                <div className="text-[#FF9431] text-[16px] md:text-[18px] font-medium mb-[4px]">
+                <div className="text-[12px] font-bold tracking-[0.1em] text-[var(--gold)] uppercase mb-[6px]">
                   SCAN TO DOWNLOAD
                 </div>
-                <p className="text-[#4A4139] text-[16px] md:text-[18px] font-medium leading-snug">
+                <p className="text-[var(--ink)] text-[16px] md:text-[17px] font-medium leading-[1.4]">
                   <span className="inline min-[470px]:hidden">
                     Point your camera at the QR code to get the app instantly
                   </span>
@@ -195,11 +201,11 @@ export default function DownloadAppModal({
 
           {/* Divider */}
           <div className="flex items-center gap-[16px] mb-[24px]">
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#E5DDD6] to-transparent" />
-            <span className="text-[#91776C] text-[16px] md:text-[18px] font-medium">
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[var(--line)] to-transparent" />
+            <span className="text-[var(--ink-soft)] text-[13px] font-medium uppercase tracking-[0.1em]">
               OR
             </span>
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#E5DDD6] to-transparent" />
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[var(--line)] to-transparent" />
           </div>
 
           {/* Download Buttons */}
@@ -209,7 +215,7 @@ export default function DownloadAppModal({
           </div>
 
           {/* Footer note */}
-          <p className="text-center text-[#A69B91] text-[16px] md:text-[18px] mt-[20px]">
+          <p className="text-center text-[var(--ink-soft)] text-[14px] mt-[24px]">
             Free download • No credit card required
           </p>
         </div>

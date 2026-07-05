@@ -51,6 +51,8 @@
 }
 .navLinks a.active {
   font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .navRight {
@@ -148,6 +150,8 @@
 .mobileLinks a.active {
   color: var(--gold-bright);
   font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 8px;
 }
 
 .mobileFooter {

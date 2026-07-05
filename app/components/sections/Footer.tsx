@@ -260,7 +260,7 @@ export default function Footer() {
 
           {/* Bottom Section - Copyright */}
           <div className="pt-[30px] flex flex-col sm:flex-row items-center justify-between gap-[20px] text-[13px] text-[var(--ink-soft)]">
-            <p>© 2024 Clean7. All rights reserved.</p>
+            <p>©2027 Clean7. All rights reserved.</p>
           </div>
         </div>
       </footer>

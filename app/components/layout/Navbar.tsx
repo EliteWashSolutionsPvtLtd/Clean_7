@@ -43,6 +43,11 @@ export default function Navbar() {
 
       <ul className={styles.navLinks}>
         <li>
+          <Link href="/" className={pathname === "/" ? styles.active : ""}>
+            Home
+          </Link>
+        </li>
+        <li>
           <Link
             href="/services"
             className={isActive("/services") ? styles.active : ""}
@@ -122,6 +127,13 @@ export default function Navbar() {
           </button>
         </div>
         <div className={styles.mobileLinks}>
+          <Link
+            href="/"
+            className={pathname === "/" ? styles.active : ""}
+            onClick={() => setIsOpen(false)}
+          >
+            Home
+          </Link>
           <Link
             href="/services"
             className={isActive("/services") ? styles.active : ""}

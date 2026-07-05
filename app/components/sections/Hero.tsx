@@ -14,6 +14,10 @@ const heroSlides = [
     image: "/images/services/car-wash.png",
     alt: "Car Wash",
   },
+  {
+    image: "/images/services/house-help.png",
+    alt: "House Help",
+  },
 ];
 
 export default function Hero() {
@@ -96,24 +100,52 @@ export default function Hero() {
         <div className="flex flex-col items-center max-w-[300px] md:max-w-[400px] w-full px-4 md:px-0 pt-0 md:pt-40 pb-12 mx-auto">
           <div className="relative w-full aspect-[4/5] md:w-[400px] md:h-[500px] mb-6 z-10">
             {heroSlides.map((slide, idx) => {
-              const isActive = idx === currentSlide;
-              const isShufflingOut = isShuffling && isActive;
+              const stackIndex =
+                (idx - currentSlide + heroSlides.length) % heroSlides.length;
 
               let cardClass = "";
-              if (isShufflingOut) {
-                cardClass =
-                  "z-30 translate-x-[110%] scale-[0.9] rotate-[12deg] opacity-100";
-              } else if (isActive) {
-                cardClass = "z-20 translate-x-0 scale-100 rotate-0 opacity-100";
+              let overlayOpacity = "opacity-30";
+
+              if (isShuffling) {
+                if (stackIndex === 0) {
+                  // Shuffling out
+                  cardClass =
+                    "z-40 translate-x-[110%] scale-[0.9] rotate-[12deg] opacity-100";
+                  overlayOpacity = "opacity-30";
+                } else if (stackIndex === 1) {
+                  // Moving to active
+                  cardClass =
+                    "z-30 translate-x-0 scale-100 rotate-0 opacity-100";
+                  overlayOpacity = "opacity-0";
+                } else {
+                  // Moving to middle
+                  cardClass =
+                    "z-20 translate-x-[24px] -translate-y-[16px] scale-[0.95] rotate-[6deg] opacity-90";
+                  overlayOpacity = "opacity-30";
+                }
               } else {
-                cardClass =
-                  "z-10 translate-x-[24px] -translate-y-[16px] scale-[0.9] rotate-[6deg] opacity-90 shadow-none";
+                if (stackIndex === 0) {
+                  // Active
+                  cardClass =
+                    "z-30 translate-x-0 scale-100 rotate-0 opacity-100";
+                  overlayOpacity = "opacity-0";
+                } else if (stackIndex === 1) {
+                  // Middle
+                  cardClass =
+                    "z-20 translate-x-[24px] -translate-y-[16px] scale-[0.95] rotate-[6deg] opacity-90";
+                  overlayOpacity = "opacity-30";
+                } else {
+                  // Back
+                  cardClass =
+                    "z-10 translate-x-[48px] -translate-y-[32px] scale-[0.9] rotate-[12deg] opacity-80";
+                  overlayOpacity = "opacity-50";
+                }
               }
 
               return (
                 <div
                   key={idx}
-                  className={`absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border-2 border-[var(--line)] transition-all duration-500 ease-in-out origin-bottom-right ${cardClass}`}
+                  className={`absolute inset-0 rounded-2xl overflow-hidden transition-all duration-500 ease-in-out origin-bottom-right ${cardClass}`}
                 >
                   <Image
                     src={slide.image}
@@ -123,7 +155,7 @@ export default function Hero() {
                     sizes="(max-width: 768px) 100vw, 400px"
                   />
                   <div
-                    className={`absolute inset-0 bg-black transition-opacity duration-500 pointer-events-none ${isActive && !isShufflingOut ? "opacity-0" : "opacity-30"}`}
+                    className={`absolute inset-0 bg-black transition-opacity duration-500 pointer-events-none ${overlayOpacity}`}
                   />
                 </div>
               );
