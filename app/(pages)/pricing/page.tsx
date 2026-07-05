@@ -7,7 +7,7 @@ import Container from "@/app/components/layout/Container";
 import { PageHeroAnimation } from "@/app/components/animations/PageAnimations";
 import { Check, ChevronDown, Truck, Clock } from "lucide-react";
 
-type Tab = "laundry" | "carwash";
+type Tab = "laundry" | "carwash" | "househelp";
 
 const laundryCards = [
   {
@@ -285,6 +285,125 @@ const carWashItemized = [
   },
 ];
 
+const houseHelpCards = [
+  {
+    title: "Bathroom Cleaning",
+    price: "₹499",
+    unit: "Starting From",
+    popular: false,
+    features: [
+      "Deep Stain Removal",
+      "Floor Scrubbing",
+      "Fixture Polishing",
+      "Anti-Bacterial Finish",
+    ],
+  },
+  {
+    title: "Kitchen Cleaning",
+    price: "₹1,199",
+    unit: "Starting From",
+    popular: false,
+    features: [
+      "Cabinet Cleaning",
+      "Stove & Sink Deep Clean",
+      "Chimney & Exhaust",
+      "Grease Removal",
+    ],
+  },
+  {
+    title: "Full Home Cleaning",
+    price: "₹2,499",
+    unit: "Starting From",
+    popular: true,
+    features: [
+      "All Rooms Cleaning",
+      "Bathroom Deep Clean",
+      "Kitchen Deep Clean",
+      "Dusting & Mopping",
+      "Professional Equipment",
+    ],
+  },
+];
+
+const houseHelpItemized = [
+  {
+    category: "1) Full Home Cleaning",
+    desc: "Comprehensive cleaning for your entire home.",
+    items: [
+      { name: "1 BHK", price: "₹2,499" },
+      { name: "2 BHK", price: "₹3,499" },
+      { name: "3 BHK", price: "₹4,799" },
+      { name: "4 BHK", price: "₹6,299" },
+      { name: "Villa", price: "₹8,999 onwards" },
+    ],
+    addons: [
+      { name: "Balcony Cleaning", price: "₹399" },
+      { name: "Fridge Cleaning", price: "₹499" },
+      { name: "Microwave Cleaning", price: "₹199" },
+      { name: "Cabinet Cleaning", price: "₹699" },
+      { name: "Deep Floor Scrubbing", price: "₹899" },
+      { name: "Sofa Vacuuming", price: "₹499" },
+    ],
+  },
+  {
+    category: "2) Bathroom Cleaning",
+    desc: "Deep cleaning and sanitization for bathrooms.",
+    items: [
+      { name: "1 Bathroom", price: "₹499" },
+      { name: "2 Bathrooms", price: "₹899" },
+      { name: "3 Bathrooms", price: "₹1,299" },
+      { name: "4 Bathrooms", price: "₹1,699" },
+    ],
+    addons: [
+      { name: "Hard Water Stain Removal", price: "₹249" },
+      { name: "Anti-Bacterial Treatment", price: "₹199" },
+      { name: "Exhaust Cleaning", price: "₹149" },
+    ],
+  },
+  {
+    category: "3) Kitchen Cleaning",
+    desc: "Thorough cleaning for kitchen appliances and surfaces.",
+    items: [
+      { name: "Standard Kitchen", price: "₹1,199" },
+      { name: "Deep Kitchen Cleaning", price: "₹1,999" },
+    ],
+    addons: [
+      { name: "Chimney Cleaning", price: "₹499" },
+      { name: "Cabinet Cleaning", price: "₹599" },
+      { name: "Sink Deep Cleaning", price: "₹249" },
+      { name: "Refrigerator Exterior Cleaning", price: "₹199" },
+    ],
+  },
+  {
+    category: "4) Sofa Cleaning",
+    desc: "Professional sofa shampooing and stain removal.",
+    items: [
+      { name: "3 Seater Sofa", price: "₹699" },
+      { name: "5 Seater Sofa", price: "₹999" },
+      { name: "7 Seater Sofa", price: "₹1,399" },
+      { name: "Recliner", price: "₹499 per seat" },
+    ],
+    addons: [
+      { name: "Steam Sanitization", price: "₹299" },
+      { name: "Stain Protection", price: "₹399" },
+      { name: "Pet Hair Removal", price: "₹249" },
+    ],
+  },
+  {
+    category: "5) Mattress Cleaning",
+    desc: "Deep vacuuming and sanitization for mattresses.",
+    items: [
+      { name: "Single Mattress", price: "₹499" },
+      { name: "Double Mattress", price: "₹799" },
+      { name: "King Size Mattress", price: "₹999" },
+    ],
+    addons: [
+      { name: "Anti-Bacterial Treatment", price: "₹199" },
+      { name: "Dust Mite Treatment", price: "₹299" },
+    ],
+  },
+];
+
 interface PricingItem {
   name: string;
   price: string;
@@ -393,7 +512,7 @@ export default function PricingPage() {
 
       <main className="pt-[140px] pb-[100px]">
         <PageHeroAnimation variant="centered">
-          <Container isMaxWidth className="px-[24px]">
+          <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
             {/* Header */}
             <div className="text-center max-w-[700px] mx-auto mb-[60px]">
               <h1
@@ -414,7 +533,7 @@ export default function PricingPage() {
               <div className="bg-[var(--card)] border border-[var(--line)] rounded-full p-[6px] flex shadow-sm">
                 <button
                   onClick={() => setActiveTab("laundry")}
-                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium transition-all duration-300 ${
+                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium cursor-pointer transition-all duration-300 ${
                     activeTab === "laundry"
                       ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
                       : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
@@ -424,13 +543,23 @@ export default function PricingPage() {
                 </button>
                 <button
                   onClick={() => setActiveTab("carwash")}
-                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium transition-all duration-300 ${
+                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium cursor-pointer transition-all duration-300 ${
                     activeTab === "carwash"
                       ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
                       : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
                   }`}
                 >
                   Car Wash Pricing
+                </button>
+                <button
+                  onClick={() => setActiveTab("househelp")}
+                  className={`px-[32px] py-[12px] rounded-full text-[15px] font-medium cursor-pointer transition-all duration-300 ${
+                    activeTab === "househelp"
+                      ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
+                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                  }`}
+                >
+                  House Help Pricing
                 </button>
               </div>
             </div>
@@ -463,7 +592,7 @@ export default function PricingPage() {
                       }`}
                     >
                       {card.popular && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
                           Most Popular
                         </div>
                       )}
@@ -560,7 +689,7 @@ export default function PricingPage() {
                       }`}
                     >
                       {card.popular && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
                           Most Popular
                         </div>
                       )}
@@ -624,6 +753,103 @@ export default function PricingPage() {
                   <div className="flex items-center gap-3">
                     <Check className="w-5 h-5 text-[var(--gold)]" />
                     <span>Safe products. Scratch-free care.</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* HOUSE HELP PRICING SECTION */}
+            {activeTab === "househelp" && (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="mb-[60px]">
+                  <h2
+                    className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    House Help Pricing
+                  </h2>
+                  <p className="text-[15px] text-[var(--ink-soft)]">
+                    Professional, verified cleaners for your home. <br />
+                    Enjoy a spotless living space without the hassle.
+                  </p>
+                </div>
+
+                {/* House Help Cards Grid */}
+                <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
+                  {houseHelpCards.map((card, idx) => (
+                    <div
+                      key={idx}
+                      className={`min-w-[280px] md:min-w-0 snap-center rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
+                        card.popular
+                          ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
+                          : "border-[var(--line)]"
+                      }`}
+                    >
+                      {card.popular && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
+                          Most Popular
+                        </div>
+                      )}
+                      <div className="p-[32px] text-center flex-1 flex flex-col">
+                        <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
+                          {card.title}
+                        </h3>
+                        <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
+                          {card.unit}
+                        </p>
+                        <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
+                          {card.price}
+                        </div>
+
+                        <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
+                          {card.features.map((feature, fIdx) => (
+                            <li
+                              key={fIdx}
+                              className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                            >
+                              <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <button
+                          className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
+                            card.popular
+                              ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
+                              : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
+                          }`}
+                        >
+                          Book Now
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Detailed Itemized Prices */}
+                <div className="max-w-[900px] mx-auto">
+                  <h3
+                    className="text-[22px] font-medium text-[var(--ink)] mb-[24px] text-center"
+                    style={{ fontFamily: "var(--font-fraunces)" }}
+                  >
+                    Detailed Packages
+                  </h3>
+                  {houseHelpItemized.map((section, idx) => (
+                    <PricingAccordion key={idx} {...section} />
+                  ))}
+                </div>
+
+                {/* Delivery Note */}
+                <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-[var(--gold)]" />
+                    <span>Flexible scheduling available</span>
+                  </div>
+                  <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-[var(--gold)]" />
+                    <span>Trusted, verified professionals.</span>
                   </div>
                 </div>
               </div>

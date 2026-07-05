@@ -44,7 +44,7 @@ export default function AccordionPageLayout({
       <PageHeroAnimation variant="split">
         <Container
           isMaxWidth={true}
-          className="mt-[70px] px-[24px] pt-16 pb-12 md:pt-24 md:pb-16"
+          className="mt-[70px] px-[clamp(20px,5vw,56px)] pt-16 pb-12 md:pt-24 md:pb-16"
         >
           <div className="max-w-[700px] page-hero-left gsap-animate opacity-0">
             <h1
@@ -70,7 +70,10 @@ export default function AccordionPageLayout({
       </PageHeroAnimation>
 
       <PageSectionsAnimation>
-        <Container isMaxWidth={true} className="px-[24px] pb-16 md:pb-24">
+        <Container
+          isMaxWidth={true}
+          className="px-[clamp(20px,5vw,56px)] pb-16 md:pb-24"
+        >
           <div className="max-w-[1000px] page-section gsap-animate opacity-0">
             {/* Accordion Wrapper */}
             <div className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden">

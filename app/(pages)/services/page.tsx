@@ -39,7 +39,7 @@ export default function ServicesPage() {
 
       <PageHeroAnimation variant="split">
         <main className="pt-[100px] md:pt-[140px] pb-[80px]">
-          <Container isMaxWidth className="px-[24px]">
+          <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
             {/* Header */}
             <div className="text-center max-w-[700px] mx-auto mb-[60px] md:mb-[80px] gsap-animate opacity-0 page-hero-left">
               <h1

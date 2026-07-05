@@ -39,8 +39,8 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-10 px-5">
-        <Container isMaxWidth>
+      <section className="pt-32 pb-10">
+        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-[45%]">
               <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-6">
@@ -126,8 +126,8 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="lg:w-[55%] flex gap-4 lg:gap-6 mt-10 lg:mt-0 w-full h-[400px] md:h-[600px]">
-              <div className="relative w-1/2 h-[85%] rounded-2xl md:rounded-3xl overflow-hidden self-end">
+            <div className="lg:w-[55%] flex flex-col gap-6 mt-10 lg:mt-0 w-full">
+              <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden">
                 <Image
                   src="/images/about/about_premium_laundry_1782044569187.png"
                   fill
@@ -136,7 +136,7 @@ export default function AboutPage() {
                   priority
                 />
               </div>
-              <div className="relative w-1/2 h-[85%] rounded-2xl md:rounded-3xl overflow-hidden self-start">
+              <div className="relative w-full h-[250px] md:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden">
                 <Image
                   src="/images/about/about_professional_car_wash_1782044582076.png"
                   fill
@@ -151,8 +151,8 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="px-5 my-10">
-        <Container isMaxWidth>
+      <section className="my-10">
+        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="bg-[var(--ground-soft)] rounded-3xl p-8 md:p-10 flex flex-wrap lg:flex-nowrap justify-between gap-8 md:gap-10">
             <div className="flex items-center gap-5 w-full md:w-[45%] lg:w-auto">
               <div className="w-12 h-12 rounded-full border border-[var(--gold)] text-[var(--gold)] flex items-center justify-center shrink-0">
@@ -222,8 +222,8 @@ export default function AboutPage() {
       </section>
 
       {/* Who We Are */}
-      <section className="py-20 px-5">
-        <Container isMaxWidth>
+      <section className="py-20">
+        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-1/2 relative h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden">
               <Image
@@ -267,8 +267,8 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 px-5 bg-gradient-to-b from-[var(--ground)] to-[var(--ground-soft)]">
-        <Container isMaxWidth>
+      <section className="py-24 bg-gradient-to-b from-[var(--ground)] to-[var(--ground-soft)]">
+        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="text-center mb-16">
             <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
               Why Choose Us
@@ -329,8 +329,8 @@ export default function AboutPage() {
       </section>
 
       {/* Our Process */}
-      <section className="py-24 px-5">
-        <Container isMaxWidth>
+      <section className="py-24">
+        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="text-center mb-16">
             <p className="text-[var(--gold)] uppercase text-[10px] font-bold tracking-[0.2em] mb-4">
               Our Process
@@ -450,8 +450,8 @@ export default function AboutPage() {
       </section>
 
       {/* Focus / Mission / Vision Cards */}
-      <section className="py-10 px-5">
-        <Container isMaxWidth>
+      <section className="py-10">
+        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Focus Card */}
             <div className="bg-[var(--ground-soft)] rounded-[32px] p-8 md:p-10 flex flex-col h-[550px] md:h-[650px] overflow-hidden relative">
@@ -555,8 +555,8 @@ export default function AboutPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 px-5 mb-10">
-        <Container isMaxWidth>
+      <section className="py-20 mb-10">
+        <Container isMaxWidth className="px-[clamp(20px,5vw,56px)]">
           <div className="bg-gradient-to-r from-[var(--ground-soft)] to-[var(--ground)] rounded-[40px] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between relative overflow-hidden min-h-[300px] md:min-h-[250px]">
             {/* Background Image */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[200px] md:h-[280px] w-full md:w-[700px] opacity-80 mix-blend-screen pointer-events-none">
