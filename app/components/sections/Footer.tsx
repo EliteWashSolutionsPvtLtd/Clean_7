@@ -146,10 +146,29 @@ export default function Footer() {
               >
                 delivered with elegance.
               </p>
-              <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
+              <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] mb-[16px]">
                 We&apos;re here to make your everyday simpler, fresher, and
                 beautifully taken care of.
               </p>
+              <div className="flex items-start gap-[12px] mb-[32px] text-[var(--ink-soft)]">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="shrink-0 mt-0.5"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <p className="text-[14px] leading-[1.6]">
+                  NH 58 Rohta Bypass Flyover Service Road Khadoli, Meerut
+                </p>
+              </div>
               <div className="flex items-center gap-[20px] text-[var(--ink-soft)]">
                 <a
                   href="#"
