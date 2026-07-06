@@ -70,20 +70,20 @@ export default function Hero() {
       </div>
 
       <div className={styles.visual}>
-        <div className="flex flex-col w-full md:max-w-[560px] px-4 md:px-0 pt-0 md:pt-20 pb-0 md:pb-12 mt-[30px] md:mt-12">
-          <div className="relative w-full h-[220px] md:w-[560px] md:h-[600px] overflow-hidden rounded-2xl md:rounded-3xl group">
+        <div className="flex flex-col w-full min-[981px]:max-w-[560px] px-4 min-[981px]:px-0 pt-0 min-[981px]:pt-20 pb-0 min-[981px]:pb-12 mt-[30px] min-[981px]:mt-12">
+          <div className="relative w-full h-[220px] min-[981px]:h-[500px] overflow-hidden rounded-2xl min-[981px]:rounded-3xl group">
             {/* Fade Overlays */}
-            <div className="hidden md:block absolute top-0 left-0 w-full h-[100px] bg-gradient-to-b from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
-            <div className="hidden md:block absolute bottom-0 left-0 w-full h-[100px] bg-gradient-to-t from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+            <div className="hidden min-[981px]:block absolute top-0 left-0 w-full h-[100px] bg-gradient-to-b from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+            <div className="hidden min-[981px]:block absolute bottom-0 left-0 w-full h-[100px] bg-gradient-to-t from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
 
-            <div className="md:hidden absolute top-0 left-0 h-full w-[60px] bg-gradient-to-r from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
-            <div className="md:hidden absolute top-0 right-0 h-full w-[60px] bg-gradient-to-l from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+            <div className="min-[981px]:hidden absolute top-0 left-0 h-full w-[60px] bg-gradient-to-r from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
+            <div className="min-[981px]:hidden absolute top-0 right-0 h-full w-[60px] bg-gradient-to-l from-[var(--ground)] to-transparent z-10 pointer-events-none"></div>
 
-            {/* Scrolling Container */}
-            <div className="flex flex-row md:flex-col gap-4 md:gap-6 w-max md:w-auto h-full md:h-auto animate-horizontal-marquee md:animate-vertical-marquee group-hover:[animation-play-state:paused] will-change-transform">
+            {/* Mobile Scrolling Container */}
+            <div className="min-[981px]:hidden flex flex-row gap-4 w-max h-full animate-horizontal-marquee group-hover:[animation-play-state:paused] will-change-transform">
               {/* First Set */}
-              <div className="flex flex-row md:flex-col gap-4 md:gap-6 h-full md:h-auto">
-                <div className="relative w-[280px] h-full md:w-full md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+              <div className="flex flex-row gap-4 h-full">
+                <div className="relative w-[280px] h-full rounded-2xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/laundry.png"
                     fill
@@ -92,7 +92,7 @@ export default function Hero() {
                     priority
                   />
                 </div>
-                <div className="relative w-[280px] h-full md:w-full md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-[280px] h-full rounded-2xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/car-wash.png"
                     fill
@@ -101,7 +101,7 @@ export default function Hero() {
                     priority
                   />
                 </div>
-                <div className="relative w-[280px] h-full md:w-full md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-[280px] h-full rounded-2xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/house-help.png"
                     fill
@@ -113,8 +113,8 @@ export default function Hero() {
               </div>
 
               {/* Duplicated Second Set */}
-              <div className="flex flex-row md:flex-col gap-4 md:gap-6 h-full md:h-auto">
-                <div className="relative w-[280px] h-full md:w-full md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+              <div className="flex flex-row gap-4 h-full">
+                <div className="relative w-[280px] h-full rounded-2xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/laundry.png"
                     fill
@@ -122,7 +122,7 @@ export default function Hero() {
                     alt="Premium Laundry"
                   />
                 </div>
-                <div className="relative w-[280px] h-full md:w-full md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-[280px] h-full rounded-2xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/car-wash.png"
                     fill
@@ -130,7 +130,69 @@ export default function Hero() {
                     alt="Professional Car Wash"
                   />
                 </div>
-                <div className="relative w-[280px] h-full md:w-full md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
+                <div className="relative w-[280px] h-full rounded-2xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/house-help.png"
+                    fill
+                    className="object-cover"
+                    alt="House Help Services"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Scrolling Container */}
+            <div className="hidden min-[981px]:flex flex-col gap-6 w-auto h-auto animate-vertical-marquee group-hover:[animation-play-state:paused] will-change-transform">
+              {/* First Set */}
+              <div className="flex flex-col gap-6 h-auto">
+                <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/laundry.png"
+                    fill
+                    className="object-cover"
+                    alt="Premium Laundry"
+                    priority
+                  />
+                </div>
+                <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/car-wash.png"
+                    fill
+                    className="object-cover"
+                    alt="Professional Car Wash"
+                    priority
+                  />
+                </div>
+                <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/house-help.png"
+                    fill
+                    className="object-cover"
+                    alt="House Help Services"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Duplicated Second Set */}
+              <div className="flex flex-col gap-6 h-auto">
+                <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/laundry.png"
+                    fill
+                    className="object-cover"
+                    alt="Premium Laundry"
+                  />
+                </div>
+                <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shrink-0">
+                  <Image
+                    src="/images/services/car-wash.png"
+                    fill
+                    className="object-cover"
+                    alt="Professional Car Wash"
+                  />
+                </div>
+                <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shrink-0">
                   <Image
                     src="/images/services/house-help.png"
                     fill

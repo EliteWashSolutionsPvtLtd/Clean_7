@@ -267,7 +267,7 @@ export default function HowItWorks() {
           <StepGrid steps={houseHelpSteps} isCircularImage={true} />
 
           {/* Trust Indicators Footer */}
-          <div className="mt-[48px] md:mt-[64px] max-w-[1000px] w-full mx-auto border border-white/10 rounded-[20px] md:rounded-full py-[24px] px-[16px] md:py-[24px] md:px-[40px] grid grid-cols-2 md:flex md:flex-row items-center justify-between gap-y-[32px] gap-x-[16px] md:gap-0 bg-transparent text-[var(--gold)]">
+          <div className="mt-[48px] md:mt-[64px] max-w-[1000px] w-full mx-auto border border-[#D4AF37]/40 rounded-[20px] md:rounded-full py-[24px] px-[16px] md:py-[24px] md:px-[40px] grid grid-cols-2 md:flex md:flex-row items-center justify-between gap-y-[32px] gap-x-[16px] md:gap-0 bg-transparent text-[#D4AF37]">
             <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
               <ShieldCheck
                 className="w-[28px] h-[28px] md:w-[24px] md:h-[24px] shrink-0"
@@ -278,7 +278,7 @@ export default function HowItWorks() {
               </span>
             </div>
 
-            <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
+            <div className="hidden md:block w-[1px] h-[24px] bg-[#D4AF37]/30"></div>
 
             <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
               <Clock
@@ -291,7 +291,7 @@ export default function HowItWorks() {
               </span>
             </div>
 
-            <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
+            <div className="hidden md:block w-[1px] h-[24px] bg-[#D4AF37]/30"></div>
 
             <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
               <Lock
@@ -303,7 +303,7 @@ export default function HowItWorks() {
               </span>
             </div>
 
-            <div className="hidden md:block w-[1px] h-[24px] bg-white/10"></div>
+            <div className="hidden md:block w-[1px] h-[24px] bg-[#D4AF37]/30"></div>
 
             <div className="flex flex-col md:flex-row items-center gap-[12px] justify-center text-center md:text-left">
               <ThumbsUp

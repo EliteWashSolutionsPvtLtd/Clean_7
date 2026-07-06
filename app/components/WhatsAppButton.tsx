@@ -29,7 +29,7 @@ export default function WhatsAppButton() {
     };
   }, [isOpen]);
 
-  const phoneNumber = "919368507973"; // With country code
+  const phoneNumber = "917078497263"; // With country code
   const bookServiceMessage = encodeURIComponent(
     "Hi, I would like to book a service.",
   );
