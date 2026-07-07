@@ -166,6 +166,9 @@
   align-items: center;
   justify-content: flex-end;
   padding-right: clamp(20px, 5vw, 56px);
+  opacity: 0;
+  animation: heroRise 0.8s ease forwards;
+  animation-delay: 1.0s;
 }
 
 .foldStack {
