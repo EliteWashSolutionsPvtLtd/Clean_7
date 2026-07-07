@@ -3,7 +3,8 @@ import { canonicalPath } from "@/app/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Laundry, home cleaning, doorstep car wash, and pest control — explore Clean7 services and book from the app.",
+  description:
+    "Laundry, home cleaning, doorstep car wash, and pest control — explore Clean7 services and book from the app.",
   alternates: { canonical: canonicalPath("/services") },
 };
 

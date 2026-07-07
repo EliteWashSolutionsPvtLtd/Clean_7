@@ -28,7 +28,7 @@ type Props = {
 };
 
 const categoryImageMap: Record<string, string> = {
-  "laundry": "/images/about/service-laundry.png",
+  laundry: "/images/about/service-laundry.png",
   "home-cleaning": "/images/about/service-home-cleaning.png",
   "doorstep-car-wash": "/images/about/service-car-wash.png",
   "pest-control": "/images/about/service-pest-control.png",
@@ -67,7 +67,7 @@ export default function ServiceCategoriesGrid({
               start: "top 80%",
               once: true,
             },
-          }
+          },
         );
       }
 
@@ -87,7 +87,7 @@ export default function ServiceCategoriesGrid({
               start: "top 85%",
               once: true,
             },
-          }
+          },
         );
       });
     }, sectionRef);
@@ -150,7 +150,9 @@ export default function ServiceCategoriesGrid({
             <div className="relative mt-10 flex-1 w-full overflow-hidden min-h-[240px] sm:min-h-[280px] z-0">
               <div className="absolute inset-0 bg-gradient-to-b from-white via-white/20 to-transparent z-10 h-16 pointer-events-none" />
               <Image
-                src={categoryImageMap[cat.slug] || "/images/about/hero-towels.png"}
+                src={
+                  categoryImageMap[cat.slug] || "/images/about/hero-towels.png"
+                }
                 alt={cat.cardTitle}
                 fill
                 className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] group-hover:scale-105"

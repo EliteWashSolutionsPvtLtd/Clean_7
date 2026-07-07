@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ScrollTrigger } from "@/app/lib/animations";
+import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import Container from "@/app/components/layout/Container";
@@ -525,12 +526,12 @@ export default function PricingPage() {
             {/* Header */}
             <div className="text-center max-w-[700px] mx-auto mb-[60px]">
               <h1
-                className="text-[48px] md:text-[64px] text-[var(--ink)] leading-none mb-[20px]"
+                className="page-hero-title text-[48px] md:text-[64px] text-[var(--ink)] leading-none mb-[20px]"
                 style={{ fontFamily: "var(--font-fraunces)" }}
               >
                 Pricing
               </h1>
-              <p className="text-[16px] md:text-[18px] text-[var(--ink-soft)]">
+              <p className="page-hero-meta text-[16px] md:text-[18px] text-[var(--ink-soft)]">
                 Premium care. Transparent pricing.{" "}
                 <br className="hidden md:block" />
                 Choose what suits you best.
@@ -538,7 +539,7 @@ export default function PricingPage() {
             </div>
 
             {/* Tab Switcher */}
-            <div className="flex justify-center mb-[60px] md:mb-[80px] w-full">
+            <div className="page-hero-subtitle flex justify-center mb-[60px] md:mb-[80px] w-full">
               <div className="bg-[var(--card)] border border-[var(--line)] rounded-full p-[4px] md:p-[6px] flex shadow-sm w-full sm:w-auto justify-between sm:justify-start">
                 <button
                   onClick={() => setActiveTab("laundry")}
@@ -579,69 +580,76 @@ export default function PricingPage() {
             {/* LAUNDRY PRICING SECTION */}
             {activeTab === "laundry" && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <div className="mb-[60px]">
-                  <h2
-                    className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    Laundry Pricing
-                  </h2>
-                  <p className="text-[15px] text-[var(--ink-soft)]">
-                    Professional care for your clothes and fabrics. <br />
-                    Clean, fresh, and perfectly folded.
-                  </p>
-                </div>
+                <ScrollReveal delay={0}>
+                  <div className="mb-[60px]">
+                    <h2
+                      className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
+                      style={{ fontFamily: "var(--font-fraunces)" }}
+                    >
+                      Laundry Pricing
+                    </h2>
+                    <p className="text-[15px] text-[var(--ink-soft)]">
+                      Professional care for your clothes and fabrics. <br />
+                      Clean, fresh, and perfectly folded.
+                    </p>
+                  </div>
+                </ScrollReveal>
 
                 {/* Laundry Cards Grid */}
                 <div className="flex overflow-x-auto pt-8 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-3 lg:grid-cols-5 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
                   {laundryCards.map((card, idx) => (
-                    <div
+                    <ScrollReveal
+                      delay={idx * 150}
                       key={idx}
-                      className={`min-w-[280px] md:min-w-0 snap-center rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
-                        card.popular
-                          ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
-                          : "border-[var(--line)]"
-                      }`}
+                      className="h-full w-full sm:w-auto shrink-0 snap-center"
                     >
-                      {card.popular && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
-                          Most Popular
-                        </div>
-                      )}
-                      <div className="p-[32px] text-center flex-1 flex flex-col">
-                        <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
-                          {card.title}
-                        </h3>
-                        <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
-                          {card.unit}
-                        </p>
-                        <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
-                          {card.price}
-                        </div>
+                      <div
+                        className={`min-w-[280px] md:min-w-0 h-full rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
+                          card.popular
+                            ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
+                            : "border-[var(--line)]"
+                        }`}
+                      >
+                        {card.popular && (
+                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
+                            Most Popular
+                          </div>
+                        )}
+                        <div className="p-[32px] text-center flex-1 flex flex-col">
+                          <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
+                            {card.title}
+                          </h3>
+                          <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
+                            {card.unit}
+                          </p>
+                          <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
+                            {card.price}
+                          </div>
 
-                        <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
-                          {card.features.map((feature, fIdx) => (
-                            <li
-                              key={fIdx}
-                              className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
-                            >
-                              <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
-                              <span>{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
+                          <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
+                            {card.features.map((feature, fIdx) => (
+                              <li
+                                key={fIdx}
+                                className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                              >
+                                <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
 
-                        <button
-                          className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
-                            card.popular
-                              ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
-                              : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
-                          }`}
-                        >
-                          Book Now
-                        </button>
+                          <button
+                            className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
+                              card.popular
+                                ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
+                                : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
+                            }`}
+                          >
+                            Book Now
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    </ScrollReveal>
                   ))}
                 </div>
 
@@ -654,91 +662,104 @@ export default function PricingPage() {
                     Itemized Pricing
                   </h3>
                   {laundryItemized.map((section, idx) => (
-                    <PricingAccordion key={idx} {...section} />
+                    <ScrollReveal delay={idx * 100} key={idx}>
+                      <PricingAccordion {...section} />
+                    </ScrollReveal>
                   ))}
                 </div>
 
                 {/* Delivery Note */}
-                <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
-                  <div className="flex items-center gap-3">
-                    <Truck className="w-5 h-5 text-[var(--gold)]" />
-                    <span>Free pickup & delivery on all orders above ₹299</span>
+                <ScrollReveal delay={0}>
+                  <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
+                    <div className="flex items-center gap-3">
+                      <Truck className="w-5 h-5 text-[var(--gold)]" />
+                      <span>
+                        Free pickup & delivery on all orders above ₹299
+                      </span>
+                    </div>
+                    <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
+                    <div className="flex items-center gap-3">
+                      <Clock className="w-5 h-5 text-[var(--gold)]" />
+                      <span>Express delivery available</span>
+                    </div>
                   </div>
-                  <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
-                  <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-[var(--gold)]" />
-                    <span>Express delivery available</span>
-                  </div>
-                </div>
+                </ScrollReveal>
               </div>
             )}
 
             {/* CAR WASH PRICING SECTION */}
             {activeTab === "carwash" && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <div className="mb-[60px]">
-                  <h2
-                    className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    Car Wash Pricing
-                  </h2>
-                  <p className="text-[15px] text-[var(--ink-soft)]">
-                    Expert care for your car, inside out. <br />
-                    Choose the perfect wash for your ride.
-                  </p>
-                </div>
+                <ScrollReveal delay={0}>
+                  <div className="mb-[60px]">
+                    <h2
+                      className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
+                      style={{ fontFamily: "var(--font-fraunces)" }}
+                    >
+                      Car Wash Pricing
+                    </h2>
+                    <p className="text-[15px] text-[var(--ink-soft)]">
+                      Expert care for your car, inside out. <br />
+                      Choose the perfect wash for your ride.
+                    </p>
+                  </div>
+                </ScrollReveal>
 
                 {/* Car Wash Cards Grid */}
                 <div className="flex overflow-x-auto pt-8 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
                   {carWashCards.map((card, idx) => (
-                    <div
+                    <ScrollReveal
+                      delay={idx * 150}
                       key={idx}
-                      className={`min-w-[280px] md:min-w-0 snap-center rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
-                        card.popular
-                          ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
-                          : "border-[var(--line)]"
-                      }`}
+                      className="h-full w-full sm:w-auto shrink-0 snap-center"
                     >
-                      {card.popular && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
-                          Most Popular
-                        </div>
-                      )}
-                      <div className="p-[32px] text-center flex-1 flex flex-col">
-                        <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
-                          {card.title}
-                        </h3>
-                        <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
-                          {card.unit}
-                        </p>
-                        <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
-                          {card.price}
-                        </div>
+                      <div
+                        className={`min-w-[280px] md:min-w-0 h-full rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
+                          card.popular
+                            ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
+                            : "border-[var(--line)]"
+                        }`}
+                      >
+                        {card.popular && (
+                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
+                            Most Popular
+                          </div>
+                        )}
+                        <div className="p-[32px] text-center flex-1 flex flex-col">
+                          <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
+                            {card.title}
+                          </h3>
+                          <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
+                            {card.unit}
+                          </p>
+                          <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
+                            {card.price}
+                          </div>
 
-                        <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
-                          {card.features.map((feature, fIdx) => (
-                            <li
-                              key={fIdx}
-                              className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
-                            >
-                              <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
-                              <span>{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
+                          <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
+                            {card.features.map((feature, fIdx) => (
+                              <li
+                                key={fIdx}
+                                className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                              >
+                                <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
 
-                        <button
-                          className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
-                            card.popular
-                              ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
-                              : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
-                          }`}
-                        >
-                          Book Now
-                        </button>
+                          <button
+                            className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
+                              card.popular
+                                ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
+                                : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
+                            }`}
+                          >
+                            Book Now
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    </ScrollReveal>
                   ))}
                 </div>
 
@@ -751,91 +772,102 @@ export default function PricingPage() {
                     Detailed Packages
                   </h3>
                   {carWashItemized.map((section, idx) => (
-                    <PricingAccordion key={idx} {...section} />
+                    <ScrollReveal delay={idx * 100} key={idx}>
+                      <PricingAccordion {...section} />
+                    </ScrollReveal>
                   ))}
                 </div>
 
                 {/* Delivery Note */}
-                <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
-                  <div className="flex items-center gap-3">
-                    <Truck className="w-5 h-5 text-[var(--gold)]" />
-                    <span>Doorstep service available</span>
+                <ScrollReveal delay={0}>
+                  <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
+                    <div className="flex items-center gap-3">
+                      <Truck className="w-5 h-5 text-[var(--gold)]" />
+                      <span>Doorstep service available</span>
+                    </div>
+                    <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
+                    <div className="flex items-center gap-3">
+                      <Check className="w-5 h-5 text-[var(--gold)]" />
+                      <span>Safe products. Scratch-free care.</span>
+                    </div>
                   </div>
-                  <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-[var(--gold)]" />
-                    <span>Safe products. Scratch-free care.</span>
-                  </div>
-                </div>
+                </ScrollReveal>
               </div>
             )}
 
             {/* HOUSE HELP PRICING SECTION */}
             {activeTab === "househelp" && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <div className="mb-[60px]">
-                  <h2
-                    className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    House Help Pricing
-                  </h2>
-                  <p className="text-[15px] text-[var(--ink-soft)]">
-                    Professional, verified cleaners for your home. <br />
-                    Enjoy a spotless living space without the hassle.
-                  </p>
-                </div>
+                <ScrollReveal delay={0}>
+                  <div className="mb-[60px]">
+                    <h2
+                      className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[16px]"
+                      style={{ fontFamily: "var(--font-fraunces)" }}
+                    >
+                      House Help Pricing
+                    </h2>
+                    <p className="text-[15px] text-[var(--ink-soft)]">
+                      Professional, verified cleaners for your home. <br />
+                      Enjoy a spotless living space without the hassle.
+                    </p>
+                  </div>
+                </ScrollReveal>
 
                 {/* House Help Cards Grid */}
                 <div className="flex overflow-x-auto pt-8 md:pt-0 pb-8 snap-x snap-mandatory hide-scrollbar gap-5 mb-[80px] md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0 md:snap-none md:gap-6">
                   {houseHelpCards.map((card, idx) => (
-                    <div
+                    <ScrollReveal
+                      delay={idx * 150}
                       key={idx}
-                      className={`min-w-[280px] md:min-w-0 snap-center rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
-                        card.popular
-                          ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
-                          : "border-[var(--line)]"
-                      }`}
+                      className="h-full w-full sm:w-auto shrink-0 snap-center"
                     >
-                      {card.popular && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
-                          Most Popular
-                        </div>
-                      )}
-                      <div className="p-[32px] text-center flex-1 flex flex-col">
-                        <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
-                          {card.title}
-                        </h3>
-                        <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
-                          {card.unit}
-                        </p>
-                        <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
-                          {card.price}
-                        </div>
+                      <div
+                        className={`min-w-[280px] md:min-w-0 h-full rounded-2xl border bg-[var(--card)] flex flex-col transition-all duration-300 hover:-translate-y-2 relative ${
+                          card.popular
+                            ? "border-[var(--gold)] shadow-[0_0_20px_rgba(184,137,62,0.15)]"
+                            : "border-[var(--line)]"
+                        }`}
+                      >
+                        {card.popular && (
+                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold)] text-[var(--ground)] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
+                            Most Popular
+                          </div>
+                        )}
+                        <div className="p-[32px] text-center flex-1 flex flex-col">
+                          <h3 className="text-[18px] font-medium text-[var(--gold)] mb-[16px]">
+                            {card.title}
+                          </h3>
+                          <p className="text-[13px] text-[var(--ink-soft)] uppercase tracking-wider mb-[12px]">
+                            {card.unit}
+                          </p>
+                          <div className="text-[42px] font-light text-[var(--ink)] mb-[32px] leading-none">
+                            {card.price}
+                          </div>
 
-                        <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
-                          {card.features.map((feature, fIdx) => (
-                            <li
-                              key={fIdx}
-                              className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
-                            >
-                              <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
-                              <span>{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
+                          <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
+                            {card.features.map((feature, fIdx) => (
+                              <li
+                                key={fIdx}
+                                className="flex items-start gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                              >
+                                <Check className="w-[16px] h-[16px] shrink-0 text-[var(--gold)] mt-[2px]" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
 
-                        <button
-                          className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
-                            card.popular
-                              ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
-                              : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
-                          }`}
-                        >
-                          Book Now
-                        </button>
+                          <button
+                            className={`w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors ${
+                              card.popular
+                                ? "bg-[var(--gold)] text-[var(--ground)] hover:bg-[var(--gold-bright)]"
+                                : "bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]"
+                            }`}
+                          >
+                            Book Now
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    </ScrollReveal>
                   ))}
                 </div>
 
@@ -848,22 +880,26 @@ export default function PricingPage() {
                     Detailed Packages
                   </h3>
                   {houseHelpItemized.map((section, idx) => (
-                    <PricingAccordion key={idx} {...section} />
+                    <ScrollReveal delay={idx * 100} key={idx}>
+                      <PricingAccordion {...section} />
+                    </ScrollReveal>
                   ))}
                 </div>
 
                 {/* Delivery Note */}
-                <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
-                  <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-[var(--gold)]" />
-                    <span>Flexible scheduling available</span>
+                <ScrollReveal delay={0}>
+                  <div className="mt-[80px] bg-[var(--card)] border border-[var(--line)] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-[14px] text-[var(--ink-soft)]">
+                    <div className="flex items-center gap-3">
+                      <Clock className="w-5 h-5 text-[var(--gold)]" />
+                      <span>Flexible scheduling available</span>
+                    </div>
+                    <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
+                    <div className="flex items-center gap-3">
+                      <Check className="w-5 h-5 text-[var(--gold)]" />
+                      <span>Trusted, verified professionals.</span>
+                    </div>
                   </div>
-                  <div className="w-[1px] h-6 bg-[var(--line)] hidden md:block"></div>
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-[var(--gold)]" />
-                    <span>Trusted, verified professionals.</span>
-                  </div>
-                </div>
+                </ScrollReveal>
               </div>
             )}
           </Container>

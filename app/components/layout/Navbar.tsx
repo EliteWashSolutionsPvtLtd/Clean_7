@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
@@ -160,7 +160,6 @@ export default function Navbar() {
           >
             Blog
           </Link>
-
         </div>
         <div className={styles.mobileFooter}>
           {/* Legal Links Section */}

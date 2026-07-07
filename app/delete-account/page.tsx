@@ -10,12 +10,10 @@ import { canonicalPath } from "@/app/lib/site-config";
 import type { Metadata } from "next";
 import {
   AlertTriangle,
-  Clock,
-  Mail,
   Smartphone,
   Trash2,
   Shield,
-  HelpCircle
+  HelpCircle,
 } from "lucide-react";
 
 const SUPPORT_EMAIL = "support@clean7.in";
@@ -23,7 +21,8 @@ const SUPPORT_MAILTO = `mailto:${SUPPORT_EMAIL}`;
 
 export const metadata: Metadata = {
   title: "Delete Your Account",
-  description: "How to delete your Clean7 account and personal data from the mobile app.",
+  description:
+    "How to delete your Clean7 account and personal data from the mobile app.",
   alternates: { canonical: canonicalPath("/delete-account") },
 };
 
@@ -51,7 +50,8 @@ export default function DeleteAccountPage() {
                 Delete Your Clean7 Account
               </h1>
               <p className="page-hero-meta gsap-animate mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-[#5E5450] opacity-0 sm:text-[17px]">
-                At Clean7, we value your privacy and give users full control over their personal data.
+                At Clean7, we value your privacy and give users full control
+                over their personal data.
               </p>
             </div>
           </Container>
@@ -61,7 +61,6 @@ export default function DeleteAccountPage() {
       <PageSectionsAnimation sequentialSections>
         <Container isMaxWidth={true} className="px-[20px] pb-16 md:pb-24">
           <div className="mx-auto max-w-3xl space-y-6">
-            
             {/* How to Delete Your Account */}
             <section
               id="steps"
@@ -79,24 +78,38 @@ export default function DeleteAccountPage() {
                 </h2>
               </div>
               <p className="mb-6 text-[15px] leading-relaxed text-[#5E5450] sm:text-[16px]">
-                You can permanently delete your account directly from the app by following these steps:
+                You can permanently delete your account directly from the app by
+                following these steps:
               </p>
               <ol className="grid gap-3 mb-6">
                 <li className="flex gap-3 rounded-xl border border-[#E8DFD6]/60 bg-white/90 px-4 py-3.5 text-[15px] leading-relaxed text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.22)]">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">1</span>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">
+                    1
+                  </span>
                   <span className="pt-0.5">Open the Clean7 app</span>
                 </li>
                 <li className="flex gap-3 rounded-xl border border-[#E8DFD6]/60 bg-white/90 px-4 py-3.5 text-[15px] leading-relaxed text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.22)]">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">2</span>
-                  <span className="pt-0.5">Navigate to: <strong className="font-semibold text-[#3F3936]">Profile &gt; Other Information &gt; Account Privacy &gt; Request to Delete Account</strong></span>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">
+                    2
+                  </span>
+                  <span className="pt-0.5">
+                    Navigate to:{" "}
+                    <strong className="font-semibold text-[#3F3936]">
+                      Profile &gt; Other Information &gt; Account Privacy &gt;
+                      Request to Delete Account
+                    </strong>
+                  </span>
                 </li>
                 <li className="flex gap-3 rounded-xl border border-[#E8DFD6]/60 bg-white/90 px-4 py-3.5 text-[15px] leading-relaxed text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.22)]">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">3</span>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFF5EE] text-sm font-semibold text-[#C45C2A]">
+                    3
+                  </span>
                   <span className="pt-0.5">Confirm the deletion request</span>
                 </li>
               </ol>
               <p className="text-[15px] leading-relaxed text-[#5E5450] sm:text-[16px]">
-                For security purposes, you may be asked to verify your identity before deletion is completed.
+                For security purposes, you may be asked to verify your identity
+                before deletion is completed.
               </p>
             </section>
 
@@ -134,7 +147,10 @@ export default function DeleteAccountPage() {
                 </li>
                 <li className="flex items-start gap-2 rounded-xl bg-white/85 px-4 py-3 text-[15px] text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.3),-2px_-2px_8px_rgba(255,255,255,0.9)]">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
-                  <span>Your access to previous bookings and account history inside the app will no longer be available</span>
+                  <span>
+                    Your access to previous bookings and account history inside
+                    the app will no longer be available
+                  </span>
                 </li>
                 <li className="flex items-start gap-2 rounded-xl bg-white/85 px-4 py-3 text-[15px] text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.3),-2px_-2px_8px_rgba(255,255,255,0.9)]">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
@@ -143,7 +159,9 @@ export default function DeleteAccountPage() {
               </ul>
               <div className="space-y-4 rounded-2xl border border-amber-200/80 bg-amber-50/60 p-4 sm:p-5">
                 <p className="text-[15px] leading-relaxed text-[#5E5450] sm:text-[16px]">
-                  <strong className="font-semibold text-[#3F3936]">This action cannot be undone.</strong>
+                  <strong className="font-semibold text-[#3F3936]">
+                    This action cannot be undone.
+                  </strong>
                 </p>
               </div>
             </section>
@@ -165,7 +183,8 @@ export default function DeleteAccountPage() {
                 </h2>
               </div>
               <p className="mb-4 text-[15px] leading-relaxed text-[#5E5450] sm:text-[16px]">
-                Certain information may be retained for a limited period where required for:
+                Certain information may be retained for a limited period where
+                required for:
               </p>
               <ul className="mb-6 grid gap-2">
                 <li className="flex items-start gap-2 rounded-xl bg-white/85 px-4 py-3 text-[15px] text-[#5E5450] shadow-[2px_2px_8px_rgba(209,199,189,0.3),-2px_-2px_8px_rgba(255,255,255,0.9)]">
@@ -186,7 +205,8 @@ export default function DeleteAccountPage() {
                 </li>
               </ul>
               <p className="text-[15px] leading-relaxed text-[#5E5450] sm:text-[16px]">
-                Any retained data is securely protected and only stored for the duration required under applicable laws.
+                Any retained data is securely protected and only stored for the
+                duration required under applicable laws.
               </p>
             </section>
 
@@ -207,7 +227,8 @@ export default function DeleteAccountPage() {
                 </h2>
               </div>
               <p className="text-[15px] leading-relaxed text-[#5E5450] sm:text-[16px]">
-                If you are unable to access the app or require assistance regarding account deletion, please contact us at:{" "}
+                If you are unable to access the app or require assistance
+                regarding account deletion, please contact us at:{" "}
                 <a
                   href={SUPPORT_MAILTO}
                   className="font-semibold text-[#C45C2A] underline decoration-orange/40 underline-offset-2 transition hover:text-orange"
@@ -216,7 +237,6 @@ export default function DeleteAccountPage() {
                 </a>
               </p>
             </section>
-
           </div>
         </Container>
       </PageSectionsAnimation>

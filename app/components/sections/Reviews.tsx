@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ScrollReveal } from "../ui/ScrollReveal";
 
 const reviews = [

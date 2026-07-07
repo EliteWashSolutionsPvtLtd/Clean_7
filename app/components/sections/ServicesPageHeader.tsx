@@ -121,9 +121,7 @@ export default function ServicesPageHeader() {
           >
             Care Designed <br className="hidden md:block" /> for Every Fabric
           </h2>
-          <p
-            className="services-h-line mt-3 text-[16px] leading-[1.65] text-dark-brown opacity-0 sm:mt-4 sm:text-[18px]"
-          >
+          <p className="services-h-line mt-3 text-[16px] leading-[1.65] text-dark-brown opacity-0 sm:mt-4 sm:text-[18px]">
             From everyday laundry to delicate garments, we handle every piece
             with precision and care.
           </p>
