@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { WixMadeForDisplayFont } from "@/app/fonts";
+import { ScrollReveal } from "../ui/ScrollReveal";
 import AppStoreButton from "../ui/buttons/AppStoreButton";
 import GooglePlayButton from "../ui/buttons/GooglePlayButton";
 import {
@@ -294,22 +295,24 @@ export default function DownloadApp() {
           {/* Features List */}
           <div className="flex flex-col gap-[28px] mb-[50px]">
             {featureItems.map((item, i) => (
-              <div key={i} className="flex items-start gap-[20px]">
-                <div className="w-[48px] h-[48px] rounded-full bg-[var(--ground-soft)] flex items-center justify-center text-[var(--gold)] shrink-0 border border-[var(--line)]">
-                  {item.icon}
+              <ScrollReveal delay={i * 150} key={i}>
+                <div className="flex items-start gap-[20px]">
+                  <div className="w-[48px] h-[48px] rounded-full bg-[var(--ground-soft)] flex items-center justify-center text-[var(--gold)] shrink-0 border border-[var(--line)]">
+                    {item.icon}
+                  </div>
+                  <div className="pt-[2px]">
+                    <h4
+                      className="text-[17px] text-[var(--ink)] font-medium mb-[4px]"
+                      style={{ fontFamily: "var(--font-fraunces)" }}
+                    >
+                      {item.title}
+                    </h4>
+                    <p className="text-[14px] text-[var(--ink-soft)] leading-[1.5]">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="pt-[2px]">
-                  <h4
-                    className="text-[17px] text-[var(--ink)] font-medium mb-[4px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    {item.title}
-                  </h4>
-                  <p className="text-[14px] text-[var(--ink-soft)] leading-[1.5]">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 

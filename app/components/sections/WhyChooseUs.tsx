@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { ScrollReveal } from "../ui/ScrollReveal";
 const IconShirt = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
@@ -136,78 +137,85 @@ export default function WhyChooseUs() {
       <div className="max-w-[1300px] mx-auto">
         {/* Header */}
         <div className="text-center mb-[48px] md:mb-[80px]">
-          <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
-            WHY CHOOSE CLEAN7
-          </p>
-          <h2
-            className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            Care in every fold.
-            <br />
-            <span className="italic text-[var(--gold)] font-light">
-              Clean in every detail.
-            </span>
-          </h2>
-          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mx-auto">
-            We combine expert care with thoughtful service
-            <br className="hidden md:block" />
-            to deliver an experience that feels refreshingly simple.
-          </p>
+          <ScrollReveal delay={0}>
+            <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
+              THE CLEAN7 DIFFERENCE
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={150}>
+            <h2
+              className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              Everything you need.
+              <br />
+              <span className="italic text-[var(--gold)] font-light">
+                Nothing you don&apos;t.
+              </span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mx-auto">
+              We combine expert care with thoughtful service
+              <br className="hidden md:block" />
+              to deliver an experience that feels refreshingly simple.
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* 5-Column Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-[12px] md:gap-[20px] mb-[40px]">
           {features.map((feat, idx) => (
-            <div
-              key={idx}
-              className="bg-[var(--ground-soft)] rounded-[20px] md:rounded-[24px] p-[24px] md:p-[36px] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all hover:-translate-y-1 border border-transparent hover:border-[var(--gold)]/20"
-            >
-              <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[16px] md:mb-[24px]">
-                <feat.Icon className="w-5 h-5 md:w-7 md:h-7" />
+            <ScrollReveal delay={idx * 150} key={idx} className="h-full w-full">
+              <div className="h-full bg-[var(--ground-soft)] rounded-[20px] md:rounded-[24px] p-[24px] md:p-[36px] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all hover:-translate-y-1 border border-transparent hover:border-[var(--gold)]/20">
+                <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[16px] md:mb-[24px]">
+                  <feat.Icon className="w-5 h-5 md:w-7 md:h-7" />
+                </div>
+                <h3
+                  className="text-[16px] md:text-[15px] text-[var(--ink)] font-medium mb-[8px] md:mb-[12px]"
+                  style={{ fontFamily: "var(--font-fraunces)" }}
+                >
+                  {feat.title}
+                </h3>
+                <div className="w-[20px] md:w-[30px] h-[1px] bg-[var(--gold)]/40 mb-[10px] md:mb-[16px]"></div>
+                <p className="text-[15px] md:text-xs text-[var(--ink-soft)] leading-[1.5] md:leading-[1.6]">
+                  {feat.desc}
+                </p>
               </div>
-              <h3
-                className="text-[16px] md:text-[15px] text-[var(--ink)] font-medium mb-[8px] md:mb-[12px]"
-                style={{ fontFamily: "var(--font-fraunces)" }}
-              >
-                {feat.title}
-              </h3>
-              <div className="w-[20px] md:w-[30px] h-[1px] bg-[var(--gold)]/40 mb-[10px] md:mb-[16px]"></div>
-              <p className="text-[15px] md:text-xs text-[var(--ink-soft)] leading-[1.5] md:leading-[1.6]">
-                {feat.desc}
-              </p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* Satisfaction Bar */}
-        <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
-          <div className="w-full md:w-auto text-center md:text-left">
-            <p className="text-[var(--ink-soft)] leading-[1.6]">
-              If something&apos;s not right, we&apos;ll make it right - because
-              your trust is earned with every order.
-            </p>
-          </div>
+        <ScrollReveal delay={200}>
+          <div className="w-full bg-[var(--ground-soft)] border border-[var(--line)] rounded-[20px] p-[24px] md:px-[40px] md:py-[24px] flex flex-col md:flex-row items-center justify-between gap-[24px]">
+            <div className="w-full md:w-auto text-center md:text-left">
+              <p className="text-[var(--ink-soft)] leading-[1.6]">
+                If something&apos;s not right, we&apos;ll make it right -
+                because your trust is earned with every order.
+              </p>
+            </div>
 
-          <Link
-            href="/about"
-            className="flex items-center justify-center gap-[8px] w-full md:w-auto px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors whitespace-nowrap"
-          >
-            Learn more about us
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <Link
+              href="/about"
+              className="flex items-center justify-center gap-[8px] w-full md:w-auto px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors whitespace-nowrap"
             >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
+              Learn more about us
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
