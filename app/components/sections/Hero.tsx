@@ -3,22 +3,89 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/app/(pages)/services/laundry/Laundry.module.css";
+import { useState, useEffect, useRef } from "react";
+
+const AnimatedNumber = ({
+  end,
+  suffix = "",
+  duration = 2000,
+  decimals = 0,
+}: {
+  end: number;
+  suffix?: string;
+  duration?: number;
+  decimals?: number;
+}) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          setTimeout(() => {
+            let startTimestamp: number | null = null;
+            const step = (timestamp: number) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              const progress = Math.min(
+                (timestamp - startTimestamp) / duration,
+                1,
+              );
+              const easeProgress = 1 - Math.pow(1 - progress, 2);
+              setCount(easeProgress * end);
+              if (progress < 1) {
+                window.requestAnimationFrame(step);
+              } else {
+                setCount(end);
+              }
+            };
+            window.requestAnimationFrame(step);
+          }, 600);
+        }
+      },
+      { threshold: 1.0 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [end, duration, hasAnimated]);
+
+  return (
+    <span ref={ref}>
+      {count.toFixed(decimals)}
+      {suffix}
+    </span>
+  );
+};
 
 export default function Hero() {
   const TrustStats = ({ className }: { className?: string }) => (
     <div className={`${styles.trustRow} ${className || ""}`}>
       <div className={styles.trustStat}>
-        <div className={styles.num}>24 hr</div>
+        <div className={styles.num}>
+          <AnimatedNumber end={24} suffix=" hr" />
+        </div>
         <div className={styles.label}>Turnaround</div>
       </div>
       <div className={styles.trustDivider}></div>
       <div className={styles.trustStat}>
-        <div className={styles.num}>40k+</div>
+        <div className={styles.num}>
+          <AnimatedNumber end={40} suffix="k+" />
+        </div>
         <div className={styles.label}>Expected Garments monthly</div>
       </div>
       <div className={styles.trustDivider}></div>
       <div className={styles.trustStat}>
-        <div className={styles.num}>4.9</div>
+        <div className={styles.num}>
+          <AnimatedNumber end={4.9} decimals={1} />
+        </div>
         <div className={styles.label}>Expected Rating</div>
       </div>
     </div>
