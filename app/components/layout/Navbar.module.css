@@ -96,7 +96,7 @@
   top: 0;
   right: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: var(--background);
   z-index: 200; /* Extremely high to cover the navbar toggles */
   transform: translateX(100%);

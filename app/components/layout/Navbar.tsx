@@ -10,22 +10,15 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Prevent scrolling when mobile menu is open (including iOS Safari bounce)
+  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
 
-      const preventScroll = (e: TouchEvent) => {
-        e.preventDefault();
-      };
-      // Passive must be false to allow preventDefault
-      document.addEventListener("touchmove", preventScroll, { passive: false });
-
       return () => {
         document.body.style.overflow = "";
         document.documentElement.style.overflow = "";
-        document.removeEventListener("touchmove", preventScroll);
       };
     }
   }, [isOpen]);
@@ -72,10 +65,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link
-            href="/blog"
-            className={isActive("/blog") ? styles.active : ""}
-          >
+          <Link href="/blog" className={isActive("/blog") ? styles.active : ""}>
             Blog
           </Link>
         </li>
