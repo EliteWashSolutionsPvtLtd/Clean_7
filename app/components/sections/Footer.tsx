@@ -211,7 +211,7 @@ export default function Footer() {
                   <Link href="#" className={linkClass}>
                     Careers
                   </Link>
-                  <Link href="#" className={linkClass}>
+                  <Link href="/blog" className={linkClass}>
                     Blog
                   </Link>
                   <Link href="/contact" className={linkClass}>
