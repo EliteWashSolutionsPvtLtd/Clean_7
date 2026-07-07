@@ -161,6 +161,8 @@ export default function Navbar() {
             Blog
           </Link>
 
+        </div>
+        <div className={styles.mobileFooter}>
           {/* Legal Links Section */}
           <div className={styles.legalSection}>
             <span className={styles.legalTitle}>Legal</span>
@@ -186,8 +188,6 @@ export default function Navbar() {
               Terms of Use
             </Link>
           </div>
-        </div>
-        <div className={styles.mobileFooter}>
           <Link
             href="#download-app"
             className={styles.navCta}
