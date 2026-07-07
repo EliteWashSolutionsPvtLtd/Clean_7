@@ -2,6 +2,48 @@
 
 import Image from "next/image";
 import { ShieldCheck, Clock, Lock, ThumbsUp } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
+const ScrollReveal = ({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !isVisible) {
+          setTimeout(() => setIsVisible(true), delay);
+        }
+      },
+      { threshold: 0.1 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [isVisible, delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={`${className} transition-all duration-700 ease-out will-change-transform`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 const laundrySteps = [
   {
@@ -157,48 +199,63 @@ function StepGrid({
           className="flex flex-col items-center text-center flex-1 z-10 w-full"
         >
           {/* Badge */}
-          <div className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] rounded-full bg-[var(--gold)] text-[#FFFFFF] flex items-center justify-center text-[13px] sm:text-[15px] font-medium mb-[16px] sm:mb-[32px]">
-            {step.num}
-          </div>
+          <ScrollReveal
+            delay={idx * 150}
+            className="w-full flex justify-center mb-[16px] sm:mb-[32px]"
+          >
+            <div className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] rounded-full bg-[var(--gold)] text-[#FFFFFF] flex items-center justify-center text-[13px] sm:text-[15px] font-medium">
+              {step.num}
+            </div>
+          </ScrollReveal>
 
           {/* Image with glow behind it */}
-          <div className="relative flex items-center justify-center mb-[16px] sm:mb-[32px] md:mb-[40px] w-full h-[140px] sm:h-[200px] md:h-[260px]">
-            {/* Background circle (only for non-circular images) */}
-            {!isCircularImage && (
-              <div className="absolute w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
-            )}
+          <ScrollReveal
+            delay={idx * 150 + 100}
+            className="w-full flex justify-center mb-[16px] sm:mb-[32px] md:mb-[40px]"
+          >
+            <div className="relative flex items-center justify-center w-full h-[140px] sm:h-[200px] md:h-[260px]">
+              {/* Background circle (only for non-circular images) */}
+              {!isCircularImage && (
+                <div className="absolute w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
+              )}
 
-            {/* Image container */}
-            <div
-              className={`relative ${
-                isCircularImage
-                  ? "w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
-                  : "w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
-              }`}
-            >
-              <Image
-                src={step.img}
-                alt={step.title}
-                fill
-                className={
+              {/* Image container */}
+              <div
+                className={`relative ${
                   isCircularImage
-                    ? "object-cover"
-                    : "object-contain drop-shadow-[0_20px_30px_rgba(33,28,19,0.1)] scale-110"
-                }
-              />
+                    ? "w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
+                    : "w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
+                }`}
+              >
+                <Image
+                  src={step.img}
+                  alt={step.title}
+                  fill
+                  className={
+                    isCircularImage
+                      ? "object-cover"
+                      : "object-contain drop-shadow-[0_20px_30px_rgba(33,28,19,0.1)] scale-110"
+                  }
+                />
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Text */}
-          <h3
-            className="text-[15px] sm:text-[22px] text-[var(--ink)] mb-[8px] sm:mb-[16px] font-medium"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            {step.title}
-          </h3>
-          <p className="text-[13px] sm:text-[15px] text-[var(--ink-soft)] leading-[1.4] sm:leading-[1.6] max-w-[240px]">
-            {step.desc}
-          </p>
+          <ScrollReveal delay={idx * 150 + 200}>
+            <h3
+              className="text-[15px] sm:text-[22px] text-[var(--ink)] mb-[8px] sm:mb-[16px] font-medium"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              {step.title}
+            </h3>
+          </ScrollReveal>
+
+          <ScrollReveal delay={idx * 150 + 300}>
+            <p className="text-[13px] sm:text-[15px] text-[var(--ink-soft)] leading-[1.4] sm:leading-[1.6] max-w-[240px]">
+              {step.desc}
+            </p>
+          </ScrollReveal>
         </div>
       ))}
     </div>
@@ -214,57 +271,73 @@ export default function HowItWorks() {
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
         {/* Header */}
         <div className="text-center mb-[48px] md:mb-[80px]">
-          <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
-            HOW IT WORKS
-          </p>
-          <h2
-            className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            Care that&apos;s simple.
-            <br />
-            <span className="italic text-[var(--gold)] font-light">
-              Results that last.
-            </span>
-          </h2>
-          <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mx-auto">
-            We handle the hard work so you don&apos;t have to.
-            <br />
-            Clean, refreshed clothes in four easy steps.
-          </p>
+          <ScrollReveal delay={0}>
+            <p className="text-[15px] sm:text-[20px] font-bold tracking-[0.15em] text-[var(--gold)] uppercase mb-[16px] md:mb-[24px]">
+              HOW IT WORKS
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={150}>
+            <h2
+              className="text-[36px] md:text-[48px] lg:text-[64px] text-[var(--ink)] mb-[16px] md:mb-[24px] leading-[1.05]"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              Care that&apos;s simple.
+              <br />
+              <span className="italic text-[var(--gold)] font-light">
+                Results that last.
+              </span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <p className="text-[var(--ink-soft)] text-[17px] leading-[1.7] max-w-[500px] mx-auto">
+              We handle the hard work so you don&apos;t have to.
+              <br />
+              Clean, refreshed clothes in four easy steps.
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* Laundry Section */}
         <div className="w-full mb-[60px] md:mb-[80px]">
-          <h3
-            className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            Laundry
-          </h3>
+          <ScrollReveal delay={0}>
+            <h3
+              className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              Laundry
+            </h3>
+          </ScrollReveal>
           <StepGrid steps={laundrySteps} />
         </div>
 
         {/* Car Wash Section */}
         <div className="w-full mb-[60px] md:mb-[80px]">
-          <h3
-            className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            Doorstep Car Wash
-          </h3>
-          <StepGrid steps={carWashSteps} />
+          <ScrollReveal delay={0}>
+            <h3
+              className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              Doorstep Car Wash
+            </h3>
+          </ScrollReveal>
+          <ScrollReveal delay={150}>
+            <StepGrid steps={carWashSteps} />
+          </ScrollReveal>
         </div>
 
         {/* House Help Section */}
         <div className="w-full">
-          <h3
-            className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            House Help
-          </h3>
-          <StepGrid steps={houseHelpSteps} isCircularImage={true} />
+          <ScrollReveal delay={0}>
+            <h3
+              className="text-[28px] md:text-[36px] text-[var(--ink)] mb-[32px] md:mb-[48px] font-medium text-center"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              House Help
+            </h3>
+          </ScrollReveal>
+          <ScrollReveal delay={150}>
+            <StepGrid steps={houseHelpSteps} isCircularImage={true} />
+          </ScrollReveal>
 
           {/* Trust Indicators Footer */}
           <div className="mt-[48px] md:mt-[64px] max-w-[1000px] w-full mx-auto border border-[#D4AF37]/40 rounded-[20px] md:rounded-full py-[24px] px-[16px] md:py-[24px] md:px-[40px] grid grid-cols-2 md:flex md:flex-row items-center justify-between gap-y-[32px] gap-x-[16px] md:gap-0 bg-transparent text-[#D4AF37]">
