@@ -19,6 +19,7 @@ import {
   Download,
   PieChart,
 } from "lucide-react";
+import { franchiseFaqs } from "./faqs";
 
 const Modal = ({
   isOpen,
@@ -561,106 +562,8 @@ export default function FranchiseClient() {
         </div>
       </section>
 
-      {/* Franchise Support & FAQ */}
-      <section className="py-24 md:py-32">
-        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 lg:gap-24 items-start">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-[1px] bg-gold"></div>
-                <span className="text-[12.5px] tracking-[0.14em] uppercase text-ink-soft font-medium">
-                  Support
-                </span>
-              </div>
-              <h2 className="text-[clamp(36px,4vw,52px)] leading-[1.05] tracking-tight font-serif text-ink mb-6">
-                You&apos;re Building The Business. <br />
-                <em className="italic font-light text-gold-bright">
-                  We&apos;re Helping You Build It Right.
-                </em>
-              </h2>
-
-              <div className="flex flex-wrap gap-3 mt-10">
-                {[
-                  "Launch Assistance",
-                  "Branding",
-                  "Operations",
-                  "Technology",
-                  "Marketing",
-                  "Training",
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="px-[20px] py-[10px] rounded-full border border-line bg-ground-soft text-ink text-[14px] font-medium"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* FAQ */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <HelpCircle className="w-5 h-5 text-gold-bright" />
-                <span className="text-[16px] font-serif text-ink">
-                  Frequently Asked Questions
-                </span>
-              </div>
-              {[
-                {
-                  q: "Do I need previous experience?",
-                  a: "No prior experience is necessary. Our comprehensive training program and standard operating procedures (SOPs) will equip you with everything you need.",
-                },
-                {
-                  q: "How much investment is required?",
-                  a: "Investment varies by tier: Starter (₹5-8L), Standard (₹8-15L), and Premium (₹15L+). This covers initial setup, technology, branding, and training.",
-                },
-                {
-                  q: "Will I receive training?",
-                  a: "Yes, you and your staff will undergo rigorous training encompassing service delivery, technology usage, and customer service to maintain the Clean7 standard.",
-                },
-                {
-                  q: "Can I begin with selected services?",
-                  a: "While we recommend the multi-service model for maximum profitability, you can start with a core service (like laundry or cleaning) and expand your offerings as your market matures.",
-                },
-                {
-                  q: "What support will Clean7 provide?",
-                  a: "We provide end-to-end support including location selection, store design, marketing campaigns, ongoing operational guidance, and a robust technology platform.",
-                },
-              ].map((faq, i) => (
-                <div
-                  key={i}
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="group bg-ground border border-line rounded-2xl overflow-hidden hover:border-gold/30 transition-colors cursor-pointer"
-                >
-                  <div className="flex w-full items-center justify-between p-6 font-medium text-left text-ink hover:text-gold-bright transition-colors">
-                    <span className="text-[15px] pr-4">{faq.q}</span>
-                    <ChevronRight
-                      className={`w-4 h-4 shrink-0 transition-transform duration-300 text-gold-bright ${openFaq === i ? "rotate-90" : ""}`}
-                    />
-                  </div>
-                  <div
-                    className={`grid transition-all duration-300 ease-in-out ${
-                      openFaq === i
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="p-6 pt-5 text-[14px] text-ink-soft leading-[1.7] border-t border-line">
-                        {faq.a}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Vision & CTA Container */}
-      <section className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] pb-24 md:pb-32">
+      <section className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-16 md:py-24">
         <div className="bg-ground rounded-3xl overflow-hidden shadow-2xl relative text-ink border border-line">
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-line">
             {/* Vision */}
@@ -761,6 +664,45 @@ export default function FranchiseClient() {
               </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section Moved to Bottom */}
+      <section className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] pb-24 md:pb-32">
+        <div className="max-w-3xl mx-auto space-y-4">
+          <div className="flex items-center gap-3 mb-10 justify-center">
+            <HelpCircle className="w-5 h-5 text-gold-bright" />
+            <span className="text-[clamp(24px,3vw,32px)] font-serif text-ink">
+              Frequently Asked Questions
+            </span>
+          </div>
+          {franchiseFaqs.map((faq, i) => (
+            <div
+              key={i}
+              onClick={() => setOpenFaq(openFaq === i ? null : i)}
+              className="group bg-ground border border-line rounded-2xl overflow-hidden hover:border-gold/30 transition-colors cursor-pointer"
+            >
+              <div className="flex w-full items-center justify-between p-6 font-medium text-left text-ink hover:text-gold-bright transition-colors">
+                <span className="text-[15px] pr-4">{faq.q}</span>
+                <ChevronRight
+                  className={`w-4 h-4 shrink-0 transition-transform duration-300 text-gold-bright ${openFaq === i ? "rotate-90" : ""}`}
+                />
+              </div>
+              <div
+                className={`grid transition-all duration-300 ease-in-out ${
+                  openFaq === i
+                    ? "grid-rows-[1fr] opacity-100"
+                    : "grid-rows-[0fr] opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="p-6 pt-5 text-[14px] text-ink-soft leading-[1.7] border-t border-line whitespace-pre-line">
+                    {faq.a}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
