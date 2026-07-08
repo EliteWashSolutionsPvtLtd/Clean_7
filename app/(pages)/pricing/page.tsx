@@ -425,6 +425,14 @@ const PricingAccordion = ({
   addons,
 }: PricingAccordionProps) => {
   const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 550);
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
   return (
     <div className="border border-[var(--line)] bg-[var(--card)] rounded-xl overflow-hidden mb-4 transition-all duration-300">
       <button
