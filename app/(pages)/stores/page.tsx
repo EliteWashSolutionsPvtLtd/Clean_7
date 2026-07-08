@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
+import FilterModal from "@/app/components/ui/modals/FilterModal";
+import modalStyles from "@/app/components/ui/modals/FilterModal.module.css";
 import {
   Search,
   MapPin,
@@ -146,107 +149,166 @@ const stores = [
 ];
 
 export default function StoresPage() {
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  const [selectedCity, setSelectedCity] = useState("All Cities");
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedAvailability, setSelectedAvailability] = useState("Open Now");
+  const [selectedDistance, setSelectedDistance] = useState("Within 10 km");
+  const [selectedSort, setSelectedSort] = useState("Nearest");
+
+  const cities = [
+    "All Cities",
+    "Noida",
+    "Indirapuram",
+    "Ghaziabad",
+    "Delhi",
+    "Gurgaon",
+  ];
+  const servicesList = ["Laundry", "Car Wash", "House Help"];
+  const distances = ["Within 5 km", "Within 10 km", "Within 20 km", "Anywhere"];
+  const sorts = ["Nearest", "Highest Rated", "Most Reviewed"];
+
+  const toggleService = (service: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(service)
+        ? prev.filter((s) => s !== service)
+        : [...prev, service],
+    );
+  };
+
   return (
     <div className="bg-[var(--ground)] min-h-screen text-[var(--ink)]">
       <Navbar />
       <div className={styles.container}>
-        {/* Header Section */}
-        <div className={styles.header}>
-          <div className={styles.badge}>OUR STORES</div>
-          <h1 className={styles.title}>
-            Find a Clean7
-            <br />
-            Store <span className={styles.highlight}>Near You</span>
-          </h1>
-          <p className={styles.subtitle}>
-            Premium laundry, car wash, and home care services
-            <br />
-            available at 28+ locations. Find the nearest store and
-            <br />
-            experience the Clean7 difference.
-          </p>
+        <div className={styles.topSection}>
+          {/* Header Section */}
+          <div className={styles.header}>
+            <div className={styles.badge}>OUR STORES</div>
+            <h1 className={styles.title}>
+              Find a Clean7
+              <br />
+              Store <span className={styles.highlight}>Near You</span>
+            </h1>
+            <p className={styles.subtitle}>
+              Premium laundry, car wash, and home care services
+              <br />
+              available at 28+ locations. Find the nearest store and
+              <br />
+              experience the Clean7 difference.
+            </p>
 
-          <div className={styles.searchWrapper}>
-            <Search className={styles.searchIcon} size={20} />
-            <input
-              type="text"
-              className={styles.searchInput}
-              placeholder="Search by city, locality or pincode..."
-            />
-          </div>
-        </div>
-
-        {/* Filters Section */}
-        <div className={styles.filtersBar}>
-          <div className={styles.filterGroups}>
-            <div className={styles.filterItem}>
-              <div className={styles.filterItemIcon}>
-                <MapPin size={18} />
+            <div className={styles.searchContainer}>
+              <div className={styles.searchWrapper}>
+                <Search className={styles.searchIcon} size={20} />
+                <input
+                  type="text"
+                  className={styles.searchInput}
+                  placeholder="Search by city, locality or pincode..."
+                />
               </div>
-              <div className={styles.filterItemContent}>
-                <span className={styles.filterLabel}>City</span>
-                <div className={styles.filterValue}>
-                  All Cities <ChevronDown size={14} />
-                </div>
-              </div>
-            </div>
-            <div className={styles.filterDivider} />
-            <div className={styles.filterItem}>
-              <div className={styles.filterItemIcon}>
-                <div className={styles.squaresIcon}>
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
-              <div className={styles.filterItemContent}>
-                <span className={styles.filterLabel}>Service</span>
-                <div className={styles.filterValue}>
-                  All Services <ChevronDown size={14} />
-                </div>
-              </div>
-            </div>
-            <div className={styles.filterDivider} />
-            <div className={styles.filterItem}>
-              <div className={styles.filterItemIcon}>
-                <Clock size={18} />
-              </div>
-              <div className={styles.filterItemContent}>
-                <span className={styles.filterLabel}>Availability</span>
-                <div className={styles.filterValue}>
-                  Open Now <ChevronDown size={14} />
-                </div>
-              </div>
-            </div>
-            <div className={styles.filterDivider} />
-            <div className={styles.filterItem}>
-              <div className={styles.filterItemIcon}>
-                <MapPin size={18} />
-              </div>
-              <div className={styles.filterItemContent}>
-                <span className={styles.filterLabel}>Distance</span>
-                <div className={styles.filterValue}>
-                  Within 10 km <ChevronDown size={14} />
-                </div>
-              </div>
-            </div>
-            <div className={styles.filterDivider} />
-            <div className={styles.filterItem}>
-              <div className={styles.filterItemIcon}>
-                <SlidersHorizontal size={18} />
-              </div>
-              <div className={styles.filterItemContent}>
-                <span className={styles.filterLabel}>Sort By</span>
-                <div className={styles.filterValue}>
-                  Nearest <ChevronDown size={14} />
-                </div>
-              </div>
+              <button
+                className={styles.mobileFilterBtn}
+                onClick={() => setActiveModal("allFilters")}
+              >
+                <SlidersHorizontal size={20} />
+              </button>
             </div>
           </div>
-          <button className={styles.moreFiltersBtn}>
-            <SlidersHorizontal size={16} /> More Filters
-          </button>
+
+          {/* Filters Section */}
+          <div className={styles.filtersGrid}>
+            <div
+              className={styles.filterItem}
+              onClick={() => setActiveModal("city")}
+            >
+              <div className={styles.filterLeft}>
+                <div className={styles.filterItemIcon}>
+                  <MapPin size={18} />
+                </div>
+                <div className={styles.filterItemContent}>
+                  <span className={styles.filterLabel}>City</span>
+                  <span className={styles.filterValue}>{selectedCity}</span>
+                </div>
+              </div>
+              <ChevronDown size={16} className={styles.chevron} />
+            </div>
+
+            <div
+              className={styles.filterItem}
+              onClick={() => setActiveModal("service")}
+            >
+              <div className={styles.filterLeft}>
+                <div className={styles.filterItemIcon}>
+                  <div className={styles.squaresIcon}>
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </div>
+                <div className={styles.filterItemContent}>
+                  <span className={styles.filterLabel}>Service</span>
+                  <span className={styles.filterValue}>
+                    {selectedServices.length
+                      ? `${selectedServices.length} Selected`
+                      : "All Services"}
+                  </span>
+                </div>
+              </div>
+              <ChevronDown size={16} className={styles.chevron} />
+            </div>
+
+            <div
+              className={styles.filterItem}
+              onClick={() => setActiveModal("availability")}
+            >
+              <div className={styles.filterLeft}>
+                <div className={styles.filterItemIcon}>
+                  <Clock size={18} />
+                </div>
+                <div className={styles.filterItemContent}>
+                  <span className={styles.filterLabel}>Availability</span>
+                  <span className={styles.filterValue}>
+                    {selectedAvailability}
+                  </span>
+                </div>
+              </div>
+              <ChevronDown size={16} className={styles.chevron} />
+            </div>
+
+            <div
+              className={styles.filterItem}
+              onClick={() => setActiveModal("distance")}
+            >
+              <div className={styles.filterLeft}>
+                <div className={styles.filterItemIcon}>
+                  <MapPin size={18} />
+                </div>
+                <div className={styles.filterItemContent}>
+                  <span className={styles.filterLabel}>Distance</span>
+                  <span className={styles.filterValue}>{selectedDistance}</span>
+                </div>
+              </div>
+              <ChevronDown size={16} className={styles.chevron} />
+            </div>
+
+            <div
+              className={styles.filterItem}
+              onClick={() => setActiveModal("sort")}
+            >
+              <div className={styles.filterLeft}>
+                <div className={styles.filterItemIcon}>
+                  <SlidersHorizontal size={18} />
+                </div>
+                <div className={styles.filterItemContent}>
+                  <span className={styles.filterLabel}>Sort By</span>
+                  <span className={styles.filterValue}>{selectedSort}</span>
+                </div>
+              </div>
+              <ChevronDown size={16} className={styles.chevron} />
+            </div>
+          </div>
         </div>
 
         {/* List Header */}
@@ -464,6 +526,219 @@ export default function StoresPage() {
           ))}
         </div>
       </div>
+
+      {/* Modals */}
+      <FilterModal
+        isOpen={activeModal === "city"}
+        onClose={() => setActiveModal(null)}
+        title="Select City"
+      >
+        <div className={modalStyles.optionList}>
+          {cities.map((city) => (
+            <div
+              key={city}
+              className={modalStyles.optionItem}
+              data-active={selectedCity === city}
+              onClick={() => setSelectedCity(city)}
+            >
+              <span className={modalStyles.optionLabel}>{city}</span>
+              <div className={modalStyles.radioCircle}>
+                <div className={modalStyles.radioInner} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </FilterModal>
+
+      <FilterModal
+        isOpen={activeModal === "service"}
+        onClose={() => setActiveModal(null)}
+        title="Select Service"
+      >
+        <div className={modalStyles.optionList}>
+          {servicesList.map((service) => (
+            <div
+              key={service}
+              className={modalStyles.optionItem}
+              data-active={selectedServices.includes(service)}
+              onClick={() => toggleService(service)}
+            >
+              <span className={modalStyles.optionLabel}>{service}</span>
+              <div className={modalStyles.checkbox}>
+                <CheckCircle2 size={16} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </FilterModal>
+
+      <FilterModal
+        isOpen={activeModal === "availability"}
+        onClose={() => setActiveModal(null)}
+        title="Availability"
+      >
+        <div className={modalStyles.optionList}>
+          {["Open Now", "Any Time"].map((avail) => (
+            <div
+              key={avail}
+              className={modalStyles.optionItem}
+              data-active={selectedAvailability === avail}
+              onClick={() => setSelectedAvailability(avail)}
+            >
+              <span className={modalStyles.optionLabel}>{avail}</span>
+              <div className={modalStyles.radioCircle}>
+                <div className={modalStyles.radioInner} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </FilterModal>
+
+      <FilterModal
+        isOpen={activeModal === "distance"}
+        onClose={() => setActiveModal(null)}
+        title="Distance"
+      >
+        <div className={modalStyles.optionList}>
+          {distances.map((distance) => (
+            <div
+              key={distance}
+              className={modalStyles.optionItem}
+              data-active={selectedDistance === distance}
+              onClick={() => setSelectedDistance(distance)}
+            >
+              <span className={modalStyles.optionLabel}>{distance}</span>
+              <div className={modalStyles.radioCircle}>
+                <div className={modalStyles.radioInner} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </FilterModal>
+
+      <FilterModal
+        isOpen={activeModal === "sort"}
+        onClose={() => setActiveModal(null)}
+        title="Sort By"
+      >
+        <div className={modalStyles.optionList}>
+          {sorts.map((sort) => (
+            <div
+              key={sort}
+              className={modalStyles.optionItem}
+              data-active={selectedSort === sort}
+              onClick={() => setSelectedSort(sort)}
+            >
+              <span className={modalStyles.optionLabel}>{sort}</span>
+              <div className={modalStyles.radioCircle}>
+                <div className={modalStyles.radioInner} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </FilterModal>
+
+      <FilterModal
+        isOpen={activeModal === "allFilters"}
+        onClose={() => setActiveModal(null)}
+        title="All Filters"
+      >
+        <div className={styles.allFiltersSection}>
+          <h4 className={styles.filterSectionTitle}>City</h4>
+          <div className={modalStyles.optionList}>
+            {cities.map((city) => (
+              <div
+                key={city}
+                className={modalStyles.optionItem}
+                data-active={selectedCity === city}
+                onClick={() => setSelectedCity(city)}
+              >
+                <span className={modalStyles.optionLabel}>{city}</span>
+                <div className={modalStyles.radioCircle}>
+                  <div className={modalStyles.radioInner} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.allFiltersSection}>
+          <h4 className={styles.filterSectionTitle}>Service</h4>
+          <div className={modalStyles.optionList}>
+            {servicesList.map((service) => (
+              <div
+                key={service}
+                className={modalStyles.optionItem}
+                data-active={selectedServices.includes(service)}
+                onClick={() => toggleService(service)}
+              >
+                <span className={modalStyles.optionLabel}>{service}</span>
+                <div className={modalStyles.checkbox}>
+                  <CheckCircle2 size={16} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.allFiltersSection}>
+          <h4 className={styles.filterSectionTitle}>Availability</h4>
+          <div className={modalStyles.optionList}>
+            {["Open Now", "Any Time"].map((avail) => (
+              <div
+                key={avail}
+                className={modalStyles.optionItem}
+                data-active={selectedAvailability === avail}
+                onClick={() => setSelectedAvailability(avail)}
+              >
+                <span className={modalStyles.optionLabel}>{avail}</span>
+                <div className={modalStyles.radioCircle}>
+                  <div className={modalStyles.radioInner} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.allFiltersSection}>
+          <h4 className={styles.filterSectionTitle}>Distance</h4>
+          <div className={modalStyles.optionList}>
+            {distances.map((distance) => (
+              <div
+                key={distance}
+                className={modalStyles.optionItem}
+                data-active={selectedDistance === distance}
+                onClick={() => setSelectedDistance(distance)}
+              >
+                <span className={modalStyles.optionLabel}>{distance}</span>
+                <div className={modalStyles.radioCircle}>
+                  <div className={modalStyles.radioInner} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.allFiltersSection}>
+          <h4 className={styles.filterSectionTitle}>Sort By</h4>
+          <div className={modalStyles.optionList}>
+            {sorts.map((sort) => (
+              <div
+                key={sort}
+                className={modalStyles.optionItem}
+                data-active={selectedSort === sort}
+                onClick={() => setSelectedSort(sort)}
+              >
+                <span className={modalStyles.optionLabel}>{sort}</span>
+                <div className={modalStyles.radioCircle}>
+                  <div className={modalStyles.radioInner} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FilterModal>
+
       <Footer />
     </div>
   );
