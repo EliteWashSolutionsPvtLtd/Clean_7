@@ -335,7 +335,7 @@
 
 /* Card */
 .card {
-  background-color: #fff;
+  background-color: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
@@ -345,7 +345,6 @@
 }
 
 :global(.dark) .card {
-  background-color: #1a1a1a;
   border-color: rgba(255, 255, 255, 0.05);
 }
 
