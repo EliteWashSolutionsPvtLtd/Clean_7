@@ -25,6 +25,7 @@ export default function DownloadAppModal({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      // eslint-disable-next-line
       setIsQrExpanded(false);
     }
     return () => {

@@ -71,6 +71,14 @@ export default function Navbar() {
         </li>
         <li>
           <Link
+            href="/stores"
+            className={isActive("/stores") ? styles.active : ""}
+          >
+            Stores
+          </Link>
+        </li>
+        <li>
+          <Link
             href="/franchise"
             className={isActive("/franchise") ? styles.active : ""}
           >
@@ -167,6 +175,13 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             Blog
+          </Link>
+          <Link
+            href="/stores"
+            className={isActive("/stores") ? styles.active : ""}
+            onClick={() => setIsOpen(false)}
+          >
+            Stores
           </Link>
           <Link
             href="/franchise"

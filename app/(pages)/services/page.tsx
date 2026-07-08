@@ -83,7 +83,7 @@ export default function ServicesPage() {
                     fold, and deliver with the utmost care and hygiene.
                   </p>
 
-                  <ul className="flex flex-col gap-[16px] mb-[48px] flex-1">
+                  <ul className="flex flex-col gap-[16px] flex-1">
                     {[
                       "Wash & Fold",
                       "Premium Detergents",
@@ -100,10 +100,6 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-
-                  <div className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors">
-                    Learn More
-                  </div>
                 </div>
               </div>
 
@@ -132,7 +128,7 @@ export default function ServicesPage() {
                     vehicle, inside and out.
                   </p>
 
-                  <ul className="flex flex-col gap-[16px] mb-[48px] flex-1">
+                  <ul className="flex flex-col gap-[16px] flex-1">
                     {[
                       "Exterior Wash",
                       "Interior Vacuuming",
@@ -149,10 +145,6 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-
-                  <div className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors">
-                    Learn More
-                  </div>
                 </div>
               </div>
 
@@ -181,7 +173,7 @@ export default function ServicesPage() {
                     chores and deep cleaning needs, ensuring a spotless home.
                   </p>
 
-                  <ul className="flex flex-col gap-[16px] mb-[48px] flex-1">
+                  <ul className="flex flex-col gap-[16px] flex-1">
                     {[
                       "Deep Cleaning",
                       "Daily Chores",
@@ -198,10 +190,6 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-
-                  <div className="block w-full text-center py-[14px] border border-[var(--line)] rounded-lg text-[var(--gold)] text-[14px] font-semibold hover:border-[var(--gold)] hover:bg-[var(--gold)]/5 transition-colors">
-                    Learn More
-                  </div>
                 </div>
               </div>
             </div>

@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 /** True after mount — use to avoid SSR/client mismatches for locale, TZ, battery, etc. */
 export function useClientMounted() {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // eslint-disable-next-line
+    setMounted(true);
+  }, []);
   return mounted;
 }
 
