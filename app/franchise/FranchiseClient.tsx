@@ -234,10 +234,10 @@ export default function FranchiseClient() {
                 key={i}
                 className="p-8 md:p-12 bg-ground flex flex-col justify-center text-center hover:bg-ground-soft transition-colors"
               >
-                <div className="text-[clamp(32px,3vw,42px)] font-serif text-gold-bright mb-3">
+                <div className="text-[24px] md:text-[32px] lg:text-[42px] font-serif text-gold-bright mb-1 md:mb-3 whitespace-nowrap">
                   {stat.value}
                 </div>
-                <div className="text-[12px] text-ink-soft uppercase tracking-[0.1em] font-medium">
+                <div className="text-[10px] md:text-[12px] text-ink-soft uppercase tracking-[0.05em] md:tracking-[0.1em] font-medium">
                   {stat.label}
                 </div>
               </div>

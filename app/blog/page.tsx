@@ -86,7 +86,7 @@ export default function BlogPage() {
               >
                 <Link
                   href={`/blog/${blog.id}`}
-                  className="flex-grow bg-[var(--card)] rounded-[20px] overflow-hidden border border-[var(--line)] hover:border-[var(--gold)]/40 transition-all duration-300 group flex flex-col hover:-translate-y-1 hover:shadow-xl"
+                  className="flex-grow bg-[var(--card)] rounded-[20px] overflow-hidden border border-[var(--line)] hover:border-white/40 transition-all duration-300 group flex flex-col hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="h-[240px] relative overflow-hidden bg-[var(--ground-soft)] m-2 rounded-[14px]">
                     <Image
@@ -107,7 +107,7 @@ export default function BlogPage() {
                         {blog.category}
                       </span>
                     </div>
-                    <h3 className="text-[20px] font-bold text-[var(--ink)] mb-3 leading-snug group-hover:text-[var(--gold)] transition-colors">
+                    <h3 className="text-[20px] font-bold text-[var(--ink)] mb-3 leading-snug transition-colors">
                       {blog.title}
                     </h3>
                     <p className="text-[var(--ink-soft)] text-[15px] mb-8 flex-grow leading-relaxed">
