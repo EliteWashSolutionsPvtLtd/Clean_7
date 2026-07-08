@@ -51,6 +51,13 @@
   --text-4xl: 3.052rem;
 
   /* New Colors */
+  --color-ground: var(--ground);
+  --color-ground-soft: var(--ground-soft);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-light: var(--gold-light);
+  --color-brass: var(--brass);
+  --color-card: var(--card);
   --color-linen: var(--linen);
   --color-linen-soft: var(--linen-soft);
   --color-ink: var(--ink);

@@ -69,6 +69,14 @@ export default function Navbar() {
             Blog
           </Link>
         </li>
+        <li>
+          <Link
+            href="/franchise"
+            className={isActive("/franchise") ? styles.active : ""}
+          >
+            Franchise
+          </Link>
+        </li>
       </ul>
 
       <div
@@ -159,6 +167,13 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             Blog
+          </Link>
+          <Link
+            href="/franchise"
+            className={isActive("/franchise") ? styles.active : ""}
+            onClick={() => setIsOpen(false)}
+          >
+            Franchise
           </Link>
         </div>
         <div className={styles.mobileFooter}>

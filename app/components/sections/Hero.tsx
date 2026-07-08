@@ -65,32 +65,32 @@ const AnimatedNumber = ({
   );
 };
 
-export default function Hero() {
-  const TrustStats = ({ className }: { className?: string }) => (
-    <div className={`${styles.trustRow} ${className || ""}`}>
-      <div className={styles.trustStat}>
-        <div className={styles.num}>
-          <AnimatedNumber end={24} suffix=" hr" />
-        </div>
-        <div className={styles.label}>Turnaround</div>
+const TrustStats = ({ className }: { className?: string }) => (
+  <div className={`${styles.trustRow} ${className || ""}`}>
+    <div className={styles.trustStat}>
+      <div className={styles.num}>
+        <AnimatedNumber end={24} suffix=" hr" />
       </div>
-      <div className={styles.trustDivider}></div>
-      <div className={styles.trustStat}>
-        <div className={styles.num}>
-          <AnimatedNumber end={40} suffix="k+" />
-        </div>
-        <div className={styles.label}>Expected Garments monthly</div>
-      </div>
-      <div className={styles.trustDivider}></div>
-      <div className={styles.trustStat}>
-        <div className={styles.num}>
-          <AnimatedNumber end={4.9} decimals={1} />
-        </div>
-        <div className={styles.label}>Expected Rating</div>
-      </div>
+      <div className={styles.label}>Turnaround</div>
     </div>
-  );
+    <div className={styles.trustDivider}></div>
+    <div className={styles.trustStat}>
+      <div className={styles.num}>
+        <AnimatedNumber end={40} suffix="k+" />
+      </div>
+      <div className={styles.label}>Expected Garments monthly</div>
+    </div>
+    <div className={styles.trustDivider}></div>
+    <div className={styles.trustStat}>
+      <div className={styles.num}>
+        <AnimatedNumber end={4.9} decimals={1} />
+      </div>
+      <div className={styles.label}>Expected Rating</div>
+    </div>
+  </div>
+);
 
+export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.copy}>
