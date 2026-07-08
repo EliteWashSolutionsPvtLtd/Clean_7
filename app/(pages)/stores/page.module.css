@@ -710,4 +710,9 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
   }
+  
+  .dropdownUp {
+    top: auto;
+    bottom: calc(100% + 6px);
+  }
 }

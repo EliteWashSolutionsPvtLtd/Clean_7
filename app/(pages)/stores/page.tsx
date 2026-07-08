@@ -263,7 +263,7 @@ export default function StoresPage() {
           />
         </div>
         {activeModal === "distance" && (
-          <div className={styles.filterDropdown}>
+          <div className={`${styles.filterDropdown} ${styles.dropdownUp}`}>
             {distances.map((distance) => (
               <div
                 key={distance}
@@ -306,7 +306,7 @@ export default function StoresPage() {
           />
         </div>
         {activeModal === "sort" && (
-          <div className={styles.filterDropdown}>
+          <div className={`${styles.filterDropdown} ${styles.dropdownUp}`}>
             {sorts.map((sort) => (
               <div
                 key={sort}
