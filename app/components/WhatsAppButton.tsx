@@ -38,11 +38,11 @@ export default function WhatsAppButton() {
   );
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Modal */}
       <div
         ref={modalRef}
-        className={`mb-4 w-72 origin-bottom-right transform transition-all duration-300 ease-out ${
+        className={`mb-4 w-72 origin-bottom-right transform transition-all duration-300 ease-out pointer-events-auto ${
           isOpen
             ? "scale-100 opacity-100 translate-y-0"
             : "scale-95 opacity-0 translate-y-4 pointer-events-none"
@@ -113,7 +113,7 @@ export default function WhatsAppButton() {
       <button
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg shadow-[var(--gold)]/30 hover:scale-105 hover:shadow-xl transition-all duration-300 relative group"
+        className="cursor-pointer flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg shadow-[var(--gold)]/30 hover:scale-105 hover:shadow-xl transition-all duration-300 relative group pointer-events-auto"
         aria-label="Open WhatsApp Chat"
       >
         <X
