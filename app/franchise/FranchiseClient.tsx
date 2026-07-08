@@ -353,19 +353,18 @@ export default function FranchiseClient() {
             ].map((service, i) => (
               <div
                 key={i}
-                className="group relative rounded-3xl overflow-hidden border border-line bg-ground aspect-[4/5] flex flex-col justify-end p-8 hover:border-gold/40 hover:bg-gold/5 transition-colors shadow-sm"
+                className="group rounded-3xl overflow-hidden border border-line bg-ground flex flex-col hover:border-gold/40 transition-colors shadow-sm"
               >
-                <div className="absolute inset-x-0 top-0 bottom-1/3">
+                <div className="relative w-full aspect-[4/3] overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ground via-ground/40 to-transparent" />
                 </div>
 
-                <div className="relative z-10 pt-4">
+                <div className="p-8 flex-1 bg-ground group-hover:bg-gold/5 transition-colors flex flex-col justify-center">
                   <h3 className="text-[24px] font-serif text-gold-bright mb-3">
                     {service.title}
                   </h3>
