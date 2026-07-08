@@ -108,7 +108,7 @@ export default function FranchiseClient() {
   return (
     <main className="pt-24 pb-16 min-h-screen font-sans bg-ground selection:bg-gold/30">
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -208,7 +208,7 @@ export default function FranchiseClient() {
       </motion.section>
 
       {/* Why This Opportunity Exists */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -270,7 +270,7 @@ export default function FranchiseClient() {
       </motion.section>
 
       {/* Why Clean7 */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -348,7 +348,7 @@ export default function FranchiseClient() {
       </motion.section>
 
       {/* Services Visuals */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -417,7 +417,7 @@ export default function FranchiseClient() {
       </motion.section>
 
       {/* Why Investors Like This Industry */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -499,7 +499,7 @@ export default function FranchiseClient() {
       </motion.section>
 
       {/* Investment */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -600,7 +600,7 @@ export default function FranchiseClient() {
       </motion.section>
 
       {/* Vision & CTA Container */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -711,7 +711,7 @@ export default function FranchiseClient() {
       </motion.section>
 
       {/* FAQ Section Moved to Bottom */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

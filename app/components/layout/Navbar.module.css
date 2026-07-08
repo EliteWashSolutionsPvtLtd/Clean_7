@@ -144,7 +144,7 @@
 }
 .mobileLinks > a {
   font-family: var(--font-fraunces), serif;
-  font-size: clamp(24px, 6vw, 32px);
+  font-size: clamp(18px, 5vw, 24px);
   font-weight: 300;
   color: var(--ink);
   text-decoration: none;

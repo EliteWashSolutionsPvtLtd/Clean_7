@@ -335,7 +335,7 @@ export default function StoresPage() {
       <div className={styles.container}>
         <div className={styles.topSection}>
           {/* Header Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -375,11 +375,11 @@ export default function StoresPage() {
           </motion.div>
 
           {/* Filters Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className={styles.filtersGrid} 
+            className={styles.filtersGrid}
             ref={desktopFiltersRef}
           >
             {renderFilters()}
@@ -387,7 +387,7 @@ export default function StoresPage() {
         </div>
 
         {/* List Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -404,7 +404,7 @@ export default function StoresPage() {
         </motion.div>
 
         {/* Grid */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
