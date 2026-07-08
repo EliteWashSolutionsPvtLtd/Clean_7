@@ -333,42 +333,39 @@ export default function FranchiseClient() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 title: "Laundry",
                 desc: "Professional garment care with pickup and delivery. High repeat usage.",
+                image: "/images/services/laundry.png",
               },
               {
                 title: "Car Wash",
                 desc: "Doorstep vehicle cleaning designed for convenience. Subscription potential.",
+                image: "/images/services/car-wash.png",
               },
               {
                 title: "Home Cleaning",
                 desc: "Professional deep cleaning for modern households. High order values.",
-              },
-              {
-                title: "Pest Control",
-                desc: "Residential pest management with seasonal demand. Strong cross-selling.",
+                image: "/images/services/house-help.png",
               },
             ].map((service, i) => (
               <div
                 key={i}
                 className="group relative rounded-3xl overflow-hidden border border-line bg-ground aspect-[4/5] flex flex-col justify-end p-8 hover:border-gold/40 hover:bg-gold/5 transition-colors shadow-sm"
               >
-                <div className="absolute top-8 right-8 text-gold-bright/30 group-hover:text-gold-bright/60 transition-colors">
-                  {i === 0 ? (
-                    <Sparkles className="w-16 h-16" />
-                  ) : i === 1 ? (
-                    <Car className="w-16 h-16" />
-                  ) : i === 2 ? (
-                    <Briefcase className="w-16 h-16" />
-                  ) : (
-                    <ShieldCheck className="w-16 h-16" />
-                  )}
+                <div className="absolute inset-x-0 top-0 bottom-1/3">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ground via-ground/40 to-transparent" />
                 </div>
 
-                <div className="relative z-10">
+                <div className="relative z-10 pt-4">
                   <h3 className="text-[24px] font-serif text-gold-bright mb-3">
                     {service.title}
                   </h3>
@@ -622,17 +619,15 @@ export default function FranchiseClient() {
               ].map((faq, i) => (
                 <div
                   key={i}
-                  className="group bg-ground border border-line rounded-2xl overflow-hidden hover:border-gold/30 transition-colors"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="group bg-ground border border-line rounded-2xl overflow-hidden hover:border-gold/30 transition-colors cursor-pointer"
                 >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="flex w-full items-center justify-between p-6 font-medium cursor-pointer text-left text-ink hover:text-gold-bright transition-colors"
-                  >
+                  <div className="flex w-full items-center justify-between p-6 font-medium text-left text-ink hover:text-gold-bright transition-colors">
                     <span className="text-[15px] pr-4">{faq.q}</span>
                     <ChevronRight
                       className={`w-4 h-4 shrink-0 transition-transform duration-300 text-gold-bright ${openFaq === i ? "rotate-90" : ""}`}
                     />
-                  </button>
+                  </div>
                   <div
                     className={`grid transition-all duration-300 ease-in-out ${
                       openFaq === i
