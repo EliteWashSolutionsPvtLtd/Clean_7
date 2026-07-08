@@ -200,7 +200,9 @@ export default function StoresPage() {
   const renderFilters = () => (
     <>
       {/* City Filter */}
-      <div className={styles.filterDropdownWrapper}>
+      <div
+        className={`${styles.filterDropdownWrapper} ${activeModal && activeModal !== "city" ? styles.blurred : ""}`}
+      >
         <div
           className={`${styles.filterItem} ${activeModal === "city" ? styles.filterItemActive : ""}`}
           onClick={() => setActiveModal(activeModal === "city" ? null : "city")}
@@ -241,7 +243,9 @@ export default function StoresPage() {
       </div>
 
       {/* Service Filter */}
-      <div className={styles.filterDropdownWrapper}>
+      <div
+        className={`${styles.filterDropdownWrapper} ${activeModal && activeModal !== "service" ? styles.blurred : ""}`}
+      >
         <div
           className={`${styles.filterItem} ${activeModal === "service" ? styles.filterItemActive : ""}`}
           onClick={() =>
@@ -290,7 +294,9 @@ export default function StoresPage() {
       </div>
 
       {/* Availability Filter */}
-      <div className={styles.filterDropdownWrapper}>
+      <div
+        className={`${styles.filterDropdownWrapper} ${activeModal && activeModal !== "availability" ? styles.blurred : ""}`}
+      >
         <div
           className={`${styles.filterItem} ${activeModal === "availability" ? styles.filterItemActive : ""}`}
           onClick={() =>
@@ -335,7 +341,9 @@ export default function StoresPage() {
       </div>
 
       {/* Distance Filter */}
-      <div className={styles.filterDropdownWrapper}>
+      <div
+        className={`${styles.filterDropdownWrapper} ${activeModal && activeModal !== "distance" ? styles.blurred : ""}`}
+      >
         <div
           className={`${styles.filterItem} ${activeModal === "distance" ? styles.filterItemActive : ""}`}
           onClick={() =>
@@ -378,7 +386,9 @@ export default function StoresPage() {
       </div>
 
       {/* Sort Filter */}
-      <div className={styles.filterDropdownWrapper}>
+      <div
+        className={`${styles.filterDropdownWrapper} ${activeModal && activeModal !== "sort" ? styles.blurred : ""}`}
+      >
         <div
           className={`${styles.filterItem} ${activeModal === "sort" ? styles.filterItemActive : ""}`}
           onClick={() => setActiveModal(activeModal === "sort" ? null : "sort")}
