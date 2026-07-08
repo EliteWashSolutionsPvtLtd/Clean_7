@@ -105,9 +105,13 @@
   flex-direction: column;
   padding: 24px; /* Reduced from 100px top padding since it now covers everything */
   overflow-y: auto;
+  pointer-events: none;
+  visibility: hidden;
 }
 .navMobilePanel.open {
   transform: translateX(0);
+  pointer-events: auto;
+  visibility: visible;
 }
 
 .mobileHeader {

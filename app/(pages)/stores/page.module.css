@@ -4,6 +4,7 @@
   padding: 120px clamp(20px, 5vw, 56px) 60px;
   color: var(--text-primary);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 /* Top Section */
@@ -18,7 +19,9 @@
 /* Header Section */
 .header {
   flex: 1;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
 }
 
 .badge {
@@ -66,6 +69,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .mobileFilterBtn {
@@ -81,6 +85,8 @@
   cursor: pointer;
   flex-shrink: 0;
   transition: all 0.2s ease;
+  position: relative;
+  z-index: 10;
 }
 
 .mobileFilterBtn:hover {
@@ -104,18 +110,30 @@
 .searchInput {
   width: 100%;
   padding: 16px 16px 16px 48px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #fff;
+  border: 1px solid var(--line);
   border-radius: 8px;
-  color: var(--text-primary);
+  color: var(--ink);
   font-size: 1rem;
   transition: all 0.3s ease;
+}
+
+:global(.dark) .searchInput {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
 }
 
 .searchInput:focus {
   outline: none;
   border-color: var(--gold-bright);
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(184, 137, 62, 0.2);
+}
+
+:global(.dark) .searchInput:focus {
   background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
 }
 
 .searchInput::placeholder {
@@ -247,8 +265,8 @@
 
 /* Card */
 .card {
-  background-color: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #fff;
+  border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -256,8 +274,18 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+:global(.dark) .card {
+  background-color: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
 .card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+:global(.dark) .card:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   border-color: rgba(255, 255, 255, 0.1);
 }
@@ -320,7 +348,7 @@
 .favBtn {
   background: none;
   border: none;
-  color: #888;
+  color: var(--ink-soft);
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -347,7 +375,7 @@
 }
 
 .reviews {
-  color: #888;
+  color: var(--ink-soft);
   font-size: 0.85rem;
 }
 
@@ -359,12 +387,17 @@
 }
 
 .tag {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--line);
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 0.75rem;
-  color: #aaa;
+  color: var(--ink-soft);
+}
+
+:global(.dark) .tag {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .locationRow {
@@ -387,13 +420,13 @@
 
 .address {
   font-size: 0.85rem;
-  color: #ccc;
+  color: var(--ink-soft);
   line-height: 1.5;
 }
 
 .distanceInfo {
   font-size: 0.8rem;
-  color: #888;
+  color: var(--ink-soft);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -401,17 +434,16 @@
 
 .dot {
   font-size: 0.6rem;
-  color: #666;
+  color: var(--ink-soft);
+  opacity: 0.5;
 }
 
 .timeInfoGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
-  padding: 16px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  margin-bottom: 16px;
+  padding: 16px 0 0 0;
+  border-top: 1px solid var(--line);
 }
 
 .timeInfoItem {
@@ -433,13 +465,14 @@
 
 .timeInfoLabel {
   font-size: 0.7rem;
-  color: #888;
+  color: var(--ink-soft);
 }
 
 .timeInfoVal {
   font-size: 0.85rem;
   color: var(--text-primary);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .opensTomorrowLabel {
@@ -476,8 +509,12 @@
 }
 
 .slotInactive {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--ink-soft);
+}
+
+:global(.dark) .slotInactive {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #666;
 }
 
 .featuresRow {
@@ -492,7 +529,7 @@
   align-items: center;
   gap: 6px;
   font-size: 0.75rem;
-  color: #aaa;
+  color: var(--ink-soft);
 }
 
 .featureIcon {
@@ -503,13 +540,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .btnPrimary {
   grid-column: 1 / -1;
-  background-color: var(--gold-bright);
-  color: #000;
+  background-color: var(--gold);
+  color: #fff;
   border: none;
   border-radius: 6px;
   padding: 10px 8px;
@@ -529,8 +566,8 @@
 
 .btnOutline {
   background: transparent;
-  color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--ink);
+  border: 1px solid var(--line);
   border-radius: 6px;
   padding: 10px 8px;
   font-size: 0.8rem;
@@ -544,6 +581,16 @@
 }
 
 .btnOutline:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: var(--ink-soft);
+}
+
+:global(.dark) .btnOutline {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+:global(.dark) .btnOutline:hover {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.3);
 }
@@ -558,6 +605,7 @@
   }
   .header, .filtersGrid {
     max-width: 100%;
+    width: 100%;
   }
 }
 

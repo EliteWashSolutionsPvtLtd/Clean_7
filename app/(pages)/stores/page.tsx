@@ -208,6 +208,7 @@ export default function StoresPage() {
                 />
               </div>
               <button
+                type="button"
                 className={styles.mobileFilterBtn}
                 onClick={() => setActiveModal("allFilters")}
               >
@@ -410,40 +411,9 @@ export default function StoresPage() {
                           </span>
                         </div>
                       </div>
-                      <div className={styles.timeInfoItem}>
-                        <div className={styles.timeInfoContent}>
-                          <span className={styles.timeInfoLabel}>
-                            Today's Slots
-                          </span>
-                          <div className={styles.slotsRow}>
-                            {store.todaySlots.map((slot, i) => (
-                              <span
-                                key={i}
-                                className={`${styles.slotDot} ${
-                                  slot.active
-                                    ? styles.slotActive
-                                    : styles.slotInactive
-                                }`}
-                              >
-                                {slot.label}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
                     </>
                   ) : (
                     <>
-                      <div className={styles.timeInfoItem}>
-                        <div className={styles.timeInfoContent}>
-                          <span className={styles.opensTomorrowLabel}>
-                            Opens Tomorrow
-                          </span>
-                          <span className={styles.opensTomorrowVal}>
-                            {store.opensTomorrow}
-                          </span>
-                        </div>
-                      </div>
                       <div className={styles.timeInfoItem}>
                         <CalendarDays size={16} className={styles.timeIcon} />
                         <div className={styles.timeInfoContent}>
@@ -455,14 +425,7 @@ export default function StoresPage() {
                           </span>
                         </div>
                       </div>
-                      <div className={styles.timeInfoItem}>
-                        <div className={styles.timeInfoContent}>
-                          <span className={styles.timeInfoLabel}>
-                            Today's Slots
-                          </span>
-                          <span className={styles.timeInfoVal}>- - -</span>
-                        </div>
-                      </div>
+
                       <div className={styles.timeInfoItem}>
                         <div className={styles.timeInfoContent}>
                           <span className={styles.timeInfoLabel}>Open</span>
@@ -472,28 +435,6 @@ export default function StoresPage() {
                         </div>
                       </div>
                     </>
-                  )}
-                </div>
-
-                {/* Features Row */}
-                <div className={styles.featuresRow}>
-                  {store.features.includes("Free Pickup") && (
-                    <div className={styles.featureItem}>
-                      <Truck size={14} className={styles.featureIcon} /> Free
-                      Pickup
-                    </div>
-                  )}
-                  {store.features.includes("Express Service") && (
-                    <div className={styles.featureItem}>
-                      <Zap size={14} className={styles.featureIcon} /> Express
-                      Service
-                    </div>
-                  )}
-                  {store.features.includes("Verified Store") && (
-                    <div className={styles.featureItem}>
-                      <CheckCircle2 size={14} className={styles.featureIcon} />{" "}
-                      Verified Store
-                    </div>
                   )}
                 </div>
 
