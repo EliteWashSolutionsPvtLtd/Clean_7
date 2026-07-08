@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import FilterModal from "@/app/components/ui/modals/FilterModal";
@@ -334,7 +335,12 @@ export default function StoresPage() {
       <div className={styles.container}>
         <div className={styles.topSection}>
           {/* Header Section */}
-          <div className={styles.header}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className={styles.header}
+          >
             <div className={styles.badge}>OUR STORES</div>
             <h1 className={styles.title}>
               Find a Clean7
@@ -366,16 +372,27 @@ export default function StoresPage() {
                 <SlidersHorizontal size={20} />
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Filters Section */}
-          <div className={styles.filtersGrid} ref={desktopFiltersRef}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className={styles.filtersGrid} 
+            ref={desktopFiltersRef}
+          >
             {renderFilters()}
-          </div>
+          </motion.div>
         </div>
 
         {/* List Header */}
-        <div className={styles.listHeader}>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className={styles.listHeader}
+        >
           <div className={styles.showingText}>
             Showing{" "}
             <span className={styles.highlightText}>{stores.length}</span> Store
@@ -384,10 +401,15 @@ export default function StoresPage() {
           <button className={styles.clearAllBtn}>
             <RotateCw size={14} /> Clear All
           </button>
-        </div>
+        </motion.div>
 
         {/* Grid */}
-        <div className={styles.grid}>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className={styles.grid}
+        >
           {stores.map((store) => (
             <div key={store.id} className={styles.card}>
               {/* Card Image Wrapper */}
@@ -539,7 +561,7 @@ export default function StoresPage() {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <FilterModal

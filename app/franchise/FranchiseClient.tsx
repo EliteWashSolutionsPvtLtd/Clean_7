@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   TrendingUp,
   BarChart3,
@@ -107,7 +108,13 @@ export default function FranchiseClient() {
   return (
     <main className="pt-24 pb-16 min-h-screen font-sans bg-ground selection:bg-gold/30">
       {/* Hero Section */}
-      <section className="relative px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-10 lg:py-14">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="relative px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-10 lg:py-14"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-8 items-center">
           <div className="space-y-8 max-w-[620px] relative z-10">
             <div className="flex items-center gap-3 mb-6">
@@ -198,10 +205,16 @@ export default function FranchiseClient() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-50" />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why This Opportunity Exists */}
-      <section className="bg-ground-soft py-24 md:py-32 border-y border-line">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="bg-ground-soft py-24 md:py-32 border-y border-line"
+      >
         <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="max-w-[720px] mb-16 space-y-6">
             <div className="flex items-center gap-3 mb-6">
@@ -254,10 +267,16 @@ export default function FranchiseClient() {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why Clean7 */}
-      <section className="py-24 md:py-32">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="py-24 md:py-32"
+      >
         <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="text-center mb-20 space-y-4">
             <div className="flex items-center justify-center gap-3 mb-6">
@@ -326,10 +345,16 @@ export default function FranchiseClient() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Services Visuals */}
-      <section className="bg-ground-soft text-ink py-24 md:py-32 border-y border-line">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="bg-ground-soft text-ink py-24 md:py-32 border-y border-line"
+      >
         <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="mb-20 max-w-[600px]">
             <div className="flex items-center gap-3 mb-6">
@@ -389,10 +414,16 @@ export default function FranchiseClient() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why Investors Like This Industry */}
-      <section className="py-24 md:py-32">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="py-24 md:py-32"
+      >
         <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8">
             <div className="max-w-[500px] space-y-6">
@@ -465,10 +496,16 @@ export default function FranchiseClient() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Investment */}
-      <section className="bg-ground-soft py-24 md:py-32 border-y border-line">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="bg-ground-soft py-24 md:py-32 border-y border-line"
+      >
         <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="text-center mb-20">
             <div className="flex items-center justify-center gap-3 mb-6">
@@ -560,10 +597,16 @@ export default function FranchiseClient() {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Vision & CTA Container */}
-      <section className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-16 md:py-24">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-16 md:py-24"
+      >
         <div className="bg-ground rounded-3xl overflow-hidden shadow-2xl relative text-ink border border-line">
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-line">
             {/* Vision */}
@@ -665,10 +708,16 @@ export default function FranchiseClient() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* FAQ Section Moved to Bottom */}
-      <section className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] pb-24 md:pb-32">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] pb-24 md:pb-32"
+      >
         <div className="max-w-3xl mx-auto space-y-4">
           <div className="flex items-center gap-3 mb-10 justify-center">
             <HelpCircle className="w-5 h-5 text-gold-bright" />
@@ -704,7 +753,7 @@ export default function FranchiseClient() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Modals for Deep Research */}
       <Modal
