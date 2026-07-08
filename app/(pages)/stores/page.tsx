@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import FilterModal from "@/app/components/ui/modals/FilterModal";
@@ -11,8 +12,6 @@ import {
   Clock,
   Heart,
   Star,
-  Truck,
-  Zap,
   CheckCircle2,
   Navigation,
   Phone,
@@ -26,14 +25,14 @@ import styles from "./page.module.css";
 const stores = [
   {
     id: 1,
-    name: "Clean7 Indirapuram",
+    name: "Clean7 Meerut",
     status: "OPEN NOW",
     statusColor: "green",
     rating: 4.8,
     reviews: 238,
     tags: ["Laundry", "Car Wash", "Home Care"],
-    address: "Gaur City Road, Indirapuram, Ghaziabad, Uttar Pradesh 201014",
-    distance: "2.3 km away",
+    address: "NH 58 Rohta Bypass Flyover Service Road Khadoli, Meerut",
+    distance: "2.3",
     radius: "Serving 8 km radius",
     pickupTime: "30-45 mins",
     readyWithin: "24 hrs",
@@ -43,108 +42,7 @@ const stores = [
       { label: "E", active: true },
     ],
     features: ["Free Pickup", "Express Service", "Verified Store"],
-  },
-  {
-    id: 2,
-    name: "Clean7 Sector 62",
-    status: "OPEN NOW",
-    statusColor: "green",
-    rating: 4.7,
-    reviews: 156,
-    tags: ["Laundry", "Car Wash", "Home Care"],
-    address: "Plot No. 23, Sector 62, Noida, Uttar Pradesh 201309",
-    distance: "3.8 km away",
-    radius: "Serving 7 km radius",
-    pickupTime: "25-40 mins",
-    readyWithin: "24 hrs",
-    todaySlots: [
-      { label: "M", active: true },
-      { label: "A", active: false },
-      { label: "E", active: true },
-    ],
-    features: ["Free Pickup", "Express Service", "Verified Store"],
-  },
-  {
-    id: 3,
-    name: "Clean7 Raj Nagar",
-    status: "CLOSED",
-    statusColor: "red",
-    opensTomorrow: "8:00 AM",
-    rating: 4.6,
-    reviews: 112,
-    tags: ["Laundry", "Car Wash", "Home Care"],
-    address: "Raj Nagar Extension, Ghaziabad, Uttar Pradesh 201017",
-    distance: "5.6 km away",
-    radius: "Serving 6 km radius",
-    pickupTime: "-",
-    readyWithin: "24 hrs",
-    todaySlots: [
-      { label: "-", active: false },
-      { label: "-", active: false },
-      { label: "-", active: false },
-    ],
     openHours: "8:00 AM - 8:00 PM",
-    features: ["Free Pickup", "Express Service", "Verified Store"],
-  },
-  {
-    id: 4,
-    name: "Clean7 Vaishali",
-    status: "OPEN NOW",
-    statusColor: "green",
-    rating: 4.7,
-    reviews: 98,
-    tags: ["Laundry", "Car Wash", "Home Care"],
-    address: "Shop No. 5, Vaishali, Ghaziabad, Uttar Pradesh 201010",
-    distance: "1.9 km away",
-    radius: "Serving 6 km radius",
-    pickupTime: "30-45 mins",
-    readyWithin: "24 hrs",
-    todaySlots: [
-      { label: "M", active: true },
-      { label: "A", active: true },
-      { label: "E", active: false },
-    ],
-    features: ["Free Pickup", "Express Service", "Verified Store"],
-  },
-  {
-    id: 5,
-    name: "Clean7 Noida Sector 137",
-    status: "OPEN NOW",
-    statusColor: "green",
-    rating: 4.8,
-    reviews: 205,
-    tags: ["Laundry", "Car Wash", "Home Care"],
-    address: "Sector 137, Noida, Uttar Pradesh 201305",
-    distance: "4.1 km away",
-    radius: "Serving 7 km radius",
-    pickupTime: "25-40 mins",
-    readyWithin: "24 hrs",
-    todaySlots: [
-      { label: "M", active: true },
-      { label: "A", active: true },
-      { label: "E", active: true },
-    ],
-    features: ["Free Pickup", "Express Service", "Verified Store"],
-  },
-  {
-    id: 6,
-    name: "Clean7 Ghaziabad City",
-    status: "OPEN NOW",
-    statusColor: "green",
-    rating: 4.5,
-    reviews: 87,
-    tags: ["Laundry", "Car Wash", "Home Care"],
-    address: "MG Road, Ghaziabad, Uttar Pradesh 201001",
-    distance: "2.8 km away",
-    radius: "Serving 5 km radius",
-    pickupTime: "35-50 mins",
-    readyWithin: "24 hrs",
-    todaySlots: [
-      { label: "M", active: true },
-      { label: "A", active: false },
-      { label: "E", active: true },
-    ],
-    features: ["Free Pickup", "Express Service", "Verified Store"],
   },
 ];
 
@@ -183,10 +81,10 @@ export default function StoresPage() {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const isOutsideDesktop =
-        desktopFiltersRef.current &&
+        !desktopFiltersRef.current ||
         !desktopFiltersRef.current.contains(e.target as Node);
       const isOutsideMobile =
-        mobileFiltersRef.current &&
+        !mobileFiltersRef.current ||
         !mobileFiltersRef.current.contains(e.target as Node);
 
       if (isOutsideDesktop && isOutsideMobile) {
@@ -479,7 +377,9 @@ export default function StoresPage() {
         {/* List Header */}
         <div className={styles.listHeader}>
           <div className={styles.showingText}>
-            Showing <span className={styles.highlightText}>28</span> Stores
+            Showing{" "}
+            <span className={styles.highlightText}>{stores.length}</span> Store
+            {stores.length !== 1 ? "s" : ""}
           </div>
           <button className={styles.clearAllBtn}>
             <RotateCw size={14} /> Clear All
@@ -542,10 +442,7 @@ export default function StoresPage() {
                   <MapPin className={styles.locIcon} size={16} />
                   <div className={styles.locDetails}>
                     <p className={styles.address}>{store.address}</p>
-                    <p className={styles.distanceInfo}>
-                      {store.distance} <span className={styles.dot}>•</span>{" "}
-                      {store.radius}
-                    </p>
+                    <p className={styles.distanceInfo}>{store.radius}</p>
                   </div>
                 </div>
 
@@ -604,7 +501,11 @@ export default function StoresPage() {
 
                 {/* Actions Row */}
                 <div className={styles.actionsRow}>
-                  <button className={styles.btnPrimary}>
+                  <Link
+                    href="/pricing"
+                    className={styles.btnPrimary}
+                    style={{ textDecoration: "none" }}
+                  >
                     Check Pricing
                     <svg
                       width="14"
@@ -618,13 +519,22 @@ export default function StoresPage() {
                     >
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
-                  </button>
+                  </Link>
                   <button className={styles.btnOutline}>
                     <Navigation size={14} /> Get Directions
                   </button>
-                  <button className={styles.btnOutline}>
+                  <a
+                    href="tel:7078497263"
+                    className={styles.btnOutline}
+                    style={{
+                      textDecoration: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
                     <Phone size={14} /> Call Store
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

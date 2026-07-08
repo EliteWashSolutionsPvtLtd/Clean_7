@@ -157,7 +157,6 @@
 .blurred {
   opacity: 0.4;
   filter: blur(2px);
-  pointer-events: none;
 }
 
 .filterItem {
