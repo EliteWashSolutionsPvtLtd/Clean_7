@@ -9,6 +9,7 @@
   column-gap: 16px;
   padding: 32px clamp(20px, 5vw, 56px);
   z-index: 100;
+  font-family: var(--font-inter), sans-serif;
 }
 
 .navLeft {
@@ -107,6 +108,7 @@
   overflow-y: auto;
   pointer-events: none;
   visibility: hidden;
+  font-family: var(--font-inter), sans-serif;
 }
 .navMobilePanel.open {
   transform: translateX(0);
