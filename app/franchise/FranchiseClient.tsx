@@ -106,7 +106,7 @@ export default function FranchiseClient() {
   return (
     <main className="pt-24 pb-16 min-h-screen font-sans bg-ground selection:bg-gold/30">
       {/* Hero Section */}
-      <section className="relative px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px] py-10 lg:py-14">
+      <section className="relative px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-10 lg:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-8 items-center">
           <div className="space-y-8 max-w-[620px] relative z-10">
             <div className="flex items-center gap-3 mb-6">
@@ -133,6 +133,18 @@ export default function FranchiseClient() {
               franchise partner and grow with a brand designed for long-term
               expansion.
             </p>
+
+            {/* Mobile Image (Visible only on mobile/tablet) */}
+            <div className="block lg:hidden relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden group border border-line bg-ground-soft shadow-2xl">
+              <Image
+                src="/images/franchise/store.png"
+                alt="Clean7 Franchise Storefront"
+                fill
+                className="object-cover transform group-hover:scale-[1.03] transition-transform duration-[1.5s] ease-out"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-50" />
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-6 pt-6 items-center">
               <button
@@ -173,7 +185,7 @@ export default function FranchiseClient() {
             </div>
           </div>
 
-          <div className="relative w-full h-[200px] md:h-[300px] lg:h-[400px] rounded-3xl overflow-hidden group border border-line bg-ground-soft shadow-2xl -mt-8 md:-mt-12 lg:-mt-30">
+          <div className="hidden lg:block relative w-full lg:h-[400px] rounded-3xl overflow-hidden group border border-line bg-ground-soft shadow-2xl lg:-mt-30">
             <Image
               src="/images/franchise/store.png"
               alt="Clean7 Franchise Storefront"
@@ -189,7 +201,7 @@ export default function FranchiseClient() {
 
       {/* Why This Opportunity Exists */}
       <section className="bg-ground-soft py-24 md:py-32 border-y border-line">
-        <div className="px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="max-w-[720px] mb-16 space-y-6">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -245,7 +257,7 @@ export default function FranchiseClient() {
 
       {/* Why Clean7 */}
       <section className="py-24 md:py-32">
-        <div className="px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="text-center mb-20 space-y-4">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -317,7 +329,7 @@ export default function FranchiseClient() {
 
       {/* Services Visuals */}
       <section className="bg-ground-soft text-ink py-24 md:py-32 border-y border-line">
-        <div className="px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="mb-20 max-w-[600px]">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -380,7 +392,7 @@ export default function FranchiseClient() {
 
       {/* Why Investors Like This Industry */}
       <section className="py-24 md:py-32">
-        <div className="px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8">
             <div className="max-w-[500px] space-y-6">
               <div className="flex items-center gap-3 mb-6">
@@ -456,7 +468,7 @@ export default function FranchiseClient() {
 
       {/* Investment */}
       <section className="bg-ground-soft py-24 md:py-32 border-y border-line">
-        <div className="px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="text-center mb-20">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -551,7 +563,7 @@ export default function FranchiseClient() {
 
       {/* Franchise Support & FAQ */}
       <section className="py-24 md:py-32">
-        <div className="px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 lg:gap-24 items-start">
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -648,7 +660,7 @@ export default function FranchiseClient() {
       </section>
 
       {/* Vision & CTA Container */}
-      <section className="px-6 md:px-14 lg:px-20 mx-auto max-w-[1400px] pb-24 md:pb-32">
+      <section className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] pb-24 md:pb-32">
         <div className="bg-ground rounded-3xl overflow-hidden shadow-2xl relative text-ink border border-line">
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-line">
             {/* Vision */}
