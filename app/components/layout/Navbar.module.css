@@ -58,6 +58,14 @@
   color: var(--gold-bright);
 }
 
+.goldGradientText {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-bright) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--gold-bright);
+}
+
 .navLinks {
   justify-self: center;
   display: flex;

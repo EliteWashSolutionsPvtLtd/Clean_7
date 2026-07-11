@@ -41,7 +41,7 @@ export default function Navbar() {
           />
           <div className={styles.brandContainer}>
             <span className={styles.wordmark}>
-              Clean<span style={{ color: "var(--gold-bright)" }}>7</span>
+              Clean<span className={styles.goldGradientText}>7</span>
             </span>
             <span className={styles.subtitle}>
               Premium care, delivered with elegance
