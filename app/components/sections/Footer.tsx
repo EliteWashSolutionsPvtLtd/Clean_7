@@ -281,7 +281,8 @@ export default function Footer() {
 
           {/* Bottom Section - Copyright */}
           <div className="pt-[30px] flex flex-col sm:flex-row items-center justify-between gap-[20px] text-[13px] text-[var(--ink-soft)]">
-            <p>©2026 Clean7. All rights reserved.</p>
+            <p>@2026 Elite Wash Solution Pvt. Ltd. All Rights Reserved.</p>
+            <p>CIN: U96010UW2026PTC25559</p>
           </div>
         </div>
       </footer>
