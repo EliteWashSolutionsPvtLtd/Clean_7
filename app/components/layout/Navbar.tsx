@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 import ThemeToggle from "../ui/ThemeToggle";
@@ -29,8 +30,23 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <div className={styles.navLeft}>
-        <Link href="/" className={styles.wordmark}>
-          Clean<span style={{ color: "var(--gold-bright)" }}>7</span>
+        <Link href="/" className={styles.logoLink}>
+          <Image
+            src="/images/logo/logo.png"
+            alt="Clean7 Logo"
+            width={60}
+            height={60}
+            className={styles.logoImage}
+            priority
+          />
+          <div className={styles.brandContainer}>
+            <span className={styles.wordmark}>
+              Clean<span style={{ color: "var(--gold-bright)" }}>7</span>
+            </span>
+            <span className={styles.subtitle}>
+              Premium care, delivered with elegance
+            </span>
+          </div>
         </Link>
       </div>
 

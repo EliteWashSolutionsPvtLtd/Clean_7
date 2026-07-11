@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import AppStoreButton from "../ui/buttons/AppStoreButton";
 import GooglePlayButton from "../ui/buttons/GooglePlayButton";
 import { Instagram, Facebook, MessageCircle, Mail } from "lucide-react";
@@ -131,21 +132,25 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row justify-between gap-[60px] lg:gap-[40px] mb-[80px]">
             {/* Col 1: Brand */}
             <div className="max-w-[300px]">
-              <h2
-                className="text-[42px] text-[var(--ink)] mb-[16px] leading-none"
-                style={{ fontFamily: "var(--font-fraunces)" }}
-              >
-                Clean7
-              </h2>
-              <p className="text-[16px] text-[var(--ink)] mb-[4px]">
-                Premium laundry care,
-              </p>
-              <p
-                className="text-[18px] text-[var(--gold)] italic mb-[24px]"
-                style={{ fontFamily: "var(--font-fraunces)" }}
-              >
-                delivered with elegance.
-              </p>
+              <div className="flex flex-col items-start mb-[24px]">
+                <div className="flex flex-col items-center">
+                  <Image
+                    src="/images/logo/logo.png"
+                    alt="Clean7 Logo"
+                    width={110}
+                    height={110}
+                    className="mb-4"
+                  />
+                  <h2 className="text-[32px] tracking-[0.25em] text-[var(--ink)] font-medium mb-[4px] ml-[0.25em]">
+                    CLEAN<span className="text-[var(--gold)]">7</span>
+                  </h2>
+                  <div className="w-full h-px bg-[var(--gold)] opacity-50 mb-2" />
+                  <p className="text-[9px] tracking-[0.12em] text-[var(--ink)] uppercase mb-2">
+                    Premium care, delivered with elegance
+                  </p>
+                  <div className="w-[60px] h-px bg-[var(--gold)] opacity-50" />
+                </div>
+              </div>
               <p className="text-[14px] text-[var(--ink-soft)] leading-[1.6] mb-[16px]">
                 We&apos;re here to make your everyday simpler, fresher, and
                 beautifully taken care of.
@@ -282,7 +287,7 @@ export default function Footer() {
           {/* Bottom Section - Copyright */}
           <div className="pt-[30px] flex flex-col sm:flex-row items-center justify-between gap-[20px] text-[13px] text-[var(--ink-soft)]">
             <p>@2026 Elite Wash Solution Pvt. Ltd. All Rights Reserved.</p>
-            <p>CIN: U96010UW2026PTC25559</p>
+            <p>CIN: U96010UW2026PTC255529</p>
           </div>
         </div>
       </footer>

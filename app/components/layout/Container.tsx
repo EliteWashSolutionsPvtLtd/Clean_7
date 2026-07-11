@@ -9,7 +9,7 @@ export default function Container({
 }) {
   return (
     <div
-      className={`${isMaxWidth ? "max-w-[1300px] mx-auto" : ""} ${className}`}
+      className={`${isMaxWidth ? "max-w-[1400px] mx-auto" : ""} ${className}`}
     >
       {children}
     </div>

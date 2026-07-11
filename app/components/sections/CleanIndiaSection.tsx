@@ -81,7 +81,7 @@ export default function CleanIndiaSection() {
 
       <Container
         isMaxWidth
-        className="relative z-10 max-w-[1300px] px-5 lg:px-10"
+        className="relative z-10 max-w-[1400px] px-5 lg:px-10"
       >
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 items-center">
           {/* Left Column: Content */}

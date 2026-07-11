@@ -2,7 +2,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   margin: 0 auto;
-  max-width: 1300px;
+  max-width: 1400px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -17,6 +17,24 @@
   min-width: 0;
 }
 
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoImage {
+  object-fit: contain;
+  width: auto;
+  height: clamp(40px, 6vw, 52px);
+}
+
+.brandContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .wordmark {
   font-family: var(--font-fraunces), serif;
   font-weight: 500;
@@ -24,6 +42,15 @@
   letter-spacing: 0.01em;
   color: var(--ink);
   white-space: nowrap;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  margin-top: 2px;
 }
 .wordmark em {
   font-style: italic;

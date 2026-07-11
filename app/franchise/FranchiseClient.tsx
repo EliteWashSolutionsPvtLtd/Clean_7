@@ -113,7 +113,7 @@ export default function FranchiseClient() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="relative px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-10 lg:py-14"
+        className="relative px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px] py-10 lg:py-14"
       >
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-8 items-center">
           <div className="space-y-8 max-w-[620px] relative z-10">
@@ -215,7 +215,7 @@ export default function FranchiseClient() {
         transition={{ duration: 0.5 }}
         className="bg-ground-soft py-24 md:py-32 border-y border-line"
       >
-        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px]">
           <div className="max-w-[720px] mb-16 space-y-6">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -277,7 +277,7 @@ export default function FranchiseClient() {
         transition={{ duration: 0.5 }}
         className="py-24 md:py-32"
       >
-        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px]">
           <div className="text-center mb-20 space-y-4">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -355,7 +355,7 @@ export default function FranchiseClient() {
         transition={{ duration: 0.5 }}
         className="bg-ground-soft text-ink py-24 md:py-32 border-y border-line"
       >
-        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px]">
           <div className="mb-20 max-w-[600px]">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -424,7 +424,7 @@ export default function FranchiseClient() {
         transition={{ duration: 0.5 }}
         className="py-24 md:py-32"
       >
-        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8">
             <div className="max-w-[500px] space-y-6">
               <div className="flex items-center gap-3 mb-6">
@@ -506,7 +506,7 @@ export default function FranchiseClient() {
         transition={{ duration: 0.5 }}
         className="bg-ground-soft py-24 md:py-32 border-y border-line"
       >
-        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px]">
+        <div className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px]">
           <div className="text-center mb-20">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-gold"></div>
@@ -605,7 +605,7 @@ export default function FranchiseClient() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] py-16 md:py-24"
+        className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px] py-16 md:py-24"
       >
         <div className="bg-ground rounded-3xl overflow-hidden shadow-2xl relative text-ink border border-line">
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-line">
@@ -716,7 +716,7 @@ export default function FranchiseClient() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1300px] pb-24 md:pb-32"
+        className="px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px] pb-24 md:pb-32"
       >
         <div className="max-w-3xl mx-auto space-y-4">
           <div className="flex items-center gap-3 mb-10 justify-center">

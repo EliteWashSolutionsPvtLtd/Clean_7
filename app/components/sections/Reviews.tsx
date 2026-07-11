@@ -53,7 +53,7 @@ export default function Reviews() {
       id="reviews"
       className="py-[100px] px-[24px] md:px-[48px] bg-[var(--ground)]"
     >
-      <div className="max-w-[1300px] mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="text-center mb-[48px] md:mb-[80px]">
           <ScrollReveal delay={0}>
