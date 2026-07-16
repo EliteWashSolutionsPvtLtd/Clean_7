@@ -287,7 +287,10 @@ export default function Footer() {
           {/* Bottom Section - Copyright */}
           <div className="pt-[30px] flex flex-col sm:flex-row items-center justify-between gap-[20px] text-[13px] text-[var(--ink-soft)]">
             <p>@2026 Elite Wash Solution Pvt. Ltd. All Rights Reserved.</p>
-            <p>CIN: U96010UW2026PTC255529</p>
+            <div className="flex flex-col sm:flex-row items-center gap-[8px] sm:gap-[20px]">
+              <p>CIN: U96010UW2026PTC255529</p>
+              <p>GSTIN: 09AAJCE8249F1ZA</p>
+            </div>
           </div>
         </div>
       </footer>
