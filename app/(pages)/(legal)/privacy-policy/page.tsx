@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "May 24, 2024";
+const LAST_UPDATED = "July 16, 2026";
 
 function PolicySection({
   id,
