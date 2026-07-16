@@ -15,7 +15,7 @@ const BUSINESS_ADDRESS =
 const SUPPORT_HOURS = "9:00 AM – 8:00 PM, All Days";
 
 const GOOGLE_MAPS_EMBED_URL =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.991297957006!2d77.2295097!3d28.6129123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2bc20625eb5%3A0x216347e08a5657de!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1708646400000!5m2!1sen!2sin";
+  "https://maps.google.com/maps?q=28%C2%B059'34.7%22N%2077%C2%B038'45.0%22E&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
 export const metadata: Metadata = {
   title: "Contact Us",
