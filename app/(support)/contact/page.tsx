@@ -15,7 +15,7 @@ const BUSINESS_ADDRESS =
 const SUPPORT_HOURS = "9:00 AM – 8:00 PM, All Days";
 
 const GOOGLE_MAPS_EMBED_URL =
-  "https://maps.google.com/maps?q=28%C2%B059'34.7%22N%2077%C2%B038'45.0%22E&t=&z=15&ie=UTF8&iwloc=&output=embed";
+  "https://maps.google.com/maps?q=28.992972,77.645833+(Clean7)&z=15&output=embed";
 
 export const metadata: Metadata = {
   title: "Contact Us",
