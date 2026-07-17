@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "May 24, 2024";
+const LAST_UPDATED = "17 July 2026";
 
 function PolicySection({
   id,
@@ -27,7 +27,7 @@ function PolicySection({
   children,
 }: {
   id: string;
-  number: string;
+  number?: string;
   title: string;
   children: React.ReactNode;
 }) {
@@ -37,10 +37,12 @@ function PolicySection({
         className="mb-4 text-[20px] font-semibold text-[var(--ink)] sm:text-[24px] flex items-baseline"
         style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
       >
-        <span className="font-bold tabular-nums text-[var(--ink)]">
-          {number}
-        </span>
-        <span className="ml-2">{title}</span>
+        {number && (
+          <span className="font-bold tabular-nums text-[var(--ink)]">
+            {number}
+          </span>
+        )}
+        <span className={number ? "ml-2" : ""}>{title}</span>
       </h2>
       <div className="space-y-4 text-[16px] md:text-[17px] leading-relaxed text-[var(--ink-soft)]">
         {children}
@@ -93,172 +95,233 @@ export default function TermsAndConditionsPage() {
       >
         <div className="mx-auto max-w-4xl">
           <div className="space-y-12">
-            <PolicySection id="intro" number="1." title="Introduction">
-              <p>
-                Welcome to Clean7. These terms govern your use of our website,
-                app, and services.
-              </p>
-              <p>
-                By accessing or using our services, you agree to be bound by
-                these Terms.
-              </p>
+            <PolicySection id="sec-0" title={`Introduction`}>
+              <p>Effective Date: 17 July 2026</p>
+              <p>Last Updated: 17 July 2026</p>
             </PolicySection>
-
-            <PolicySection id="eligibility" number="2." title="Eligibility">
-              <p>
-                You must be at least <strong>18 years old</strong> to use our
-                services. By using our App or Website, you confirm that you meet
-                this requirement.
-              </p>
+            <PolicySection id="sec-1" number="1." title={`Acceptance of Terms`}>
+              <p>By accessing or using the Clean7 website, mobile application, or any of our services, you agree to be bound by these Terms & Conditions. If you do not agree with these Terms, please refrain from using our services.</p>
             </PolicySection>
-
-            <PolicySection id="services" number="3." title="Nature of Services">
-              <p>
-                <strong>Clean7</strong> provides:
-              </p>
+            <PolicySection id="sec-2" number="2." title={`Definitions`}>
               <BulletList
-                items={[
-                  "Doorstep pickup and delivery",
-                  "Laundry, dry cleaning, and ironing services",
-                ]}
-              />
-              <p>
-                All services are subject to availability and operational
-                constraints.
-              </p>
-            </PolicySection>
-
-            <PolicySection id="account" number="4." title="Account & Booking">
-              <p>
-                To use our App, you may be required to create an account and
-                provide accurate and complete information. You are responsible
-                for maintaining the confidentiality of your account.
-              </p>
-              <BulletList
-                items={[
-                  "Orders must be placed through the App.",
-                  "Pickup and delivery slots are subject to availability.",
-                  "You must ensure availability at the scheduled time. Failure to be available may result in delays or cancellation.",
-                ]}
+                items={
+[
+                  <span key="0">Company means Elite Wash Solution Private Limited, operating under the brand name "Clean7".</span>,
+                  <span key="1">Customer means any individual or entity using Clean7's services.</span>,
+                  <span key="2">Services include laundry, dry cleaning, ironing, doorstep pickup and delivery, home cleaning, car wash, shoe care, carpet cleaning, sofa cleaning, curtain cleaning, and any other services offered by Clean7.</span>,
+                  <span key="3">Order means any booking placed through the Clean7 website, mobile application, call centre, WhatsApp, or franchise outlet.</span>
+]
+}
               />
             </PolicySection>
-
-            <PolicySection id="pricing" number="5." title="Pricing & Payments">
+            <PolicySection id="sec-3" number="3." title={`Order Acceptance`}>
+              <p>All orders are accepted subject to operational feasibility. Clean7 reserves the right to refuse or cancel any order where processing is not reasonably possible or where the garment or article presents an unacceptable risk.</p>
+            </PolicySection>
+            <PolicySection id="sec-4" number="4." title={`Pickup and Delivery`}>
+              <p>Laundry orders are generally delivered within 48 hours from pickup.</p>
+              <p>Dry Cleaning orders are generally delivered within 72 hours from pickup.</p>
+              <p>Delivery timelines are estimates only and may vary due to operational requirements, weather conditions, traffic, public holidays, force majeure events, or circumstances beyond our reasonable control.</p>
+              <p>Customers will be informed whenever significant delays are expected.</p>
+            </PolicySection>
+            <PolicySection id="sec-5" number="5." title={`Express Service`}>
+              <p>Express or priority processing may be available at selected locations.</p>
+              <p>Additional charges of up to 20% of the applicable service charges may apply depending upon the requested turnaround time.</p>
+              <p>The applicable charges will always be communicated before order confirmation.</p>
+            </PolicySection>
+            <PolicySection id="sec-6" number="6." title={`Minimum Order for Free Pickup`}>
+              <p>Free pickup and delivery may be available only when the minimum order value or minimum garment weight prescribed by Clean7 is met.</p>
+              <p>The eligibility criteria may vary by city, franchise location, promotional campaign, or operational area.</p>
+            </PolicySection>
+            <PolicySection id="sec-7" number="7." title={`Inspection at Delivery`}>
+              <p>Customers are requested to inspect all processed articles immediately upon delivery.</p>
+              <p>Any complaint relating to loss, damage, incorrect processing, or service quality should be reported within 48 hours of delivery.</p>
+              <p>Complaints received after this period may not be accepted unless otherwise required by applicable law.</p>
+            </PolicySection>
+            <PolicySection id="sec-8" number="8." title={`Proof of Ownership`}>
+              <p>Customers should retain the original receipt, digital invoice, or booking confirmation until the order has been delivered.</p>
+              <p>If satisfactory proof of ownership cannot be produced at the time of delivery, Clean7 reserves the right to verify the customer's identity before releasing the articles.</p>
+            </PolicySection>
+            <PolicySection id="sec-9" number="9." title={`Garment Care`}>
+              <p>Clean7 follows industry-standard cleaning procedures appropriate for different fabrics.</p>
+              <p>However, the Company cannot guarantee complete removal of every stain or odour.</p>
+              <p>Certain stains including ink, paint, bleach, rust, oil, adhesive, dye transfer, old stains, permanent stains, and unidentified stains may remain despite professional treatment.</p>
+            </PolicySection>
+            <PolicySection id="sec-10" number="10." title={`Delicate Articles`}>
+              <p>Customers should inform Clean7 before processing if garments contain:</p>
               <BulletList
-                items={[
-                  "Prices are displayed in the App.",
-                  "Final pricing may vary based on garment inspection.",
-                  "Payments are processed via secure third-party gateways.",
-                  "We reserve the right to update pricing at any time.",
-                ]}
+                items={
+[
+                  <span key="0">Sequins</span>,
+                  <span key="1">Beads</span>,
+                  <span key="2">Embroidery</span>,
+                  <span key="3">Leather</span>,
+                  <span key="4">Silk</span>,
+                  <span key="5">Decorative accessories</span>,
+                  <span key="6">Sensitive dyes</span>,
+                  <span key="7">Previous alterations</span>,
+                  <span key="8">Delicate fabrics</span>,
+                  <span key="9">Special care instructions</span>
+]
+}
+              />
+              <p>Failure to disclose such information may affect the processing outcome.</p>
+            </PolicySection>
+            <PolicySection id="sec-11" number="11." title={`Wear & Tear`}>
+              <p>Garments having:</p>
+              <BulletList
+                items={
+[
+                  <span key="0">Existing stains</span>,
+                  <span key="1">Fabric weakness</span>,
+                  <span key="2">Colour instability</span>,
+                  <span key="3">Previous repairs</span>,
+                  <span key="4">Manufacturing defects</span>,
+                  <span key="5">Age-related deterioration</span>,
+                  <span key="6">Shrinkage tendencies</span>
+]
+}
+              />
+              <p>are accepted at the customer's risk.</p>
+              <p>Clean7 shall not be responsible where additional deterioration results from the inherent condition of the garment rather than negligence in processing.</p>
+            </PolicySection>
+            <PolicySection id="sec-12" number="12." title={`Colour Variation`}>
+              <p>Certain fabrics may naturally experience:</p>
+              <BulletList
+                items={
+[
+                  <span key="0">Colour fading</span>,
+                  <span key="1">Colour bleeding</span>,
+                  <span key="2">Shrinkage</span>,
+                  <span key="3">Texture variation</span>,
+                  <span key="4">Print fading</span>,
+                  <span key="5">Damage to embellishments</span>
+]
+}
+              />
+              <p>despite appropriate professional care.</p>
+              <p>Such results are considered inherent fabric characteristics and shall not constitute negligence by Clean7.</p>
+            </PolicySection>
+            <PolicySection id="sec-13" number="13." title={`Personal Belongings`}>
+              <p>Customers must remove cash, jewellery, watches, keys, cards, mobile phones, documents, USB drives, earphones, and all personal belongings before handing over garments.</p>
+              <p>Clean7 shall not be liable for loss or damage to personal belongings left inside garments.</p>
+            </PolicySection>
+            <PolicySection id="sec-14" number="14." title={`Uncollected Orders`}>
+              <p>Customers are requested to collect processed articles within 21 days of notification or the scheduled delivery date.</p>
+              <p>After this period, storage charges may apply.</p>
+              <p>Clean7 reserves the right to deal with uncollected articles in accordance with applicable law after giving reasonable notice to the customer.</p>
+            </PolicySection>
+            <PolicySection id="sec-15" number="15." title={`Pricing`}>
+              <p>Service charges depend upon:</p>
+              <BulletList
+                items={
+[
+                  <span key="0">Garment type</span>,
+                  <span key="1">Fabric</span>,
+                  <span key="2">Size</span>,
+                  <span key="3">Complexity</span>,
+                  <span key="4">Stain condition</span>,
+                  <span key="5">Special handling</span>,
+                  <span key="6">Service location</span>
+]
+}
+              />
+              <p>Displayed prices are indicative and may vary by franchise, city, or promotional offers.</p>
+            </PolicySection>
+            <PolicySection id="sec-16" number="16." title={`Offers and Discounts`}>
+              <p>Only one promotional offer, coupon, or discount may generally be applied to a single order unless expressly stated otherwise.</p>
+              <p>Discounts cannot ordinarily be applied after invoice generation or completion of processing.</p>
+            </PolicySection>
+            <PolicySection id="sec-17" number="17." title={`Payment`}>
+              <p>Payment shall be made using the payment methods accepted by Clean7.</p>
+              <p>Invoices generated by Clean7 shall be treated as final unless an error is reported immediately.</p>
+              <p>Applicable taxes shall be charged as per prevailing law.</p>
+            </PolicySection>
+            <PolicySection id="sec-18" number="18." title={`Limitation of Liability`}>
+              <p>If any article is lost or damaged solely due to the negligence of Clean7 during processing, the Company's maximum liability shall be limited to the lower of:</p>
+              <BulletList
+                items={
+[
+                  <span key="0">Ten (10) times the processing charges paid for the affected article; or</span>,
+                  <span key="1">₹3,000 per affected article.</span>
+]
+}
+              />
+              <p>Compensation may be provided as a refund, repair, replacement, or service credit at the discretion of Clean7, subject to applicable law.</p>
+              <p>Clean7 shall not be liable for indirect, incidental, consequential, sentimental, or special damages.</p>
+            </PolicySection>
+            <PolicySection id="sec-19" number="19." title={`Force Majeure`}>
+              <p>Clean7 shall not be responsible for delays, interruptions, or losses caused by events beyond its reasonable control, including:</p>
+              <BulletList
+                items={
+[
+                  <span key="0">Fire</span>,
+                  <span key="1">Flood</span>,
+                  <span key="2">Earthquake</span>,
+                  <span key="3">Riot</span>,
+                  <span key="4">Strike</span>,
+                  <span key="5">Pandemic</span>,
+                  <span key="6">Government restrictions</span>,
+                  <span key="7">Transportation disruptions</span>,
+                  <span key="8">Cyber incidents</span>,
+                  <span key="9">Power failures</span>,
+                  <span key="10">Natural disasters</span>
+]
+}
               />
             </PolicySection>
-
-            <PolicySection
-              id="modifications"
-              number="6."
-              title="Modifications & Cancellation"
-            >
+            <PolicySection id="sec-20" number="20." title={`Images and Promotional Content`}>
+              <p>Clean7 will not use photographs or videos of customers, garments, or personal belongings for advertising, marketing, or promotional purposes without obtaining the customer's prior consent.</p>
+            </PolicySection>
+            <PolicySection id="sec-21" number="21." title={`Digital Communication`}>
+              <p>By placing an order, customers consent to receive service-related communications through SMS, Email, WhatsApp, telephone calls, push notifications, or other electronic communication channels.</p>
+              <p>These communications may include order confirmations, invoices, OTP verification, pickup reminders, delivery updates, promotional offers (where permitted), and important policy notifications.</p>
+            </PolicySection>
+            <PolicySection id="sec-22" number="22." title={`Customer Responsibilities`}>
+              <p>Customers agree to:</p>
               <BulletList
-                items={[
-                  "Orders can be modified or cancelled before pickup.",
-                  "Once processing has started, cancellation may not be allowed.",
-                  "Refunds (if applicable) will be processed as per our Refund Policy.",
-                ]}
+                items={
+[
+                  <span key="0">Provide accurate contact details.</span>,
+                  <span key="1">Remove valuables from garments.</span>,
+                  <span key="2">Inform Clean7 about delicate fabrics or special care requirements.</span>,
+                  <span key="3">Make timely payment.</span>,
+                  <span key="4">Cooperate during pickup and delivery.</span>
+]
+}
               />
             </PolicySection>
-
-            <PolicySection
-              id="limitations"
-              number="7."
-              title="Service Limitations & Responsibilities"
-            >
-              <p>
-                While we strive for quality, we do not guarantee removal of all
-                stains, no color fading or shrinkage, or compatibility with all
-                fabric types. Certain garments may be rejected if deemed
-                unsuitable for processing.
-              </p>
-              <p>You agree to:</p>
+            <PolicySection id="sec-23" number="23." title={`Guaranteed Garment Protection Program`}>
+              <p>As a customer benefit, Clean7 may offer a Guaranteed Garment Protection Program for eligible orders.</p>
+              <p>Where applicable:</p>
               <BulletList
-                items={[
-                  "Provide accurate pickup details.",
-                  "Check garments before handing over.",
-                  "Avoid including valuables (cash, jewelry, etc.). We are not responsible for items left in pockets.",
-                ]}
+                items={
+[
+                  <span key="0">Customers may receive compensation for eligible loss or damage occurring solely due to negligence during processing.</span>,
+                  <span key="1">Compensation shall be subject to the limits specified under these Terms & Conditions.</span>,
+                  <span key="2">In case compensation is paid for a lost or damaged article, ownership of the compensated article shall transfer to Clean7 if the article is subsequently recovered.</span>,
+                  <span key="3">Customers may be offered complimentary reprocessing if service quality does not meet reasonable expectations.</span>,
+                  <span key="4">The availability, eligibility, benefits, and conditions of this program may vary by location, promotional campaign, or payment method and may be revised by Clean7 from time to time.</span>
+]
+}
               />
             </PolicySection>
-
-            <PolicySection
-              id="damage"
-              number="8."
-              title="Damage or Loss Policy"
-            >
-              <p>In case of damage or loss:</p>
-              <BulletList
-                items={[
-                  "Claims must be reported within 48 hours of delivery.",
-                  "Compensation (if applicable) will be limited to a reasonable amount based on garment value.",
-                ]}
-              />
-              <p>Final decisions rest with Clean7 after inspection.</p>
+            <PolicySection id="sec-24" number="24." title={`Intellectual Property`}>
+              <p>All trademarks, logos, software, graphics, photographs, content, branding, and other intellectual property displayed on the Clean7 platform are the exclusive property of Elite Wash Solution Private Limited and may not be copied, reproduced, or used without prior written permission.</p>
             </PolicySection>
-
-            <PolicySection
-              id="prohibited"
-              number="9."
-              title="Prohibited Activities & Termination"
-            >
-              <p>
-                You agree not to use the App for fraudulent purposes, interfere
-                with system security, or provide false information. Violation
-                may result in account suspension.
-              </p>
-              <p>
-                We reserve the right to suspend or terminate your account and
-                refuse service at our discretion.
-              </p>
+            <PolicySection id="sec-25" number="25." title={`Amendments`}>
+              <p>Clean7 reserves the right to amend these Terms & Conditions at any time.</p>
+              <p>Updated Terms shall become effective upon publication on the Clean7 website or mobile application unless otherwise required by law.</p>
             </PolicySection>
-
-            <PolicySection
-              id="liability"
-              number="10."
-              title="Limitation of Liability"
-            >
-              <p>
-                To the maximum extent permitted by law, Clean7 shall not be
-                liable for:
-              </p>
-              <BulletList
-                items={[
-                  "Indirect or incidental damages.",
-                  "Loss of profits or data.",
-                  "Damages beyond the value of the service provided.",
-                ]}
-              />
+            <PolicySection id="sec-26" number="26." title={`Governing Law`}>
+              <p>These Terms & Conditions shall be governed by the laws of India.</p>
+              <p>Subject to applicable consumer protection laws, all disputes arising from these Terms shall be subject to the exclusive jurisdiction of the competent courts located in Shamli, Uttar Pradesh, unless otherwise required by applicable law.</p>
             </PolicySection>
-
-            <PolicySection
-              id="governing-law"
-              number="11."
-              title="Governing Law & Changes"
-            >
-              <p>
-                These Terms shall be governed by the laws of India. Any disputes
-                shall be subject to the jurisdiction of the courts at New Delhi.
-              </p>
-              <p>
-                We may update these Terms at any time. Continued use of the App
-                constitutes acceptance of the updated Terms.
-              </p>
-            </PolicySection>
-
-            <PolicySection id="contact" number="12." title="Contact Us">
-              <p>
-                If you have any questions about these Terms & Conditions, please
-                reach out to our support team at:{" "}
-                <strong>support@clean7.in</strong>
-              </p>
+            <PolicySection id="sec-27" number="27." title={`Contact Us`}>
+              <p>For any questions regarding these Terms & Conditions, please contact:</p>
+              <h3 className="font-semibold text-[var(--ink)] mt-4">Elite Wash Solution Private Limited</h3>
+              <p>Email: support@clean7.in</p>
+              <p>Phone: +91-7078497263</p>
+              <p>Website: www.clean7.in</p>
             </PolicySection>
           </div>
         </div>
