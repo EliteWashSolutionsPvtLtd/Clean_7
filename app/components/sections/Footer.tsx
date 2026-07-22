@@ -238,6 +238,9 @@ export default function Footer() {
                   <Link href="/privacy-policy" className={linkClass}>
                     Privacy Policy
                   </Link>
+                  <Link href="/delete-account" className={linkClass}>
+                    Delete Account
+                  </Link>
                 </div>
               </div>
             </div>
