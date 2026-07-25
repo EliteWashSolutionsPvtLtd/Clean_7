@@ -6,7 +6,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "../../components/ui/ScrollReveal";
 import { notFound } from "next/navigation";
-import { blogs } from "../data";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+
+async function getBlog(slug: string) {
+  try {
+    const res = await fetch(`${API_URL}/catalog/blogs/${slug}`, {
+      next: { revalidate: 60 },
+    });
+    const json = await res.json();
+    if (json.success && json.data) {
+      return json.data;
+    }
+    return null;
+  } catch (error) {
+    console.error("Failed to fetch blog", error);
+    return null;
+  }
+}
 
 export async function generateMetadata({
   params,
@@ -14,16 +31,12 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const blog = blogs.find((b) => b.id.toString() === resolvedParams.id);
+  const blog = await getBlog(resolvedParams.id);
   if (!blog) return { title: "Blog Not Found" };
   return {
     title: blog.title,
     description: blog.excerpt,
   };
-}
-
-export async function generateStaticParams() {
-  return blogs.map((blog) => ({ id: blog.id.toString() }));
 }
 
 export default async function BlogPost({
@@ -32,11 +45,15 @@ export default async function BlogPost({
   params: Promise<{ id: string }>;
 }) {
   const resolvedParams = await params;
-  const blog = blogs.find((b) => b.id.toString() === resolvedParams.id);
+  const blog = await getBlog(resolvedParams.id);
 
   if (!blog) {
     notFound();
   }
+
+  const formatCategory = (cat: string) => {
+    return cat.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  };
 
   return (
     <div className="overflow-clip min-h-screen flex flex-col">
@@ -58,12 +75,18 @@ export default async function BlogPost({
           <ScrollReveal delay={150}>
             <div className="mb-10">
               <div className="flex items-center gap-2 text-[var(--gold)] text-[13px] font-bold mb-5 uppercase tracking-widest">
-                <span>{blog.category}</span>
+                <span>{formatCategory(blog.category)}</span>
                 <span className="text-[var(--ink-soft)] mx-2 opacity-50">
                   ·
                 </span>
                 <Calendar className="w-4 h-4" />
-                <span>{blog.date}</span>
+                <span>
+                  {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </span>
               </div>
               <h1 className="text-4xl md:text-[48px] font-bold font-serif mb-6 text-[var(--ink)] leading-[1.15] tracking-tight">
                 {blog.title}
@@ -78,7 +101,7 @@ export default async function BlogPost({
           <ScrollReveal delay={300}>
             <div className="w-full h-[320px] md:h-[480px] relative rounded-[24px] overflow-hidden mb-16 shadow-lg border border-[var(--line)]">
               <Image
-                src={blog.image}
+                src={blog.imageUrl || "/images/services/car-wash.png"}
                 alt={blog.title}
                 fill
                 className="object-cover"
