@@ -6,12 +6,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "../../components/ui/ScrollReveal";
 import { notFound } from "next/navigation";
+import { generateHTML } from "@tiptap/html/server";
+import { StarterKit } from "@tiptap/starter-kit";
+import { Image as TiptapImage } from "@tiptap/extension-image";
+import { TaskList, TaskItem } from "@tiptap/extension-list";
+import { TextAlign } from "@tiptap/extension-text-align";
+import { Typography } from "@tiptap/extension-typography";
+import { Highlight } from "@tiptap/extension-highlight";
+import { Subscript } from "@tiptap/extension-subscript";
+import { Superscript } from "@tiptap/extension-superscript";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
 async function getBlog(slug: string) {
   try {
-    const res = await fetch(`${API_URL}/catalog/blogs/${slug}`, {
+    const res = await fetch(`https://api.clean7.in/catalog/blogs/${slug}`, {
       next: { revalidate: 60 },
     });
     const json = await res.json();
@@ -49,6 +58,24 @@ export default async function BlogPost({
 
   if (!blog) {
     notFound();
+  }
+
+  let htmlContent = blog.content;
+  try {
+    const jsonContent = JSON.parse(blog.content);
+    htmlContent = generateHTML(jsonContent, [
+      StarterKit,
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      TiptapImage,
+      TaskList,
+      TaskItem.configure({ nested: true }),
+      Typography,
+      Highlight.configure({ multicolor: true }),
+      Subscript,
+      Superscript,
+    ]);
+  } catch (e) {
+    // Fallback if content is already HTML or not JSON
   }
 
   const formatCategory = (cat: string) => {
@@ -111,10 +138,10 @@ export default async function BlogPost({
           </ScrollReveal>
 
           {/* Content */}
-          <ScrollReveal delay={0}>
+          <ScrollReveal delay={150}>
             <div
-              className="text-[17px] md:text-[18px] [&>p]:text-[var(--ink-soft)] [&>p]:leading-[1.8] [&>p]:mb-7 [&>h3]:text-[28px] [&>h3]:font-bold [&>h3]:font-serif [&>h3]:text-[var(--ink)] [&>h3]:mt-12 [&>h3]:mb-6"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
+              className="blog-content"
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
             />
           </ScrollReveal>
         </div>

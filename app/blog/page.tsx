@@ -49,7 +49,7 @@ export default function BlogPage() {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        let url = `${API_URL}/catalog/blogs?`;
+        let url = `https://api.clean7.in/catalog/blogs?`;
         if (searchQuery) url += `search=${encodeURIComponent(searchQuery)}&`;
         if (selectedCategory !== "All") url += `category=${selectedCategory}`;
 
@@ -165,11 +165,14 @@ export default function BlogPage() {
                       <div className="flex items-center gap-2 text-[var(--gold)] text-[12px] font-medium mb-3">
                         <Calendar className="w-3.5 h-3.5" />
                         <span>
-                          {new Date(blog.createdAt).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
+                          {new Date(blog.createdAt).toLocaleDateString(
+                            "en-US",
+                            {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            },
+                          )}
                         </span>
                         <span className="text-[var(--ink-soft)] mx-1 opacity-50">
                           ·
