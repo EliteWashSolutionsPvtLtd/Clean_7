@@ -147,8 +147,12 @@ export default function PricingClient({
   const categories = useMemo(() => {
     const map = new Map<string, ServiceCategory>();
     services.forEach((s) => {
-      if (s.isEnabled && s.category) {
-        map.set(s.category.code, s.category);
+      if (s.isEnabled && s.category && s.category.code !== "PEST_CONTROL") {
+        if (s.category.code === "HOME_CLEANING") {
+          map.set(s.category.code, { ...s.category, name: "House Help" });
+        } else {
+          map.set(s.category.code, s.category);
+        }
       }
     });
     return Array.from(map.values()).sort(
