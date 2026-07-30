@@ -94,15 +94,7 @@ export function CareersClient() {
           {careers.map((career) => (
             <div
               key={career.id}
-              className="group flex flex-col md:flex-row md:items-center justify-between p-6 border border-[var(--line)] rounded-2xl bg-[var(--card)] hover:border-[var(--gold)] cursor-pointer transition-all"
-              onClick={() => {
-                setSelectedCareer(career);
-                setSuccess(false);
-                setFullName("");
-                setEmail("");
-                setPhone("");
-                setResume(null);
-              }}
+              className="group flex flex-col md:flex-row md:items-center justify-between p-6 border border-[var(--line)] rounded-2xl bg-[var(--card)] hover:border-[var(--gold)] transition-all"
             >
               <div className="flex items-center space-x-4 flex-1">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl border border-[var(--line)] text-[var(--gold)]">
@@ -129,20 +121,20 @@ export function CareersClient() {
                   </p>
                 </div>
               </div>
-              <div className="text-[var(--gold)] md:opacity-0 group-hover:opacity-100 transition-opacity mt-4 md:mt-0 flex justify-end">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <div className="mt-4 md:mt-0 flex justify-end">
+                <button
+                  className="bg-[var(--gold)] hover:brightness-110 text-black px-6 py-2 rounded-full font-semibold cursor-pointer transition-all"
+                  onClick={() => {
+                    setSelectedCareer(career);
+                    setSuccess(false);
+                    setFullName("");
+                    setEmail("");
+                    setPhone("");
+                    setResume(null);
+                  }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
+                  Apply Now
+                </button>
               </div>
             </div>
           ))}

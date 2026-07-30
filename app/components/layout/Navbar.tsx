@@ -81,6 +81,14 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
+          <Link
+            href="/careers"
+            className={isActive("/careers") ? styles.active : ""}
+          >
+            Careers
+          </Link>
+        </li>
+        <li>
           <Link href="/blog" className={isActive("/blog") ? styles.active : ""}>
             Blog
           </Link>
@@ -184,6 +192,13 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             About
+          </Link>
+          <Link
+            href="/careers"
+            className={isActive("/careers") ? styles.active : ""}
+            onClick={() => setIsOpen(false)}
+          >
+            Careers
           </Link>
           <Link
             href="/blog"

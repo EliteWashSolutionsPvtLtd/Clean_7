@@ -118,7 +118,7 @@ const IconSparkle = () => (
 
 export default function Footer() {
   const linkClass =
-    "block text-[var(--ink-soft)] text-[15px] hover:text-[var(--gold)] hover:translate-x-1 transition-all duration-300";
+    "block text-[var(--ink-soft)] text-[14px] hover:text-[var(--gold)] hover:translate-x-1 transition-all duration-300";
   const headingClass =
     "text-[var(--gold)] font-bold text-[12px] tracking-[0.1em] uppercase mb-[24px]";
 

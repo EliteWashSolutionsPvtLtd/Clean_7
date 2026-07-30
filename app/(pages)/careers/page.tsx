@@ -13,7 +13,7 @@ export default function CareersPage() {
   return (
     <div className="bg-[var(--background)] text-[var(--foreground)] overflow-clip font-sans">
       <Navbar />
-      <main className="py-24">
+      <main className="pt-32 md:pt-40 pb-24">
         <div className="container px-4 md:px-6 max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">

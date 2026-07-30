@@ -22,6 +22,7 @@ export default function MobileNavbar() {
     { name: "Pricing", href: "/pricing" },
     { name: "Reviews", href: "#reviews" },
     { name: "About", href: "/about" },
+    { name: "Careers", href: "/careers" },
     { name: "Get Franchise", href: "/get-franchise" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms of Services", href: "/terms-and-conditions" },
@@ -184,7 +185,7 @@ export default function MobileNavbar() {
               <ul className="flex flex-col">
                 {navItems.map((item) => {
                   const rowClass =
-                    "flex min-h-[48px] w-full items-center justify-between py-3 text-gray-900 font-medium text-[16px] active:text-orange transition-colors duration-200";
+                    "flex min-h-[48px] w-full items-center justify-between py-3 text-gray-900 font-medium text-[15px] active:text-orange transition-colors duration-200";
 
                   if (!item.href.startsWith("#")) {
                     return (

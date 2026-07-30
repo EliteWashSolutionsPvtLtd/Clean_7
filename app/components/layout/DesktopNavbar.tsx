@@ -22,6 +22,7 @@ export default function DesktopNavbar() {
     { name: "Services", href: "/services" },
     { name: "Pricing", href: "/pricing" },
     { name: "About", href: "/about" },
+    { name: "Careers", href: "/careers" },
     { name: "Get Franchise", href: "/get-franchise" },
   ];
 
@@ -81,7 +82,7 @@ export default function DesktopNavbar() {
           </Link>
 
           {/* Desktop nav: flex-nowrap to prevent dropping to next line */}
-          <ul className="flex min-w-0 max-w-full flex-1 list-none flex-nowrap items-center justify-end gap-1 lg:gap-2 xl:gap-3 text-[13px] xl:text-sm font-medium text-dark-blue">
+          <ul className="flex min-w-0 max-w-full flex-1 list-none flex-nowrap items-center justify-end gap-1 lg:gap-2 xl:gap-3 text-[11px] xl:text-[12px] font-medium text-dark-blue">
             {navItems.map((item) => {
               const navPillClass =
                 "group relative inline-flex min-h-[44px] cursor-pointer select-none items-center justify-center rounded-full px-2 lg:px-3 xl:px-5 py-2.5 leading-none hover:text-[#FF7700] active:scale-[0.95] transition-all duration-200 overflow-hidden before:pointer-events-none before:absolute before:inset-[2px] before:z-0 before:rounded-full before:bg-gradient-to-b before:from-white/90 before:via-[#fff3ea]/60 before:to-[#ffe8d6]/40 before:scale-0 hover:before:scale-100 before:transition-transform before:duration-300 before:ease-out before:shadow-[inset_0_-2px_4px_rgba(255,148,49,0.15),inset_0_2px_4px_rgba(255,255,255,0.8)] after:pointer-events-none after:absolute after:top-[3px] after:left-[15%] after:z-0 after:w-[70%] after:h-[40%] after:rounded-full after:bg-gradient-to-b after:from-white/80 after:to-transparent after:scale-0 hover:after:scale-100 after:transition-transform after:duration-300 hover:shadow-[0_2px_8px_rgba(255,148,49,0.2)]";
@@ -127,7 +128,7 @@ export default function DesktopNavbar() {
             })}
             <li className="shrink-0 ml-1 xl:ml-2">
               <OrangeGradientButton
-                className="flex items-center justify-center gap-[5px] rounded-[20px] px-3 xl:px-4 py-2 text-[13px] xl:text-sm whitespace-nowrap"
+                className="flex items-center justify-center gap-[5px] rounded-[20px] px-3 xl:px-4 py-2 text-[11px] xl:text-[12px] whitespace-nowrap"
                 onClick={() => setIsModalOpen(true)}
               >
                 <Download size={18} className="xl:w-[20px] xl:h-[20px]" />
