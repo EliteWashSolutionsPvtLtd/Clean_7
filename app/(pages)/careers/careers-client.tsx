@@ -18,12 +18,15 @@ export function CareersClient() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [experienceSummary, setExperienceSummary] = useState("");
   const [resume, setResume] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
+
   useEffect(() => {
-    fetch(`https://api.clean7.in/careers`)
+    fetch(`${apiUrl}/careers`)
       .then((r) => r.json())
       .then((res) => {
         if (res.success) {
@@ -32,27 +35,25 @@ export function CareersClient() {
       })
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, []);
+  }, [apiUrl]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!selectedCareer || !resume) return;
+    if (!selectedCareer || !resume || !experienceSummary.trim()) return;
 
     setSubmitting(true);
     const formData = new FormData();
     formData.append("fullName", fullName);
     formData.append("email", email);
     formData.append("phone", phone);
+    formData.append("experienceSummary", experienceSummary);
     formData.append("resume", resume);
 
     try {
-      const res = await fetch(
-        `https://api.clean7.in/careers/${selectedCareer.id}/apply`,
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      const res = await fetch(`${apiUrl}/careers/${selectedCareer.id}/apply`, {
+        method: "POST",
+        body: formData,
+      });
       const data = await res.json();
       if (data.success) {
         setSuccess(true);
@@ -134,6 +135,7 @@ export function CareersClient() {
                     setFullName("");
                     setEmail("");
                     setPhone("");
+                    setExperienceSummary("");
                     setResume(null);
                   }}
                 >
@@ -397,6 +399,24 @@ export function CareersClient() {
                       value={phone}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setPhone(e.target.value)
+                      }
+                    />
+                  </div>
+                  <div className="space-y-1.5 flex flex-col">
+                    <label
+                      htmlFor="experienceSummary"
+                      className="text-sm font-medium text-[var(--foreground)]"
+                    >
+                      Experience Summary
+                    </label>
+                    <textarea
+                      className="rounded-xl border border-[var(--line)] bg-[var(--background)] text-[var(--foreground)] px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)] focus:border-[var(--gold)] transition-colors min-h-[100px] resize-y"
+                      id="experienceSummary"
+                      required
+                      placeholder="Briefly describe your relevant experience..."
+                      value={experienceSummary}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                        setExperienceSummary(e.target.value)
                       }
                     />
                   </div>
