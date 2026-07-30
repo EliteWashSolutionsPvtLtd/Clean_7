@@ -75,7 +75,10 @@ export function CareersClient() {
 
   return (
     <PageSectionsAnimation sequentialSections={true} className="w-full">
-      <div id="open-positions" className="page-section flex flex-col md:flex-row md:items-center md:justify-between mb-8 border-b border-[var(--line)] pb-4">
+      <div
+        id="open-positions"
+        className="page-section flex flex-col md:flex-row md:items-center md:justify-between mb-8 border-b border-[var(--line)] pb-4"
+      >
         <h3 className="text-3xl font-bold font-serif">Open Positions</h3>
         <p className="text-[var(--ink-soft)] mt-2 md:mt-0">
           Join our mission to deliver premium care and exceptional experiences.
