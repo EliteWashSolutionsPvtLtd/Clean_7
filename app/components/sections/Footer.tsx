@@ -214,9 +214,6 @@ export default function Footer() {
                   <Link href="/pricing" className={linkClass}>
                     Pricing
                   </Link>
-                  <Link href="#" className={linkClass}>
-                    Careers
-                  </Link>
                   <Link href="/blog" className={linkClass}>
                     Blog
                   </Link>
