@@ -22,7 +22,7 @@ export function CareersClient() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/careers`)
+    fetch(`https://api.clean7.in/careers`)
       .then((r) => r.json())
       .then((res) => {
         if (res.success) {
@@ -46,7 +46,7 @@ export function CareersClient() {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/careers/${selectedCareer.id}/apply`,
+        `https://api.clean7.in/careers/${selectedCareer.id}/apply`,
         {
           method: "POST",
           body: formData,
@@ -56,7 +56,13 @@ export function CareersClient() {
       if (data.success) {
         setSuccess(true);
       } else {
-        alert(data.error || "Failed to submit application");
+        let errorMsg = "Failed to submit application";
+        if (typeof data.error === "string") {
+          errorMsg = data.error;
+        } else if (data.error && typeof data.error === "object") {
+          errorMsg = data.error.message || JSON.stringify(data.error);
+        }
+        alert(errorMsg);
       }
     } catch (err) {
       console.error(err);
@@ -66,58 +72,247 @@ export function CareersClient() {
     }
   }
 
-  if (loading) {
-    return (
-      <div className="text-center text-muted-foreground py-12">
-        Loading open positions...
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <h3 className="text-2xl font-bold mb-6 text-center">Open Positions</h3>
-      {careers.length === 0 ? (
-        <p className="text-center text-muted-foreground">
+    <div className="w-full" id="open-positions">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 border-b border-[var(--line)] pb-4">
+        <h3 className="text-3xl font-bold font-serif">Open Positions</h3>
+        <p className="text-[var(--ink-soft)] mt-2 md:mt-0">
+          Join our mission to deliver premium care and exceptional experiences.
+        </p>
+      </div>
+
+      {loading ? (
+        <div className="text-center text-[var(--ink-soft)] py-12">
+          Loading open positions...
+        </div>
+      ) : careers.length === 0 ? (
+        <p className="text-center text-[var(--ink-soft)] py-12">
           There are currently no open positions. Please check back later.
         </p>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-4 mb-24">
           {careers.map((career) => (
             <div
               key={career.id}
-              className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm flex flex-col"
+              className="group flex flex-col md:flex-row md:items-center justify-between p-6 border border-[var(--line)] rounded-2xl bg-[var(--card)] hover:border-[var(--gold)] cursor-pointer transition-all"
+              onClick={() => {
+                setSelectedCareer(career);
+                setSuccess(false);
+                setFullName("");
+                setEmail("");
+                setPhone("");
+                setResume(null);
+              }}
             >
-              <h4 className="text-xl font-semibold mb-2">{career.name}</h4>
-              <p className="text-gray-500 mb-6 flex-1 whitespace-pre-wrap">
-                {career.description}
-              </p>
-              <button
-                className="bg-black text-white rounded-md px-4 py-2 hover:bg-gray-800 transition-colors w-full"
-                onClick={() => {
-                  setSelectedCareer(career);
-                  setSuccess(false);
-                  setFullName("");
-                  setEmail("");
-                  setPhone("");
-                  setResume(null);
-                }}
-              >
-                Apply Now
-              </button>
+              <div className="flex items-center space-x-4 flex-1">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl border border-[var(--line)] text-[var(--gold)]">
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg text-[var(--foreground)]">
+                    {career.name}
+                  </h4>
+                  <p className="text-sm text-[var(--ink-soft)] line-clamp-1">
+                    {career.description}
+                  </p>
+                </div>
+              </div>
+              <div className="text-[var(--gold)] md:opacity-0 group-hover:opacity-100 transition-opacity mt-4 md:mt-0 flex justify-end">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </div>
             </div>
           ))}
         </div>
       )}
 
+      {/* Footer Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 border border-[var(--line)] rounded-3xl bg-[var(--card)]">
+        <div className="flex flex-col md:flex-row gap-6 items-start md:border-r border-[var(--line)] md:pr-8">
+          <div className="w-16 h-16 flex-shrink-0 rounded-full border border-dashed border-[var(--gold)] flex items-center justify-center text-[var(--gold)]">
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+          <div>
+            <h4 className="text-xl font-semibold mb-2 font-serif">
+              Don't see the right role?
+            </h4>
+            <p className="text-sm text-[var(--ink-soft)] mb-6">
+              We're always looking for talented people. Share your profile with
+              us and we'll reach out when a suitable opportunity comes up.
+            </p>
+            <button className="inline-flex items-center justify-center rounded-full bg-[var(--gold)] hover:bg-[var(--gold-bright)] text-black px-6 py-2.5 font-semibold transition-colors text-sm">
+              Send Your Resume
+              <svg
+                className="ml-2 w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </button>
+            <p className="text-xs text-[var(--ink-soft)] mt-4 flex items-center">
+              <svg
+                className="w-3.5 h-3.5 mr-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+              Your information is safe with us.
+            </p>
+          </div>
+        </div>
+        <div className="md:pl-8">
+          <h4 className="text-xl font-semibold mb-6 font-serif text-center md:text-left">
+            More reasons to join Clean7
+          </h4>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+            <div className="flex flex-col items-center">
+              <div className="w-10 h-10 flex items-center justify-center text-[var(--gold)] mb-2 border border-[var(--line)] rounded-xl bg-[var(--background)]">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M9 12h6m-3-3v6m-9 1V7a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2H3a2 2 0 01-2-2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-xs text-[var(--ink-soft)]">
+                Health Insurance
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-10 h-10 flex items-center justify-center text-[var(--gold)] mb-2 border border-[var(--line)] rounded-xl bg-[var(--background)]">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M12 14l9-5-9-5-9 5 9 5z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  />
+                </svg>
+              </div>
+              <span className="text-xs text-[var(--ink-soft)]">
+                Learning Allowance
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-10 h-10 flex items-center justify-center text-[var(--gold)] mb-2 border border-[var(--line)] rounded-xl bg-[var(--background)]">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <span className="text-xs text-[var(--ink-soft)]">
+                Paid Time Off
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-10 h-10 flex items-center justify-center text-[var(--gold)] mb-2 border border-[var(--line)] rounded-xl bg-[var(--background)]">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <span className="text-xs text-[var(--ink-soft)]">
+                Team Events
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Application Modal */}
       {selectedCareer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden">
-            <div className="p-6 border-b border-gray-100">
-              <h3 className="text-xl font-bold">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-[var(--card)] border border-[var(--line)] rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-[modalSlideUp_0.2s_ease-out]">
+            <div className="p-6 border-b border-[var(--line)]">
+              <h3 className="text-xl font-bold font-serif text-[var(--foreground)]">
                 Apply for {selectedCareer.name}
               </h3>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-[var(--ink-soft)] mt-1">
                 Fill out the form below to apply for this position.
               </p>
             </div>
@@ -125,9 +320,9 @@ export function CareersClient() {
             <div className="p-6">
               {success ? (
                 <div className="py-6 text-center">
-                  <div className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-full bg-[var(--background)] text-[var(--gold)] flex items-center justify-center mx-auto mb-4 border border-[var(--gold)] shadow-[0_0_15px_var(--gold)]">
                     <svg
-                      className="w-6 h-6"
+                      className="w-8 h-8"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -140,15 +335,15 @@ export function CareersClient() {
                       />
                     </svg>
                   </div>
-                  <h4 className="text-lg font-medium">
+                  <h4 className="text-lg font-medium text-[var(--foreground)]">
                     Application Submitted!
                   </h4>
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-[var(--ink-soft)] mt-2 text-sm">
                     Thank you for applying. We will review your application and
                     get back to you soon.
                   </p>
                   <button
-                    className="mt-6 w-full bg-black text-white rounded-md px-4 py-2"
+                    className="mt-6 w-full bg-[var(--gold)] text-black font-semibold rounded-full px-4 py-3 hover:bg-[var(--gold-bright)] transition-colors"
                     onClick={() => setSelectedCareer(null)}
                   >
                     Close
@@ -157,11 +352,14 @@ export function CareersClient() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-1.5 flex flex-col">
-                    <label htmlFor="fullName" className="text-sm font-medium">
+                    <label
+                      htmlFor="fullName"
+                      className="text-sm font-medium text-[var(--foreground)]"
+                    >
                       Full Name
                     </label>
                     <input
-                      className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                      className="rounded-xl border border-[var(--line)] bg-[var(--background)] text-[var(--foreground)] px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)] focus:border-[var(--gold)] transition-colors"
                       id="fullName"
                       required
                       value={fullName}
@@ -171,11 +369,14 @@ export function CareersClient() {
                     />
                   </div>
                   <div className="space-y-1.5 flex flex-col">
-                    <label htmlFor="email" className="text-sm font-medium">
+                    <label
+                      htmlFor="email"
+                      className="text-sm font-medium text-[var(--foreground)]"
+                    >
                       Email
                     </label>
                     <input
-                      className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                      className="rounded-xl border border-[var(--line)] bg-[var(--background)] text-[var(--foreground)] px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)] focus:border-[var(--gold)] transition-colors"
                       id="email"
                       type="email"
                       required
@@ -186,11 +387,14 @@ export function CareersClient() {
                     />
                   </div>
                   <div className="space-y-1.5 flex flex-col">
-                    <label htmlFor="phone" className="text-sm font-medium">
+                    <label
+                      htmlFor="phone"
+                      className="text-sm font-medium text-[var(--foreground)]"
+                    >
                       Phone Number
                     </label>
                     <input
-                      className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                      className="rounded-xl border border-[var(--line)] bg-[var(--background)] text-[var(--foreground)] px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)] focus:border-[var(--gold)] transition-colors"
                       id="phone"
                       type="tel"
                       required
@@ -201,11 +405,14 @@ export function CareersClient() {
                     />
                   </div>
                   <div className="space-y-1.5 flex flex-col">
-                    <label htmlFor="resume" className="text-sm font-medium">
+                    <label
+                      htmlFor="resume"
+                      className="text-sm font-medium text-[var(--foreground)]"
+                    >
                       Resume (PDF, DOCX)
                     </label>
                     <input
-                      className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                      className="rounded-xl border border-[var(--line)] bg-[var(--background)] text-[var(--ink-soft)] px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)] focus:border-[var(--gold)] transition-colors file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[var(--line)] file:text-[var(--foreground)] hover:file:bg-opacity-80"
                       id="resume"
                       type="file"
                       required
@@ -218,14 +425,14 @@ export function CareersClient() {
                   <div className="flex gap-3 pt-4">
                     <button
                       type="button"
-                      className="flex-1 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-50"
+                      className="flex-1 rounded-full border border-[var(--line)] px-4 py-3 text-sm font-semibold text-[var(--foreground)] hover:bg-[var(--line)] transition-colors"
                       onClick={() => setSelectedCareer(null)}
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="flex-1 rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+                      className="flex-1 rounded-full bg-[var(--gold)] px-4 py-3 text-sm font-semibold text-black hover:bg-[var(--gold-bright)] transition-colors disabled:opacity-50"
                       disabled={submitting}
                     >
                       {submitting ? "Submitting..." : "Submit Application"}
