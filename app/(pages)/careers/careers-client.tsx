@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PageSectionsAnimation } from "@/app/components/animations/PageAnimations";
 
 interface Career {
   id: string;
@@ -73,8 +74,8 @@ export function CareersClient() {
   }
 
   return (
-    <div className="w-full" id="open-positions">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 border-b border-[var(--line)] pb-4">
+    <PageSectionsAnimation sequentialSections={true} className="w-full">
+      <div id="open-positions" className="page-section flex flex-col md:flex-row md:items-center md:justify-between mb-8 border-b border-[var(--line)] pb-4">
         <h3 className="text-3xl font-bold font-serif">Open Positions</h3>
         <p className="text-[var(--ink-soft)] mt-2 md:mt-0">
           Join our mission to deliver premium care and exceptional experiences.
@@ -82,19 +83,19 @@ export function CareersClient() {
       </div>
 
       {loading ? (
-        <div className="text-center text-[var(--ink-soft)] py-12">
+        <div className="page-section text-center text-[var(--ink-soft)] py-12">
           Loading open positions...
         </div>
       ) : careers.length === 0 ? (
-        <p className="text-center text-[var(--ink-soft)] py-12">
+        <p className="page-section text-center text-[var(--ink-soft)] py-12">
           There are currently no open positions. Please check back later.
         </p>
       ) : (
-        <div className="flex flex-col gap-4 mb-24">
+        <div className="page-section flex flex-col gap-4 mb-24">
           {careers.map((career) => (
             <div
               key={career.id}
-              className="group flex flex-col md:flex-row md:items-center justify-between p-6 border border-[var(--line)] rounded-2xl bg-[var(--card)] hover:border-[var(--gold)] transition-all"
+              className="page-card group flex flex-col md:flex-row md:items-center justify-between p-6 border border-[var(--line)] rounded-2xl bg-[var(--card)] hover:border-[var(--gold)] transition-all"
             >
               <div className="flex items-center space-x-4 flex-1">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl border border-[var(--line)] text-[var(--gold)]">
@@ -142,7 +143,7 @@ export function CareersClient() {
       )}
 
       {/* Footer Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 border border-[var(--line)] rounded-3xl bg-[var(--card)]">
+      <div className="page-section grid grid-cols-1 md:grid-cols-2 gap-8 p-8 border border-[var(--line)] rounded-3xl bg-[var(--card)]">
         <div className="flex flex-col md:flex-row gap-6 items-start md:border-r border-[var(--line)] md:pr-8">
           <div className="w-16 h-16 flex-shrink-0 rounded-full border border-dashed border-[var(--gold)] flex items-center justify-center text-[var(--gold)]">
             <svg
@@ -436,6 +437,6 @@ export function CareersClient() {
           </div>
         </div>
       )}
-    </div>
+    </PageSectionsAnimation>
   );
 }
