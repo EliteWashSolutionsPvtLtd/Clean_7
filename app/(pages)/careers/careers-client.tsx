@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { PageSectionsAnimation } from "@/app/components/animations/PageAnimations";
+import { getLenisInstance } from "@/app/lib/lenis-instance";
 
 interface Career {
   id: string;
@@ -22,6 +23,7 @@ export function CareersClient() {
   const [resume, setResume] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
 
@@ -36,6 +38,28 @@ export function CareersClient() {
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [apiUrl]);
+
+  useEffect(() => {
+    const lenis = getLenisInstance();
+    if (selectedCareer) {
+      document.body.style.overflow = "hidden";
+      lenis?.stop();
+    } else {
+      document.body.style.overflow = "";
+      lenis?.start();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      lenis?.start();
+    };
+  }, [selectedCareer]);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [experienceSummary]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -305,8 +329,8 @@ export function CareersClient() {
       {/* Application Modal */}
       {selectedCareer && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-[var(--card)] border border-[var(--line)] rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-[modalSlideUp_0.2s_ease-out]">
-            <div className="p-6 border-b border-[var(--line)]">
+          <div className="bg-[var(--card)] border border-[var(--line)] rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden animate-[modalSlideUp_0.2s_ease-out]">
+            <div className="p-6 border-b border-[var(--line)] shrink-0">
               <h3 className="text-xl font-bold font-serif text-[var(--foreground)]">
                 Apply for {selectedCareer.name}
               </h3>
@@ -315,7 +339,7 @@ export function CareersClient() {
               </p>
             </div>
 
-            <div className="p-6">
+            <div className="p-6 overflow-y-auto" data-lenis-prevent="true">
               {success ? (
                 <div className="py-6 text-center">
                   <div className="w-16 h-16 rounded-full bg-[var(--background)] text-[var(--gold)] flex items-center justify-center mx-auto mb-4 border border-[var(--gold)] shadow-[0_0_15px_var(--gold)]">
@@ -410,7 +434,8 @@ export function CareersClient() {
                       Experience Summary
                     </label>
                     <textarea
-                      className="rounded-xl border border-[var(--line)] bg-[var(--background)] text-[var(--foreground)] px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)] focus:border-[var(--gold)] transition-colors min-h-[100px] resize-y"
+                      ref={textareaRef}
+                      className="rounded-xl border border-[var(--line)] bg-[var(--background)] text-[var(--foreground)] px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)] focus:border-[var(--gold)] transition-colors min-h-[100px] max-h-[500px] resize-none overflow-y-auto"
                       id="experienceSummary"
                       required
                       placeholder="Briefly describe your relevant experience..."
