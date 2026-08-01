@@ -11,7 +11,7 @@ async function fetchServices() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
   try {
     const res = await fetch(`${API_URL}/catalog/services`, {
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
 
     if (!res.ok) {
