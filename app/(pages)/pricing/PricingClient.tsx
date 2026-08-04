@@ -7,7 +7,7 @@ import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import Container from "@/app/components/layout/Container";
 import { PageHeroAnimation } from "@/app/components/animations/PageAnimations";
-import { Check, ChevronDown, Truck, Clock } from "lucide-react";
+import { Check, ChevronDown, Truck, Clock, Plus, Minus, X } from "lucide-react";
 
 export interface PricingItem {
   id?: string;
@@ -41,6 +41,9 @@ interface PricingAccordionProps {
   desc?: string;
   items?: PricingItem[];
   addons?: PricingItem[];
+  cart: Record<string, { item: PricingItem; quantity: number }>;
+  onAddToCart: (item: PricingItem) => void;
+  onRemoveFromCart: (item: PricingItem) => void;
 }
 
 const PricingAccordion = ({
@@ -48,6 +51,9 @@ const PricingAccordion = ({
   desc,
   items,
   addons,
+  cart,
+  onAddToCart,
+  onRemoveFromCart,
 }: PricingAccordionProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -93,19 +99,39 @@ const PricingAccordion = ({
                 Items
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-                {items.map((item: PricingItem, idx: number) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between items-center py-2 border-b border-[var(--line)] border-dashed last:border-0"
-                  >
-                    <span className="text-[15px] text-[var(--ink)]">
-                      {item.name}
-                    </span>
-                    <span className="text-[15px] font-semibold text-[var(--ink)]">
-                      ₹{item.price}
-                    </span>
-                  </div>
-                ))}
+                {items.map((item: PricingItem, idx: number) => {
+                  const cartItem = cart[item.name];
+                  return (
+                    <div
+                      key={idx}
+                      className="flex justify-between items-center py-2 border-b border-[var(--line)] border-dashed last:border-0"
+                    >
+                      <span className="text-[15px] text-[var(--ink)]">
+                        {item.name}
+                      </span>
+                      <div className="flex items-center gap-4">
+                        <span className="text-[15px] font-semibold text-[var(--ink)]">
+                          ₹{item.price}
+                        </span>
+                        {cartItem ? (
+                          <div className="flex items-center gap-2 border border-[var(--line)] rounded-md p-1 bg-[var(--ground)]">
+                            <button onClick={() => onRemoveFromCart(item)} className="w-5 h-5 flex items-center justify-center text-[var(--ink)] hover:text-[var(--gold)] transition-colors">
+                              <Minus size={14} />
+                            </button>
+                            <span className="text-[12px] w-3 text-center font-medium">{cartItem.quantity}</span>
+                            <button onClick={() => onAddToCart(item)} className="w-5 h-5 flex items-center justify-center text-[var(--ink)] hover:text-[var(--gold)] transition-colors">
+                              <Plus size={14} />
+                            </button>
+                          </div>
+                        ) : (
+                          <button onClick={() => onAddToCart(item)} className="text-[12px] font-medium px-3 py-1 rounded-md bg-[var(--gold)]/10 text-[var(--gold)] hover:bg-[var(--gold)] hover:text-white transition-colors">
+                            Add
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -116,19 +142,39 @@ const PricingAccordion = ({
                 Add-Ons
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-                {addons.map((addon: PricingItem, idx: number) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between items-center py-2 border-b border-[var(--line)] border-dashed last:border-0"
-                  >
-                    <span className="text-[15px] text-[var(--ink)]">
-                      {addon.name}
-                    </span>
-                    <span className="text-[15px] font-semibold text-[var(--ink)]">
-                      ₹{addon.price}
-                    </span>
-                  </div>
-                ))}
+                {addons.map((addon: PricingItem, idx: number) => {
+                  const cartItem = cart[addon.name];
+                  return (
+                    <div
+                      key={idx}
+                      className="flex justify-between items-center py-2 border-b border-[var(--line)] border-dashed last:border-0"
+                    >
+                      <span className="text-[15px] text-[var(--ink)]">
+                        {addon.name}
+                      </span>
+                      <div className="flex items-center gap-4">
+                        <span className="text-[15px] font-semibold text-[var(--ink)]">
+                          ₹{addon.price}
+                        </span>
+                        {cartItem ? (
+                          <div className="flex items-center gap-2 border border-[var(--line)] rounded-md p-1 bg-[var(--ground)]">
+                            <button onClick={() => onRemoveFromCart(addon)} className="w-5 h-5 flex items-center justify-center text-[var(--ink)] hover:text-[var(--gold)] transition-colors">
+                              <Minus size={14} />
+                            </button>
+                            <span className="text-[12px] w-3 text-center font-medium">{cartItem.quantity}</span>
+                            <button onClick={() => onAddToCart(addon)} className="w-5 h-5 flex items-center justify-center text-[var(--ink)] hover:text-[var(--gold)] transition-colors">
+                              <Plus size={14} />
+                            </button>
+                          </div>
+                        ) : (
+                          <button onClick={() => onAddToCart(addon)} className="text-[12px] font-medium px-3 py-1 rounded-md bg-[var(--gold)]/10 text-[var(--gold)] hover:bg-[var(--gold)] hover:text-white transition-colors">
+                            Add
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -161,6 +207,37 @@ export default function PricingClient({
   }, [services]);
 
   const [activeTab, setActiveTab] = useState<string>(categories[0]?.code || "");
+  const [cart, setCart] = useState<Record<string, { item: PricingItem; quantity: number }>>({});
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const handleAddToCart = (item: PricingItem) => {
+    setCart((prev) => {
+      const existing = prev[item.name];
+      return {
+        ...prev,
+        [item.name]: { item, quantity: existing ? existing.quantity + 1 : 1 },
+      };
+    });
+  };
+
+  const handleRemoveFromCart = (item: PricingItem) => {
+    setCart((prev) => {
+      const existing = prev[item.name];
+      if (!existing) return prev;
+
+      const next = { ...prev };
+      if (existing.quantity > 1) {
+        next[item.name] = { item, quantity: existing.quantity - 1 };
+      } else {
+        delete next[item.name];
+      }
+      return next;
+    });
+  };
+
+  const cartItemsList = Object.values(cart);
+  const totalItems = cartItemsList.reduce((acc, curr) => acc + curr.quantity, 0);
+  const totalPrice = cartItemsList.reduce((acc, curr) => acc + curr.quantity * curr.item.price, 0);
 
   useEffect(() => {
     if (categories.length > 0 && !activeTab) {
@@ -169,6 +246,8 @@ export default function PricingClient({
   }, [categories, activeTab]);
 
   useEffect(() => {
+    setCart({});
+    setIsCartOpen(false);
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 150);
@@ -214,11 +293,10 @@ export default function PricingClient({
                     <button
                       key={cat.code}
                       onClick={() => setActiveTab(cat.code)}
-                      className={`flex-1 sm:flex-none px-[12px] sm:px-[24px] md:px-[32px] py-[10px] md:py-[12px] rounded-full text-[13px] md:text-[15px] font-medium cursor-pointer transition-all duration-300 whitespace-nowrap text-center ${
-                        activeTab === cat.code
-                          ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
-                          : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
-                      }`}
+                      className={`flex-1 sm:flex-none px-[12px] sm:px-[24px] md:px-[32px] py-[10px] md:py-[12px] rounded-full text-[13px] md:text-[15px] font-medium cursor-pointer transition-all duration-300 whitespace-nowrap text-center ${activeTab === cat.code
+                        ? "bg-[var(--gold)]/10 text-[var(--gold-bright)]"
+                        : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                        }`}
                     >
                       <span>{cat.name}</span>
                     </button>
@@ -280,7 +358,7 @@ export default function PricingClient({
                               ₹{minPrice}
                             </div>
 
-                            <ul className="flex-1 text-left flex flex-col gap-[12px] mb-[32px]">
+                            <ul className="flex-1 text-left flex flex-col gap-[12px]">
                               {features.map((feature, fIdx) => (
                                 <li
                                   key={fIdx}
@@ -298,10 +376,6 @@ export default function PricingClient({
                                   </li>
                                 )}
                             </ul>
-
-                            <button className="w-full py-[12px] rounded-lg text-[15px] font-medium transition-colors bg-transparent border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] hover:text-[var(--gold)]">
-                              Book Now
-                            </button>
                           </div>
                         </div>
                       </ScrollReveal>
@@ -324,6 +398,9 @@ export default function PricingClient({
                         desc={service.shortDescription || undefined}
                         items={service.items}
                         addons={service.addOns}
+                        cart={cart}
+                        onAddToCart={handleAddToCart}
+                        onRemoveFromCart={handleRemoveFromCart}
                       />
                     </ScrollReveal>
                   ))}
@@ -354,6 +431,102 @@ export default function PricingClient({
           </Container>
         </PageHeroAnimation>
       </main>
+
+      {/* Cart Bottom Modal */}
+      {totalItems > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6 pointer-events-none flex justify-center animate-in slide-in-from-bottom-10 duration-300">
+          <div className="bg-[var(--card)] border border-[var(--line)] shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-2xl p-4 sm:p-5 w-full max-w-[600px] pointer-events-auto flex flex-col transition-all duration-300 relative overflow-hidden">
+
+            {/* Expanded Cart View */}
+            <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${isCartOpen ? "max-h-[500px] opacity-100 mb-5" : "max-h-0 opacity-0 mb-0"
+                }`}
+            >
+              <div className="flex justify-between items-center mb-4 pb-3 border-b border-[var(--line)]">
+                <h3
+                  className="text-[18px] font-medium text-[var(--ink)]"
+                  style={{ fontFamily: "var(--font-fraunces)" }}
+                >
+                  Your Selected Items
+                </h3>
+                <button
+                  onClick={() => setIsCartOpen(false)}
+                  className="text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors p-1 rounded-full hover:bg-[var(--ground)]"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="overflow-y-auto overscroll-contain max-h-[250px] pr-2 custom-scrollbar flex flex-col gap-3" data-lenis-prevent="true">
+                {cartItemsList.map((c) => (
+                  <div
+                    key={c.item.name}
+                    className="flex justify-between items-center p-3 rounded-xl border border-[var(--line)] bg-[var(--ground)]"
+                  >
+                    <div>
+                      <div className="text-[14px] font-medium text-[var(--ink)] mb-1">
+                        {c.item.name}
+                      </div>
+                      <div className="text-[13px] text-[var(--ink-soft)]">
+                        ₹{c.item.price} x {c.quantity}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-[15px] font-semibold text-[var(--ink)]">
+                        ₹{c.item.price * c.quantity}
+                      </div>
+                      <div className="flex items-center gap-2 border border-[var(--line)] rounded-lg p-1 bg-[var(--card)] shadow-sm">
+                        <button
+                          onClick={() => handleRemoveFromCart(c.item)}
+                          className="w-6 h-6 flex items-center justify-center text-[var(--ink)] hover:text-[var(--gold)] transition-colors rounded hover:bg-[var(--ground)]"
+                        >
+                          <Minus size={14} />
+                        </button>
+                        <span className="text-[13px] w-4 text-center font-medium">
+                          {c.quantity}
+                        </span>
+                        <button
+                          onClick={() => handleAddToCart(c.item)}
+                          className="w-6 h-6 flex items-center justify-center text-[var(--ink)] hover:text-[var(--gold)] transition-colors rounded hover:bg-[var(--ground)]"
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Bar Summary */}
+            <div className="flex items-center justify-between mt-auto">
+              <div className="flex flex-col">
+                <span className="text-[12px] text-[var(--ink-soft)] uppercase tracking-[0.05em] font-medium mb-0.5">
+                  {totalItems} Item{totalItems > 1 ? "s" : ""}
+                </span>
+                <span className="text-[22px] font-semibold text-[var(--ink)] leading-none">
+                  ₹{totalPrice}
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setIsCartOpen(!isCartOpen)}
+                  className="px-4 py-2.5 rounded-xl text-[14px] font-medium transition-colors bg-[var(--ground)] border border-[var(--line)] text-[var(--ink)] hover:border-[var(--gold)] flex items-center gap-2"
+                >
+                  {isCartOpen ? "Hide Items" : "Show Items"}
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-300 ${isCartOpen ? "rotate-180" : ""
+                      }`}
+                  />
+                </button>
+                <button className="px-6 py-2.5 rounded-xl text-[14px] font-semibold transition-all bg-[var(--gold)] text-white hover:bg-[var(--gold-bright)] hover:shadow-[0_4px_12px_rgba(201,160,80,0.3)] hover:-translate-y-0.5 active:translate-y-0">
+                  Book Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
