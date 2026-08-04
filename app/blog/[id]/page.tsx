@@ -138,12 +138,10 @@ export default async function BlogPost({
           </ScrollReveal>
 
           {/* Content */}
-          <ScrollReveal delay={150}>
-            <div
-              className="blog-content"
-              dangerouslySetInnerHTML={{ __html: htmlContent }}
-            />
-          </ScrollReveal>
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
         </div>
       </main>
 
