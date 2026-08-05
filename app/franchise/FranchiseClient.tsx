@@ -115,32 +115,39 @@ export default function FranchiseClient() {
         transition={{ duration: 0.5 }}
         className="relative px-6 md:px-14 lg:px-14 mx-auto max-w-[1400px] py-10 lg:py-14"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-8 items-center">
-          <div className="space-y-8 max-w-[620px] relative z-10">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-[1px] bg-gold"></div>
-              <span className="text-[12.5px] tracking-[0.14em] uppercase text-ink-soft font-medium">
-                Franchise Opportunity
-              </span>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-[30px] items-center">
+          <div className="space-y-8 max-w-[720px] relative z-10">
+            <div>
+              <h1 className="font-serif text-[clamp(38px,6vw,70px)] leading-[1.02] tracking-tight text-ink mb-4">
+                <span className="block">
+                  Own a{" "}
+                  <em className="italic font-light text-gold-bright pr-2">
+                    Clean7
+                  </em>
+                </span>
+                <span className="block">Franchise.</span>
+              </h1>
+              <h2 className="text-[20px] md:text-[24px] font-serif text-ink-soft leading-[1.3]">
+                Where Premium Service Meets Profitable Growth.
+              </h2>
             </div>
 
-            <h1 className="font-serif text-[clamp(48px,6.4vw,84px)] leading-[1.02] tracking-tight text-ink">
-              <span className="block">
-                Own a{" "}
-                <em className="italic font-light text-gold-bright pr-2">
-                  Clean7
-                </em>
-              </span>
-              <span className="block">Franchise.</span>
-            </h1>
-
-            <p className="text-[15px] md:text-[17px] leading-[1.7] text-ink-soft max-w-[440px]">
-              Clean7 is building a modern home services brand that combines
-              premium laundry, doorstep car wash, home cleaning, and pest
-              control into one seamless customer experience. Become an early
-              franchise partner and grow with a brand designed for long-term
-              expansion.
-            </p>
+            <div className="space-y-4 max-w-[640px]">
+              <p className="text-[14px] md:text-[15px] leading-[1.7] text-ink-soft">
+                Be a part of a modern home services brand redefining convenience
+                across India. From premium laundry and doorstep car wash to home
+                cleaning, Clean7 combines multiple high-demand services into one
+                powerful business model.
+              </p>
+              <p className="text-[14px] md:text-[15px] leading-[1.7] text-ink-soft">
+                With end-to-end operational support, technology-driven management,
+                national branding, and continuous training, we help you build a
+                business designed for sustainable growth and long-term profitability.
+              </p>
+              <p className="text-[15px] md:text-[16px] font-medium text-ink pt-2">
+                Your Investment. Our Expertise. Shared Success.
+              </p>
+            </div>
 
             {/* Mobile Image (Visible only on mobile/tablet) */}
             <div className="block lg:hidden relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden group border border-line bg-ground-soft shadow-2xl">
@@ -154,7 +161,7 @@ export default function FranchiseClient() {
               <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-50" />
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 pt-6 items-center">
+            <div className="flex flex-col sm:flex-row gap-6 mt-2 lg:mt-0 items-center">
               <button
                 onClick={() =>
                   document
@@ -193,7 +200,7 @@ export default function FranchiseClient() {
             </div>
           </div>
 
-          <div className="hidden lg:block relative w-full lg:h-[400px] rounded-3xl overflow-hidden group border border-line bg-ground-soft shadow-2xl lg:-mt-30">
+          <div className="hidden lg:block relative w-full aspect-[4/3] rounded-3xl overflow-hidden group border border-line bg-ground-soft shadow-2xl lg:-mt-20">
             <Image
               src="/images/franchise/store.png"
               alt="Clean7 Franchise Storefront"
@@ -224,31 +231,28 @@ export default function FranchiseClient() {
               </span>
             </div>
             <h2 className="text-[clamp(36px,4.5vw,64px)] leading-[1.05] tracking-tight font-serif text-ink">
-              Home Services Are Entering Their{" "}
+              Invest in a Market Built for{" "}
               <em className="italic font-light text-gold-bright pr-1">
-                Next Growth Phase.
+                Long-Term Growth.
               </em>
             </h2>
             <p className="text-[15px] md:text-[17px] leading-[1.7] text-ink-soft max-w-[600px]">
-              Across India, changing lifestyles are transforming the way people
-              manage everyday household tasks. Growing urban populations,
-              dual-income families, and increasingly busy schedules are driving
-              demand for reliable doorstep services.
+              India's home services industry is evolving faster than ever. Urban households are seeking trusted brands that provide multiple doorstep services through a single platform. With over 95% of the market still unorganized, Clean7 offers franchise partners the opportunity to enter a high-growth industry backed by technology, operational support, marketing expertise, and a proven multi-service business model.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-line rounded-3xl overflow-hidden border border-line shadow-sm mb-12">
             {[
-              { value: "₹30K+ Cr", label: "Laundry Industry" },
-              { value: "7%+", label: "Res. Cleaning Growth" },
-              { value: "295M+", label: "Registered Vehicles" },
-              { value: "~4-5%", label: "Organized Market" },
+              { value: <>USD 11–15 Billion <br />(₹90,000 Cr+)</>, label: "Laundry & Dry Cleaning Market" },
+              { value: "8–10% CAGR", label: "Home Care Market Growth" },
+              { value: "300M+", label: "Registered Vehicles" },
+              { value: "<5%", label: "Organized Laundry Market" },
             ].map((stat, i) => (
               <div
                 key={i}
                 className="p-8 md:p-12 bg-ground flex flex-col justify-center text-center hover:bg-ground-soft transition-colors"
               >
-                <div className="text-[24px] md:text-[32px] lg:text-[42px] font-serif text-gold-bright mb-1 md:mb-3 whitespace-nowrap">
+                <div className="text-[20px] md:text-[24px] lg:text-[28px] font-serif text-gold-bright mb-1 md:mb-3">
                   {stat.value}
                 </div>
                 <div className="text-[10px] md:text-[12px] text-ink-soft uppercase tracking-[0.05em] md:tracking-[0.1em] font-medium">
@@ -526,60 +530,102 @@ export default function FranchiseClient() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
             {[
               {
-                name: "Starter",
-                inv: "₹5–8L",
-                desc: "Perfect for Tier 2 & Tier 3 cities.",
+                name: "Clean7 Essential",
+                inv: "₹15 Lakh + GST",
+                desc: "Perfect for entrepreneurs starting a professional home services business in emerging markets.",
+                bestFor: "Residential (B2C) Operations",
+                includes: [
+                  "Laundry Equipment",
+                  "Car Wash Kit",
+                  "Home Cleaning Kit",
+                  "Standard Store Setup",
+                  "Branding & Signage",
+                  "Technology Platform",
+                  "Staff Training",
+                  "Marketing Support",
+                  "Launch Assistance",
+                  "Operational Guidance"
+                ]
               },
               {
-                name: "Standard",
-                inv: "₹8–15L",
-                desc: "Designed for growing urban markets.",
+                name: "Clean7 Premium",
+                inv: "₹20 Lakh + GST",
+                desc: "Designed for growing markets with higher service capacity and commercial business opportunities.",
                 popular: true,
+                bestFor: "Residential (B2C) & Commercial (B2B) Operations",
+                includes: [
+                  "Enhanced Laundry Equipment",
+                  "Car Wash Kit",
+                  "Home Cleaning Kit",
+                  "Premium Store Setup",
+                  "Branding & Signage",
+                  "Technology Platform",
+                  "Staff Training",
+                  "Marketing Support",
+                  "Priority Launch Support",
+                  "Operational Guidance",
+                  "B2B Business Capability"
+                ]
               },
               {
-                name: "Premium",
-                inv: "₹15L+",
-                desc: "Ideal for larger cities and higher service demand.",
+                name: "Clean7 Signature",
+                inv: "₹25 Lakh + GST",
+                desc: "Built for high-demand locations with maximum operational efficiency and business scalability.",
+                bestFor: "Large-Scale Residential (B2C) & Commercial (B2B) Operations",
+                includes: [
+                  "Advanced Laundry Equipment",
+                  "Premium Car Wash Kit",
+                  "Premium Home Cleaning Kit",
+                  "Signature Store Setup",
+                  "Premium Branding Package",
+                  "Advanced Technology Platform",
+                  "Comprehensive Staff Training",
+                  "National Marketing Support",
+                  "Dedicated Launch Assistance",
+                  "Priority Operational Support",
+                  "Advanced B2B Business Capability"
+                ]
               },
             ].map((tier, i) => (
               <div
                 key={i}
-                className={`relative p-8 md:p-10 rounded-3xl border flex flex-col transition-transform hover:-translate-y-1 ${
-                  tier.popular
-                    ? "border-gold-bright bg-ground shadow-lg shadow-gold/5"
-                    : "border-line bg-ground"
-                }`}
+                className={`relative p-8 md:p-10 rounded-3xl border flex flex-col transition-transform hover:-translate-y-1 ${tier.popular
+                  ? "border-gold-bright bg-ground shadow-lg shadow-gold/5"
+                  : "border-line bg-ground"
+                  }`}
               >
                 {tier.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-bright text-ground px-4 py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.1em]">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-bright text-ground px-4 py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.1em] whitespace-nowrap">
                     Most Popular
                   </div>
                 )}
                 <h3 className="text-[22px] font-serif text-ink mb-2">
                   {tier.name}
                 </h3>
-                <div className="text-[clamp(32px,3vw,42px)] font-serif text-gold-bright mb-4">
+                <div className="text-[clamp(24px,2.5vw,32px)] font-serif text-gold-bright mb-4">
                   {tier.inv}
                 </div>
-                <p className="text-[15px] text-ink-soft mb-10 flex-grow">
+                <p className="text-[15px] text-ink-soft mb-6">
                   {tier.desc}
                 </p>
+                <div className="mb-8 flex-grow">
+                  <div className="text-[11px] uppercase tracking-[0.1em] text-ink-soft font-medium mb-2">
+                    Best For
+                  </div>
+                  <div className="text-[14px] text-ink font-medium">
+                    {tier.bestFor}
+                  </div>
+                </div>
                 <div className="space-y-4 pt-6 border-t border-line/70">
                   <div className="text-[11px] uppercase tracking-[0.1em] text-ink-soft font-medium mb-4">
                     Includes
                   </div>
-                  {[
-                    "Branding",
-                    "Technology",
-                    "Training",
-                    "Operational Guidance",
-                    "Launch Support",
-                  ].map((item, j) => (
+                  {tier.includes.map((item, j) => (
                     <div
                       key={j}
-                      className="flex items-center gap-3 text-[14px] text-ink-soft"
+                      className="flex items-start gap-3 text-[14px] text-ink-soft leading-[1.4]"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-gold-bright/70" />{" "}
+                      <CheckCircle2 className="w-4 h-4 text-gold-bright/70 shrink-0 mt-0.5" />{" "}
                       {item}
                     </div>
                   ))}
@@ -738,11 +784,10 @@ export default function FranchiseClient() {
                 />
               </div>
               <div
-                className={`grid transition-all duration-300 ease-in-out ${
-                  openFaq === i
-                    ? "grid-rows-[1fr] opacity-100"
-                    : "grid-rows-[0fr] opacity-0"
-                }`}
+                className={`grid transition-all duration-300 ease-in-out ${openFaq === i
+                  ? "grid-rows-[1fr] opacity-100"
+                  : "grid-rows-[0fr] opacity-0"
+                  }`}
               >
                 <div className="overflow-hidden">
                   <div className="p-6 pt-5 text-[14px] text-ink-soft leading-[1.7] border-t border-line whitespace-pre-line">
@@ -767,14 +812,12 @@ export default function FranchiseClient() {
               Executive Summary
             </h3>
             <p className="text-[15px] leading-[1.7]">
-              India’s home services sector – encompassing laundry, car wash, and
-              residential cleaning – is booming. Urbanisation, rising incomes
-              and dual-income households are driving sustained growth. Industry
-              analyses estimate India’s total laundry and dry-cleaning market at{" "}
+              India's home services sector—including laundry, car wash, and
+              residential cleaning—is experiencing strong growth, driven by rapid urbanization, rising disposable incomes, and increasing numbers of dual-income households. Industry estimates value India's laundry and dry-cleaning market at{" "}
               <strong className="text-gold-bright font-medium">
-                ₹30,000+ crore (~USD 36B)
+                ₹30,000+ crore (≈USD 3.5–4.0 billion)
               </strong>
-              , growing ~5–10% annually.
+              , growing at approximately 5–8% annually.
             </p>
           </div>
 
@@ -784,14 +827,12 @@ export default function FranchiseClient() {
                 Laundry Services
               </h4>
               <p className="text-[14px] leading-[1.7] mb-6">
-                Organized laundry (tech-enabled) is projected to reach USD 1.0B
-                by 2030 (~5.2% CAGR). Penetration is currently low (only ~4-5%),
-                offering massive room for organized chains.
+                The organized, technology-enabled laundry segment is projected to reach approximately USD 1.0 billion by 2030, growing at around 5.2% CAGR. With organized players accounting for only 4–5% of the overall market, there remains significant opportunity for branded and tech-enabled service providers.
               </p>
               <div className="text-[clamp(32px,3vw,42px)] font-serif text-gold-bright leading-none">
-                8-10%{" "}
+                5.2%{" "}
                 <span className="block text-[12px] text-ink-soft font-sans uppercase tracking-[0.1em] mt-2">
-                  Growth Rate
+                  CAGR
                 </span>
               </div>
             </div>
@@ -800,12 +841,10 @@ export default function FranchiseClient() {
                 Residential Cleaning
               </h4>
               <p className="text-[14px] leading-[1.7] mb-6">
-                Valued at roughly USD 3.8B in 2024, expected to hit USD 6.9B by
-                2032 (~7.3% CAGR). Driven by hygiene awareness and convenience
-                preferences.
+                India's residential cleaning services market was valued at approximately USD 3.8 billion in 2024 and is projected to reach USD 6.9 billion by 2032, growing at a 7.3% CAGR, fueled by increasing hygiene awareness, urban lifestyles, and demand for convenience.
               </p>
               <div className="text-[clamp(32px,3vw,42px)] font-serif text-gold-bright leading-none">
-                ~7.3%{" "}
+                7.3%{" "}
                 <span className="block text-[12px] text-ink-soft font-sans uppercase tracking-[0.1em] mt-2">
                   CAGR
                 </span>
