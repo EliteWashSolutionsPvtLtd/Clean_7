@@ -860,119 +860,107 @@ export default function FranchiseClient() {
         title="Financial Details & Unit Economics"
       >
         <div className="space-y-8">
-          <p className="text-[13px] italic text-gold-bright/90 bg-gold/5 p-4 md:p-5 rounded-2xl border border-gold/20 leading-[1.6]">
-            * Note: These are illustrative assumptions based on industry
-            benchmarks and mature run-rates, not absolute guarantees.
-          </p>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-[14px] border-collapse min-w-[600px]">
-              <thead>
-                <tr className="border-b border-line text-ink">
-                  <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
-                    Model
-                  </th>
-                  <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
-                    Coverage
-                  </th>
-                  <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
-                    Initial Inv.
-                  </th>
-                  <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
-                    Est. Revenue
-                  </th>
-                  <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
-                    Est. Profit
-                  </th>
-                  <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
-                    Payback
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-line">
-                <tr className="hover:bg-ground-soft transition-colors">
-                  <td className="p-4 font-medium text-ink">Starter</td>
-                  <td className="p-4">Tier 3 / Small T2</td>
-                  <td className="p-4">₹5–8L</td>
-                  <td className="p-4">₹1.0–1.2L</td>
-                  <td className="p-4 text-gold-bright font-medium">
-                    ~₹30k–40k
-                  </td>
-                  <td className="p-4">18–24 mo</td>
-                </tr>
-                <tr className="hover:bg-ground-soft transition-colors bg-ground-soft">
-                  <td className="p-4 font-medium text-ink flex items-center gap-2">
-                    Standard{" "}
-                    <span className="text-[9px] bg-gold-bright text-ground px-2 py-0.5 rounded-full uppercase tracking-[0.1em]">
-                      Popular
-                    </span>
-                  </td>
-                  <td className="p-4">Tier 2 Medium</td>
-                  <td className="p-4">₹8–15L</td>
-                  <td className="p-4">₹2.0–3.0L</td>
-                  <td className="p-4 text-gold-bright font-medium">
-                    ~₹60k–90k
-                  </td>
-                  <td className="p-4">16–20 mo</td>
-                </tr>
-                <tr className="hover:bg-ground-soft transition-colors">
-                  <td className="p-4 font-medium text-ink">Premium</td>
-                  <td className="p-4">Metro / Tier-1</td>
-                  <td className="p-4">₹15–25L</td>
-                  <td className="p-4">₹4.0–5.0L</td>
-                  <td className="p-4 text-gold-bright font-medium">
-                    ~₹1.4–1.75L
-                  </td>
-                  <td className="p-4">12–16 mo</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="bg-ground-soft p-6 md:p-8 rounded-3xl border border-line">
+            <h3 className="text-[20px] font-serif text-ink mb-4">
+              Illustrative Financial Estimates
+            </h3>
+            <p className="text-[14px] leading-[1.7] text-ink-soft mb-6">
+              The following figures are indicative estimates based on industry benchmarks, projected operating assumptions, and mature business performance. They are provided for illustrative purposes only and should not be interpreted as guaranteed returns or financial commitments.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-[14px] border-collapse min-w-[600px]">
+                <thead>
+                  <tr className="border-b border-line text-ink">
+                    <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
+                      Model
+                    </th>
+                    <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
+                      Market
+                    </th>
+                    <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
+                      Initial Investment
+                    </th>
+                    <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
+                      Estimated Monthly Revenue*
+                    </th>
+                    <th className="p-4 font-medium uppercase tracking-[0.05em] text-[11px] text-ink-soft">
+                      Estimated Payback*
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line">
+                  <tr className="hover:bg-ground-soft transition-colors">
+                    <td className="p-4 font-medium text-ink">Essential</td>
+                    <td className="p-4">Tier-2 & Emerging Cities</td>
+                    <td className="p-4 text-gold-bright font-medium">₹15 Lakh</td>
+                    <td className="p-4 text-gold-bright font-medium">₹1.5–2.5 Lakh</td>
+                    <td className="p-4">18–24 Months</td>
+                  </tr>
+                  <tr className="hover:bg-ground-soft transition-colors bg-ground-soft">
+                    <td className="p-4 font-medium text-ink">Premium</td>
+                    <td className="p-4">Tier-1 & Tier-2 Cities</td>
+                    <td className="p-4 text-gold-bright font-medium">₹20 Lakh</td>
+                    <td className="p-4 text-gold-bright font-medium">₹3.0–4.0 Lakh</td>
+                    <td className="p-4">14–20 Months</td>
+                  </tr>
+                  <tr className="hover:bg-ground-soft transition-colors">
+                    <td className="p-4 font-medium text-ink">Signature</td>
+                    <td className="p-4">Metro & High-Demand Markets</td>
+                    <td className="p-4 text-gold-bright font-medium">₹25 Lakh</td>
+                    <td className="p-4 text-gold-bright font-medium">₹3.5–4.5 Lakh</td>
+                    <td className="p-4">12–18 Months</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[12px] italic text-ink-soft mt-4">
+              *Actual investment, revenue, profitability, and payback may vary depending on location, market demand, operational efficiency, staffing, pricing, competition, and local business conditions.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-ground-soft p-6 rounded-3xl border border-line">
               <div className="text-[12px] uppercase tracking-[0.1em] text-ink-soft font-medium mb-4">
                 Average Order Values
               </div>
               <ul className="text-[14px] space-y-3">
                 <li className="flex justify-between border-b border-line pb-3">
-                  <span>Laundry (8-10kg)</span>{" "}
-                  <span className="text-gold-bright font-medium">~₹600</span>
+                  <span>Laundry</span>
+                  <span className="text-gold-bright font-medium">₹500–800</span>
                 </li>
                 <li className="flex justify-between border-b border-line pb-3">
-                  <span>Car Wash</span>{" "}
-                  <span className="text-gold-bright font-medium">~₹300</span>
+                  <span>Car Wash</span>
+                  <span className="text-gold-bright font-medium">₹300–700</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Deep Cleaning</span>{" "}
-                  <span className="text-gold-bright font-medium">~₹1,500</span>
+                  <span>Home Cleaning</span>
+                  <span className="text-gold-bright font-medium">₹2,000–5,000</span>
                 </li>
               </ul>
             </div>
             <div className="bg-ground-soft p-6 rounded-3xl border border-line">
               <div className="text-[12px] uppercase tracking-[0.1em] text-ink-soft font-medium mb-4">
-                Profit Margins
+                Operating Margins
               </div>
               <div className="text-[clamp(32px,3vw,42px)] font-serif text-gold-bright leading-none mb-3">
-                20–35%
+                25–35%
               </div>
-              <p className="text-[13px] leading-[1.6]">
-                Net margins after operational expenses. Gross margins sit at
-                ~60%.
+              <p className="text-[13px] leading-[1.6] mb-3">
+                Well-managed Clean7 franchise outlets may achieve operating margins in this range through efficient operations, optimized resource utilization, recurring customer demand, and a diversified portfolio of home services.
+              </p>
+              <p className="text-[12px] text-ink-soft italic leading-[1.5]">
+                Operating margin estimates are indicative only and may vary depending on service mix, labor costs, occupancy levels, local competition, marketing expenses, and overall operational efficiency.
               </p>
             </div>
-            <div className="bg-ground-soft p-6 rounded-3xl border border-line">
-              <div className="text-[12px] uppercase tracking-[0.1em] text-ink-soft font-medium mb-4">
-                Customer LTV
-              </div>
-              <div className="text-[clamp(32px,3vw,42px)] font-serif text-gold-bright leading-none mb-3">
-                ₹50k+
-              </div>
-              <p className="text-[13px] leading-[1.6]">
-                With high retention, loyal laundry customers generate
-                significant lifetime value.
-              </p>
-            </div>
+          </div>
+
+          <div className="p-6 md:p-8 border border-gold/30 rounded-3xl bg-gold/5">
+            <h3 className="text-[16px] font-medium text-gold-bright mb-3">
+              Important Disclaimer
+            </h3>
+            <p className="text-[13px] text-ink-soft leading-[1.6]">
+              The financial information presented in this document is intended solely for illustrative purposes and is based on internal business assumptions together with publicly available industry benchmarks. It does not constitute a guarantee, forecast, or promise of future financial performance. Actual results may differ materially based on market conditions, franchise location, customer demand, operating practices, and other business factors. Prospective franchise partners are encouraged to conduct their own independent financial and commercial due diligence before making any investment decision.
+            </p>
           </div>
         </div>
       </Modal>
