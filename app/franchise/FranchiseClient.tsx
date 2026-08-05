@@ -725,14 +725,14 @@ export default function FranchiseClient() {
                   <option value="" className="text-ink">
                     Interested Franchise Model
                   </option>
-                  <option value="starter" className="text-ink">
-                    Starter (₹5-8L)
-                  </option>
-                  <option value="standard" className="text-ink">
-                    Standard (₹8-15L)
+                  <option value="essential" className="text-ink">
+                    Essential (₹15 Lakh)
                   </option>
                   <option value="premium" className="text-ink">
-                    Premium (₹15L+)
+                    Premium (₹20 Lakh)
+                  </option>
+                  <option value="signature" className="text-ink">
+                    Signature (₹25 Lakh)
                   </option>
                 </select>
 
