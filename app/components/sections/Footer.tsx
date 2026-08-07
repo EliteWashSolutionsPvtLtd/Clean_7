@@ -220,6 +220,9 @@ export default function Footer() {
                   <Link href="/contact" className={linkClass}>
                     Contact Us
                   </Link>
+                  <Link href="/get-franchise" className={linkClass}>
+                    Get Franchise
+                  </Link>
                 </div>
               </div>
 
