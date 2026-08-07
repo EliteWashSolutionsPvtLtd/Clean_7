@@ -96,22 +96,15 @@ export default function Hero() {
       <div className={styles.copy}>
         <h1 className={styles.h1}>
           <span className={styles.line}>
-            <span>Worn well.</span>
-          </span>
-          <span className={styles.line}>
-            <span>Cared for</span>
-          </span>
-          <span className={styles.line}>
-            <span>
-              <em>even better.</em>
-            </span>
+            <span>Everything You Need. <em>Professionally Cared For.</em></span>
           </span>
         </h1>
 
         <p className={styles.sub}>
-          We pick up, hand-finish, and return every garment pressed, folded, and
-          smelling like nothing at all — just clean. No queues, no plastic, no
-          guesswork.
+          Clean7 brings together premium laundry and dry cleaning, doorstep car washing, and professional home cleaning—all under one trusted brand. Backed by advanced equipment, trained professionals, and reliable service, we deliver exceptional quality, unmatched convenience, and complete peace of mind, right to your doorstep.
+          <br />
+          <br />
+          <em>Laundry. Car Wash. Home Cleaning. One Trusted Brand.</em>
         </p>
 
         <div className={styles.ctaRow}>
