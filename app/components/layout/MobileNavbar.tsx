@@ -23,7 +23,7 @@ export default function MobileNavbar() {
     { name: "Reviews", href: "#reviews" },
     { name: "About", href: "/about" },
     { name: "Careers", href: "/careers" },
-    { name: "Get Franchise", href: "/get-franchise" },
+    { name: "Franchise", href: "/franchise" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms of Services", href: "/terms-and-conditions" },
     { name: "Terms of Use", href: "/terms-of-use" },
@@ -124,9 +124,8 @@ export default function MobileNavbar() {
 
         {/* Full-Screen Menu Overlay */}
         <div
-          className={`fixed top-0 left-0 w-full h-[100svh] bg-[#FDFCF9] z-[101] flex flex-col transition-transform duration-300 ease-out ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`fixed top-0 left-0 w-full h-[100svh] bg-[#FDFCF9] z-[101] flex flex-col transition-transform duration-300 ease-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           {/* Header with Logo and Close */}
           <div className="flex items-center justify-between px-[20px] h-[80px] border-b border-gray-100 shrink-0">

@@ -23,7 +23,7 @@ export default function DesktopNavbar() {
     { name: "Pricing", href: "/pricing" },
     { name: "About", href: "/about" },
     { name: "Careers", href: "/careers" },
-    { name: "Get Franchise", href: "/get-franchise" },
+    { name: "Franchise", href: "/franchise" },
   ];
 
   useEffect(() => {
