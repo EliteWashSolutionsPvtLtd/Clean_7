@@ -101,7 +101,8 @@ export default function Hero() {
         </h1>
 
         <p className={styles.sub}>
-          Clean7 brings together premium laundry and dry cleaning, doorstep car washing, and professional home cleaning—all under one trusted brand. Backed by advanced equipment, trained professionals, and reliable service, we deliver exceptional quality, unmatched convenience, and complete peace of mind, right to your doorstep.
+          {/* Clean7 brings together premium laundry and dry cleaning, doorstep car washing, and professional home cleaning—all under one trusted brand. Backed by advanced equipment, trained professionals, and reliable service, we deliver exceptional quality, unmatched convenience, and complete peace of mind, right to your doorstep. */}
+          Clean7 brings premium laundry, dry cleaning, doorstep car washing, and professional home cleaning under one trusted brand. With advanced equipment, trained professionals, and reliable service, we deliver exceptional quality, unmatched convenience, and complete peace of mind—right to your doorstep.
           <br />
           <br />
           <em>Laundry. Car Wash. Home Cleaning. One Trusted Brand.</em>
