@@ -3,6 +3,7 @@ import Container from "@/app/components/layout/Container";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import { SatoshiFont, WixMadeForDisplayFont } from "@/app/fonts";
+import { canonicalPath } from "@/app/lib/site-config";
 
 export const metadata = {
   title: "Privacy Policy | Clean7",
@@ -13,12 +14,12 @@ export const metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://clean7.in/privacy-policy",
+    canonical: canonicalPath("/privacy-policy"),
   },
   openGraph: {
     title: "Privacy Policy | Clean7",
     description: "Learn how Clean7 protects your data and privacy.",
-    url: "https://clean7.in/privacy-policy",
+    url: canonicalPath("/privacy-policy"),
     type: "website",
   },
 };

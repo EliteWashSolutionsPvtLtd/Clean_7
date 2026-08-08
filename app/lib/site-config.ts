@@ -1,9 +1,9 @@
 /**
- * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://clean7.in).
+ * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://www.clean7.in).
  * Defaults to the domain used by your public contact email.
  */
 export function getSiteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL ?? "https://clean7.in";
+  const raw = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.clean7.in";
   return raw.replace(/\/$/, "");
 }
 

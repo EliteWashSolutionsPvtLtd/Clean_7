@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
           Laundry · Dry cleaning · Pickup & delivery
         </span>
         <span style={{ fontSize: 26, color: "rgba(255,255,255,0.78)" }}>
-          clean7.in
+          www.clean7.in
         </span>
       </div>
     </div>,
