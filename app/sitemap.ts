@@ -31,6 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms-and-conditions", changeFrequency: "yearly", priority: 0.4 },
     { path: "/terms-of-use", changeFrequency: "yearly", priority: 0.4 },
     { path: "/delete-account", changeFrequency: "yearly", priority: 0.45 },
+    { path: "/franchise", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/stores", changeFrequency: "monthly", priority: 0.85 },
   ];
 
   return entries.map(({ path, changeFrequency, priority }) => ({
