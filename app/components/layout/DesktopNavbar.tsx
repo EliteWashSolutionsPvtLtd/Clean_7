@@ -15,7 +15,6 @@ export default function DesktopNavbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -129,7 +128,13 @@ export default function DesktopNavbar() {
             <li className="shrink-0 ml-1 xl:ml-2">
               <OrangeGradientButton
                 className="flex items-center justify-center gap-[5px] rounded-[20px] px-3 xl:px-4 py-2 text-[11px] xl:text-[12px] whitespace-nowrap"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => {
+                  if (pathname === "/") {
+                    scrollToSection("#download-app");
+                  } else {
+                    router.push("/#download-app");
+                  }
+                }}
               >
                 <Download size={18} className="xl:w-[20px] xl:h-[20px]" />
                 <span className="hidden lg:inline">Download App</span>
@@ -139,10 +144,6 @@ export default function DesktopNavbar() {
           </ul>
         </Container>
       </nav>
-      <DownloadAppModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </>
   );
 }

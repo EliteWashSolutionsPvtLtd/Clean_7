@@ -8,13 +8,11 @@ import { WixMadeForDisplayFont } from "@/app/fonts";
 import OrangeGradientButton from "../ui/buttons/OrangeGradientButton";
 import { Download, Menu, X } from "lucide-react";
 import { scrollToSection as scrollToSectionUtil } from "@/app/utils/scrollToSection";
-import DownloadAppModal from "../ui/modals/DownloadAppModal";
 
 export default function MobileNavbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -44,7 +42,7 @@ export default function MobileNavbar() {
   };
 
   useEffect(() => {
-    if (isMenuOpen || isModalOpen) {
+    if (isMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -52,7 +50,7 @@ export default function MobileNavbar() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isMenuOpen, isModalOpen]);
+  }, [isMenuOpen]);
 
   const scrollToSection = (href: string) => {
     scrollToSectionUtil(href);
@@ -106,7 +104,13 @@ export default function MobileNavbar() {
             <div className="flex items-center gap-2">
               <OrangeGradientButton
                 className="rounded-[10px] px-3 py-[8px] flex justify-center items-center gap-[6px] text-[13px] font-semibold active:scale-[0.98] transition-all duration-200"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => {
+                  if (pathname === "/") {
+                    scrollToSectionUtil("#download-app");
+                  } else {
+                    router.push("/#download-app");
+                  }
+                }}
               >
                 <Download size={16} />
                 <span className="hidden min-[400px]:inline">App</span>
@@ -245,8 +249,12 @@ export default function MobileNavbar() {
                 <OrangeGradientButton
                   className="rounded-[10px] px-5 py-[10px] flex justify-center items-center gap-[8px] w-full text-[15px] font-semibold active:scale-[0.98] transition-all duration-200"
                   onClick={() => {
-                    setIsModalOpen(true);
                     setIsMenuOpen(false);
+                    if (pathname === "/") {
+                      scrollToSectionUtil("#download-app");
+                    } else {
+                      router.push("/#download-app");
+                    }
                   }}
                 >
                   <Download size={20} />
@@ -257,10 +265,6 @@ export default function MobileNavbar() {
           </div>
         </div>
       </nav>
-      <DownloadAppModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </>
   );
 }

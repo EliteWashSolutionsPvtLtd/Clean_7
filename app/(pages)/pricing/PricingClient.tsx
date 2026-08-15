@@ -124,7 +124,7 @@ const PricingAccordion = ({
                             </button>
                           </div>
                         ) : (
-                          <button onClick={() => onAddToCart(item)} className="text-[12px] font-medium px-3 py-1 rounded-md bg-[var(--gold)]/10 text-[var(--gold)] hover:bg-[var(--gold)] hover:text-white transition-colors">
+                          <button onClick={() => onAddToCart(item)} className="text-[12px] font-medium px-3 py-1 rounded-md bg-[var(--gold)]/10 text-[var(--gold)] hover:bg-[var(--gold)] hover:text-[#ffffff] transition-colors">
                             Add
                           </button>
                         )}
@@ -167,7 +167,7 @@ const PricingAccordion = ({
                             </button>
                           </div>
                         ) : (
-                          <button onClick={() => onAddToCart(addon)} className="text-[12px] font-medium px-3 py-1 rounded-md bg-[var(--gold)]/10 text-[var(--gold)] hover:bg-[var(--gold)] hover:text-white transition-colors">
+                          <button onClick={() => onAddToCart(addon)} className="text-[12px] font-medium px-3 py-1 rounded-md bg-[var(--gold)]/10 text-[var(--gold)] hover:bg-[var(--gold)] hover:text-[#ffffff] transition-colors">
                             Add
                           </button>
                         )}
@@ -253,6 +253,21 @@ export default function PricingClient({
     }, 150);
     return () => clearTimeout(timer);
   }, [activeTab]);
+
+  // Notify WhatsApp button of cart state
+  useEffect(() => {
+    const event = new CustomEvent("cartStateChange", {
+      detail: { hasItems: totalItems > 0, isExpanded: isCartOpen },
+    });
+    window.dispatchEvent(event);
+
+    return () => {
+      const resetEvent = new CustomEvent("cartStateChange", {
+        detail: { hasItems: false, isExpanded: false },
+      });
+      window.dispatchEvent(resetEvent);
+    };
+  }, [totalItems, isCartOpen]);
 
   // Derived active services for the current tab
   const activeServices = useMemo(() => {
@@ -519,7 +534,7 @@ export default function PricingClient({
                       }`}
                   />
                 </button>
-                <button className="px-6 py-2.5 rounded-xl text-[14px] font-semibold transition-all bg-[var(--gold)] text-white hover:bg-[var(--gold-bright)] hover:shadow-[0_4px_12px_rgba(201,160,80,0.3)] hover:-translate-y-0.5 active:translate-y-0">
+                <button className="px-6 py-2.5 rounded-xl text-[14px] font-semibold transition-all bg-[var(--gold)] text-[#ffffff] hover:bg-[var(--gold-bright)] hover:shadow-[0_4px_12px_rgba(201,160,80,0.3)] hover:-translate-y-0.5 active:translate-y-0">
                   Book Now
                 </button>
               </div>

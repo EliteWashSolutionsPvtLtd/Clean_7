@@ -3,6 +3,8 @@ import { getLenisInstance } from "@/app/lib/lenis-instance";
 export function scrollToSection(href: string, navbarHeight: number = 70) {
   const lenis = getLenisInstance();
 
+  if (!href || href === "#" || typeof href !== "string") return;
+
   if (href === "#home") {
     if (lenis) {
       lenis.scrollTo(0, { offset: 0 });

@@ -6,6 +6,7 @@ import Link from "next/link";
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartState, setCartState] = useState({ hasItems: false, isExpanded: false });
   const modalRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -29,6 +30,14 @@ export default function WhatsAppButton() {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleCartState = (e: any) => {
+      setCartState(e.detail);
+    };
+    window.addEventListener("cartStateChange", handleCartState);
+    return () => window.removeEventListener("cartStateChange", handleCartState);
+  }, []);
+
   const phoneNumber = "917078497263"; // With country code
   const bookServiceMessage = encodeURIComponent(
     "Hi, I would like to book a service.",
@@ -38,15 +47,14 @@ export default function WhatsAppButton() {
   );
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
+    <div className={`fixed right-6 z-50 flex flex-col items-end pointer-events-none transition-all duration-300 ${cartState.isExpanded ? 'max-[900px]:opacity-0 max-[900px]:scale-90 max-[900px]:translate-y-4 opacity-100 scale-100' : 'opacity-100 scale-100'} ${cartState.hasItems ? 'bottom-6 max-[900px]:bottom-[120px]' : 'bottom-6'}`}>
       {/* Modal */}
       <div
         ref={modalRef}
-        className={`mb-4 w-72 origin-bottom-right transform transition-all duration-300 ease-out pointer-events-auto ${
-          isOpen
-            ? "scale-100 opacity-100 translate-y-0"
-            : "scale-95 opacity-0 translate-y-4 pointer-events-none"
-        } rounded-2xl bg-[var(--card)] border border-[var(--line)] p-5 shadow-2xl overflow-hidden relative`}
+        className={`mb-4 w-72 origin-bottom-right transform transition-all duration-300 ease-out pointer-events-auto ${isOpen
+          ? "scale-100 opacity-100 translate-y-0"
+          : "scale-95 opacity-0 translate-y-4 pointer-events-none"
+          } rounded-2xl bg-[var(--card)] border border-[var(--line)] p-5 shadow-2xl overflow-hidden relative`}
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-4 pb-4 border-b border-[var(--line)]">

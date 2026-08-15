@@ -14,9 +14,16 @@ export default function HomeHashScroll() {
   useEffect(() => {
     if (pathname !== "/") return;
     const hash = window.location.hash;
-    if (!hash) return;
-    const t = window.setTimeout(() => scrollToSection(hash), 100);
-    return () => window.clearTimeout(t);
+    if (!hash || hash === "#") return;
+    // Scroll immediately, then again after delays to account for layout shifts from images/GSAP
+    const t1 = window.setTimeout(() => scrollToSection(hash), 100);
+    const t2 = window.setTimeout(() => scrollToSection(hash), 500);
+    const t3 = window.setTimeout(() => scrollToSection(hash), 1200);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+    };
   }, [pathname]);
 
   useEffect(() => {
