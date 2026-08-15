@@ -13,8 +13,8 @@ const laundrySteps = [
   },
   {
     num: 2,
-    title: "We clean with care",
-    desc: "Your items are inspected, expertly cleaned, and finished by hand.",
+    title: "Powered by advanced cleaning technology",
+    desc: "Every item is carefully inspected and cleaned using modern, high-performance machines for a deeper, more consistent clean.",
     img: "/images/how-it-works/step-2.png",
   },
   {
@@ -180,11 +180,10 @@ function StepGrid({
 
               {/* Image container */}
               <div
-                className={`relative ${
-                  isCircularImage
-                    ? "w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
-                    : "w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
-                }`}
+                className={`relative ${isCircularImage
+                  ? "w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
+                  : "w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
+                  }`}
               >
                 <Image
                   src={step.img}

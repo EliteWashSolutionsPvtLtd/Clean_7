@@ -428,7 +428,7 @@ export default function AboutPage() {
                 <h2
                   className={`text-4xl md:text-5xl text-[var(--ink)] mb-4 leading-tight ${fraunces.className}`}
                 >
-                  Laundry that{" "}
+                  Services that{" "}
                   <span className="text-[var(--gold)] italic">
                     fits your life.
                   </span>
