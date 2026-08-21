@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "Transparent and affordable pricing for our premium laundry, car wash, and home cleaning services.",
 };
 
+export const dynamic = "force-dynamic";
+
 async function fetchServices() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
   try {
