@@ -105,6 +105,41 @@ export default function FranchiseClient() {
   >(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    model: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
+      const res = await fetch(`${apiUrl}/enquiries/franchise`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", phone: "", email: "", model: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="pt-24 pb-16 min-h-screen font-sans bg-ground selection:bg-gold/30">
       {/* Hero Section */}
@@ -703,25 +738,38 @@ export default function FranchiseClient() {
                 </p>
               </div>
 
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4">
                   <input
                     type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Your Name"
                     className="w-full bg-ground border border-line rounded-xl px-5 py-4 text-ink placeholder:text-ink-soft/60 focus:outline-none focus:border-gold-bright focus:ring-1 focus:ring-gold-bright transition-colors text-[14px]"
                   />
                   <input
                     type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="Phone Number"
                     className="w-full bg-ground border border-line rounded-xl px-5 py-4 text-ink placeholder:text-ink-soft/60 focus:outline-none focus:border-gold-bright focus:ring-1 focus:ring-gold-bright transition-colors text-[14px]"
                   />
                 </div>
                 <input
                   type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="Email Address"
                   className="w-full bg-ground border border-line rounded-xl px-5 py-4 text-ink placeholder:text-ink-soft/60 focus:outline-none focus:border-gold-bright focus:ring-1 focus:ring-gold-bright transition-colors text-[14px]"
                 />
-                <select className="w-full bg-ground border border-line rounded-xl px-5 py-4 text-ink focus:outline-none focus:border-gold-bright focus:ring-1 focus:ring-gold-bright transition-colors appearance-none text-[14px]">
+                <select
+                  value={formData.model}
+                  onChange={(e) => setFormData({ ...formData, model: e.target.value })}
+                  className="w-full bg-ground border border-line rounded-xl px-5 py-4 text-ink focus:outline-none focus:border-gold-bright focus:ring-1 focus:ring-gold-bright transition-colors appearance-none text-[14px]"
+                >
                   <option value="" className="text-ink">
                     Interested Franchise Model
                   </option>
@@ -736,12 +784,24 @@ export default function FranchiseClient() {
                   </option>
                 </select>
 
+                {submitStatus === "success" && (
+                  <div className="text-green-500 text-[14px] bg-green-500/10 p-3 rounded-lg border border-green-500/20">
+                    Thank you! Your enquiry has been submitted successfully.
+                  </div>
+                )}
+                {submitStatus === "error" && (
+                  <div className="text-red-500 text-[14px] bg-red-500/10 p-3 rounded-lg border border-red-500/20">
+                    Failed to submit enquiry. Please try again later.
+                  </div>
+                )}
+
                 <div className="pt-4 flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-gold hover:bg-gold-bright text-ground px-[30px] py-[16px] rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors text-center shadow-sm"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-gold hover:bg-gold-bright text-ground px-[30px] py-[16px] rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors text-center shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Apply Now
+                    {isSubmitting ? "Applying..." : "Apply Now"}
                   </button>
                   <button
                     type="button"
