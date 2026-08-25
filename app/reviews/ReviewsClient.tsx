@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Header from "../components/sections/Header";
+import Navbar from "../components/layout/Navbar";
 import Footer from "../components/sections/Footer";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
 import { Loader2 } from "lucide-react";
@@ -43,7 +43,7 @@ export default function ReviewsClient() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <main className="pt-[120px] pb-[100px] px-[24px] md:px-[48px] bg-[var(--ground)] min-h-screen">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-[64px]">
@@ -67,7 +67,7 @@ export default function ReviewsClient() {
                 .join("")
                 .substring(0, 2)
                 .toUpperCase();
-              
+
               return (
                 <ScrollReveal delay={(idx % 12) * 50} key={r.id || idx} className="h-full">
                   <div className="bg-[var(--card)] rounded-[24px] p-[32px] sm:p-[40px] shadow-sm border border-[var(--line)] flex flex-col justify-between h-full">
@@ -135,7 +135,7 @@ export default function ReviewsClient() {
               </button>
             </div>
           )}
-          
+
           {!loading && reviews.length === 0 && (
             <div className="text-center py-20 text-[var(--ink-soft)] text-lg">
               No reviews available yet.
