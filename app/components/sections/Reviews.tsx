@@ -47,7 +47,40 @@ const reviews = [
   },
 ];
 
+import { useEffect, useState } from "react";
+
 export default function Reviews() {
+  const [realReviews, setRealReviews] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
+        const res = await fetch(`${apiUrl}/reviews?limit=6`);
+        const json = await res.json();
+        if (json.success && json.data) {
+          setRealReviews(json.data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch reviews:", err);
+      }
+    };
+    fetchReviews();
+  }, []);
+
+  const displayReviews = realReviews.length >= 6 
+    ? realReviews.slice(0, 6).map(r => {
+        const name = r.order?.customer?.fullName || "Verified Customer";
+        const avatar = name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase();
+        return {
+          quote: r.description || "Excellent service, highly recommended!",
+          name: name,
+          location: "India",
+          avatar: avatar,
+        };
+      }) 
+    : reviews;
+
   return (
     <section
       id="reviews"
@@ -84,7 +117,7 @@ export default function Reviews() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
-          {reviews.map((rev, idx) => (
+          {displayReviews.map((rev, idx) => (
             <ScrollReveal delay={idx * 150} key={idx} className="h-full">
               <div className="bg-[var(--ground-soft)] rounded-[24px] p-[32px] sm:p-[40px] shadow-sm border border-[var(--line)] flex flex-col justify-between h-full transition-transform hover:-translate-y-1 duration-300">
                 <div>
@@ -144,6 +177,15 @@ export default function Reviews() {
                 We&apos;re grateful to be part of your routine.
               </span>
             </p>
+          </div>
+          
+          <div className="mt-8 flex justify-center">
+            <a
+              href="/reviews"
+              className="px-8 py-3 rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium hover:bg-[var(--gold)] hover:text-[var(--card)] transition-colors duration-300"
+            >
+              View All Reviews
+            </a>
           </div>
         </ScrollReveal>
       </div>
