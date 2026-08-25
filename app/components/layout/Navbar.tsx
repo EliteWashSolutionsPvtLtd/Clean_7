@@ -79,6 +79,7 @@ export default function Navbar() {
             <Link
               href="/pricing"
               className={isActive("/pricing") ? styles.active : ""}
+              prefetch={true}
             >
               Pricing
             </Link>
@@ -194,6 +195,7 @@ export default function Navbar() {
               href="/pricing"
               className={isActive("/pricing") ? styles.active : ""}
               onClick={() => setIsOpen(false)}
+              prefetch={true}
             >
               Pricing
             </Link>

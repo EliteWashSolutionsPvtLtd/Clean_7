@@ -95,6 +95,7 @@ export default function DesktopNavbar() {
                       href={item.href}
                       scroll={false}
                       className={navPillClass}
+                      prefetch={item.name === "Pricing" ? true : undefined}
                     >
                       <span className={labelClass}>{item.name}</span>
                     </Link>
@@ -106,7 +107,7 @@ export default function DesktopNavbar() {
                 const href = item.name === "Home" ? "/" : `/${item.href}`;
                 return (
                   <li key={item.name} className="shrink-0">
-                    <Link href={href} scroll={false} className={navPillClass}>
+                    <Link href={href} scroll={false} className={navPillClass} prefetch={item.name === "Pricing" ? true : undefined}>
                       <span className={labelClass}>{item.name}</span>
                     </Link>
                   </li>

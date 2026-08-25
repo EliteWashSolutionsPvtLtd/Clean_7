@@ -201,6 +201,7 @@ export default function MobileNavbar() {
                           scroll={false}
                           onClick={() => setIsMenuOpen(false)}
                           className={rowClass}
+                          prefetch={item.name === "Pricing" ? true : undefined}
                         >
                           <span className="flex-1">{item.name}</span>
                         </Link>
@@ -220,6 +221,7 @@ export default function MobileNavbar() {
                           scroll={false}
                           onClick={() => setIsMenuOpen(false)}
                           className={rowClass}
+                          prefetch={item.name === "Pricing" ? true : undefined}
                         >
                           <span className="flex-1">{item.name}</span>
                         </Link>
