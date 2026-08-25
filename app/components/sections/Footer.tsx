@@ -332,6 +332,9 @@ export default function Footer() {
                   <Link href="/franchise" className={linkClass}>
                     Franchise
                   </Link>
+                  <Link href="/reviews" className={linkClass}>
+                    Reviews
+                  </Link>
                 </div>
               </div>
 
