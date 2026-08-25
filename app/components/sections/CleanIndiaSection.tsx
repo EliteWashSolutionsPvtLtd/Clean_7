@@ -192,8 +192,8 @@ export default function CleanIndiaSection() {
           <div className="ci-animate-image relative h-full w-full min-h-[500px] lg:min-h-[700px] flex items-center justify-center pt-10 lg:pt-0">
             <div className="relative w-full max-w-[550px] aspect-[4/5] lg:aspect-auto lg:h-[90%] rounded-[2rem] shadow-2xl">
               <Image
-                src="/images/clean-india/clean_india_workers.png"
-                alt="Workers cleaning in a park"
+                src="/images/clean-india/clean_india_operators.png"
+                alt="Operators cleaning in a park"
                 fill
                 className="rounded-[2rem] object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -1,8 +1,11 @@
+"use client"
+
+import { useState, useEffect, FormEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AppStoreButton from "../ui/buttons/AppStoreButton";
 import GooglePlayButton from "../ui/buttons/GooglePlayButton";
-import { Instagram, Facebook, MessageCircle, Mail } from "lucide-react";
+import { Instagram, Facebook, Linkedin, Twitter, MessageCircle, Mail } from "lucide-react";
 import { FooterAnimation } from "../animations/PageAnimations";
 
 // --- Icons ---
@@ -122,6 +125,68 @@ export default function Footer() {
   const headingClass =
     "text-[var(--gold)] font-bold text-[12px] tracking-[0.1em] uppercase mb-[24px]";
 
+  const [socialLinks, setSocialLinks] = useState({
+    instagram: "",
+    facebook: "",
+    linkedin: "",
+    x: "",
+  });
+
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsletterMessage, setNewsletterMessage] = useState("");
+
+  const handleSubscribe = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+
+    setNewsletterStatus("loading");
+    setNewsletterMessage("");
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
+      const res = await fetch(`${apiUrl}/newsletters/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setNewsletterStatus("success");
+        setNewsletterMessage("Thanks for subscribing!");
+        setNewsletterEmail("");
+      } else {
+        setNewsletterStatus("error");
+        setNewsletterMessage(data.message || "Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      setNewsletterStatus("error");
+      setNewsletterMessage("An error occurred. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
+        const res = await fetch(`${apiUrl}/catalog/settings/social_links`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.data && data.data.value) {
+            setSocialLinks(data.data.value);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch social links", error);
+      }
+    };
+    fetchSocialLinks();
+  }, []);
+
   return (
     <FooterAnimation>
       <footer className="footer-main gsap-animate w-full bg-[var(--ground)] pt-[80px] md:pt-[100px] pb-[30px] px-[24px] md:px-[48px] opacity-0">
@@ -173,30 +238,74 @@ export default function Footer() {
                 </p>
               </div>
               <div className="flex items-center gap-[20px] text-[var(--ink-soft)]">
-                <a
-                  href="#"
-                  className="hover:text-[var(--gold)] transition-colors"
-                >
-                  <Instagram strokeWidth={1.5} size={20} />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-[var(--gold)] transition-colors"
-                >
-                  <Facebook strokeWidth={1.5} size={20} />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-[var(--gold)] transition-colors"
-                >
-                  <MessageCircle strokeWidth={1.5} size={20} />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-[var(--gold)] transition-colors"
-                >
-                  <Mail strokeWidth={1.5} size={20} />
-                </a>
+                {socialLinks.instagram && (
+                  <a
+                    href={socialLinks.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--gold)] transition-colors"
+                  >
+                    <Instagram strokeWidth={1.5} size={20} />
+                  </a>
+                )}
+                {socialLinks.facebook && (
+                  <a
+                    href={socialLinks.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--gold)] transition-colors"
+                  >
+                    <Facebook strokeWidth={1.5} size={20} />
+                  </a>
+                )}
+                {socialLinks.linkedin && (
+                  <a
+                    href={socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--gold)] transition-colors"
+                  >
+                    <Linkedin strokeWidth={1.5} size={20} />
+                  </a>
+                )}
+                {socialLinks.x && (
+                  <a
+                    href={socialLinks.x}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--gold)] transition-colors"
+                  >
+                    <Twitter strokeWidth={1.5} size={20} />
+                  </a>
+                )}
+                {!socialLinks.instagram && !socialLinks.facebook && !socialLinks.linkedin && !socialLinks.x && (
+                  <>
+                    <a
+                      href="#"
+                      className="hover:text-[var(--gold)] transition-colors"
+                    >
+                      <Instagram strokeWidth={1.5} size={20} />
+                    </a>
+                    <a
+                      href="#"
+                      className="hover:text-[var(--gold)] transition-colors"
+                    >
+                      <Facebook strokeWidth={1.5} size={20} />
+                    </a>
+                    <a
+                      href="#"
+                      className="hover:text-[var(--gold)] transition-colors"
+                    >
+                      <MessageCircle strokeWidth={1.5} size={20} />
+                    </a>
+                    <a
+                      href="#"
+                      className="hover:text-[var(--gold)] transition-colors"
+                    >
+                      <Mail strokeWidth={1.5} size={20} />
+                    </a>
+                  </>
+                )}
               </div>
             </div>
 
@@ -255,16 +364,35 @@ export default function Footer() {
                 Be the first to know about offers, new services, and laundry
                 tips.
               </p>
-              <div className="flex items-center h-[46px] mb-[12px]">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="h-full flex-1 bg-[var(--card)] border border-[var(--line)] border-r-0 rounded-l-[8px] px-[16px] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-soft)] outline-none focus:border-[var(--gold)] transition-colors"
-                />
-                <button className="h-full px-[20px] bg-[var(--gold)] text-white rounded-r-[8px] hover:brightness-90 transition-all flex items-center justify-center">
-                  <IconArrowRight />
-                </button>
-              </div>
+              <form onSubmit={handleSubscribe} className="mb-[12px]">
+                <div className="flex items-center h-[46px]">
+                  <input
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    disabled={newsletterStatus === "loading"}
+                    placeholder="Enter your email"
+                    required
+                    className="h-full flex-1 bg-[var(--card)] border border-[var(--line)] border-r-0 rounded-l-[8px] px-[16px] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-soft)] outline-none focus:border-[var(--gold)] transition-colors disabled:opacity-50"
+                  />
+                  <button
+                    type="submit"
+                    disabled={newsletterStatus === "loading"}
+                    className="h-full px-[20px] bg-[var(--gold)] text-white rounded-r-[8px] hover:brightness-90 transition-all flex items-center justify-center disabled:opacity-50"
+                  >
+                    {newsletterStatus === "loading" ? (
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      <IconArrowRight />
+                    )}
+                  </button>
+                </div>
+                {newsletterMessage && (
+                  <div className={`mt-2 text-[12px] ${newsletterStatus === "success" ? "text-green-500" : "text-red-500"}`}>
+                    {newsletterMessage}
+                  </div>
+                )}
+              </form>
               <div className="flex items-center gap-[8px] text-[var(--ink-soft)] text-[12px]">
                 <span className="text-[var(--gold)]">
                   <IconShieldTiny />

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ShieldCheck, Clock, Lock, ThumbsUp } from "lucide-react";
 import { ScrollReveal } from "../ui/ScrollReveal";
 
 const laundrySteps = [
@@ -14,13 +13,13 @@ const laundrySteps = [
   {
     num: 2,
     title: "Powered by advanced cleaning technology",
-    desc: "Every item is carefully inspected and cleaned using modern, high-performance machines for a deeper, more consistent clean.",
+    desc: "Every item is carefully inspected and cleaned using advanced, high-performance machines for a deeper, more consistent clean.",
     img: "/images/how-it-works/step-2.png",
   },
   {
     num: 3,
-    title: "Hand-finished",
-    desc: "Every piece is pressed, folded, and quality-checked to perfection.",
+    title: "Precision-finished",
+    desc: "Every piece is carefully inspected and finished using advanced machines for consistent, exceptional results.",
     img: "/images/how-it-works/step-3.png",
   },
   {

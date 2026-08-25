@@ -105,6 +105,8 @@ export default function FranchiseClient() {
   >(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -120,7 +122,6 @@ export default function FranchiseClient() {
     setSubmitStatus("idle");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
       const res = await fetch(`${apiUrl}/enquiries/franchise`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -208,10 +209,15 @@ export default function FranchiseClient() {
                 Apply for Franchise
                 <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
-              <button className="w-full sm:w-auto px-[30px] py-[16px] border border-gold/30 bg-transparent hover:bg-gold/5 text-ink rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors flex items-center justify-center gap-2">
+              <a
+                href={`${apiUrl}/catalog/brochure`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-[30px] py-[16px] border border-gold/30 bg-transparent hover:bg-gold/5 text-ink rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors flex items-center justify-center gap-2"
+              >
                 <Download className="w-4 h-4 text-gold-bright" /> Download
                 Brochure
-              </button>
+              </a>
             </div>
 
             <div className="pt-12 mt-4 flex items-center gap-8 md:gap-12 opacity-90">
@@ -786,7 +792,7 @@ export default function FranchiseClient() {
 
                 {submitStatus === "success" && (
                   <div className="text-green-500 text-[14px] bg-green-500/10 p-3 rounded-lg border border-green-500/20">
-                    Thank you! Your enquiry has been submitted successfully.
+                    Thank you! Your enquiry has been submitted successfully. Our team will contact you shortly.
                   </div>
                 )}
                 {submitStatus === "error" && (
@@ -795,19 +801,13 @@ export default function FranchiseClient() {
                   </div>
                 )}
 
-                <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                <div className="pt-4">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 bg-gold hover:bg-gold-bright text-ground px-[30px] py-[16px] rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors text-center shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full bg-gold hover:bg-gold-bright text-ground px-[30px] py-[16px] rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors text-center shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? "Applying..." : "Apply Now"}
-                  </button>
-                  <button
-                    type="button"
-                    className="flex-1 bg-ground hover:bg-ground-soft border border-line text-ink px-[30px] py-[16px] rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors text-center"
-                  >
-                    Schedule Call
                   </button>
                 </div>
               </form>
