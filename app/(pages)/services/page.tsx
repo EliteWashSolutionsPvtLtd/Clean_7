@@ -36,7 +36,9 @@ const categoryImageMap: Record<string, string> = {
   laundry: "/images/services/laundry.png",
   "home-cleaning": "/images/services/house-help.png",
   "doorstep-car-wash": "/images/services/car-wash.png",
+  "door-to-door-car-wash": "/images/services/car-wash.png",
   "pest-control": "/images/services/car-wash.png",
+  "beauty-and-wellness": "/images/services/laundry.png",
 };
 
 export default function ServicesPage() {
@@ -97,7 +99,7 @@ export default function ServicesPage() {
                 return (
                   <div
                     key={cat.slug}
-                    className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden flex flex-col hover:border-[var(--gold)]/30 transition-colors duration-500 gsap-animate opacity-0 page-hero-left"
+                    className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden flex flex-col hover:border-[var(--gold)]/30 transition-colors duration-500"
                     style={{ animationDelay: `${(idx + 1) * 0.1}s` }}
                   >
                     <div className="relative w-full aspect-[16/9]">

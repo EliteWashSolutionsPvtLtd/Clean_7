@@ -22,6 +22,7 @@ export interface ServiceCategory {
   name: string;
   description: string | null;
   sortOrder?: number;
+  services?: BackendService[];
 }
 
 export interface BackendService {
@@ -30,8 +31,6 @@ export interface BackendService {
   slug: string;
   name: string;
   shortDescription: string | null;
-  isEnabled: boolean;
-  category: ServiceCategory;
   items: PricingItem[];
   addOns?: PricingItem[];
 }
@@ -185,26 +184,15 @@ const PricingAccordion = ({
 };
 
 export default function PricingClient({
-  services,
+  initialCategories,
 }: {
-  services: BackendService[];
+  initialCategories: ServiceCategory[];
 }) {
-  // Extract categories dynamically, filtering out disabled services
   const categories = useMemo(() => {
-    const map = new Map<string, ServiceCategory>();
-    services.forEach((s) => {
-      if (s.isEnabled && s.category) {
-        if (s.category.code === "HOME_CLEANING") {
-          map.set(s.category.code, { ...s.category, name: "House Help" });
-        } else {
-          map.set(s.category.code, s.category);
-        }
-      }
-    });
-    return Array.from(map.values()).sort(
-      (a, b) => (a.sortOrder || 0) - (b.sortOrder || 0),
+    return (initialCategories || []).sort(
+      (a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)
     );
-  }, [services]);
+  }, [initialCategories]);
 
   const [activeTab, setActiveTab] = useState<string>(categories[0]?.code || "");
   const [cart, setCart] = useState<Record<string, { item: PricingItem; quantity: number }>>({});
@@ -271,12 +259,9 @@ export default function PricingClient({
 
   // Derived active services for the current tab
   const activeServices = useMemo(() => {
-    return services
-      .filter((s) => s.isEnabled && s.category?.code === activeTab)
-      .sort((a, b) => {
-        return 0; // Use original array order or sort logic if needed
-      });
-  }, [services, activeTab]);
+    const cat = categories.find((c) => c.code === activeTab);
+    return cat?.services || [];
+  }, [categories, activeTab]);
 
   return (
     <div className="bg-[var(--ground)] min-h-screen">

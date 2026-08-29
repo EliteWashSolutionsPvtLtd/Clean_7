@@ -33,7 +33,9 @@ const categoryImageMap: Record<string, string> = {
   laundry: "/images/about/service-laundry.png",
   "home-cleaning": "/images/about/service-home-cleaning.png",
   "doorstep-car-wash": "/images/about/service-car-wash.png",
+  "door-to-door-car-wash": "/images/about/service-car-wash.png",
   "pest-control": "/images/about/service-pest-control.png",
+  "beauty-and-wellness": "/images/about/service-laundry.png",
 };
 
 export default function ServiceCategoriesGrid({

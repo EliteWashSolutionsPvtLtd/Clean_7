@@ -9,28 +9,29 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-async function fetchServices() {
+async function fetchCategories() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
   try {
-    const res = await fetch(`${API_URL}/catalog/services`, {
+    const res = await fetch(`${API_URL}/catalog/categories`, {
       cache: "no-store",
     });
 
     if (!res.ok) {
-      console.error("Failed to fetch services:", res.status);
+      console.error("Failed to fetch categories:", res.status);
       return [];
     }
 
     const json = await res.json();
     return json.data || [];
   } catch (err) {
-    console.error("Error fetching catalog services:", err);
+    console.error("Error fetching catalog categories:", err);
     return [];
   }
 }
 
 export default async function PricingPage() {
-  const services = await fetchServices();
+  const categories = await fetchCategories();
 
-  return <PricingClient services={services} />;
+  return <PricingClient initialCategories={categories} />;
 }
+

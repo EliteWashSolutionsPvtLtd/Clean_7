@@ -295,7 +295,7 @@ export function getCategoryBySlug(
 export async function getDynamicCategories(): Promise<ServiceCategory[]> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
-    const res = await fetch(`${apiUrl}/catalog/categories`, { next: { revalidate: 60 } });
+    const res = await fetch(`${apiUrl}/catalog/categories`, { cache: 'no-store' });
     if (!res.ok) return SERVICE_CATEGORIES;
     const json = await res.json();
     const data = json.data || json;
