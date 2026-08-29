@@ -18,11 +18,12 @@ export default function ReviewsClient() {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
       const res = await fetch(`${apiUrl}/reviews?page=${pageNum}&limit=12`);
       const json = await res.json();
-      if (json.success && json.data) {
-        if (json.data.length < 12) {
+      if (json.success && json.data && Array.isArray(json.data.reviews)) {
+        const fetchedReviews = json.data.reviews;
+        if (fetchedReviews.length < 12) {
           setHasMore(false);
         }
-        setReviews((prev) => (pageNum === 1 ? json.data : [...prev, ...json.data]));
+        setReviews((prev) => (pageNum === 1 ? fetchedReviews : [...prev, ...fetchedReviews]));
       }
     } catch (err) {
       console.error("Failed to fetch reviews:", err);
@@ -90,7 +91,7 @@ export default function ReviewsClient() {
                         ))}
                       </div>
                       <p className="text-[15px] text-[var(--ink)] leading-[1.6] mb-[32px]">
-                        "{r.description || "Excellent service, highly recommended!"}"
+                        &quot;{r.description || "Excellent service, highly recommended!"}&quot;
                       </p>
                     </div>
                     <div className="pt-[24px] border-t border-[var(--line)] flex items-center gap-[16px]">

@@ -203,6 +203,7 @@ export default function Footer() {
                     width={110}
                     height={110}
                     className="mb-4"
+                    style={{ width: "auto", height: "auto" }}
                   />
                   <h2 className="text-[32px] tracking-[0.25em] text-[var(--ink)] font-medium mb-[4px] ml-[0.25em]">
                     CLEAN<span className="text-[var(--gold)]">7</span>
