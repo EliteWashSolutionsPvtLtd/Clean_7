@@ -117,9 +117,6 @@ export default function ServicesPage() {
                         >
                           {cat.cardTitle}
                         </h2>
-                        {cat.emoji && (
-                          <span className="text-3xl">{cat.emoji}</span>
-                        )}
                       </div>
 
                       <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
