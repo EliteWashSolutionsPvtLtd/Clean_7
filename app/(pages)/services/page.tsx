@@ -72,7 +72,7 @@ export default function ServicesPage() {
                 Our Services
               </h1>
               <div className="w-[40px] h-[2px] bg-[var(--gold)] mx-auto mb-[24px]"></div>
-              <p className="text-[16px] text-[var(--ink-soft)] leading-[1.6]">
+              <p className="text-[20px] text-[var(--ink-soft)] leading-[1.7]">
                 At Clean7, we take care of the details so you can focus on what
                 matters.
                 <br className="hidden sm:block" /> Premium care. Reliable
@@ -121,7 +121,7 @@ export default function ServicesPage() {
                         </h2>
                       </div>
 
-                      <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
+                      <p className="text-[20px] text-[var(--ink-soft)] leading-[1.7] mb-[32px]">
                         {cat.description || cat.teaser}
                       </p>
 
@@ -129,7 +129,7 @@ export default function ServicesPage() {
                         {features.map((feature, fIdx) => (
                           <li
                             key={fIdx}
-                            className="flex items-center gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                            className="flex items-center gap-[12px] text-[15px] text-[var(--ink-soft)]"
                           >
                             <CheckCircleIcon />
                             {feature}
