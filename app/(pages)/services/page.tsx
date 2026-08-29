@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/sections/Footer";
 import Container from "@/app/components/layout/Container";
 import DownloadAppModal from "@/app/components/ui/modals/DownloadAppModal";
 import { SatoshiFont } from "@/app/fonts";
 import { PageHeroAnimation } from "@/app/components/animations/PageAnimations";
+import {
+  SERVICE_CATEGORIES,
+  ServiceCategory,
+  getDynamicCategories,
+} from "@/app/lib/service-categories";
 
 const CheckCircleIcon = () => (
   <svg
@@ -26,8 +32,24 @@ const CheckCircleIcon = () => (
   </svg>
 );
 
+const categoryImageMap: Record<string, string> = {
+  laundry: "/images/services/laundry.png",
+  "home-cleaning": "/images/services/house-help.png",
+  "doorstep-car-wash": "/images/services/car-wash.png",
+  "pest-control": "/images/services/car-wash.png",
+};
+
 export default function ServicesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [categories, setCategories] = useState<ServiceCategory[]>(SERVICE_CATEGORIES);
+
+  useEffect(() => {
+    getDynamicCategories()
+      .then((cats) => {
+        if (cats && cats.length > 0) setCategories(cats);
+      })
+      .catch(() => { });
+  }, []);
 
   return (
     <div
@@ -56,142 +78,69 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            {/* Services Grid */}
+            {/* Dynamic Services Grid */}
             <div className="grid lg:grid-cols-2 gap-[30px] md:gap-[40px] mb-[60px] md:mb-[80px]">
-              {/* Laundry Card */}
-              <div
-                className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden flex flex-col hover:border-[var(--gold)]/30 transition-colors duration-500 gsap-animate opacity-0 page-hero-left"
-                style={{ animationDelay: "0.1s" }}
-              >
-                <div className="relative w-full aspect-[16/9]">
-                  <Image
-                    src="/images/services/laundry.png"
-                    alt="Laundry Service"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-[32px] md:p-[48px] flex-1 flex flex-col">
-                  <h2
-                    className="text-[32px] md:text-[38px] text-[var(--ink)] mb-[24px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
+              {categories.map((cat, idx) => {
+                const imageSrc = cat.webImageUrl || categoryImageMap[cat.slug] || "/images/services/laundry.png";
+                const isRemote = imageSrc.startsWith("http");
+                const features =
+                  cat.subServices && cat.subServices.length > 0
+                    ? cat.subServices.slice(0, 5).map((s) => s.title)
+                    : [
+                      "Professional Service",
+                      "Trained & Verified Experts",
+                      "Transparent Pricing",
+                      "Quality Guaranteed",
+                      "Doorstep Convenience",
+                    ];
+
+                return (
+                  <div
+                    key={cat.slug}
+                    className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden flex flex-col hover:border-[var(--gold)]/30 transition-colors duration-500 gsap-animate opacity-0 page-hero-left"
+                    style={{ animationDelay: `${(idx + 1) * 0.1}s` }}
                   >
-                    Laundry
-                  </h2>
-                  <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
-                    From everyday laundry to delicate fabrics, we wash, dry,
-                    fold, and deliver with the utmost care and hygiene.
-                  </p>
+                    <div className="relative w-full aspect-[16/9]">
+                      <Image
+                        src={imageSrc}
+                        alt={cat.cardTitle}
+                        fill
+                        unoptimized={isRemote}
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-[32px] md:p-[48px] flex-1 flex flex-col">
+                      <div className="flex items-center justify-between mb-[24px]">
+                        <h2
+                          className="text-[32px] md:text-[38px] text-[var(--ink)]"
+                          style={{ fontFamily: "var(--font-fraunces)" }}
+                        >
+                          {cat.cardTitle}
+                        </h2>
+                        {cat.emoji && (
+                          <span className="text-3xl">{cat.emoji}</span>
+                        )}
+                      </div>
 
-                  <ul className="flex flex-col gap-[16px] flex-1">
-                    {[
-                      "Wash & Fold",
-                      "Premium Detergents",
-                      "Fabric Care",
-                      "Quick Turnaround",
-                      "Doorstep Pickup & Delivery",
-                    ].map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-[12px] text-[14px] text-[var(--ink-soft)]"
-                      >
-                        <CheckCircleIcon />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+                      <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
+                        {cat.description || cat.teaser}
+                      </p>
 
-              {/* Car Wash Card */}
-              <div
-                className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden flex flex-col hover:border-[var(--gold)]/30 transition-colors duration-500 gsap-animate opacity-0 page-hero-left"
-                style={{ animationDelay: "0.2s" }}
-              >
-                <div className="relative w-full aspect-[16/9]">
-                  <Image
-                    src="/images/services/car-wash.png"
-                    alt="Car Wash Service"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-[32px] md:p-[48px] flex-1 flex flex-col">
-                  <h2
-                    className="text-[32px] md:text-[38px] text-[var(--ink)] mb-[24px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    Car Wash
-                  </h2>
-                  <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
-                    Professional cleaning that restores shine and protects your
-                    vehicle, inside and out.
-                  </p>
-
-                  <ul className="flex flex-col gap-[16px] flex-1">
-                    {[
-                      "Exterior Wash",
-                      "Interior Vacuuming",
-                      "Deep Cleaning",
-                      "Stain Removal",
-                      "Premium Finishes",
-                    ].map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-[12px] text-[14px] text-[var(--ink-soft)]"
-                      >
-                        <CheckCircleIcon />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* House Help Card */}
-              <div
-                className="rounded-2xl border border-[var(--line)] bg-[var(--card)] overflow-hidden flex flex-col hover:border-[var(--gold)]/30 transition-colors duration-500 gsap-animate opacity-0 page-hero-left"
-                style={{ animationDelay: "0.3s" }}
-              >
-                <div className="relative w-full aspect-[16/9]">
-                  <Image
-                    src="/images/services/house-help.png"
-                    alt="House Help Service"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-[32px] md:p-[48px] flex-1 flex flex-col">
-                  <h2
-                    className="text-[32px] md:text-[38px] text-[var(--ink)] mb-[24px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    House Help
-                  </h2>
-                  <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
-                    Reliable and professional house help services for your daily
-                    chores and deep cleaning needs, ensuring a spotless home.
-                  </p>
-
-                  <ul className="flex flex-col gap-[16px] flex-1">
-                    {[
-                      "Deep Cleaning",
-                      "Daily Chores",
-                      "Trusted Professionals",
-                      "Flexible Scheduling",
-                      "Sanitized Equipment",
-                    ].map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-[12px] text-[14px] text-[var(--ink-soft)]"
-                      >
-                        <CheckCircleIcon />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+                      <ul className="flex flex-col gap-[16px] flex-1 mb-[32px]">
+                        {features.map((feature, fIdx) => (
+                          <li
+                            key={fIdx}
+                            className="flex items-center gap-[12px] text-[14px] text-[var(--ink-soft)]"
+                          >
+                            <CheckCircleIcon />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Bottom CTA Box */}

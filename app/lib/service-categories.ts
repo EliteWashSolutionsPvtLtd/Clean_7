@@ -2,7 +2,8 @@ export type ServiceCategorySlug =
   | "laundry"
   | "home-cleaning"
   | "doorstep-car-wash"
-  | "pest-control";
+  | "pest-control"
+  | string;
 
 export type ServiceSubItem = {
   title: string;
@@ -14,14 +15,17 @@ export type ServiceSubItem = {
 };
 
 export type ServiceCategory = {
+  id?: string;
   slug: ServiceCategorySlug;
   /** Short label for cards and nav */
   cardTitle: string;
-  emoji: string;
+  emoji?: string;
   /** One-line teaser on category cards */
   teaser: string;
   heading: string;
   description: string;
+  webImageUrl?: string | null;
+  appImageUrl?: string | null;
   /** Optional second intro paragraph (e.g. laundry page) */
   descriptionSecondary?: string;
   /** Overrides default “Sub services” section heading */
@@ -286,6 +290,48 @@ export function getCategoryBySlug(
   slug: string,
 ): ServiceCategory | undefined {
   return SERVICE_CATEGORIES.find((c) => c.slug === slug);
+}
+
+export async function getDynamicCategories(): Promise<ServiceCategory[]> {
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.clean7.in";
+    const res = await fetch(`${apiUrl}/catalog/categories`, { next: { revalidate: 60 } });
+    if (!res.ok) return SERVICE_CATEGORIES;
+    const json = await res.json();
+    const data = json.data || json;
+    if (!Array.isArray(data) || data.length === 0) return SERVICE_CATEGORIES;
+
+    return data.map((cat: any) => {
+      const existing = SERVICE_CATEGORIES.find((sc) => sc.slug === cat.slug);
+      return {
+        id: cat.id,
+        slug: cat.slug,
+        cardTitle: cat.name,
+        emoji: existing?.emoji || "✨",
+        teaser: cat.description || existing?.teaser || "Professional quality service by Clean7.",
+        heading: cat.name,
+        description: cat.description || existing?.description || `Premium ${cat.name} services tailored for you.`,
+        webImageUrl: cat.webImageUrl,
+        appImageUrl: cat.appImageUrl,
+        servicesSectionTitle: existing?.servicesSectionTitle || "Sub services",
+        subServices: (cat.services && cat.services.length > 0)
+          ? cat.services.map((s: any) => ({
+            title: s.name,
+            description: s.shortDescription || s.longDescription || "",
+            bullets: s.items ? s.items.map((i: any) => i.name) : undefined,
+          }))
+          : (existing?.subServices || []),
+        process: existing?.process,
+      };
+    });
+  } catch {
+    return SERVICE_CATEGORIES;
+  }
+}
+
+export async function getDynamicCategoryBySlug(slug: string): Promise<ServiceCategory | undefined> {
+  const all = await getDynamicCategories();
+  return all.find((c) => c.slug === slug);
 }
 
 export function categoryPath(slug: ServiceCategorySlug): string {

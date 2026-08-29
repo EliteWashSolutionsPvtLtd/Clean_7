@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { WixMadeForDisplayFont } from "@/app/fonts";
 import Container from "../layout/Container";
-import { SERVICE_CATEGORIES, categoryPath } from "@/app/lib/service-categories";
+import {
+  SERVICE_CATEGORIES,
+  ServiceCategory,
+  getDynamicCategories,
+} from "@/app/lib/service-categories";
 import {
   gsap,
   prefersReducedMotion,
@@ -41,6 +43,15 @@ export default function ServiceCategoriesGrid({
   compactSpacing = false,
 }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
+  const [categories, setCategories] = useState<ServiceCategory[]>(SERVICE_CATEGORIES);
+
+  useEffect(() => {
+    getDynamicCategories()
+      .then((cats) => {
+        if (cats && cats.length > 0) setCategories(cats);
+      })
+      .catch(() => { });
+  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion()) {
@@ -93,7 +104,7 @@ export default function ServiceCategoriesGrid({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [showHeader, deepStagger]);
+  }, [showHeader, deepStagger, categories]);
 
   const sectionPad = compactSpacing
     ? "pt-0 pb-16 sm:pb-20 md:pb-24"
@@ -115,52 +126,50 @@ export default function ServiceCategoriesGrid({
             Services for a cleaner home &amp; life
           </h2>
           <p className="scg-reveal mt-4 text-[15px] leading-relaxed text-[#6B5E54] sm:text-[16px] max-w-lg mx-auto">
-            Four categories, one trusted partner — book everything you need from
-            a single app.
+            Everything you need for a spotless home, fresh clothes, and gleaming vehicle — book easily in a single app.
           </p>
         </div>
       )}
 
       <div className={`grid grid-cols-1 md:grid-cols-2 ${gridGap}`}>
-        {SERVICE_CATEGORIES.map((cat) => (
-          <Link
-            key={cat.slug}
-            href={categoryPath(cat.slug)}
-            scroll={true}
-            className="scg-card group relative flex flex-col overflow-hidden rounded-[24px] sm:rounded-[32px] border border-[#E5E0DB] bg-white transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-[#FF9431]/30 hover:shadow-[0_24px_48px_-12px_rgba(255,148,49,0.12)] opacity-0"
-          >
-            <span className="absolute right-6 top-6 sm:right-10 sm:top-10 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#E5E0DB] bg-white text-[#8A7B72] transition-all duration-300 group-hover:border-[#FF9431] group-hover:bg-[#FF9431] group-hover:text-white group-hover:-rotate-12 group-hover:scale-110 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-              <ArrowUpRight className="h-5 w-5" />
-            </span>
+        {categories.map((cat) => {
+          const imageSrc = cat.webImageUrl || categoryImageMap[cat.slug] || "/images/about/hero-towels.png";
+          const isRemote = imageSrc.startsWith("http");
 
-            {/* Top Text Content */}
-            <div className="flex flex-col p-6 sm:p-10 pb-0 sm:pb-0 z-10 relative bg-white">
-              <h3
-                className="text-[1.5rem] font-bold text-[#2C2118] sm:text-[1.75rem] leading-tight pr-12"
-                style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-              >
-                {cat.cardTitle}
-              </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-[#6B5E54]">
-                {cat.teaser}
-              </p>
-            </div>
+          return (
+            <div
+              key={cat.slug}
+              className="scg-card group relative flex flex-col overflow-hidden rounded-[24px] sm:rounded-[32px] border border-[#E5E0DB] bg-white transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-[#FF9431]/30 hover:shadow-[0_24px_48px_-12px_rgba(255,148,49,0.12)] opacity-0"
+            >
 
-            {/* Bottom Image Container */}
-            <div className="relative mt-10 flex-1 w-full overflow-hidden min-h-[240px] sm:min-h-[280px] z-0">
-              <div className="absolute inset-0 bg-gradient-to-b from-white via-white/20 to-transparent z-10 h-16 pointer-events-none" />
-              <Image
-                src={
-                  categoryImageMap[cat.slug] || "/images/about/hero-towels.png"
-                }
-                alt={cat.cardTitle}
-                fill
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {/* Top Text Content */}
+              <div className="flex flex-col p-6 sm:p-10 pb-0 sm:pb-0 z-10 relative bg-white">
+                <h3
+                  className="text-[1.5rem] font-bold text-[#2C2118] sm:text-[1.75rem] leading-tight pr-12"
+                  style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
+                >
+                  {cat.cardTitle}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-[#6B5E54]">
+                  {cat.teaser}
+                </p>
+              </div>
+
+              {/* Bottom Image Container */}
+              <div className="relative mt-10 flex-1 w-full overflow-hidden min-h-[240px] sm:min-h-[280px] z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-white via-white/20 to-transparent z-10 h-16 pointer-events-none" />
+                <Image
+                  src={imageSrc}
+                  alt={cat.cardTitle}
+                  fill
+                  unoptimized={isRemote}
+                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
-          </Link>
-        ))}
+          );
+        })}
       </div>
     </>
   );

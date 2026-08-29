@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import styles from "@/app/(pages)/services/laundry/Laundry.module.css";
+import styles from "./Hero.module.css";
 import { useState, useEffect, useRef } from "react";
 
 const AnimatedNumber = ({
