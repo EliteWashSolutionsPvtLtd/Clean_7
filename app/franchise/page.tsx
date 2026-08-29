@@ -3,6 +3,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/sections/Footer";
 import FranchiseClient from "./FranchiseClient";
 import { canonicalPath } from "../lib/site-config";
+import { getDynamicCategories } from "../lib/service-categories";
 
 export const metadata: Metadata = {
   title:
@@ -18,11 +19,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FranchisePage() {
+export default async function FranchisePage() {
+  const categories = await getDynamicCategories();
+  
   return (
     <div className="bg-ground text-ink min-h-screen selection:bg-gold/30">
       <Navbar />
-      <FranchiseClient />
+      <FranchiseClient categories={categories} />
       <Footer />
     </div>
   );

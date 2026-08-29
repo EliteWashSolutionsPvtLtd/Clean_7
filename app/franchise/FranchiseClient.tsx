@@ -10,17 +10,24 @@ import {
   ShieldCheck,
   Smartphone,
   Target,
-  Car,
   Sparkles,
   CheckCircle2,
   ChevronRight,
   X,
   HelpCircle,
-  Briefcase,
   Download,
   PieChart,
 } from "lucide-react";
 import { franchiseFaqs } from "./faqs";
+import { ServiceCategory } from "../lib/service-categories";
+
+const categoryImageMap: Record<string, string> = {
+  laundry: "/images/services/laundry.png",
+  "home-cleaning": "/images/services/house-help.png",
+  "doorstep-car-wash": "/images/services/car-wash.png",
+  "door-to-door-car-wash": "/images/services/car-wash.png",
+  "pest-control": "/images/services/pest-control.png", // Or a fallback
+};
 
 const Modal = ({
   isOpen,
@@ -99,7 +106,7 @@ const Modal = ({
   );
 };
 
-export default function FranchiseClient() {
+export default function FranchiseClient({ categories = [] }: { categories?: ServiceCategory[] }) {
   const [activeModal, setActiveModal] = useState<
     "industry" | "financials" | "investor" | null
   >(null);
@@ -417,46 +424,36 @@ export default function FranchiseClient() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Laundry",
-                desc: "Professional garment care with pickup and delivery. High repeat usage.",
-                image: "/images/services/laundry.png",
-              },
-              {
-                title: "Car Wash",
-                desc: "Doorstep vehicle cleaning designed for convenience. Subscription potential.",
-                image: "/images/services/car-wash.png",
-              },
-              {
-                title: "Home Cleaning",
-                desc: "Professional deep cleaning for modern households. High order values.",
-                image: "/images/services/house-help.png",
-              },
-            ].map((service, i) => (
-              <div
-                key={i}
-                className="group rounded-3xl overflow-hidden border border-line bg-ground flex flex-col hover:border-gold/40 transition-colors shadow-sm"
-              >
-                <div className="relative w-full aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
+            {categories.map((cat, i) => {
+              const imageSrc = cat.webImageUrl || categoryImageMap[cat.slug] || "/images/services/laundry.png";
+              const isRemote = imageSrc.startsWith("http");
 
-                <div className="p-8 flex-1 bg-ground group-hover:bg-gold/5 transition-colors flex flex-col justify-center">
-                  <h3 className="text-[24px] font-serif text-gold-bright mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-[14px] text-ink-soft leading-[1.6]">
-                    {service.desc}
-                  </p>
+              return (
+                <div
+                  key={i}
+                  className="group rounded-3xl overflow-hidden border border-line bg-ground flex flex-col hover:border-gold/40 transition-colors shadow-sm"
+                >
+                  <div className="relative w-full aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={imageSrc}
+                      alt={cat.cardTitle}
+                      fill
+                      unoptimized={isRemote}
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="p-8 flex-1 bg-ground group-hover:bg-gold/5 transition-colors flex flex-col justify-center">
+                    <h3 className="text-[24px] font-serif text-gold-bright mb-3">
+                      {cat.cardTitle}
+                    </h3>
+                    <p className="text-[14px] text-ink-soft leading-[1.6]">
+                      {cat.teaser}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </motion.section>
