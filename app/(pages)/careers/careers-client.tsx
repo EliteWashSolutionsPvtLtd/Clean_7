@@ -137,7 +137,7 @@ export function CareersClient() {
               </div>
               <div className="mt-4 md:mt-0 flex justify-end">
                 <button
-                  className="bg-[var(--gold)] hover:brightness-110 text-black px-6 py-2 rounded-full font-semibold cursor-pointer transition-all"
+                  className="bg-[var(--gold)] hover:brightness-110 text-white px-6 py-2 rounded-full font-semibold cursor-pointer transition-all"
                   onClick={() => {
                     setSelectedCareer(career);
                     setSuccess(false);
@@ -182,7 +182,7 @@ export function CareersClient() {
               We're always looking for talented people. Share your profile with
               us and we'll reach out when a suitable opportunity comes up.
             </p>
-            <button className="inline-flex items-center justify-center rounded-full bg-[var(--gold)] hover:bg-[var(--gold-bright)] text-black px-6 py-2.5 font-semibold transition-colors text-sm">
+            <button className="inline-flex items-center justify-center rounded-full bg-[var(--gold)] hover:bg-[var(--gold-bright)] text-white px-6 py-2.5 font-semibold transition-colors text-sm">
               Send Your Resume
               <svg
                 className="ml-2 w-4 h-4"
@@ -313,7 +313,7 @@ export function CareersClient() {
 
       {/* Application Modal */}
       {selectedCareer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <div className="bg-[var(--card)] border border-[var(--line)] rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden animate-[modalSlideUp_0.2s_ease-out]">
             <div className="p-6 border-b border-[var(--line)] shrink-0">
               <h3 className="text-xl font-bold font-serif text-[var(--foreground)]">
@@ -350,7 +350,7 @@ export function CareersClient() {
                     get back to you soon.
                   </p>
                   <button
-                    className="mt-6 w-full bg-[var(--gold)] text-black font-semibold rounded-full px-4 py-3 hover:bg-[var(--gold-bright)] transition-colors"
+                    className="mt-6 w-full bg-[var(--gold)] text-white font-semibold rounded-full px-4 py-3 hover:bg-[var(--gold-bright)] transition-colors"
                     onClick={() => setSelectedCareer(null)}
                   >
                     Close
@@ -458,7 +458,7 @@ export function CareersClient() {
                     </button>
                     <button
                       type="submit"
-                      className="flex-1 rounded-full bg-[var(--gold)] px-4 py-3 text-sm font-semibold text-black hover:bg-[var(--gold-bright)] transition-colors disabled:opacity-50"
+                      className="flex-1 rounded-full bg-[var(--gold)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--gold-bright)] transition-colors disabled:opacity-50"
                       disabled={submitting}
                     >
                       {submitting ? "Submitting..." : "Submit Application"}

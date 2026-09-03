@@ -9,4 +9,4 @@ export const APP_STORE_URL =
 
 export const GOOGLE_PLAY_URL =
   process.env.NEXT_PUBLIC_GOOGLE_PLAY_URL ??
-  "https://play.google.com/store/search?q=clean7&c=apps";
+  "https://play.google.com/store/apps/details?id=in.clean7.app";
