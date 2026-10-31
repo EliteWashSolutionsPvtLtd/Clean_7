@@ -4,6 +4,7 @@ import HomeHashScroll from "./components/HomeHashScroll";
 import OrganizationJsonLd from "./components/seo/OrganizationJsonLd";
 import DownloadApp from "./components/sections/DownloadApp";
 import Footer from "./components/sections/Footer";
+import ActiveOrderCard from "./components/sections/ActiveOrderCard";
 import Hero from "./components/sections/Hero";
 import HowItWorks from "./components/sections/HowItWorks";
 import Reviews from "./components/sections/Reviews";
@@ -31,6 +32,7 @@ export default function Home() {
 
       <div>
         <Hero />
+        <ActiveOrderCard />
         <HowItWorks />
         <WhyChooseUs />
 

@@ -12,8 +12,8 @@ import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { Fraunces } from "next/font/google";
 import styles from "@/app/components/sections/Hero.module.css";
 
-const fraunces = Fraunces({ subsets: ["latin"], style: ["normal", "italic"] });
-
+// const fraunces = Fraunces({ subsets: ["latin"], style: ["normal", "italic"] });
+const fraunces = { className: "font-[family-name:var(--font-fraunces)]" };
 const heroSlides = [
   {
     image: "/images/services/laundry.png",

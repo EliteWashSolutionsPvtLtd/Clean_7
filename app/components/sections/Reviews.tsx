@@ -2,6 +2,7 @@
 
 import { ScrollReveal } from "../ui/ScrollReveal";
 
+
 const reviews = [
   {
     quote:
@@ -47,10 +48,12 @@ const reviews = [
   },
 ];
 
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useRef } from "react";
 export default function Reviews() {
   const [realReviews, setRealReviews] = useState<any[]>([]);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -68,18 +71,55 @@ export default function Reviews() {
     fetchReviews();
   }, []);
 
-  const displayReviews = realReviews.length >= 6 
+  const displayReviews = realReviews.length >= 6
     ? realReviews.slice(0, 6).map(r => {
-        const name = r.order?.customer?.fullName || "Verified Customer";
-        const avatar = name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase();
-        return {
-          quote: r.description || "Excellent service, highly recommended!",
-          name: name,
-          location: "India",
-          avatar: avatar,
-        };
-      }) 
+      const name = r.order?.customer?.fullName || "Verified Customer";
+      const avatar = name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase();
+      return {
+        quote: r.description || "Excellent service, highly recommended!",
+        name: name,
+        location: "India",
+        avatar: avatar,
+      };
+    })
     : reviews;
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const activeCard = cardRefs.current[activeIndex];
+    if (!track || !activeCard) return;
+    const wrapWidth = track.parentElement?.clientWidth || 0;
+    const offset =
+      activeCard.offsetLeft - (wrapWidth / 2 - activeCard.clientWidth / 2);
+    track.style.transform = `translateX(${-offset}px)`;
+  }, [activeIndex, displayReviews]);
+
+  const goPrev = () => {
+    setActiveIndex((prev) => (prev - 1 + displayReviews.length) % displayReviews.length);
+    resetAutoplay();
+  };
+
+  const goNext = () => {
+    setActiveIndex((prev) => (prev + 1) % displayReviews.length);
+    resetAutoplay();
+  };
+
+  // Autoplay: advance every 3s, pause briefly after manual interaction
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  const resetAutoplay = () => {
+    if (autoplayRef.current) clearInterval(autoplayRef.current);
+    autoplayRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % displayReviews.length);
+    }, 3000);
+  };
+  useEffect(() => {
+    if (displayReviews.length === 0) return;
+    resetAutoplay();
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, [displayReviews.length]);
+
 
   return (
     <section
@@ -116,41 +156,77 @@ export default function Reviews() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
-          {displayReviews.map((rev, idx) => (
-            <ScrollReveal delay={idx * 150} key={idx} className="h-full">
-              <div className="bg-[var(--ground-soft)] rounded-[24px] p-[32px] sm:p-[40px] shadow-sm border border-[var(--line)] flex flex-col justify-between h-full transition-transform hover:-translate-y-1 duration-300">
-                <div>
-                  <span
-                    className="text-[64px] leading-[0.5] text-[var(--gold)] block mb-[20px] mt-[10px]"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
-                  >
-                    “
-                  </span>
-                  <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
-                    {rev.quote}
-                  </p>
-                </div>
-                <div className="pt-[24px] border-t border-[var(--line)] flex items-center gap-[16px]">
-                  {/* Avatar (using initials) */}
-                  <div className="w-[48px] h-[48px] rounded-full bg-[var(--gold)]/10 flex items-center justify-center text-[var(--gold)] font-medium text-[16px]">
-                    {rev.avatar}
-                  </div>
+        <div className="relative overflow-hidden py-[20px] max-w-[1000px] mx-auto">
+           <div
+             ref={trackRef}
+             className="flex transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] w-max"
+           >
+          {/* <div
+            ref={trackRef}
+            className="flex transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] w-max"
+          > */}
+            {displayReviews.map((rev, idx) => (
+              <div
+                key={idx}
+                ref={(el) => { cardRefs.current[idx] = el; }}
+                onClick={() => setActiveIndex(idx)}
+                className={`relative w-[340px] sm:w-[600px] -ml-[60px] sm:-ml-[90px] first:ml-0 cursor-pointer transition-all duration-500 ${idx === activeIndex
+                    ? "opacity-100 scale-100 z-10"
+                    : "opacity-50 scale-[0.86] z-0"
+                  }`}
+              >
+                <div
+                  className={`bg-[var(--ground-soft)] rounded-[24px] p-[32px] sm:p-[40px] border border-[var(--line)] flex flex-col justify-between h-full transition-shadow duration-500 ${idx === activeIndex ? "shadow-[0_18px_40px_rgba(30,27,22,0.12)]" : ""
+                    }`}
+                >
                   <div>
-                    <h4
-                      className="text-[17px] text-[var(--ink)] font-medium mb-[2px]"
+                    <span
+                      className="text-[64px] leading-[0.5] text-[var(--gold)] block mb-[20px] mt-[10px]"
                       style={{ fontFamily: "var(--font-fraunces)" }}
                     >
-                      {rev.name}
-                    </h4>
-                    <p className="text-[13px] text-[var(--ink-soft)]">
-                      {rev.location}
+                      “
+                    </span>
+                    <p className="text-[15px] text-[var(--ink-soft)] leading-[1.6] mb-[32px]">
+                      {rev.quote}
                     </p>
+                  </div>
+                  <div className="pt-[24px] border-t border-[var(--line)] flex items-center gap-[16px]">
+                    <div className="w-[48px] h-[48px] rounded-full bg-[var(--gold)]/10 flex items-center justify-center text-[var(--gold)] font-medium text-[16px]">
+                      {rev.avatar}
+                    </div>
+                    <div>
+                      <h4
+                        className="text-[17px] text-[var(--ink)] font-medium mb-[2px]"
+                        style={{ fontFamily: "var(--font-fraunces)" }}
+                      >
+                        {rev.name}
+                      </h4>
+                      <p className="text-[13px] text-[var(--ink-soft)]">
+                        {rev.location}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
-          ))}
+            ))}
+          </div>
+
+          <div className="flex justify-center gap-[16px] mt-[32px]">
+            <button
+              onClick={goPrev}
+              aria-label="Previous review"
+              className="w-[40px] h-[40px] rounded-full border border-[var(--gold)] text-[var(--gold)] flex items-center justify-center hover:bg-[var(--gold)] hover:text-[var(--card)] transition-colors duration-300"
+            >
+              ‹
+            </button>
+            <button
+              onClick={goNext}
+              aria-label="Next review"
+              className="w-[40px] h-[40px] rounded-full border border-[var(--gold)] text-[var(--gold)] flex items-center justify-center hover:bg-[var(--gold)] hover:text-[var(--card)] transition-colors duration-300"
+            >
+              ›
+            </button>
+          </div>
         </div>
 
         {/* Footer Thanks */}
@@ -178,7 +254,7 @@ export default function Reviews() {
               </span>
             </p>
           </div>
-          
+
           <div className="mt-8 flex justify-center">
             <a
               href="/reviews"

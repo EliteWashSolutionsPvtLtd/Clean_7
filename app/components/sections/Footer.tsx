@@ -342,9 +342,6 @@ export default function Footer() {
               <div>
                 <h3 className={headingClass}>Help</h3>
                 <div className="flex flex-col gap-[16px]">
-                  <Link href="/support" className={linkClass}>
-                    Support & Help
-                  </Link>
                   <Link href="/faq" className={linkClass}>
                     FAQs
                   </Link>

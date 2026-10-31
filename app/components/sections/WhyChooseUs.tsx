@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ScrollReveal } from "../ui/ScrollReveal";
+
 const IconShirt = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="28"
@@ -132,8 +133,111 @@ const features = [
 ];
 
 export default function WhyChooseUs() {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [gridVisible, setGridVisible] = useState(false);
+
+  // Waterfall trigger: fires once when the card grid enters the viewport
+  useEffect(() => {
+    const node = gridRef.current;
+    if (!node) return;
+
+    // Respect users who prefer reduced motion — reveal instantly, no animation
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setGridVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setGridVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="pt-[60px] pb-[100px] px-[24px] md:px-[48px] bg-[var(--ground)]">
+      <style jsx>{`
+        @keyframes waterfallDrop {
+          0% {
+            opacity: 0;
+            transform: translateY(-38px) scale(0.94);
+            filter: blur(6px);
+          }
+          55% {
+            opacity: 1;
+            transform: translateY(6px) scale(1.01);
+            filter: blur(0px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+          }
+        }
+
+        @keyframes ripplePulse {
+          0% {
+            transform: scale(0.85);
+            opacity: 0.45;
+          }
+          100% {
+            transform: scale(1.7);
+            opacity: 0;
+          }
+        }
+
+        .waterfall-card {
+          opacity: 0;
+          animation: waterfallDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          animation-play-state: paused;
+        }
+
+        .waterfall-card.is-visible {
+          animation-play-state: running;
+        }
+
+        .icon-ripple {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .icon-ripple::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 9999px;
+          background: var(--gold);
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .group:hover .icon-ripple::before {
+          animation: ripplePulse 0.8s ease-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .waterfall-card {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+          }
+          .group:hover .icon-ripple::before {
+            animation: none !important;
+          }
+        }
+      `}</style>
+
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="text-center mb-[48px] md:mb-[80px]">
@@ -163,13 +267,22 @@ export default function WhyChooseUs() {
           </ScrollReveal>
         </div>
 
-        {/* 5-Column Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-[12px] md:gap-[20px] mb-[40px]">
+        {/* 5-Column Grid — waterfall reveal */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 lg:grid-cols-5 gap-[12px] md:gap-[20px] mb-[40px]"
+        >
           {features.map((feat, idx) => (
-            <ScrollReveal delay={idx * 150} key={idx} className="h-full w-full">
-              <div className="h-full bg-[var(--ground-soft)] rounded-[20px] md:rounded-[24px] p-[24px] md:p-[36px] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all hover:-translate-y-1 border border-transparent hover:border-[var(--gold)]/20">
-                <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[16px] md:mb-[24px]">
-                  <feat.Icon className="w-5 h-5 md:w-7 md:h-7" />
+            <div
+              key={idx}
+              className={`waterfall-card group h-full w-full ${
+                gridVisible ? "is-visible" : ""
+              }`}
+              style={{ animationDelay: `${idx * 130}ms` }}
+            >
+              <div className="h-full bg-[var(--ground-soft)] rounded-[20px] md:rounded-[24px] p-[24px] md:p-[36px] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all duration-500 ease-out hover:-translate-y-1 border border-transparent hover:border-[var(--gold)]/20">
+                <div className="icon-ripple w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full bg-[var(--gold)]/10 text-[var(--gold)] flex items-center justify-center mb-[16px] md:mb-[24px] transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-[6deg]">
+                  <feat.Icon className="relative z-10 w-5 h-5 md:w-7 md:h-7" />
                 </div>
                 <h3
                   className="text-[16px] md:text-[15px] text-[var(--ink)] font-medium mb-[8px] md:mb-[12px]"
@@ -177,12 +290,12 @@ export default function WhyChooseUs() {
                 >
                   {feat.title}
                 </h3>
-                <div className="w-[20px] md:w-[30px] h-[1px] bg-[var(--gold)]/40 mb-[10px] md:mb-[16px]"></div>
+                <div className="w-[20px] md:w-[30px] h-[1px] bg-[var(--gold)]/40 mb-[10px] md:mb-[16px] transition-all duration-500 ease-out group-hover:w-[40px] md:group-hover:w-[60px] group-hover:bg-[var(--gold)]"></div>
                 <p className="text-[15px] md:text-xs text-[var(--ink-soft)] leading-[1.5] md:leading-[1.6]">
                   {feat.desc}
                 </p>
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
 
@@ -198,7 +311,7 @@ export default function WhyChooseUs() {
 
             <Link
               href="/about"
-              className="flex items-center justify-center gap-[8px] w-full md:w-auto px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors whitespace-nowrap"
+              className="group flex items-center justify-center gap-[8px] w-full md:w-auto px-[24px] py-[12px] rounded-full border border-[var(--gold)] text-[var(--gold)] font-medium text-[15px] hover:bg-[var(--gold)] hover:!text-[#ffffff] transition-colors whitespace-nowrap"
             >
               Learn more about us
               <svg
@@ -210,6 +323,7 @@ export default function WhyChooseUs() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="transition-transform duration-300 ease-out group-hover:translate-x-1"
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>

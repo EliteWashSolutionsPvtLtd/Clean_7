@@ -569,7 +569,7 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
             {[
               {
                 name: "Clean7 Essential",
-                inv: "₹20 Lakh + GST",
+                inv: "₹15 Lakh + GST",
                 desc: "Perfect for entrepreneurs starting a professional home services business in emerging markets.",
                 bestFor: "Residential (B2C) Operations",
                 includes: [
@@ -587,7 +587,7 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
               },
               {
                 name: "Clean7 Premium",
-                inv: "₹25 Lakh + GST",
+                inv: "₹20 Lakh + GST",
                 desc: "Designed for growing markets with higher service capacity and commercial business opportunities.",
                 popular: true,
                 bestFor: "Residential (B2C) & Commercial (B2B) Operations",
@@ -607,7 +607,7 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
               },
               {
                 name: "Clean7 Signature",
-                inv: "₹30 Lakh + GST",
+                inv: "₹25 Lakh + GST",
                 desc: "Built for high-demand locations with maximum operational efficiency and business scalability.",
                 bestFor: "Large-Scale Residential (B2C) & Commercial (B2B) Operations",
                 includes: [
@@ -777,13 +777,13 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
                     Interested Franchise Model
                   </option>
                   <option value="essential" className="text-ink">
-                    Essential (₹20 Lakh)
+                    Essential (₹15 Lakh)
                   </option>
                   <option value="premium" className="text-ink">
-                    Premium (₹25 Lakh)
+                    Premium (₹20 Lakh)
                   </option>
                   <option value="signature" className="text-ink">
-                    Signature (₹30 Lakh)
+                    Signature (₹25 Lakh)
                   </option>
                 </select>
 
@@ -949,21 +949,21 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
                   <tr className="hover:bg-ground-soft transition-colors">
                     <td className="p-4 font-medium text-ink">Essential</td>
                     <td className="p-4">Tier-2 & Emerging Cities</td>
-                    <td className="p-4 text-gold-bright font-medium">₹20 Lakh</td>
+                    <td className="p-4 text-gold-bright font-medium">₹15 Lakh</td>
                     <td className="p-4 text-gold-bright font-medium">₹1.5–2.5 Lakh</td>
                     <td className="p-4">18–24 Months</td>
                   </tr>
                   <tr className="hover:bg-ground-soft transition-colors bg-ground-soft">
                     <td className="p-4 font-medium text-ink">Premium</td>
                     <td className="p-4">Tier-1 & Tier-2 Cities</td>
-                    <td className="p-4 text-gold-bright font-medium">₹25 Lakh</td>
+                    <td className="p-4 text-gold-bright font-medium">₹20 Lakh</td>
                     <td className="p-4 text-gold-bright font-medium">₹3.0–4.0 Lakh</td>
                     <td className="p-4">14–20 Months</td>
                   </tr>
                   <tr className="hover:bg-ground-soft transition-colors">
                     <td className="p-4 font-medium text-ink">Signature</td>
                     <td className="p-4">Metro & High-Demand Markets</td>
-                    <td className="p-4 text-gold-bright font-medium">₹30 Lakh</td>
+                    <td className="p-4 text-gold-bright font-medium">₹25 Lakh</td>
                     <td className="p-4 text-gold-bright font-medium">₹3.5–4.5 Lakh</td>
                     <td className="p-4">12–18 Months</td>
                   </tr>

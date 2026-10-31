@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ScrollReveal } from "../ui/ScrollReveal";
+import { useEffect, useRef, useState } from "react";
 
 const laundrySteps = [
   {
@@ -84,6 +85,119 @@ const houseHelpSteps = [
   },
 ];
 
+function useIsDesktop(breakpoint = 768) {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(min-width: ${breakpoint}px)`);
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+
+  return isDesktop;
+}
+
+
+function useScrollProgress(
+  ref: React.RefObject<HTMLElement | null>,
+  startVh = 0.85,
+  endVh = 0.2
+) {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const measure = () => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * startVh;
+      const end = vh * endVh;
+      const raw = (start - rect.top) / (start - end);
+      setProgress(Math.min(1, Math.max(0, raw)));
+    };
+
+    const handleScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [ref, startVh, endVh]);
+
+  return progress;
+}
+
+function XReveal({
+  progress,
+  range,
+  className,
+  children,
+}: {
+  progress: number;
+  range: [number, number];
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const [start, end] = range;
+  const local =
+    end > start ? (progress - start) / (end - start) : progress >= start ? 1 : 0;
+  const clamped = Math.min(1, Math.max(0, local));
+
+  return (
+    <div
+      className={className}
+      style={{
+        transform: `translateX(${-40 * (1 - clamped)}px)`,
+        opacity: clamped,
+        willChange: "transform, opacity",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Reveal({
+  isDesktop,
+  progress,
+  range,
+  delay,
+  className,
+  children,
+}: {
+  isDesktop: boolean;
+  progress: number;
+  range: [number, number];
+  delay: number;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  if (isDesktop) {
+    return (
+      <XReveal progress={progress} range={range} className={className}>
+        {children}
+      </XReveal>
+    );
+  }
+  return (
+    <ScrollReveal delay={delay} className={className}>
+      {children}
+    </ScrollReveal>
+  );
+}
+
 function StepGrid({
   steps,
   isCircularImage = false,
@@ -91,134 +205,139 @@ function StepGrid({
   steps: typeof laundrySteps;
   isCircularImage?: boolean;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const progress = useScrollProgress(containerRef); // desktop: x-axis, scroll-linked
+  const isDesktop = useIsDesktop();
+
+  // Desktop sequencing: step, arrow, step, arrow, step, arrow, step
+  const totalSlots = steps.length * 2 - 1;
+  const segment = 1 / totalSlots;
+  const rangeFor = (slot: number): [number, number] => {
+    const start = slot * segment;
+    const end = Math.min(start + segment * 1.4, 1);
+    return [start, end];
+  };
+
+  // Mobile sequencing: simple fixed stagger per step (y-axis, via ScrollReveal)
+  const stepDelay = (idx: number) => idx * 150;
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 items-start justify-between w-full relative gap-x-[12px] gap-y-[32px] sm:gap-[48px] md:gap-[24px]">
-      {/* Dashed arrows (desktop only) */}
+    <div
+      ref={containerRef}
+      className="grid grid-cols-2 md:grid-cols-4 items-start justify-between w-full relative gap-x-[12px] gap-y-[32px] sm:gap-[48px] md:gap-[24px]"
+    >
+      {/* Dashed arrows (desktop only — always x-axis, scroll-linked) */}
       <div className="hidden md:flex absolute top-[16px] left-0 w-full z-0 pointer-events-none justify-evenly -translate-y-1/2">
-        <div className="flex items-center justify-center w-[60px] lg:w-[80px]">
-          <svg
-            width="100%"
-            height="24"
-            viewBox="0 0 60 24"
-            fill="none"
-            stroke="var(--gold)"
-            style={{ overflow: "visible" }}
+        {[0, 1, 2].map((arrowIdx) => (
+          <XReveal
+            key={arrowIdx}
+            progress={progress}
+            range={rangeFor(arrowIdx * 2 + 1)}
+            className="flex items-center justify-center w-[60px] lg:w-[80px]"
           >
-            <path d="M0 12h56" strokeWidth="1.5" strokeDasharray="3 4" />
-            <path
-              d="M52 6l6 6-6 6"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-        <div className="flex items-center justify-center w-[60px] lg:w-[80px]">
-          <svg
-            width="100%"
-            height="24"
-            viewBox="0 0 60 24"
-            fill="none"
-            stroke="var(--gold)"
-            style={{ overflow: "visible" }}
-          >
-            <path d="M0 12h56" strokeWidth="1.5" strokeDasharray="3 4" />
-            <path
-              d="M52 6l6 6-6 6"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-        <div className="flex items-center justify-center w-[60px] lg:w-[80px]">
-          <svg
-            width="100%"
-            height="24"
-            viewBox="0 0 60 24"
-            fill="none"
-            stroke="var(--gold)"
-            style={{ overflow: "visible" }}
-          >
-            <path d="M0 12h56" strokeWidth="1.5" strokeDasharray="3 4" />
-            <path
-              d="M52 6l6 6-6 6"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
+            <svg
+              width="100%"
+              height="24"
+              viewBox="0 0 60 24"
+              fill="none"
+              stroke="var(--gold)"
+              style={{ overflow: "visible" }}
+            >
+              <path d="M0 12h56" strokeWidth="1.5" strokeDasharray="3 4" />
+              <path
+                d="M52 6l6 6-6 6"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </XReveal>
+        ))}
       </div>
 
-      {steps.map((step, idx) => (
-        <div
-          key={idx}
-          className="flex flex-col items-center text-center flex-1 z-10 w-full"
-        >
-          {/* Badge */}
-          <ScrollReveal
-            delay={idx * 150}
-            className="w-full flex justify-center mb-[16px] sm:mb-[32px]"
+      {steps.map((step, idx) => {
+        const range = rangeFor(idx * 2);
+        return (
+          <div
+            key={idx}
+            className="flex flex-col items-center text-center flex-1 z-10 w-full"
           >
-            <div className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] rounded-full bg-[var(--gold)] text-[#FFFFFF] flex items-center justify-center text-[13px] sm:text-[15px] font-medium">
-              {step.num}
-            </div>
-          </ScrollReveal>
-
-          {/* Image with glow behind it */}
-          <ScrollReveal
-            delay={idx * 150 + 100}
-            className="w-full flex justify-center mb-[16px] sm:mb-[32px] md:mb-[40px]"
-          >
-            <div className="relative flex items-center justify-center w-full h-[140px] sm:h-[200px] md:h-[260px]">
-              {/* Background circle (only for non-circular images) */}
-              {!isCircularImage && (
-                <div className="absolute w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
-              )}
-
-              {/* Image container */}
-              <div
-                className={`relative ${isCircularImage
-                  ? "w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
-                  : "w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
-                  }`}
-              >
-                <Image
-                  src={step.img}
-                  alt={step.title}
-                  fill
-                  className={
-                    isCircularImage
-                      ? "object-cover"
-                      : "object-contain drop-shadow-[0_20px_30px_rgba(33,28,19,0.1)] scale-110"
-                  }
-                />
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Text */}
-          <ScrollReveal delay={idx * 150 + 200}>
-            <h3
-              className="text-[15px] sm:text-[22px] text-[var(--ink)] mb-[8px] sm:mb-[16px] font-medium"
-              style={{ fontFamily: "var(--font-fraunces)" }}
+            {/* Badge */}
+            <Reveal
+              isDesktop={isDesktop}
+              progress={progress}
+              range={range}
+              delay={stepDelay(idx)}
+              className="w-full flex justify-center mb-[16px] sm:mb-[32px]"
             >
-              {step.title}
-            </h3>
-          </ScrollReveal>
+              <div className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] rounded-full bg-[var(--gold)] text-[#FFFFFF] flex items-center justify-center text-[13px] sm:text-[15px] font-medium">
+                {step.num}
+              </div>
+            </Reveal>
 
-          <ScrollReveal delay={idx * 150 + 300}>
-            <p className="text-[13px] sm:text-[15px] text-[var(--ink-soft)] leading-[1.4] sm:leading-[1.6] max-w-[240px]">
-              {step.desc}
-            </p>
-          </ScrollReveal>
-        </div>
-      ))}
+            {/* Image with glow behind it */}
+            <Reveal
+              isDesktop={isDesktop}
+              progress={progress}
+              range={range}
+              delay={stepDelay(idx) + 100}
+              className="w-full flex justify-center mb-[16px] sm:mb-[32px] md:mb-[40px]"
+            >
+              <div className="relative flex items-center justify-center w-full h-[140px] sm:h-[200px] md:h-[260px]">
+                {!isCircularImage && (
+                  <div className="absolute w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] bg-[#e6dfcf] rounded-full -z-10"></div>
+                )}
+                <div
+                  className={`relative ${isCircularImage
+                    ? "w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden"
+                    : "w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
+                    }`}
+                >
+                  <Image
+                    src={step.img}
+                    alt={step.title}
+                    fill
+                    className={
+                      isCircularImage
+                        ? "object-cover"
+                        : "object-contain drop-shadow-[0_20px_30px_rgba(33,28,19,0.1)] scale-110"
+                    }
+                  />
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Text */}
+            <Reveal
+              isDesktop={isDesktop}
+              progress={progress}
+              range={range}
+              delay={stepDelay(idx) + 200}
+            >
+              <h3
+                className="text-[15px] sm:text-[22px] text-[var(--ink)] mb-[8px] sm:mb-[16px] font-medium"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+              >
+                {step.title}
+              </h3>
+            </Reveal>
+
+            <Reveal
+              isDesktop={isDesktop}
+              progress={progress}
+              range={range}
+              delay={stepDelay(idx) + 300}
+            >
+              <p className="text-[13px] sm:text-[15px] text-[var(--ink-soft)] leading-[1.4] sm:leading-[1.6] max-w-[240px]">
+                {step.desc}
+              </p>
+            </Reveal>
+          </div>
+        );
+      })}
     </div>
   );
 }
-
 export default function HowItWorks() {
   return (
     <section
