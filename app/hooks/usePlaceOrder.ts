@@ -289,7 +289,7 @@ export function usePlaceOrder(opts: {
             if (p.bulk) {
               const res = await confirmBulk(args).unwrap();
               id = res.data?.orders?.[0]?.id || p.fallbackOrderId;
-              rememberOrders(res.data?.orders?.map((o) => o.id));
+              rememberOrders(res.data?.orders?.map((o) => o.id) ?? []);
               number = res.data?.groupNumber || res.data?.orders?.[0]?.orderNumber || p.orderNumber;
             } else {
               const res = await confirm(args).unwrap();
@@ -476,7 +476,7 @@ export function usePlaceOrder(opts: {
         if (bookings.length > 1) {
           const res = await createBulkCod({ bookings, idempotencyKey }).unwrap();
           id = res.data?.orders?.[0]?.id;
-          rememberOrders(res.data?.orders?.map((o) => o.id));
+          rememberOrders(res.data?.orders?.map((o) => o.id) ?? []);
           number = res.data?.groupNumber || res.data?.orders?.[0]?.orderNumber;
         } else {
           const res = await createOrder({
