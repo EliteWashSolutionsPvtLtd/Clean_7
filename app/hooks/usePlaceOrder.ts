@@ -227,6 +227,18 @@ export type PlaceOrderStatus =
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+/** Every order of this checkout, read by /order-success to show all of them + the combined total. */
+const rememberOrders = (ids: (string | undefined)[]) => {
+  try {
+    sessionStorage.setItem(
+      "clean7_order_success_ids",
+      JSON.stringify(ids.filter(Boolean)),
+    );
+  } catch {
+    /* storage blocked: the page falls back to the single order id */
+  }
+};
+
 /**
  * Booking → pay flow, same as the mobile app:
  *   initiate (gets pendingOrderToken + Razorpay checkout)
@@ -277,10 +289,12 @@ export function usePlaceOrder(opts: {
             if (p.bulk) {
               const res = await confirmBulk(args).unwrap();
               id = res.data?.orders?.[0]?.id || p.fallbackOrderId;
+              rememberOrders(res.data?.orders?.map((o) => o.id));
               number = res.data?.groupNumber || res.data?.orders?.[0]?.orderNumber || p.orderNumber;
             } else {
               const res = await confirm(args).unwrap();
               id = confirmedOrderId(res.data, p.fallbackOrderId);
+              rememberOrders([id]);
               number = res.data?.orderNumber || res.data?.order?.orderNumber || p.orderNumber;
             }
             clearPendingPayment();
@@ -462,6 +476,7 @@ export function usePlaceOrder(opts: {
         if (bookings.length > 1) {
           const res = await createBulkCod({ bookings, idempotencyKey }).unwrap();
           id = res.data?.orders?.[0]?.id;
+          rememberOrders(res.data?.orders?.map((o) => o.id));
           number = res.data?.groupNumber || res.data?.orders?.[0]?.orderNumber;
         } else {
           const res = await createOrder({
@@ -470,6 +485,7 @@ export function usePlaceOrder(opts: {
             idempotencyKey,
           }).unwrap();
           id = res.data?.id;
+          rememberOrders([id]);
           number = res.data?.orderNumber;
         }
         setStatus("idle");

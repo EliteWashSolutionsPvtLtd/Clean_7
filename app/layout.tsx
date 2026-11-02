@@ -1,5 +1,3 @@
-
-
 // // import type { Metadata } from "next";
 // // import { Inter, Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 // // import "./globals.css";
@@ -115,7 +113,6 @@
 // //     </html>
 // //   );
 // // }
-
 
 // import type { Metadata } from "next";
 // import { Inter, Plus_Jakarta_Sans, Fraunces } from "next/font/google";
@@ -235,8 +232,6 @@
 //   );
 // }
 
-
-
 // import type { Metadata } from "next";
 // import { Inter, Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 // import "./globals.css";
@@ -352,7 +347,6 @@
 //   );
 // }
 
-
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
@@ -394,6 +388,11 @@ const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   title: {
     default: `Clean7`,
     template: `%s | Clean7`,
@@ -447,12 +446,7 @@ export default function RootLayout({
         className={`${inter.variable} ${jakarta.variable} ${fraunces.variable} font-sans antialiased`}
       >
         <StoreProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-          >
-
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <LenisProvider>
               <RoutePrefetch />
               {children}
