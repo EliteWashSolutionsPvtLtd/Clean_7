@@ -5,7 +5,7 @@
  */
 export const APP_STORE_URL =
   process.env.NEXT_PUBLIC_APP_STORE_URL ??
-  "https://apps.apple.com/search?term=clean7";
+  "https://apps.apple.com/in/app/clean7/id6798494459";
 
 export const GOOGLE_PLAY_URL =
   process.env.NEXT_PUBLIC_GOOGLE_PLAY_URL ??
