@@ -4,13 +4,19 @@
 // import Link from "next/link";
 // import { useRouter } from "next/navigation";
 // import { toast } from "sonner";
-// import { ArrowLeft } from "lucide-react";
-// import { WixMadeForDisplayFont } from "@/app/fonts";
 // import Stepper from "@/app/components/auth/Stepper";
 // import OtpInput from "@/app/components/auth/OtpInput";
 // import PasswordInput from "@/app/components/auth/PasswordInput";
 // import GoogleButton from "@/app/components/auth/GoogleButton";
 // import OrDivider from "@/app/components/auth/OrDivider";
+// import PhoneSignupFlow from "@/app/components/auth/PhoneSignupFlow";
+// import {
+//   BackButton,
+//   Heading,
+//   RESEND_SECONDS,
+//   ResendRow,
+//   isAlreadyRegistered,
+// } from "@/app/components/auth/AuthParts";
 // import {
 //   inputClass,
 //   labelClass,
@@ -23,61 +29,17 @@
 //   useSendPhoneOtpMutation,
 //   useVerifyPhoneOtpMutation,
 //   useRegisterMutation,
+//   useCheckEmailMutation,
+//   useCheckPhoneMutation,
 //   getAuthPayload,
 // } from "@/redux/api/authApi";
 // import { setCredentials } from "@/redux/slices/authSlice";
 // import { useAppDispatch } from "@/redux/hooks";
 
 // const STEPS = ["Email", "Email OTP", "Phone", "Phone OTP", "Details"];
-// const RESEND_SECONDS = 30;
-
-// function Heading({ title, subtitle }: { title: string; subtitle: React.ReactNode }) {
-//   return (
-//     <div className="mb-8 text-center">
-//       <h1
-//         className="text-[28px] font-semibold tracking-tight sm:text-[34px]"
-//         style={{ fontFamily: WixMadeForDisplayFont.style.fontFamily }}
-//       >
-//         {title}
-//       </h1>
-//       <p className="mt-2 text-[16px] leading-relaxed text-[var(--ink-soft)]">
-//         {subtitle}
-//       </p>
-//     </div>
-//   );
-// }
-
-// function BackButton({ onClick, label }: { onClick: () => void; label: string }) {
-//   return (
-//     <button
-//       type="button"
-//       onClick={onClick}
-//       className="mb-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
-//     >
-//       <ArrowLeft size={16} />
-//       {label}
-//     </button>
-//   );
-// }
-
-// function ResendRow({ seconds, onResend }: { seconds: number; onResend: () => void }) {
-//   return (
-//     <p className="text-center text-[14px] text-[var(--ink-soft)]">
-//       Didn&apos;t receive the code?{" "}
-//       {seconds > 0 ? (
-//         <span className="font-medium text-[var(--ink)]">
-//           Resend in 0:{String(seconds).padStart(2, "0")}
-//         </span>
-//       ) : (
-//         <button type="button" onClick={onResend} className={linkClass}>
-//           Resend code
-//         </button>
-//       )}
-//     </p>
-//   );
-// }
 
 // export default function SignupFlow() {
+//   const [usePhoneSignup, setUsePhoneSignup] = useState(false);
 //   const [step, setStep] = useState(1);
 //   const [email, setEmail] = useState("");
 //   const [emailOtp, setEmailOtp] = useState("");
@@ -95,6 +57,8 @@
 //   const [verifyPhoneOtp, { isLoading: verifyingPhone }] =
 //     useVerifyPhoneOtpMutation();
 //   const [register, { isLoading: registering }] = useRegisterMutation();
+//   const [checkEmail, { isLoading: checkingEmail }] = useCheckEmailMutation();
+//   const [checkPhone, { isLoading: checkingPhone }] = useCheckPhoneMutation();
 
 //   // Resend countdown (starts whenever an OTP step is entered)
 //   useEffect(() => {
@@ -112,6 +76,11 @@
 //   async function handleSendEmailOtp(e: React.FormEvent) {
 //     e.preventDefault();
 //     try {
+//       const res = await checkEmail({ email: email.trim() }).unwrap();
+//       if (isAlreadyRegistered(res)) {
+//         toast.error("This email is already registered. Please login.");
+//         return;
+//       }
 //       await sendEmailOtp({ email: email.trim() }).unwrap();
 //       toast.success("Verification code sent to your email");
 //       goTo(2);
@@ -137,6 +106,11 @@
 //   async function handleSendPhoneOtp(e: React.FormEvent) {
 //     e.preventDefault();
 //     try {
+//       const res = await checkPhone({ phoneNumber: fullPhone }).unwrap();
+//       if (isAlreadyRegistered(res)) {
+//         toast.error("This phone number is already registered. Please login.");
+//         return;
+//       }
 //       await sendPhoneOtp({ phone: fullPhone }).unwrap();
 //       toast.success("Verification code sent to your phone");
 //       goTo(4);
@@ -187,6 +161,21 @@
 //     } catch {}
 //   }
 
+//   if (usePhoneSignup) {
+//     return (
+//       <>
+//         <PhoneSignupFlow />
+//         <button
+//           type="button"
+//           onClick={() => setUsePhoneSignup(false)}
+//           className={`mt-6 block w-full text-center text-[15px] ${linkClass}`}
+//         >
+//           Sign up with email instead
+//         </button>
+//       </>
+//     );
+//   }
+
 //   return (
 //     <>
 //       <Stepper steps={STEPS} current={step} />
@@ -216,15 +205,23 @@
 //             </div>
 //             <button
 //               type="submit"
-//               disabled={sendingEmail}
+//               disabled={sendingEmail || checkingEmail}
 //               className={primaryBtnClass}
 //             >
-//               {sendingEmail ? "Sending..." : "Send verification code"}
+//               {sendingEmail || checkingEmail ? "Sending..." : "Send verification code"}
 //             </button>
 //           </form>
 
 //           <OrDivider />
 //           <GoogleButton />
+
+//           <button
+//             type="button"
+//             onClick={() => setUsePhoneSignup(true)}
+//             className={`mt-4 block w-full text-center text-[15px] ${linkClass}`}
+//           >
+//             Sign up with phone number (OTP)
+//           </button>
 
 //           <p className="mt-6 text-center text-[15px] text-[var(--ink-soft)]">
 //             Already have an account?{" "}
@@ -298,10 +295,10 @@
 //             </div>
 //             <button
 //               type="submit"
-//               disabled={phone.length < 10 || sendingPhone}
+//               disabled={phone.length < 10 || sendingPhone || checkingPhone}
 //               className={primaryBtnClass}
 //             >
-//               {sendingPhone ? "Sending..." : "Send verification code"}
+//               {sendingPhone || checkingPhone ? "Sending..." : "Send verification code"}
 //             </button>
 //           </form>
 //         </>
@@ -421,6 +418,7 @@ import { toast } from "sonner";
 import Stepper from "@/app/components/auth/Stepper";
 import OtpInput from "@/app/components/auth/OtpInput";
 import PasswordInput from "@/app/components/auth/PasswordInput";
+import { validatePassword, PASSWORD_HINT } from "@/lib/password";
 import GoogleButton from "@/app/components/auth/GoogleButton";
 import OrDivider from "@/app/components/auth/OrDivider";
 import PhoneSignupFlow from "@/app/components/auth/PhoneSignupFlow";
@@ -551,6 +549,11 @@ export default function SignupFlow() {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const password = String(form.get("password"));
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      toast.error(passwordError);
+      return;
+    }
     if (password !== String(form.get("confirm"))) {
       toast.error("Passwords do not match");
       return;
@@ -779,6 +782,9 @@ export default function SignupFlow() {
                 placeholder="Create a password"
                 autoComplete="new-password"
               />
+              <p className="mt-1.5 text-[12px] text-[var(--ink-soft)]">
+                {PASSWORD_HINT}
+              </p>
             </div>
             <div>
               <label htmlFor="su-confirm" className={labelClass}>
