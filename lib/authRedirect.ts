@@ -16,4 +16,5 @@ export function getPostLoginPath(fallback = "/"): string {
     return fallback;
   }
   return next;
+
 }
