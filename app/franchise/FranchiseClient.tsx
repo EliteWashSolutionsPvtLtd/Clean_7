@@ -217,7 +217,7 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
                 <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
               <a
-                href={`${apiUrl}/catalog/brochure`}
+                // href={`${apiUrl}/catalog/brochure`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-[30px] py-[16px] border border-gold/30 bg-transparent hover:bg-gold/5 text-ink rounded-full font-medium text-[14.5px] tracking-[0.02em] transition-colors flex items-center justify-center gap-2"
@@ -285,7 +285,7 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
               </em>
             </h2>
             <p className="text-[15px] md:text-[17px] leading-[1.7] text-ink-soft max-w-[600px]">
-              India's home services industry is evolving faster than ever. Urban households are seeking trusted brands that provide multiple doorstep services through a single platform. With over 95% of the market still unorganized, Clean7 offers franchise partners the opportunity to enter a high-growth industry backed by technology, operational support, marketing expertise, and a proven multi-service business model.
+              India&apos;s home services industry is evolving faster than ever. Urban households are seeking trusted brands that provide multiple doorstep services through a single platform. With over 95% of the market still unorganized, Clean7 offers franchise partners the opportunity to enter a high-growth industry backed by technology, operational support, marketing expertise, and a proven multi-service business model.
             </p>
           </div>
 
@@ -869,8 +869,8 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
               Executive Summary
             </h3>
             <p className="text-[15px] leading-[1.7]">
-              India's home services sector—including laundry, car wash, and
-              residential cleaning—is experiencing strong growth, driven by rapid urbanization, rising disposable incomes, and increasing numbers of dual-income households. Industry estimates value India's laundry and dry-cleaning market at{" "}
+              India&apos;s home services sector—including laundry, car wash, and
+              residential cleaning—is experiencing strong growth, driven by rapid urbanization, rising disposable incomes, and increasing numbers of dual-income households. Industry estimates value India&apos;s laundry and dry-cleaning market at{" "}
               <strong className="text-gold-bright font-medium">
                 ₹30,000+ crore (≈USD 3.5–4.0 billion)
               </strong>
@@ -898,7 +898,7 @@ export default function FranchiseClient({ categories = [] }: { categories?: Serv
                 Residential Cleaning
               </h4>
               <p className="text-[14px] leading-[1.7] mb-6">
-                India's residential cleaning services market was valued at approximately USD 3.8 billion in 2024 and is projected to reach USD 6.9 billion by 2032, growing at a 7.3% CAGR, fueled by increasing hygiene awareness, urban lifestyles, and demand for convenience.
+                India&apos;s residential cleaning services market was valued at approximately USD 3.8 billion in 2024 and is projected to reach USD 6.9 billion by 2032, growing at a 7.3% CAGR, fueled by increasing hygiene awareness, urban lifestyles, and demand for convenience.
               </p>
               <div className="text-[clamp(32px,3vw,42px)] font-serif text-gold-bright leading-none">
                 7.3%{" "}

@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -411,7 +410,14 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Minus, Plus, Search, X } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Minus,
+  Plus,
+  Search,
+  X,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import type { CatalogService, PricingItem } from "@/redux/api/catalogApi";
 import { toast } from "sonner";
@@ -529,7 +535,9 @@ export default function ItemListBooking({
   const grand = cart.total + total;
   const remaining = Math.max(0, MIN_ORDER_TOTAL - grand);
   const hasSomething = count > 0 || !cart.isEmpty;
-  const canContinue = guest ? hasSomething : hasSomething && grand >= MIN_ORDER_TOTAL;
+  const canContinue = guest
+    ? hasSomething
+    : hasSomething && grand >= MIN_ORDER_TOTAL;
 
   // On the public Pricing page (onGuestContinue given) check the device location.
   const gate = useServiceabilityGate({ useBrowserLocation: !!onGuestContinue });
@@ -615,7 +623,7 @@ export default function ItemListBooking({
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search items, e.g. shirt, saree, curtain"
           aria-label="Search items"
-          className="w-full rounded-full border border-[var(--line)] bg-[var(--card)] py-3.5 pl-11 pr-11 text-[15px] text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)]/70 focus:border-[var(--gold)]"
+          className="w-full rounded-full border border-[var(--line)] bg-[var(--card)] py-3.5 pl-11 pr-11 text-[15px] text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)]/70 focus:border-[var(--gold)] [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:hidden [&::-ms-clear]:hidden"
         />
         {query && (
           <button
@@ -699,7 +707,9 @@ export default function ItemListBooking({
       {/* Items */}
       {rows.length === 0 ? (
         <p className="rounded-2xl border border-[var(--line)] bg-[var(--card)] px-5 py-10 text-center text-[var(--ink-soft)]">
-          {q ? `No items match “${query.trim()}”.` : "No items in this service yet."}
+          {q
+            ? `No items match “${query.trim()}”.`
+            : "No items in this service yet."}
         </p>
       ) : (
         <ul className="grid gap-3 md:grid-cols-2">
@@ -717,7 +727,9 @@ export default function ItemListBooking({
                   </p>
                   {(sub || q) && (
                     <p className="mt-0.5 line-clamp-2 text-[13px] text-[var(--ink-soft)]">
-                      {q ? [row.svc.name, sub].filter(Boolean).join(" · ") : sub}
+                      {q
+                        ? [row.svc.name, sub].filter(Boolean).join(" · ")
+                        : sub}
                     </p>
                   )}
                 </div>
@@ -771,7 +783,9 @@ export default function ItemListBooking({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
             <p className="text-[15px] font-semibold text-[var(--ink)]">
-              {count > 0 ? `${plural(count)} · ${rupee(total)}` : "No items added"}
+              {count > 0
+                ? `${plural(count)} · ${rupee(total)}`
+                : "No items added"}
               <span className="ml-2 text-[13px] font-normal text-[var(--ink-soft)]">
                 incl. {GST_PERCENT}% GST
               </span>

@@ -225,7 +225,7 @@ export default function BlogPage() {
                   placeholder="Enter your email"
                   className="bg-[var(--ground-soft)] border border-[var(--line)] rounded-[12px] px-5 py-[14px] flex-grow md:w-[320px] text-[var(--ink)] text-[15px] focus:outline-none focus:border-[var(--gold)] transition-colors placeholder:text-[var(--ink-soft)] shadow-sm"
                 />
-                <button className="bg-[var(--gold)] text-[var(--ground)] px-8 py-[14px] rounded-[12px] text-[15px] font-bold hover:bg-[var(--gold-bright)] transition-colors whitespace-nowrap shadow-md hover:shadow-lg hover:-translate-y-[1px] active:translate-y-0">
+                <button type="button" disabled aria-disabled="true"  className="bg-[var(--gold)] text-[var(--ground)] px-8 py-[14px] rounded-[12px] text-[15px] font-bold hover:bg-[var(--gold-bright)] transition-colors whitespace-nowrap shadow-md hover:shadow-lg hover:-translate-y-[1px] active:translate-y-0">
                   Subscribe
                 </button>
               </div>
